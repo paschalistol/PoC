@@ -47,7 +47,7 @@ public class DogPatrolState : DogBaseState
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
         {
             
-           // owner.ChangeState<ChaseState>();
+           owner.ChangeState<DogChaseState>();
         }
     }
 

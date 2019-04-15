@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33214805, g: 0.3259301, b: 0.28340176, a: 1}
+  m_IndirectSpecularColor: {r: 0.33214757, g: 0.32593003, b: 0.28340173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &29037580
 Transform:
   m_ObjectHideFlags: 0
@@ -1307,7 +1307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845673720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.67, y: 5.38, z: 95.1}
+  m_LocalPosition: {x: 6.67, y: 5.38, z: 1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 544406964}
@@ -2584,7 +2584,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 845673721}
-  smellDistance: 15
+  smellDistance: 20
 --- !u!23 &1948862808
 MeshRenderer:
   m_ObjectHideFlags: 0

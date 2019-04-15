@@ -41,7 +41,7 @@ public class DogDetectionState : DogBaseState
         }
         else
         {
-            owner.ChangeState<PatrolState>();
+            owner.ChangeState<DogPatrolState>();
         }
        
         

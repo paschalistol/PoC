@@ -27,9 +27,9 @@ public class DogChaseState : DogBaseState
             owner.agent.SetDestination(owner.player.transform.position);
 
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
-                owner.ChangeState<DetectionState>();
+                owner.ChangeState<DogDetectionState>();
         }  else
-            owner.ChangeState<PatrolState>();
+            owner.ChangeState<DogPatrolState>();
 
     }
 }
