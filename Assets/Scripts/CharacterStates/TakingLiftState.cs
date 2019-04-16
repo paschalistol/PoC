@@ -6,9 +6,12 @@ using UnityEngine;
 public class TakingLiftState : CharacterBaseState
 {
 
+    
+
     public override void EnterState()
     {
         base.EnterState();
+        
     }
 
 
@@ -49,8 +52,20 @@ public class TakingLiftState : CharacterBaseState
 
 
         GameObject lift = TakingLift();
-        owner.transform.position += Vector3.up * 0.03f;
+        //owner.transform.position += Vector3.up * 0.03f;
+        /**
+         * 
+        
+        
+        float dif = skinWidth + capsuleCollider.transform.localScale.y / 10;
+        owner.transform.position += new Vector3(0, dif, 0);
+
+         * **/
+
         owner.transform.parent = lift.transform;
+        //owner.transform.position = new Vector3(0,lift.transform.position.y,0);
+
+
         Debug.Log("hit");
 
         if (TakingLift() == null && IsGrounded())

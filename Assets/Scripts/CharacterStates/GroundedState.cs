@@ -53,6 +53,7 @@ public class GroundedState : CharacterBaseState
 
         if (TakingLift() != null)
         {
+
             owner.ChangeState<TakingLiftState>();
         }
         if (!IsGrounded())

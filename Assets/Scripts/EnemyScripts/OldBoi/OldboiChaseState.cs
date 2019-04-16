@@ -28,7 +28,7 @@ public class OldboiChaseState : OldboiBaseState
         {
             
             owner.agent.SetDestination(owner.player.transform.position);
-             owner.doggo.SwitchToFollow(owner.agent.transform.position);
+           //  owner.doggo.SwitchToFollow(owner.agent.transform.position);
             owner.doggo.ChangeState<DogChaseState>();
            // owner.doggo.agent.SetDestination(owner.transform.position);
             Debug.Log("waddup");
