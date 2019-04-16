@@ -10,27 +10,22 @@ public class DogPatrolState : DogBaseState
     
     private GameObject[] DogPoints;
     private GameObject currentPoint;
-    //private float chaseDistance;
-    //private float hearingRange;
-    //  private float maxSpeed;
+    
     private float smellDistance;
     
-    
-
     private int Point;
 
     // Methods
     public override void EnterState()
     {
         base.EnterState();
-        // chaseDistance = owner.GetFieldOfView();
-        // hearingRange = owner.GetHearingDistance();
+        
         smellDistance = owner.GetSmellDistance();
        
        
         DogPoints = owner.GetComponent<DogPatrolPoints>().GetPoints();
         ChooseRandom();
-       // ChooseClosest();
+       
         
 
     }
@@ -41,12 +36,11 @@ public class DogPatrolState : DogBaseState
        // Debug.Log(owner.agent.destination + " " + DogPoints[Point].transform.position);
         if (Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position) < 5)
         {
-            //Debug.Log("t");
+            
             ChooseRandom();
         }
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
         {
-            
            owner.ChangeState<DogChaseState>();
         }
     }
