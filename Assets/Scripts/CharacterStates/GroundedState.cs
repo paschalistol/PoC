@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character/GroundedState")]
 public class GroundedState : CharacterBaseState
 {
-
-
-
     public override void EnterState()
     {
         base.EnterState();
@@ -55,6 +52,11 @@ public class GroundedState : CharacterBaseState
         {
 
             owner.ChangeState<TakingLiftState>();
+        }
+
+        if(TakingLift2() != null)
+        {
+            owner.ChangeState<OnLiftState>();
         }
         if (!IsGrounded())
         {

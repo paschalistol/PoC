@@ -11,6 +11,7 @@ public class HoldingItem : HoldItemBase
 
         base.EnterState();
         objectCarried = ReturnObjectInFront();
+        Debug.Log("Holding Stuff2");
         if (objectCarried != null)
         {
 
@@ -19,6 +20,7 @@ public class HoldingItem : HoldItemBase
     }
     public override void ToDo()
     {
+        Debug.Log("Holding Stuff");
         if (Input.GetKeyDown(KeyCode.E))
         {
             objectCarried.layer = 11;

@@ -29,7 +29,6 @@ public class InTheAirState : CharacterBaseState
         owner.transform.position += Velocity * Time.deltaTime;
         if(IsGrounded() && snowboarding)
         {
-
             owner.ChangeState<SnowboardState>();
         }else if (IsGrounded())
         {
@@ -38,6 +37,10 @@ public class InTheAirState : CharacterBaseState
         }else if (TakingLift())
         {
             owner.ChangeState<TakingLiftState>();
+        }
+        else if (TakingLift2())
+        {
+            owner.ChangeState<OnLiftState>();
         }
     }
 

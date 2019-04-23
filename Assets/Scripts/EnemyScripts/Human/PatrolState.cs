@@ -13,6 +13,7 @@ public class PatrolState : EnemyBaseState
     private float hearingRange;
     private float maxSpeed;
     private CharacterStateMachine charStateM;
+    private float lightRange;
     
 
     private int currentPoint = 0;
@@ -22,6 +23,7 @@ public class PatrolState : EnemyBaseState
     {
         base.EnterState();
         chaseDistance = owner.GetFieldOfView();
+        
         hearingRange = owner.GetHearingDistance();
        
        
@@ -30,12 +32,19 @@ public class PatrolState : EnemyBaseState
 
         owner.flashLight.GetComponent<Light>().intensity = 15;
         owner.flashLight.GetComponent<Light>().color = Color.white;
+        lightRange = owner.flashLight.GetComponent<Light>().range;
+
 
     }
 
     public override void ToDo()
     {
-       
+
+        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+        lightAngle = lightField.spotAngle;
+
+      
+        //Debug.Log(fieldOfView + " + " + lightAngle);
         owner.agent.SetDestination(points[currentPoint].transform.position);
        
         if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
@@ -43,19 +52,12 @@ public class PatrolState : EnemyBaseState
             currentPoint = (currentPoint + 1) % points.Length;
            
         }
-
-
-
-
-        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
+        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
-        {
-            
+        {     
             owner.ChangeState<ChaseState>();
         }
-        //||
-
     }
 
     private void ChooseClosest()

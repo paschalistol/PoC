@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CharacterStateMachine : StateMachine
 {
+    public GameObject lift2;
     public LayerMask environment;
     public LayerMask pickups;
     public LayerMask lift;
+ 
     public float test;
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float maxSpeed;

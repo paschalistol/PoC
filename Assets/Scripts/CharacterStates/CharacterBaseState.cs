@@ -12,7 +12,7 @@ public class CharacterBaseState : State
     protected const int acceleration = 23;
     protected const float skinWidth = 0.003f;
     protected const float gravityConstant = 20f;
-    protected const float groundCheckDistance = 0.3f;
+    protected const float groundCheckDistance = 0.25f;
     protected Vector3 Velocity { get { return owner.velocity; } set { owner.velocity = value; } }
     protected float MaxSpeed { get { return owner.maxSpeed; } set { owner.maxSpeed = value; } }
     protected const float deceleration = 5;
@@ -23,6 +23,7 @@ public class CharacterBaseState : State
     protected Vector3 normal;
     protected const float jumpHeight = 12;
     protected bool snowboarding = false;
+    
 
     
 
@@ -39,7 +40,7 @@ public class CharacterBaseState : State
     }
     protected void ApplyForce(Vector3 vector)
     {
-        Velocity += vector;
+        Velocity = vector;
 
     }
 
@@ -58,8 +59,6 @@ public class CharacterBaseState : State
         input = Vector3.ProjectOnPlane(input, GroundCast().normal).normalized;
         ChangeCharRotation();
         return input;
-
-
     }
 
 
@@ -103,7 +102,6 @@ public class CharacterBaseState : State
 
         if (direction.magnitude > 1)
         {
-
             direction = direction.normalized;
         }
         direction.y = 0;
@@ -121,7 +119,8 @@ public class CharacterBaseState : State
     }
     protected void Decelerate()
     {
-        Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
+         Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
+        //Vector3 tempVel = new Vector3(Velocity.x, Velocity.y, Velocity.z);
         Velocity -= tempVel.normalized * deceleration * Time.deltaTime;
     }
     private void Friction(float normalMag)
@@ -149,10 +148,6 @@ public class CharacterBaseState : State
 
     protected void CollisionCheck()
     {
-
-
-
-
         if (owner.transform.position.y < -2.6f)
         {
             SceneManager.LoadScene("test");
@@ -230,6 +225,24 @@ public class CharacterBaseState : State
         {
             GameObject lift = raycastHit.transform.gameObject;
             return lift;
+
+        }
+        return null;
+    }
+
+    protected GameObject TakingLift2()
+    {
+        #region Raycast
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.lift);
+        #endregion
+
+        if (raycastHit.collider != null)
+        {
+            owner.lift2 = raycastHit.transform.gameObject;
+            return owner.lift2;
 
         }
         return null;

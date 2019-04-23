@@ -9,13 +9,16 @@ public class DetectionState : EnemyBaseState
     [SerializeField]private float bustedDistance;
     private float chaseDistance;
     private float hearingDistance;
+    private float lightRange;
 
     public override void EnterState()
     {
         base.EnterState();
         owner.flashLight.GetComponent<Light>().intensity = 50;
-        chaseDistance = owner.GetFieldOfView();
+        //chaseDistance = owner.GetFieldOfView();
+        lightRange = owner.flashLight.GetComponent<Light>().range;
         hearingDistance = owner.GetHearingDistance();
+        
     }
 
     // Update is called once per frame
@@ -29,13 +32,17 @@ public class DetectionState : EnemyBaseState
       * **/
     public override void ToDo()
     {
+
+        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+        lightAngle = lightField.spotAngle;
+
         if (LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) <= bustedDistance &&
-            Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance &&
+           Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange &&
                 Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingDistance) 
         {
             //do something 
 
-            SceneManager.LoadScene("test");
+            SceneManager.LoadScene("EmilsTestScene");
 
         }
         else

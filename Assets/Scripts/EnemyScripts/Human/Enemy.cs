@@ -9,12 +9,13 @@ public class Enemy : StateMachine
     // Attributes
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
-    [SerializeField] private float fieldOfView;
+    private float fieldOfView { get; }
     [SerializeField] private float hearingDistance;
     public LayerMask visionMask;
     public Character player;
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
+    public readonly float LightThreshold = 0.4f;
 
     // Methods
     protected override void Awake()

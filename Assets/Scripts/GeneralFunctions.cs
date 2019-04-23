@@ -17,7 +17,9 @@ public class GeneralFunctions : MonoBehaviour
     }
     public Vector3 Normal3D(Vector3 velocity, Vector3 normal)
     {
+        
         float dotProduct = Vector3.Dot(velocity, normal);
+        
         if (dotProduct > 0)
         {
             dotProduct = 0f;

@@ -24,9 +24,6 @@ public class Lift : MonoBehaviour
 
     void Update()
     {
-        
-        
-        
             MoveToDestination();
         
 
@@ -85,7 +82,6 @@ public class Lift : MonoBehaviour
 
     void MoveToDestination()
     {
-
         Vector3 direction = destination.transform.position - transform.position;
         if (transform.position != destination.transform.position && direction.magnitude > 0.1f)
         {
