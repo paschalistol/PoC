@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -212,7 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 25067407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Houseenviroment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 29088326}
   - component: {fileID: 29088325}
   - component: {fileID: 29088324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 131302238}
   - component: {fileID: 131302237}
   - component: {fileID: 131302236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 247792173}
   - component: {fileID: 247792172}
   - component: {fileID: 247792171}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ MonoBehaviour:
   distanceToChar: {x: 0.13, y: 4, z: -20}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!1 &392534429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1085,11 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6323999426746008308, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6323999426746008267, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1154,7 +1159,7 @@ GameObject:
   - component: {fileID: 462318210}
   - component: {fileID: 462318209}
   - component: {fileID: 462318208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,6 +1460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323999426746008308, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6323999426746008267, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
         type: 3}
@@ -1935,7 +1945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &736821301
 Transform:
   m_ObjectHideFlags: 0
@@ -1944,7 +1954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736821300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.6, y: 149, z: 4.3}
+  m_LocalPosition: {x: -58.6, y: 480.9, z: -537.7}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 25067407}
@@ -2448,7 +2458,7 @@ GameObject:
   - component: {fileID: 966675588}
   - component: {fileID: 966675587}
   - component: {fileID: 966675586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House Wall 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2686,6 +2696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323999426746008308, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6323999426746008267, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
         type: 3}
@@ -2953,7 +2968,7 @@ GameObject:
   - component: {fileID: 1138507441}
   - component: {fileID: 1138507440}
   - component: {fileID: 1138507439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3133,6 +3148,11 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6323999426746008308, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6323999426746008267, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3248,7 +3268,7 @@ GameObject:
   - component: {fileID: 1265215782}
   - component: {fileID: 1265215781}
   - component: {fileID: 1265215780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House Wall 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3514,6 +3534,11 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6323999426746008308, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6323999426746008267, guid: b64a7ca46ee64cd46abaea8e782ae7c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3658,7 +3683,7 @@ GameObject:
   - component: {fileID: 1575010011}
   - component: {fileID: 1575010010}
   - component: {fileID: 1575010009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House Wall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3755,7 +3780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1583661784
 Transform:
   m_ObjectHideFlags: 0
@@ -3764,7 +3789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583661783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73.2, y: 134.41054, z: 3.7}
+  m_LocalPosition: {x: -73.2, y: 467.72, z: -537.74}
   m_LocalScale: {x: 70, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 25067407}
@@ -4263,7 +4288,7 @@ GameObject:
   - component: {fileID: 1800328796}
   - component: {fileID: 1800328795}
   - component: {fileID: 1800328794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4519,7 +4544,7 @@ GameObject:
   - component: {fileID: 1904795404}
   - component: {fileID: 1904795403}
   - component: {fileID: 1904795402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left hallway wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4679,7 +4704,7 @@ GameObject:
   - component: {fileID: 2118507708}
   - component: {fileID: 2118507707}
   - component: {fileID: 2118507706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hallway End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
