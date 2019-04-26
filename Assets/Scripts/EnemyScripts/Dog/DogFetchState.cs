@@ -12,7 +12,7 @@ public class DogFetchState : DogBaseState
 
     public override void EnterState()
     {
-        base.EnterState();
+        base.EnterState();  
     }
     public override void ToDo()
     {
