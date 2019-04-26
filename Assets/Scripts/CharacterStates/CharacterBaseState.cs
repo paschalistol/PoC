@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class CharacterBaseState : State
 {
     protected CharacterStateMachine owner;
-
+     
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
-    protected const float skinWidth = 0.003f;
+    protected const float skinWidth = 0.1f;
     protected const float gravityConstant = 20f;
     protected const float groundCheckDistance = 0.25f;
     protected Vector3 Velocity { get { return owner.velocity; } set { owner.velocity = value; } }
@@ -62,9 +62,10 @@ public class CharacterBaseState : State
     }
     protected void InteractWithObject()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GameObject gameObject = ReturnObjectInFront();
+
             if (gameObject != null)
             {
 
@@ -99,8 +100,9 @@ public class CharacterBaseState : State
 
         if (raycastHit.collider != null)
         {
-
-            return raycastHit.transform.gameObject;
+            objectInFront = raycastHit.transform.gameObject;
+            Debug.Log(objectInFront);
+            return objectInFront;
         }
         return null;
     }
@@ -244,23 +246,7 @@ public class CharacterBaseState : State
         return capsuleCast;
     }
 
-    protected GameObject TakingLift()
-    {
-        #region Raycast
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.lift);
-        #endregion
 
-        if (raycastHit.collider != null)
-        {
-            GameObject lift = raycastHit.transform.gameObject;
-            return lift;
-
-        }
-        return null;
-    }
     protected GameObject TakingLift2()
     {
         #region Raycast

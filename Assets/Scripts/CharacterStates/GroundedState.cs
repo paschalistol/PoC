@@ -48,11 +48,7 @@ public class GroundedState : CharacterBaseState
         CollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
 
-        if (TakingLift() != null)
-        {
 
-            owner.ChangeState<TakingLiftState>();
-        }
 
         if(TakingLift2() != null)
         {
