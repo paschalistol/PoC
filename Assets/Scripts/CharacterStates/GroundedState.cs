@@ -44,7 +44,7 @@ public class GroundedState : CharacterBaseState
         {
             owner.ChangeState<GlidingState>();
         }
-
+        InteractWithObject();
         CollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
 
