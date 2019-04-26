@@ -1,5 +1,4 @@
-﻿//Emil Dahl
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

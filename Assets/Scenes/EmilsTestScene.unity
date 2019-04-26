@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33214805, g: 0.3259301, b: 0.28340176, a: 1}
+  m_IndirectSpecularColor: {r: 0.33214775, g: 0.3259301, b: 0.28340158, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -998,11 +998,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5585109631106894785, guid: bf77425137a880d498aefa2237ac29af,
-        type: 3}
-      propertyPath: m_Direction
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5585109631106894788, guid: bf77425137a880d498aefa2237ac29af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1056,6 +1051,11 @@ PrefabInstance:
     - target: {fileID: 5585109631106894788, guid: bf77425137a880d498aefa2237ac29af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585109631106894785, guid: bf77425137a880d498aefa2237ac29af,
+        type: 3}
+      propertyPath: m_Direction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5585109631106894787, guid: bf77425137a880d498aefa2237ac29af,
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70a5412ea4287c9498978eb71fe23cca, type: 2}
   - {fileID: 11400000, guid: 3906b1410fcd54b4caf0b008b9d15eee, type: 2}
   - {fileID: 11400000, guid: d5a81393a887ef946a2cc64e9cdf21c9, type: 2}
-  - {fileID: 11400000, guid: bc75960cd40c63b4e8a563a5f14942ba, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 6e48204556906514493e52c51fedcab8, type: 2}
   currentState: {fileID: 0}
   lift2: {fileID: 1209504072}
@@ -2198,9 +2198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba244a987a22894b8f0d623e1a75991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
+  fuseBox: {fileID: 0}
+  lift: {fileID: 0}
 --- !u!1 &1414775967
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3492,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggo
       objectReference: {fileID: 0}
+    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
+        type: 3}
+      propertyPath: states.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 845673721}
+    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
+        type: 3}
+      propertyPath: oldboi
+      value: 
+      objectReference: {fileID: 1753831430}
+    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
+        type: 3}
+      propertyPath: states.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 52e32d8e9733dfe4d803ebc0b7575e45,
+        type: 2}
+    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
+        type: 3}
+      propertyPath: states.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 466496899d9e73548b9f4ba840ac1e8a,
+        type: 2}
     - target: {fileID: 3032615930075058421, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3568,33 +3594,6 @@ PrefabInstance:
       propertyPath: dogPoints.Array.data[2]
       value: 
       objectReference: {fileID: 663973014}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: states.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 845673721}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: oldboi
-      value: 
-      objectReference: {fileID: 1753831430}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: states.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 52e32d8e9733dfe4d803ebc0b7575e45,
-        type: 2}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: states.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 466496899d9e73548b9f4ba840ac1e8a,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e4a790a98608848b3c6d8d36ccc6bb, type: 3}
 --- !u!1001 &3679353803035164137
@@ -4081,6 +4080,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oldboi
       objectReference: {fileID: 0}
+    - target: {fileID: 9082766818821181164, guid: c01ed6dd50014c749a446cb8e39735af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082766818821181167, guid: c01ed6dd50014c749a446cb8e39735af,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 845673721}
+    - target: {fileID: 9082766818821181167, guid: c01ed6dd50014c749a446cb8e39735af,
+        type: 3}
+      propertyPath: doggo
+      value: 
+      objectReference: {fileID: 1948862807}
     - target: {fileID: 9082766818821181155, guid: c01ed6dd50014c749a446cb8e39735af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4136,16 +4150,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9082766818821181167, guid: c01ed6dd50014c749a446cb8e39735af,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 845673721}
-    - target: {fileID: 9082766818821181167, guid: c01ed6dd50014c749a446cb8e39735af,
-        type: 3}
-      propertyPath: doggo
-      value: 
-      objectReference: {fileID: 1948862807}
     - target: {fileID: 9082766818821181157, guid: c01ed6dd50014c749a446cb8e39735af,
         type: 3}
       propertyPath: points.Array.data[0]
