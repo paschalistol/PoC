@@ -27,11 +27,9 @@ public class OldboiChaseState : OldboiBaseState
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
             
-           owner.agent.SetDestination(owner.player.transform.position);
-            //  owner.doggo.SwitchToFollow(owner.agent.transform.position);
-            //owner.doggo.agent.SetDestination(owner.player.transform.position);
-            owner.doggo.ChangeState<DogFetchState>();
-            
+            owner.agent.SetDestination(owner.player.transform.position);
+           //  owner.doggo.SwitchToFollow(owner.agent.transform.position);
+            owner.doggo.ChangeState<DogChaseState>();
            // owner.doggo.agent.SetDestination(owner.transform.position);
             Debug.Log("waddup");
 

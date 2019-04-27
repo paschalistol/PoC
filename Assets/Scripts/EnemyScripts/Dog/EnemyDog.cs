@@ -29,10 +29,10 @@ public class EnemyDog : StateMachine
         return smellDistance;
     }
 
-   /* public void SwitchToFollow(Vector3 position)
+    public void SwitchToFollow(Vector3 position)
     {
-        ChangeState<DogFetchState>();
+        //ChangeState<DogFetchState>();
         agent.SetDestination(position);
         Debug.Log(agent.destination);
-    }*/
+    }
 }

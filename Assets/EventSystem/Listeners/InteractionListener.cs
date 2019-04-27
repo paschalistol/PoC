@@ -8,7 +8,7 @@ public class InteractionListener : MonoBehaviour
     public GameObject lift;
     void Start()
     {
-
+        Debug.Log("Is Listening");
 
         EventSystem.Current.RegisterListener<SwitchEvent>(OnSwitch);
   
@@ -17,7 +17,7 @@ public class InteractionListener : MonoBehaviour
     // most interactions with electrical power withing the game) 
     void OnSwitch(SwitchEvent info)
     {
-            lift.GetComponent<Lift2>().onOff = !lift.GetComponent<Lift2>().onOff;
+            lift.GetComponent<Lift2>().onOff =! lift.GetComponent<Lift2>().onOff;
     }
 }
 

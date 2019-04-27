@@ -18,14 +18,14 @@ public class CharacterBaseState : State
     protected const float deceleration = 5;
     protected Vector2 airResistance;
     protected const float staticFriction = 0.55f;
-    protected float dynamicFriction;
+    protected float dynamicFriction ;
     protected const float airCoeff = 0.4f;
     protected Vector3 normal;
     protected const float jumpHeight = 12;
     protected bool snowboarding = false;
+    
 
-
-
+    
 
     public override void InitializeState(StateMachine owner)
     {
@@ -60,6 +60,7 @@ public class CharacterBaseState : State
         ChangeCharRotation();
         return input;
     }
+<<<<<<< HEAD
     protected void InteractWithObject()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -77,18 +78,21 @@ public class CharacterBaseState : State
             }
         }
     }
+=======
+>>>>>>> parent of 9abe42f... ?
 
 
 
     private void ChangeCharRotation()
     {
-        Vector3 target;
+        Vector3 target ;
         target.x = 0;
         target.y = Camera.main.transform.rotation.y;
         target.z = 0;
         owner.transform.eulerAngles = target;
     }
 
+<<<<<<< HEAD
     protected GameObject ReturnObjectInFront()
     {
         GameObject objectInFront;
@@ -104,12 +108,14 @@ public class CharacterBaseState : State
         }
         return null;
     }
+=======
+>>>>>>> parent of 9abe42f... ?
     protected Vector3 LookDirection()
     {
         return -Camera.main.GetComponent<CameraScript>().getRelationship();
     }
 
-
+   
     private RaycastHit GroundCast()
     {
         RaycastHit raycastHit;
@@ -151,7 +157,7 @@ public class CharacterBaseState : State
     }
     protected void Decelerate()
     {
-        Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
+         Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
         //Vector3 tempVel = new Vector3(Velocity.x, Velocity.y, Velocity.z);
         Velocity -= tempVel.normalized * deceleration * Time.deltaTime;
     }
@@ -227,11 +233,11 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime, owner.pickups);
         #endregion
 
-        if (raycastHit.collider != null)
+        if(raycastHit.collider != null)
         {
             //snowboarding = true;
             return true;
-
+            
         }
         return false;
     }
@@ -257,6 +263,13 @@ public class CharacterBaseState : State
         {
             GameObject lift = raycastHit.transform.gameObject;
             return lift;
+<<<<<<< HEAD
+=======
+
+        }
+        return null;
+    }
+>>>>>>> parent of 9abe42f... ?
 
         }
         return null;

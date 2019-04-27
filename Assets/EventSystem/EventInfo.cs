@@ -26,8 +26,3 @@ public class SwitchEvent : DebugEvent
     public GameObject particles;
     public int timesCalled;
 }
-public class InteractionEvent : DebugEvent
-{
-    public GameObject interactedObject;
-
-}
