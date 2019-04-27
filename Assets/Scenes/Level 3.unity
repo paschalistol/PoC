@@ -4200,7 +4200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1190685349
 Transform:
   m_ObjectHideFlags: 0
@@ -4864,11 +4864,6 @@ PrefabInstance:
       objectReference: {fileID: 946491822}
     - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
         type: 3}
-      propertyPath: states.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1728403545}
@@ -4877,18 +4872,6 @@ PrefabInstance:
       propertyPath: oldboi
       value: 
       objectReference: {fileID: 1849381711}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: states.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 466496899d9e73548b9f4ba840ac1e8a,
-        type: 2}
-    - target: {fileID: 3032615930075058424, guid: e4e4a790a98608848b3c6d8d36ccc6bb,
-        type: 3}
-      propertyPath: states.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 52e32d8e9733dfe4d803ebc0b7575e45,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e4a790a98608848b3c6d8d36ccc6bb, type: 3}
 --- !u!1001 &1426907574
