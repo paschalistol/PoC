@@ -11,7 +11,7 @@ public class HoldingItem : HoldItemBase
 
         base.EnterState();
         objectCarried = ReturnObjectInFront();
-        Debug.Log("Holding Stuff2");
+
         if (objectCarried != null)
         {
 
@@ -20,24 +20,24 @@ public class HoldingItem : HoldItemBase
     }
     public override void ToDo()
     {
-        Debug.Log("Holding Stuff");
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             objectCarried.layer = 11;
             SetHolding(false);
         }
-         if (Input.GetKeyDown(KeyCode.R))
-        {
+        // if (Input.GetKeyDown(KeyCode.R))
+        //{
            
-            objectCarried.layer = 11;
-            objectCarried.transform.position += ThrowTo();
+        //    objectCarried.layer = 11;
+        //    objectCarried.transform.position += ThrowTo();
 
-            objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo()*10);
-           // objectCarried.GetComponent<Boxes>().ApplyForce(ThrowTo());
+        //    objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo()*10);
+        //   // objectCarried.GetComponent<Boxes>().ApplyForce(ThrowTo());
 
-            SetHolding(false);
+        //    SetHolding(false);
 
-        }
+        //}
         if (!HoldingSth)
         {
             owner.ChangeState<EmptyHands>();

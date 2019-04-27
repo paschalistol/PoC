@@ -36,7 +36,6 @@ public class DogPatrolState : DogBaseState
        // Debug.Log(owner.agent.destination + " " + DogPoints[Point].transform.position);
         if (Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position) < 5)
         {
-            
             ChooseRandom();
         }
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)

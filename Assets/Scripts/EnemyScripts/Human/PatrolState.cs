@@ -40,7 +40,7 @@ public class PatrolState : EnemyBaseState
     public override void ToDo()
     {
 
-        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+       // fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
         lightAngle = lightField.spotAngle;
 
       

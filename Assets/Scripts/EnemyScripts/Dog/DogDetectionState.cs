@@ -36,7 +36,7 @@ public class DogDetectionState : DogBaseState
         {
             //do something 
 
-            SceneManager.LoadScene("test");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
         else

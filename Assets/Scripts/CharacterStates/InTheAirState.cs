@@ -34,9 +34,6 @@ public class InTheAirState : CharacterBaseState
         {
 
             owner.ChangeState<GroundedState>();
-        }else if (TakingLift())
-        {
-            owner.ChangeState<TakingLiftState>();
         }
         else if (TakingLift2())
         {
