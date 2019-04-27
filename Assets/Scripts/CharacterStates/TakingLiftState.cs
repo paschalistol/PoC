@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character/GroundedState")]
-public class GroundedState : CharacterBaseState
+[CreateAssetMenu(menuName = "Character/TakingLiftState")]
+public class TakingLiftState : CharacterBaseState
 {
+
+    
+
     public override void EnterState()
     {
         base.EnterState();
-        dynamicFriction = 0.35f;
-        MaxSpeed = 10;
+        
     }
+
 
     public override void ToDo()
     {
-        owner.transform.parent = null;
         #region Input
         Vector3 input = GetDirectionInput();
 
@@ -40,33 +42,39 @@ public class GroundedState : CharacterBaseState
         {
             MaxSpeed *= 2;
         }
-        if (/*Input.GetKeyDown(KeyCode.Q) && */GetRaycast().normal != Vector3.up)
+        if (Input.GetKeyDown(KeyCode.Q) && GetRaycast().normal != Vector3.up)
         {
             owner.ChangeState<GlidingState>();
         }
-        InteractWithObject();
+
         CollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
 
-        if (TakingLift() != null)
-        {
 
-            owner.ChangeState<TakingLiftState>();
-        }
+        GameObject lift = TakingLift();
+        //owner.transform.position += Vector3.up * 0.03f;
+        /**
+         * 
+        
+        
+        float dif = skinWidth + capsuleCollider.transform.localScale.y / 10;
+        owner.transform.position += new Vector3(0, dif, 0);
 
-        if(TakingLift2() != null)
+         * **/
+
+        owner.transform.parent = lift.transform;
+        //owner.transform.position = new Vector3(0,lift.transform.position.y,0);
+
+
+        Debug.Log("hit");
+
+        if (TakingLift() == null && IsGrounded())
         {
-            owner.ChangeState<OnLiftState>();
-        }
-        if (!IsGrounded())
+            owner.ChangeState<GroundedState>();
+        } 
+        if(TakingLift() == null && !IsGrounded())
         {
             owner.ChangeState<InTheAirState>();
-
-        }
-        if (IsSnowboarding())
-        {
-
-            owner.ChangeState<SnowboardState>();
         }
 
     }

@@ -8,7 +8,6 @@ public class CharacterHoldItemStateMachine : StateMachine
     [HideInInspector] public bool holdingSth;
 
 
-
     protected override void Awake()
     {
         base.Awake();

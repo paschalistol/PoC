@@ -8,17 +8,14 @@ public class Lift2 : MonoBehaviour
     private GameObject[] bigPoints;
     private int currentPoint;
     public Vector3 direction;
-   public bool onOff = false;
+    [HideInInspector]public bool onOff = false;
     public GameObject audioMachine;
-    private Vector3 velocity;
-    GeneralFunctions generalFunctions;
 
-    
+
     private void Start()
     {
         bigPoints = GetComponent<LiftPoints>().GetPoints();
         currentPoint = 0;
-        generalFunctions = gameObject.GetComponent<GeneralFunctions>();
     }
 
 
@@ -29,7 +26,8 @@ public class Lift2 : MonoBehaviour
         {
             direction = bigPoints[currentPoint].transform.position - transform.position;
 
-            transform.position += direction.normalized *  Time.deltaTime;
+            transform.position += direction.normalized * 1f * Time.deltaTime;
+
             if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 1)
             {
                 currentPoint = (currentPoint + 1) % bigPoints.Length;
