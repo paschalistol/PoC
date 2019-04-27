@@ -15,7 +15,8 @@ public class Interaction : MonoBehaviour
                 gameObject.GetComponent<Door>().InteractWithDoor();
                 break;
             case 16:
-                gameObject.GetComponent<>
+             //   gameObject.GetComponent<Battery>().PickUpBattery();
+                break;
             default:
                 break;
         }

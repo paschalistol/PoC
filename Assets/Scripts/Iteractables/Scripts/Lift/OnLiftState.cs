@@ -31,13 +31,7 @@ public class OnLiftState : GroundedState
         
         Debug.Log("CollisionOnCharacter!");
        
-        /**
-         * Lägger på force som gör att den går in i jump
-         * 
-         * aaaaa
-         * **/
-        ApplyForce(new Vector3(0, owner.transform.position.y - owner.lift2.transform.position.y, 0));
-        owner.transform.parent = owner.lift2.transform;
+     owner.transform.parent = owner.lift2.transform;
     }
 
 }

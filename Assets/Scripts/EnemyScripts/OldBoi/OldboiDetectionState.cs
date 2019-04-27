@@ -28,7 +28,7 @@ public class OldboiDetectionState : OldboiBaseState
         {
             //do something 
 
-            SceneManager.LoadScene("test");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
         else

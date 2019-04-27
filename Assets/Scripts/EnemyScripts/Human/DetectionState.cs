@@ -42,7 +42,7 @@ public class DetectionState : EnemyBaseState
         {
             //do something 
 
-            SceneManager.LoadScene("EmilsTestScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
         else
