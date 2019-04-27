@@ -15,6 +15,9 @@ public class OldboiChaseState : OldboiBaseState
         base.EnterState();
         hearingRange = owner.GetHearingDistance();
         chaseDistance = owner.GetFieldOfView();
+       
+        
+
     }
     public override void ToDo()
     {
