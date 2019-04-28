@@ -47,7 +47,7 @@ public class CameraScript : MonoBehaviour
     {
         RaycastHit raycastHit;
         Vector3 move = new Vector3(0, 0, 0);
-        bool sphereCast = Physics.SphereCast(character.transform.position, radius, relationshipToChar, out raycastHit, (relationshipToChar + character.transform.position).magnitude, layerMask);
+        bool sphereCast = Physics.SphereCast(character.transform.position, radius, relationshipToChar, out raycastHit, (relationshipToChar ).magnitude, layerMask);
         Debug.DrawRay(character.transform.position, relationshipToChar, Color.red);
         if (raycastHit.collider != null)
         {

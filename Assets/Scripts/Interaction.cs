@@ -9,11 +9,11 @@ public class Interaction : MonoBehaviour
     {
         switch (gameObject.layer)
         {
-            //case 15:
+            case 15:
             //    //bool hasKey = gameObject.GetComponent<Key>().used;
-            //    //gameObject.GetComponent<Door>().InteractWithDoor();
+            gameObject.GetComponent<Door>().InteractWithDoor();
 
-            //    break;
+            break;
             case 16:
              //   gameObject.GetComponent<Battery>().PickUpBattery();
                 break;

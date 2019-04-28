@@ -207,7 +207,7 @@ public class CharacterBaseState : State
             return;
         else
         {
-            Debug.Log("Applying force!");
+
             #region Apply Normal Force
             normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal;
@@ -229,7 +229,7 @@ public class CharacterBaseState : State
         //{
         //    SceneManager.LoadScene("test");
         //}
-        Debug.Log("Checking for Death: ! ! ! ");
+
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
