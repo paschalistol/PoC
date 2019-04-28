@@ -1,0 +1,63 @@
+Ben The Burgler : Version: 0.002 (Inhouse Patch Notes)
+
+1. A) Pickpocketing system in place, character can approach enemies and steal their key. For this to work the designers 
+in question have to make sure that the key is of layertype "Key".
+
+1. B) This key can be used to unlock doors, walk up to them and press E with the key in your hands and the door should open
+accordingly. If you do not have the key, the door should not be opening. To make sure that this will work, you have to 
+give it a door reference under "Key (Script)". Also, keep in mind that you should give it a reference to the "Door" object
+and not the DoorPivot in which it resides.
+
+1. Warning) This keyobject will not collide with the player (not that it will matter much), nor will it float (i think).
+---
+
+2. A) There is not a system in place for deathlistening (although currently just restarts the scene),
+it will listen to both enemy detections of the player and collision with deadly items. To make this work with your 
+environmental object of choice, please give it the layer "DeadlyAf" or add what ever new layer you decide create under
+the "DeadlyEnvrionment" layermask. This layermask can be found on the "CharacterStateMachine (Script)". 
+
+2. Warning) This system does not yet take into account falling from heights, which will require a reboot of the game.
+And reloading the scene is probably also not the best idea. Also, sometimes you don't die directly when you hit
+these things... could just have been that i tested it on rocks with circular colliders, think it has to do with the
+skin of the character, will look into when i have time. 
+---
+
+3. A) WobblyCharacter is now a thing! Go to the "CharacterStateMachine (Script)" under the player object and change the
+value of the "WobbleFactor" to anything between 0.0 and 1.0 (representing percentages in decimals). What this does is in
+essence, deciding the likelihood of the character skipping it's current input. In other words, if you put it
+to some extremely high value (like 90%) it will not move so don't do that. Wasn't sure what was meant by the
+character being hard to control so just made some assumptions. The current value is probably something like 15%,
+should probably be even lower (or maybe a bit higher). Give it a very high value and it will be annoying and slow for the
+player to control their character and too low of a value
+and it will not be noticeable.
+---
+
+4. A) Fixed the AI that keeps getting bugged from merges all the time, please use the new prefabs 
+when you place it in the scene.The keyed enemies also have a speical prefab. 
+There is also a folder called "EventSystem", take the prefabs from that folder and place them in your scene, 
+otherwise some things might not work as intended. 
+---
+
+Things that need to be done asap and i'm to exhausted to make right now:
+
+1. Leo's hook 
+2. Something to steal and something to steal from (currently we go into the house for no other reason than to get out)
+3. I understand that there should be something electrical.
+4. I'm pretty sure you don't glide down slopes.
+5. Specific respawn locations (you literally just replace the scenemanager code with transforming the player to a point)
+---
+
+BUGS! 
+
+1. You can sometimes fall through the floor, for example on the lift or very rarely near the walls (places with
+multiple colliders).
+2. I was born.
+
+
+TODO!
+
+1. Clean up Hierarchy
+2. Don't push not needed files
+
+
+
