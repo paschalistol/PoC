@@ -30,6 +30,7 @@ public class Lift2 : MonoBehaviour
             direction = bigPoints[currentPoint].transform.position - transform.position;
 
             transform.position += direction.normalized *  Time.deltaTime;
+            Debug.Log(direction.normalized.y * Time.deltaTime);
             if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 1)
             {
                 currentPoint = (currentPoint + 1) % bigPoints.Length;
