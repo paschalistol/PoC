@@ -12,7 +12,7 @@ public class Oldboi : StateMachine
     [SerializeField] private float fieldOfView;
     [SerializeField] private float hearingDistance;
     public LayerMask visionMask;
-    public Character player;
+    public GameObject player;
     public EnemyDog doggo;
    
     //public GameObject flashLight;

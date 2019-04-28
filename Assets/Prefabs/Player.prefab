@@ -216,13 +216,17 @@ MonoBehaviour:
   lift2: {fileID: 0}
   environment:
     serializedVersion: 2
-    m_Bits: 113152
+    m_Bits: 375296
+  deadlyEnvironMent:
+    serializedVersion: 2
+    m_Bits: 262144
   pickups:
     serializedVersion: 2
-    m_Bits: 102400
+    m_Bits: 233472
   lift:
     serializedVersion: 2
     m_Bits: 8192
+  WobbleFactor: 0.15
   test: 0.1
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 0

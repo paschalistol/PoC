@@ -15,9 +15,10 @@ public class DebugEvent : EventInfo
 public class UnitDeathEventInfo : DebugEvent
 {
     public GameObject deadUnit;
-    public AudioClip audioClip;
-    public GameObject particleSystem;
+    //public AudioClip audioClip;
+    //public GameObject particleSystem;
 }
+
 public class SwitchEvent : DebugEvent
 {
     public GameObject switchedObject;
@@ -26,8 +27,12 @@ public class SwitchEvent : DebugEvent
     public GameObject particles;
     public int timesCalled;
 }
-public class InteractionEvent : DebugEvent
+    public class InteractionEvent : DebugEvent
 {
     public GameObject interactedObject;
-
 }
+
+    public class UnlockEvent : DebugEvent
+    {
+        public GameObject doorObject;
+    }

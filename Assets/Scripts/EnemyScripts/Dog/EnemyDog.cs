@@ -10,7 +10,7 @@ public class EnemyDog : StateMachine
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
     public LayerMask visionMask;
-    public Character player;
+    public GameObject player;
     public Oldboi oldboi;
   
     [SerializeField] private float smellDistance;

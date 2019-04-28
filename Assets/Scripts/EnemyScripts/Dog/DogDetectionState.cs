@@ -36,7 +36,12 @@ public class DogDetectionState : DogBaseState
         {
             //do something 
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("Deathcollider is not null!");
+            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo.eventDescription = "U big dead lmao!";
+
+            deathInfo.deadUnit = owner.player.transform.gameObject;
+            EventSystem.Current.FireEvent(deathInfo);
 
         }
         else

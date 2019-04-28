@@ -21,7 +21,9 @@ public class OldboiChaseState : OldboiBaseState
     }
     public override void ToDo()
     {
-        
+
+        Debug.Log(bustedDistance);
+
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
@@ -34,9 +36,10 @@ public class OldboiChaseState : OldboiBaseState
             
            // owner.doggo.agent.SetDestination(owner.transform.position);
             Debug.Log("waddup");
-
+         
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 owner.ChangeState<OldboiDetectionState>();
+
         }  else
             owner.ChangeState<OldboiPatrolState>();
 

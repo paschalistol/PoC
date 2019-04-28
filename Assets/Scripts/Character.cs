@@ -48,6 +48,7 @@ public class Character : MonoBehaviour
             velocity += new Vector3(0, jumpHeight, 0);
 
         CollisionCheck();
+
         /*
          airResistance = velocity * airCoeff;
          //velocity *= Mathf.Pow(airResistance, Time.deltaTime);

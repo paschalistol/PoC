@@ -28,6 +28,7 @@ public class GlidingState : CharacterBaseState
         #endregion
         Gravity();
         CollisionCheck();
+        DeathCollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
         if (/*Input.GetKeyDown(KeyCode.Q) || */ GetRaycast().normal == Vector3.up)
         {

@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class CharacterBaseState : State
 {
     protected CharacterStateMachine owner;
-     
+
+    protected float wobbleValue { get { return owner.WobbleFactor;  } }
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
@@ -52,8 +53,14 @@ public class CharacterBaseState : State
     }
     protected Vector3 GetDirectionInput()
     {
+        float rndMotion = Random.Range(0.0f, 1.0f);
+
+      
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
+        if (rndMotion < wobbleValue)
+            input -= input; 
+        
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
         input = Vector3.ProjectOnPlane(input, GroundCast().normal).normalized;
@@ -78,8 +85,6 @@ public class CharacterBaseState : State
             }
         }
     }
-
-
 
     private void ChangeCharRotation()
     {
@@ -133,7 +138,7 @@ public class CharacterBaseState : State
 
     protected void Accelerate(Vector3 direction)
     {
-
+ 
         if (direction.magnitude > 1)
         {
             direction = direction.normalized;
@@ -182,10 +187,7 @@ public class CharacterBaseState : State
 
     protected void CollisionCheck()
     {
-        if (owner.transform.position.y < -2.6f)
-        {
-            SceneManager.LoadScene("test");
-        }
+       
 
         //Debug.Log("speed:" + MaxSpeed + " dynamic " + dynamicFriction);
 
@@ -205,6 +207,7 @@ public class CharacterBaseState : State
             return;
         else
         {
+            Debug.Log("Applying force!");
             #region Apply Normal Force
             normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal;
@@ -219,6 +222,36 @@ public class CharacterBaseState : State
             CollisionCheck();
         }
     }
+
+    protected void DeathCollisionCheck()
+    {
+        //if (owner.transform.position.y < -2.6f)
+        //{
+        //    SceneManager.LoadScene("test");
+        //}
+        Debug.Log("Checking for Death: ! ! ! ");
+        #region Raycast
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
+        #endregion
+
+        if (raycastHit.collider != null)
+        {
+            Debug.Log("Deathcollider is not null!");
+            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo.eventDescription = "U big dead lmao!";
+            
+            deathInfo.deadUnit = owner.transform.gameObject;
+            EventSystem.Current.FireEvent(deathInfo);
+           
+        }
+
+    }
+
+
 
     protected bool isSnowboarding()
     {

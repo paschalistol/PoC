@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character/HoldingItem")]
 public class HoldingItem : HoldItemBase
 {
-
+    private int layerNumber;
     public override void EnterState()
     {
 
@@ -14,8 +14,15 @@ public class HoldingItem : HoldItemBase
 
         if (objectCarried != null)
         {
-
-        objectCarried.layer = 0;
+        layerNumber = objectCarried.layer;
+            if (layerNumber != 17)
+            {
+                objectCarried.layer = 0;
+            }
+            else
+            {
+                objectCarried.transform.parent = null;
+            }
         }
     }
     public override void ToDo()
@@ -23,12 +30,14 @@ public class HoldingItem : HoldItemBase
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            objectCarried.layer = 11;
+            objectCarried.layer = layerNumber;
             SetHolding(false);
         }
+
+
         // if (Input.GetKeyDown(KeyCode.R))
         //{
-           
+
         //    objectCarried.layer = 11;
         //    objectCarried.transform.position += ThrowTo();
 

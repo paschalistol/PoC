@@ -46,6 +46,7 @@ public class GroundedState : CharacterBaseState
         }
         InteractWithObject();
         CollisionCheck();
+        DeathCollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
 
 

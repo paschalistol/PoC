@@ -12,7 +12,7 @@ public class Enemy : StateMachine
     private float fieldOfView { get; }
     [SerializeField] private float hearingDistance;
     public LayerMask visionMask;
-    public Character player;
+    public GameObject player; //character?
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
     public readonly float LightThreshold = 0.4f;

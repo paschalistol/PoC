@@ -26,9 +26,13 @@ public class OldboiDetectionState : OldboiBaseState
             Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance &&
                 Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingDistance) 
         {
-            //do something 
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("Deathcollider is not null!");
+            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo.eventDescription = "U big dead lmao!";
+
+            deathInfo.deadUnit = owner.player.transform.gameObject;
+            EventSystem.Current.FireEvent(deathInfo);
 
         }
         else
