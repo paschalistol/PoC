@@ -225,10 +225,15 @@ public class CharacterBaseState : State
 
     protected void DeathCollisionCheck()
     {
-        //if (owner.transform.position.y < -2.6f)
-        //{
-        //    SceneManager.LoadScene("test");
-        //}
+        if (owner.transform.position.y < -40f)
+        {
+            Debug.Log("Deathcollider is not null!");
+            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo.eventDescription = "U big dead lmao!";
+
+            deathInfo.deadUnit = owner.transform.gameObject;
+            EventSystem.Current.FireEvent(deathInfo);
+        }
 
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);

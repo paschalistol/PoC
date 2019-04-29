@@ -11,14 +11,14 @@ public class Interaction : MonoBehaviour
         {
             case 15:
             //    //bool hasKey = gameObject.GetComponent<Key>().used;
-            gameObject.GetComponent<Door>().InteractWithDoor();
+            //gameObject.GetComponent<Door>().InteractWithDoor();
 
             break;
             case 16:
              //   gameObject.GetComponent<Battery>().PickUpBattery();
                 break;
             case 17:
-               // gameObject.GetComponent<Key>().TakeKeyInteraction();
+                //gameObject.GetComponent<Key>().TakeKeyInteraction();
                 break;
             case 19:
                 gameObject.GetComponent<SceneTransfer>().ChangeLevel();

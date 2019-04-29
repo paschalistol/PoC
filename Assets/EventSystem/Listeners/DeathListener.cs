@@ -8,13 +8,13 @@ public class DeathListener : MonoBehaviour
     private GameObject objectToInteract;
     void Start()
     {
-        Debug.Log("REEEEE");
+
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(DeathInteraction);
     }
 
     void DeathInteraction(UnitDeathEventInfo deathInfo)
     {
-        Debug.Log("REEEEE2");
+
         objectToInteract = deathInfo.deadUnit;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public GameObject lockedDoor;
+    [SerializeField]private GameObject lockedDoor;
     private Rigidbody body;
     [HideInInspector]public bool used = false;
 
@@ -37,21 +37,12 @@ public class Key : MonoBehaviour
             used = true;
         }
 
-
-        //Vector3 temp = new Vector3(transform.position.x, 1.3f, transform.position.z);
-        //transform.position = temp;
-        //if (carried)
-        //{
-        //    Vector3 temp = new Vector3(transform.position.x, 1.3f, transform.position.z);
-        //    transform.position = temp;
-        //}
-        //Debug.Log(carried);
     }
 
-    //public void TakeKeyInteraction()
-    //{
-    //    Debug.Log("Took key!");
-    //    transform.parent = null;
-    //}
+    public void TakeKeyInteraction()
+    {
+        Debug.Log("Took key!");
+        transform.parent = null;
+    }
 
 }
