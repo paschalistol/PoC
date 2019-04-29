@@ -819,8 +819,8 @@ GameObject:
   m_Name: Left hallway wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &131302236
 BoxCollider:
@@ -1178,7 +1178,7 @@ PrefabInstance:
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.5
+      value: -25.858
       objectReference: {fileID: 0}
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
@@ -1188,7 +1188,7 @@ PrefabInstance:
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32
+      value: -47.555
       objectReference: {fileID: 0}
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
@@ -1378,8 +1378,8 @@ GameObject:
   m_Name: Left hallway wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &247792171
 BoxCollider:
@@ -1672,16 +1672,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggo (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1728403544}
-    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
-        type: 3}
-      propertyPath: oldboi
-      value: 
-      objectReference: {fileID: 1671270414}
     - target: {fileID: 2508828259477824198, guid: e183968d6c5976c49ba58cf6ebd948e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1762,6 +1752,16 @@ PrefabInstance:
       propertyPath: dogPoints.Array.data[3]
       value: 
       objectReference: {fileID: 458010217}
+    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1728403544}
+    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: oldboi
+      value: 
+      objectReference: {fileID: 1671270414}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e183968d6c5976c49ba58cf6ebd948e8, type: 3}
 --- !u!1 &323082165
@@ -4940,7 +4940,7 @@ PrefabInstance:
     - target: {fileID: 8408658436654185499, guid: dfaa55028f12c764f8a9e87fe445c6ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.2
+      value: -64.96
       objectReference: {fileID: 0}
     - target: {fileID: 8408658436654185499, guid: dfaa55028f12c764f8a9e87fe445c6ad,
         type: 3}
@@ -5886,8 +5886,8 @@ GameObject:
   m_Name: Left hallway wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1138507439
 BoxCollider:
@@ -8797,11 +8797,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6428021081155650226, guid: 6775da959e4804ed8913adc9650ea1ee,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6428021081155650229, guid: 6775da959e4804ed8913adc9650ea1ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8862,6 +8857,11 @@ PrefabInstance:
       propertyPath: deadlyEnvironment.m_Bits
       value: 262144
       objectReference: {fileID: 0}
+    - target: {fileID: 6428021081155650226, guid: 6775da959e4804ed8913adc9650ea1ee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6775da959e4804ed8913adc9650ea1ee, type: 3}
 --- !u!1 &1904795401
@@ -8880,8 +8880,8 @@ GameObject:
   m_Name: Left hallway wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1904795402
 BoxCollider:
@@ -8995,8 +8995,8 @@ GameObject:
   m_Name: stairstart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1952919473
 BoxCollider:
@@ -9344,7 +9344,7 @@ PrefabInstance:
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.78
+      value: -23.79
       objectReference: {fileID: 0}
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
@@ -9354,7 +9354,7 @@ PrefabInstance:
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.71
+      value: -26.77
       objectReference: {fileID: 0}
     - target: {fileID: 7548392067862844868, guid: 9a63579440030474ba8d56c590872c9a,
         type: 3}
