@@ -108,6 +108,8 @@ GameObject:
   - component: {fileID: 6428021081155650224}
   - component: {fileID: 6428021081155650225}
   - component: {fileID: 6428021081155650226}
+  - component: {fileID: 8891014443050996293}
+  - component: {fileID: 1975284414869124775}
   m_Layer: 10
   m_Name: Player
   m_TagString: player
@@ -193,7 +195,7 @@ MonoBehaviour:
   currentState: {fileID: 0}
   pickups:
     serializedVersion: 2
-    m_Bits: 198656
+    m_Bits: 722944
   holdingSth: 0
 --- !u!114 &6428021081155650228
 MonoBehaviour:
@@ -217,7 +219,7 @@ MonoBehaviour:
   lift2: {fileID: 0}
   environment:
     serializedVersion: 2
-    m_Bits: 375296
+    m_Bits: 899584
   deadlyEnvironment:
     serializedVersion: 2
     m_Bits: 0
@@ -273,3 +275,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8704
   dynamicFriction: 0.35
+--- !u!114 &8891014443050996293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428021081155650227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1975284414869124775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428021081155650227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7835425ab07dbb743ac8813a550ad3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
