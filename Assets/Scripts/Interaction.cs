@@ -20,8 +20,9 @@ public class Interaction : MonoBehaviour
             case 17:
                // gameObject.GetComponent<Key>().TakeKeyInteraction();
                 break;
-            case 18: 
-
+            case 19:
+                gameObject.GetComponent<SceneTransfer>().ChangeLevel();
+                break;
             default:
                 break;
         }
