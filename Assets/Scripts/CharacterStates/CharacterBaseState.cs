@@ -225,7 +225,7 @@ public class CharacterBaseState : State
 
     protected void DeathCollisionCheck()
     {
-        if (owner.transform.position.y < -40f)
+        if (owner.transform.position.y < -80f)
         {
             Debug.Log("Deathcollider is not null!");
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
