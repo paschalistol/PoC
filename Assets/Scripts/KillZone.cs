@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class KillZone : MonoBehaviour
 {
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class KillZone : MonoBehaviour
         {
            
             SceneManager.LoadScene("test");
+            
         }
 
         
