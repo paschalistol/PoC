@@ -23,8 +23,7 @@ public class OldboiDetectionState : OldboiBaseState
     public override void ToDo()
     {
         if (LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) <= bustedDistance &&
-            Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance &&
-                Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingDistance) 
+            Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) 
         {
 
             Debug.Log("Deathcollider is not null!");
