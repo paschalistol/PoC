@@ -44,7 +44,7 @@ public class GroundedState : CharacterBaseState
         {
             owner.ChangeState<GlidingState>();
         }
-        InteractWithObject();
+
         CollisionCheck();
         DeathCollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
@@ -60,11 +60,11 @@ public class GroundedState : CharacterBaseState
             owner.ChangeState<InTheAirState>();
 
         }
-        if (IsSnowboarding())
-        {
+        //if (IsSnowboarding())
+        //{
 
-            owner.ChangeState<SnowboardState>();
-        }
+        //    owner.ChangeState<SnowboardState>();
+        //}
 
     }
 

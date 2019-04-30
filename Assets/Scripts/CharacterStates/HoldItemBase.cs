@@ -21,7 +21,25 @@ public class HoldItemBase : State
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
     }
 
+    protected void InteractWithObject()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
 
+            GameObject gameObject = ReturnObjectInFront();
+
+            if (gameObject != null)
+            {
+
+                InteractionEvent interactedInfo = new InteractionEvent();
+                interactedInfo.eventDescription = "Pressed item has been activated: ";
+                interactedInfo.interactedObject = gameObject;
+
+
+                EventSystem.Current.FireEvent(interactedInfo);
+            }
+        }
+    }
 
     protected GameObject ReturnObjectInFront()
     {

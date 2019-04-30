@@ -17,7 +17,9 @@ public class HoldingItem : HoldItemBase
         layerNumber = objectCarried.layer;
             if (layerNumber != 17)
             {
-                objectCarried.layer = 0;
+
+                owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment & ~(1 << layerNumber);
+             //  objectCarried.layer = 0;
             }
             else
             {
@@ -30,7 +32,7 @@ public class HoldingItem : HoldItemBase
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            objectCarried.layer = layerNumber;
+            owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment | (1 << layerNumber);
             SetHolding(false);
         }
 
@@ -49,6 +51,7 @@ public class HoldingItem : HoldItemBase
         //}
         if (!HoldingSth)
         {
+
             owner.ChangeState<EmptyHands>();
         }
         if (objectCarried != null)
@@ -79,9 +82,9 @@ public class HoldingItem : HoldItemBase
     private Vector3 Direction()
     {
         Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
-        float x = owner.transform.position.x + project.x * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2);
+        float x = owner.transform.position.x + project.x * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2) + project.normalized.x * 0.2f;
         float y = objectCarried.transform.localScale.y/2 + capsuleCollider.height/2 + owner.transform.position.y;
-        float z = owner.transform.position.z + project.z * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2);
+        float z = owner.transform.position.z + project.z * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2) + project.normalized.z * 0.2f;
         return new Vector3(x, y, z);
     }
 
