@@ -10,7 +10,7 @@ public class CharacterStateMachine : StateMachine
     public LayerMask deadlyEnvironment;
     public LayerMask pickups;
     public LayerMask lift;
-    public float WobbleFactor;
+    [HideInInspector]public float WobbleFactor = 0.15f;
  
     public float test;
     [HideInInspector] public Vector3 velocity;

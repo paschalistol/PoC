@@ -59,7 +59,9 @@ public class CharacterBaseState : State
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         if (rndMotion < wobbleValue)
-            input -= input; 
+            input -= input;
+        else
+            input += new Vector3(2, 0, 2);
         
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
@@ -187,11 +189,6 @@ public class CharacterBaseState : State
 
     protected void CollisionCheck()
     {
-       
-
-        //Debug.Log("speed:" + MaxSpeed + " dynamic " + dynamicFriction);
-
-
 
 
 
@@ -225,8 +222,6 @@ public class CharacterBaseState : State
 
     protected void DeathCollisionCheck()
     {
-       
-
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
@@ -247,9 +242,6 @@ public class CharacterBaseState : State
         }
 
     }
-
-
-
     protected bool isSnowboarding()
     {
         #region Raycast
