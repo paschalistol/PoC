@@ -244,6 +244,7 @@ public class CharacterBaseState : State
             Debug.Log("Deathcollider is not null!");
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
+            deathInfo.spawnPoint = owner.currentCheckPoint;
             
             deathInfo.deadUnit = owner.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
@@ -294,5 +295,23 @@ public class CharacterBaseState : State
 
         }
         return null;
+    }
+
+    protected void ReachingCheckPoint() {
+        #region Raycast
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
+        #endregion
+
+        if (raycastHit.collider == null)
+            return;
+        else
+        {
+            Debug.Log("Checkpoint reached!");
+            owner.currentCheckPoint = raycastHit.collider.gameObject;
+        }
     }
 }

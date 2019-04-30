@@ -15,6 +15,7 @@ public class DebugEvent : EventInfo
 public class UnitDeathEventInfo : DebugEvent
 {
     public GameObject deadUnit;
+    public GameObject spawnPoint;
     //public AudioClip audioClip;
     //public GameObject particleSystem;
 }

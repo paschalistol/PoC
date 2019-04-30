@@ -18,6 +18,7 @@ public class GroundedState : CharacterBaseState
         #region Input
         Vector3 input = GetDirectionInput();
 
+
         if (input.magnitude <= 0)
         {
             Decelerate();
@@ -47,6 +48,7 @@ public class GroundedState : CharacterBaseState
 
         CollisionCheck();
         DeathCollisionCheck();
+        ReachingCheckPoint();
         owner.transform.position += Velocity * Time.deltaTime;
 
 

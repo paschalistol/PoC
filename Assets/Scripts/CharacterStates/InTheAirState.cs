@@ -27,6 +27,7 @@ public class InTheAirState : CharacterBaseState
         Gravity();
         CollisionCheck();
         DeathCollisionCheck();
+        ReachingCheckPoint();
         owner.transform.position += Velocity * Time.deltaTime;
         if(IsGrounded() && snowboarding)
         {

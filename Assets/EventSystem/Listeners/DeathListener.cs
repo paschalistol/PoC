@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeathListener : MonoBehaviour
 {
     private GameObject objectToInteract;
-    public GameObject checkPoint;
+    private GameObject spawnPoint;
     public GameObject player;
     void Start()
     {
@@ -18,9 +18,9 @@ public class DeathListener : MonoBehaviour
     {
 
         objectToInteract = deathInfo.deadUnit;
+        spawnPoint = deathInfo.spawnPoint;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
-        player.gameObject.transform.position = checkPoint.transform.position;
+        player.gameObject.transform.position = spawnPoint.transform.position;
     }
 }

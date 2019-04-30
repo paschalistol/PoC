@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class CharacterStateMachine : StateMachine
 {
     public GameObject lift2;
+    public GameObject currentCheckPoint;
     public LayerMask environment;
     public LayerMask deadlyEnvironment;
     public LayerMask pickups;
     public LayerMask lift;
+    public LayerMask checkPoint;
     [HideInInspector]public float WobbleFactor = 0.15f;
  
     public float test;

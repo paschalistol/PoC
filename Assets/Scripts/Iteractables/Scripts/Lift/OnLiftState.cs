@@ -28,10 +28,11 @@ public class OnLiftState : GroundedState
     {
         base.ToDo();
         CollisionCheck();
-        
+        ReachingCheckPoint();
 
-       
-     owner.transform.parent = owner.lift2.transform;
+
+
+        owner.transform.parent = owner.lift2.transform;
     }
 
 }
