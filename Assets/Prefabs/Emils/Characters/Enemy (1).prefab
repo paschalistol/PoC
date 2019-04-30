@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6527715669969606527}
   - component: {fileID: 6100363641924800817}
   - component: {fileID: 7127222596300152198}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6565074568483408854}
   - component: {fileID: 6751028551056913607}
   - component: {fileID: 5814367454623947839}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 8408658436654185503}
   - component: {fileID: 8408658436654185500}
   - component: {fileID: 688768712648469105}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Enemy (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +377,9 @@ MonoBehaviour:
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
+  ignoreLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   player: {fileID: 0}
   flashLight: {fileID: 2212605112383344321}
   capsuleCollider: {fileID: 8408658436654185502}

@@ -59,7 +59,9 @@ public class CharacterBaseState : State
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         if (rndMotion < wobbleValue)
-            input -= input; 
+            input -= input;
+        else
+            input += new Vector3(2, 0, 2);
         
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
@@ -67,25 +69,24 @@ public class CharacterBaseState : State
         ChangeCharRotation();
         return input;
     }
-    //protected void InteractWithObject()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-       
-    //        GameObject gameObject = ReturnObjectInFront();
+    protected void InteractWithObject()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GameObject gameObject = ReturnObjectInFront();
 
-    //        if (gameObject != null)
-    //        {
+            if (gameObject != null)
+            {
 
-    //            InteractionEvent interactedInfo = new InteractionEvent();
-    //            interactedInfo.eventDescription = "Pressed item has been activated: ";
-    //            interactedInfo.interactedObject = gameObject;
+                InteractionEvent interactedInfo = new InteractionEvent();
+                interactedInfo.eventDescription = "Pressed item has been activated: ";
+                interactedInfo.interactedObject = gameObject;
 
 
-    //            EventSystem.Current.FireEvent(interactedInfo);
-    //        }
-    //    }
-    //}
+                EventSystem.Current.FireEvent(interactedInfo);
+            }
+        }
+    }
 
     private void ChangeCharRotation()
     {
@@ -103,7 +104,7 @@ public class CharacterBaseState : State
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
         RaycastHit raycastHit;
         bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, LookDirection().normalized, out raycastHit, capsuleCollider.radius, owner.pickups);
-        Debug.Log(raycastHit.distance);
+
         if (raycastHit.collider != null)
         {
             objectInFront = raycastHit.transform.gameObject;
@@ -187,7 +188,7 @@ public class CharacterBaseState : State
 
     protected bool Tilted()
     {
-        if(GetRaycast(Vector3.forward).normal == Vector3.up && GetRaycast(Vector3.back).normal == Vector3.up
+        if (GetRaycast(Vector3.forward).normal == Vector3.up && GetRaycast(Vector3.back).normal == Vector3.up
             && GetRaycast(Vector3.left).normal == Vector3.up && GetRaycast(Vector3.right).normal == Vector3.up)
         {
             return false;
@@ -198,11 +199,6 @@ public class CharacterBaseState : State
 
     protected void CollisionCheck()
     {
-       
-
-        //Debug.Log("speed:" + MaxSpeed + " dynamic " + dynamicFriction);
-
-
 
 
 
@@ -222,8 +218,8 @@ public class CharacterBaseState : State
             #region Apply Normal Force
             normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal;
-            #endregion
             Friction(normal.magnitude);
+            #endregion
             if (Velocity.magnitude < skinWidth)
             {
                 Velocity = Vector3.zero;
@@ -236,8 +232,6 @@ public class CharacterBaseState : State
 
     protected void DeathCollisionCheck()
     {
-       
-
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
@@ -258,6 +252,31 @@ public class CharacterBaseState : State
         }
 
     }
+    protected bool isSnowboarding()
+    {
+        #region Raycast
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime, owner.pickups);
+        #endregion
+
+        if (raycastHit.collider != null)
+        {
+            //snowboarding = true;
+            return true;
+
+        }
+        return false;
+    }
+    protected bool IsSnowboarding()
+    {
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.pickups);
+        return capsuleCast;
+    }
 
 
     protected GameObject TakingLift2()
@@ -277,32 +296,4 @@ public class CharacterBaseState : State
         }
         return null;
     }
-
-    //protected bool isSnowboarding()
-    //{
-    //    #region Raycast
-    //    Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-    //    Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-    //    RaycastHit raycastHit;
-    //    bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime, owner.pickups);
-    //    #endregion
-
-    //    if (raycastHit.collider != null)
-    //    {
-    //        //snowboarding = true;
-    //        return true;
-
-    //    }
-    //    return false;
-    //}
-    //protected bool IsSnowboarding()
-    //{
-    //    Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-    //    Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-    //    RaycastHit raycastHit;
-    //    bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.pickups);
-    //    return capsuleCast;
-    //}
-
-
 }
