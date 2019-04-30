@@ -40,7 +40,7 @@ public class GroundedState : CharacterBaseState
         {
             MaxSpeed *= 2;
         }
-        if (Tilted())
+        if (GetRaycast().normal != Vector3.up)
         {
             owner.ChangeState<GlidingState>();
         }

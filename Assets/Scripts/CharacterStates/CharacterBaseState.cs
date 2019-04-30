@@ -60,8 +60,7 @@ public class CharacterBaseState : State
 
         if (rndMotion < wobbleValue)
             input -= input;
-        else
-            input += new Vector3(2, 0, 2);
+
         
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
@@ -176,25 +175,25 @@ public class CharacterBaseState : State
         }
     }
 
-    protected RaycastHit GetRaycast(Vector3 v)
+    protected RaycastHit GetRaycast()
     {
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius) + v * capsuleCollider.radius;
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius) + v * capsuleCollider.radius;
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
         RaycastHit raycastHit;
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
         return raycastHit;
     }
 
-    protected bool Tilted()
-    {
-        if (GetRaycast(Vector3.forward).normal == Vector3.up && GetRaycast(Vector3.back).normal == Vector3.up
-            && GetRaycast(Vector3.left).normal == Vector3.up && GetRaycast(Vector3.right).normal == Vector3.up)
-        {
-            return false;
-        }
-        return true;
-    }
+    //protected bool tilted()
+    //{
+    //    if (getraycast(vector3.forward).normal == vector3.up && getraycast(vector3.back).normal == vector3.up
+    //        && getraycast(vector3.left).normal == vector3.up && getraycast(vector3.right).normal == vector3.up)
+    //    {
+    //        return false;
+    //    }
+    //    return true;
+    //}
 
 
     protected void CollisionCheck()

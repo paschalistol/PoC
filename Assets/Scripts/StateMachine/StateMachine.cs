@@ -30,7 +30,7 @@ public class StateMachine : MonoBehaviour
         currentState = stateDictionary[typeof(T)];
         currentState.EnterState();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         currentState.ToDo();
     }

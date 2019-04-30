@@ -30,7 +30,7 @@ public class GlidingState : CharacterBaseState
         CollisionCheck();
         DeathCollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
-        if (!Tilted())
+        if (GetRaycast().normal == Vector3.up)
         {
             owner.ChangeState<GroundedState>();
         }
