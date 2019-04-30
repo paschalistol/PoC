@@ -7,7 +7,8 @@ public class CharacterBaseState : State
 {
     protected CharacterStateMachine owner;
 
-    protected float wobbleValue { get { return owner.WobbleFactor;  } }
+    // protected float wobbleValue { get { return owner.WobbleFactor;  } }
+    protected float wobbleValue = 0.25f;
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
@@ -59,8 +60,19 @@ public class CharacterBaseState : State
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         if (rndMotion < wobbleValue)
-            input -= input;
+        {
+            float directionalFloat = input.magnitude;
 
+            if (directionalFloat > 0)
+            {
+                input -= new Vector3(10, 0, 10);
+            }
+            else if (directionalFloat < 0)
+            {
+                input += new Vector3(10, 0, 10);
+            }
+        }
+            
         
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
