@@ -176,14 +176,24 @@ public class CharacterBaseState : State
         }
     }
 
-    protected RaycastHit GetRaycast()
+    protected RaycastHit GetRaycast(Vector3 v)
     {
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius) + v * capsuleCollider.radius;
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius) + v * capsuleCollider.radius;
         RaycastHit raycastHit;
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
         return raycastHit;
+    }
+
+    protected bool Tilted()
+    {
+        if (GetRaycast(Vector3.forward).normal == Vector3.up && GetRaycast(Vector3.back).normal == Vector3.up
+            && GetRaycast(Vector3.left).normal == Vector3.up && GetRaycast(Vector3.right).normal == Vector3.up)
+        {
+            return false;
+        }
+        return true;
     }
 
 
