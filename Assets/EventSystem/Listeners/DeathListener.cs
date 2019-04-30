@@ -18,9 +18,9 @@ public class DeathListener : MonoBehaviour
     {
 
         objectToInteract = deathInfo.deadUnit;
-        Debug.Log("1");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
-        //player.gameObject.transform.position = spawn.transform.position;
+        player.gameObject.transform.position = checkPoint.transform.position;
     }
 }

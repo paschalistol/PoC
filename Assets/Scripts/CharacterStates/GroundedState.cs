@@ -40,7 +40,7 @@ public class GroundedState : CharacterBaseState
         {
             MaxSpeed *= 2;
         }
-        if (/*Input.GetKeyDown(KeyCode.Q) && */GetRaycast().normal != Vector3.up)
+        if (Tilted())
         {
             owner.ChangeState<GlidingState>();
         }

@@ -30,7 +30,7 @@ public class GlidingState : CharacterBaseState
         CollisionCheck();
         DeathCollisionCheck();
         owner.transform.position += Velocity * Time.deltaTime;
-        if (/*Input.GetKeyDown(KeyCode.Q) || */ GetRaycast().normal == Vector3.up)
+        if (!Tilted())
         {
             owner.ChangeState<GroundedState>();
         }
