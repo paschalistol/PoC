@@ -29,7 +29,7 @@ public class OnLiftState : GroundedState
         base.ToDo();
         CollisionCheck();
         
-        Debug.Log("CollisionOnCharacter!");
+
        
      owner.transform.parent = owner.lift2.transform;
     }

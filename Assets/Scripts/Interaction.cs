@@ -7,8 +7,16 @@ public class Interaction : MonoBehaviour
 
     public void StartInteraction(GameObject gameObject)
     {
+
+
         switch (gameObject.layer)
         {
+            case 11:
+
+
+                gameObject.GetComponent<Boxes1>().InteractWithBox();
+
+            break;
             case 15:
             //    //bool hasKey = gameObject.GetComponent<Key>().used;
             //gameObject.GetComponent<Door>().InteractWithDoor();

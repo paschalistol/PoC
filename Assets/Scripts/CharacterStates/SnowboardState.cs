@@ -50,11 +50,11 @@ public class SnowboardState : CharacterBaseState
             owner.ChangeState<GroundedState>();
         }
 
-        if (!IsSnowboarding())
-        {
+        //if (!IsSnowboarding())
+        //{
 
-            owner.ChangeState<GroundedState>();
-        }
+        //    owner.ChangeState<GroundedState>();
+        //}
         if (snowboard != null)
         {
             TransformCarriedObject();

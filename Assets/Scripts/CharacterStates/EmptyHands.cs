@@ -12,9 +12,10 @@ public class EmptyHands : HoldItemBase
     }
     public override void ToDo()
     {
+
         if (Input.GetKeyDown(KeyCode.E) && ReturnObjectInFront() != null)
         {
-
+            InteractWithObject();
             SetHolding(true);
             
         }
