@@ -210,8 +210,6 @@ public class CharacterBaseState : State
     protected void CollisionCheck()
     {
 
-
-
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
