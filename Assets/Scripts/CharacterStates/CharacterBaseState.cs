@@ -8,7 +8,7 @@ public class CharacterBaseState : State
     protected CharacterStateMachine owner;
 
     // protected float wobbleValue { get { return owner.WobbleFactor;  } }
-    protected float wobbleValue = 0.5f;
+    protected float wobbleValue { get { return owner.WobbleFactor;  } }
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
@@ -61,31 +61,15 @@ public class CharacterBaseState : State
 
         if (rndWobble < wobbleValue && input != Vector3.zero)
         {
-
             float rndDirection = Random.Range(0.0f, 1.0f);
-
-            float directionalFloat = input.magnitude;
-
-           // Debug.Log("rndMotion: " + rndDirection);
             if(rndDirection < 0.5)
             {
-                input += new Vector3(input.x + 20, input.y, input.z + 20);
-                Debug.Log("Runs lesser.");
+                input += new Vector3(input.x + 20, 0, 0);
+            }else if (rndDirection > 0.5)
+            {
+                input += new Vector3(input.x - 20, 0, 0);
             }
 
-            if (rndDirection > 0.5)
-            {
-                input += new Vector3(input.x - 20, input.y, input.z - 20);
-                Debug.Log("Runs greater.");
-            }
-            //if (directionalFloat > 0)
-            //{
-            //    input -= new Vector3(10, 0, 10);
-            //}
-            //else if (directionalFloat < 0)
-            //{
-            //    input += new Vector3(10, 0, 10);
-            //}
         }
             
         
