@@ -8,7 +8,7 @@ public class CharacterBaseState : State
     protected CharacterStateMachine owner;
 
     // protected float wobbleValue { get { return owner.WobbleFactor;  } }
-    protected float wobbleValue = 0.25f;
+    protected float wobbleValue = 0.5f;
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
@@ -54,23 +54,38 @@ public class CharacterBaseState : State
     }
     protected Vector3 GetDirectionInput()
     {
-        float rndMotion = Random.Range(0.0f, 1.0f);
+        float rndWobble = Random.Range(0.0f, 1.0f);
 
       
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
-        if (rndMotion < wobbleValue)
+        if (rndWobble < wobbleValue && input != Vector3.zero)
         {
+
+            float rndDirection = Random.Range(0.0f, 1.0f);
+
             float directionalFloat = input.magnitude;
 
-            if (directionalFloat > 0)
+           // Debug.Log("rndMotion: " + rndDirection);
+            if(rndDirection < 0.5)
             {
-                input -= new Vector3(10, 0, 10);
+                input += new Vector3(input.x + 20, input.y, input.z + 20);
+                Debug.Log("Runs lesser.");
             }
-            else if (directionalFloat < 0)
+
+            if (rndDirection > 0.5)
             {
-                input += new Vector3(10, 0, 10);
+                input += new Vector3(input.x - 20, input.y, input.z - 20);
+                Debug.Log("Runs greater.");
             }
+            //if (directionalFloat > 0)
+            //{
+            //    input -= new Vector3(10, 0, 10);
+            //}
+            //else if (directionalFloat < 0)
+            //{
+            //    input += new Vector3(10, 0, 10);
+            //}
         }
             
         
