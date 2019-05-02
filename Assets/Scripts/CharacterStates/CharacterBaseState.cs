@@ -62,13 +62,23 @@ public class CharacterBaseState : State
         if (rndWobble < wobbleValue && input != Vector3.zero)
         {
             float rndDirection = Random.Range(0.0f, 1.0f);
-            if(rndDirection < 0.5)
-            {
-                input += new Vector3(input.x + 20, 0, 0);
-            }else if (rndDirection > 0.5)
-            {
-                input += new Vector3(input.x - 20, 0, 0);
-            }
+
+           
+                if (rndDirection < 0.5)
+                {
+                    input = Quaternion.Euler(0, -90, 0) * input;
+                    Debug.Log("left");
+                }
+                else if (rndDirection > 0.5)
+                {
+                    input = Quaternion.Euler(0, 90, 0) * input;
+                    Debug.Log("right");
+                }
+            
+            
+              
+            
+            
 
         }
             
