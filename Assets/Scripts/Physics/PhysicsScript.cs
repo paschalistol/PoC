@@ -7,7 +7,7 @@ using UnityEngine;
         public LayerMask environment;
 
         //protected CapsuleCollider capsuleCollider;
-        protected const float skinWidth = 0.0f;
+        //protected const float skinWidth = 0.0f;
     //protected Vector3 Velocity;
         private float deceleration = 3;
         protected Vector3 normal;
@@ -22,7 +22,7 @@ using UnityEngine;
         }
 
 
-        public Vector3 BoxCollisionCheck(Vector3 velocity, BoxCollider collider)
+        public Vector3 BoxCollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
         {
             RaycastHit raycastHit;
             #region Raycast
@@ -45,12 +45,12 @@ using UnityEngine;
                     return velocity;
                 }
 
-                BoxCollisionCheck(velocity, collider);
+                BoxCollisionCheck(velocity, collider, skinWidth);
                 return velocity;
             }
         }
 
-        public Vector3 CapsuleCollisionCheck(Vector3 velocity, CapsuleCollider collider)
+        public Vector3 CapsuleCollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
         {
             RaycastHit raycastHit;
             #region Raycast
@@ -74,7 +74,7 @@ using UnityEngine;
                     return velocity;
                 }
 
-                CapsuleCollisionCheck(velocity, collider);
+                CapsuleCollisionCheck(velocity, collider, skinWidth);
                 return velocity;
             }
             

@@ -8,6 +8,7 @@ public class PhysicsCapsule : MonoBehaviour
     protected Vector3 velocity;
     protected CapsuleCollider capsuleCollider;
     private PhysicsScript whereAreMyDragons;
+    protected const float skinWidth = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class PhysicsCapsule : MonoBehaviour
     void Update()
     {
         velocity = whereAreMyDragons.Gravity(velocity);
-        velocity = whereAreMyDragons.CapsuleCollisionCheck(velocity, capsuleCollider);
+        velocity = whereAreMyDragons.CapsuleCollisionCheck(velocity, capsuleCollider, skinWidth);
         velocity = whereAreMyDragons.Decelerate(velocity);
         
         transform.position += velocity * Time.deltaTime;
