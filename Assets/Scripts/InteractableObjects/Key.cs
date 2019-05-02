@@ -5,23 +5,44 @@ using UnityEngine;
 public class Key : MonoBehaviour
 {
     [SerializeField]private GameObject lockedDoor;
-    private Rigidbody body;
+    private PhysicsScript body;
     [HideInInspector]public bool used = false;
+
+    protected Vector3 velocity;
+    protected CapsuleCollider capsuleCollider;
+    private PhysicsScript whereAreMyDragons;
+    protected const float skinWidth = 0.2f;
+
+   // protected bool usingGravity;
+    protected bool isHeld;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        body = gameObject.GetComponent<Rigidbody>();
+        body = gameObject.GetComponent<PhysicsScript>();
+        //usingGravity = false;
     }
 
-    // Update is called once per frame
+    /**
+     * 
+     * Interaction: ändra till isHeld
+     * Om den inte är "på" spelaren eller fienden - Run Gravity
+     * 
+     * **/
     void Update()
     {
-        if(transform.parent == null)
+        //if(transform.parent == null)
+        //{
+        //   usingGravity= true;
+        //}
+
+        if (!isHeld || transform.parent != null)
         {
-           body.isKinematic = false;
-           body.useGravity = true;
+            velocity = body.Gravity(velocity);
+            velocity = body.CapsuleCollisionCheck(velocity, capsuleCollider, skinWidth);
+            velocity = body.Decelerate(velocity);
+            transform.position += velocity * Time.deltaTime;
         }
 
         RaycastHit raycastHit;
@@ -36,9 +57,7 @@ public class Key : MonoBehaviour
             EventSystem.Current.FireEvent(interactedInfo);
             used = true;
         }
-
     }
-
     public void TakeKeyInteraction()
     {
         Debug.Log("Took key!");
