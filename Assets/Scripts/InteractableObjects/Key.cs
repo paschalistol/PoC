@@ -25,7 +25,7 @@ public class Key : MonoBehaviour
     }
 
     /**
-     * 
+     * Interaction: lyssna efter om vi försöker plocka upp nyckeln
      * Interaction: ändra till isHeld
      * Om den inte är "på" spelaren eller fienden - Run Gravity
      * 
