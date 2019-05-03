@@ -11,7 +11,6 @@ public class InTheAirState : CharacterBaseState
     }
     public override void ToDo()
     {
-        owner.transform.parent = null;
         #region Input
         Vector3 input = GetDirectionInput();
 
@@ -29,10 +28,7 @@ public class InTheAirState : CharacterBaseState
         DeathCollisionCheck();
         ReachingCheckPoint();
         owner.transform.position += Velocity * Time.deltaTime;
-        if(IsGrounded() && snowboarding)
-        {
-            owner.ChangeState<SnowboardState>();
-        }else if (IsGrounded())
+        if (IsGrounded())
         {
 
             owner.ChangeState<GroundedState>();

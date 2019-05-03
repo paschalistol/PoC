@@ -43,10 +43,6 @@ public class GroundedState : CharacterBaseState
             MaxSpeed *= 2;
         }
         #endregion
-        if (GetRaycast().normal.y< 0.9f || GetRaycast().normal.y > 1.1f)
-        {
-            owner.ChangeState<GlidingState>();
-        }
 
         CollisionCheck();
         DeathCollisionCheck();
@@ -54,6 +50,10 @@ public class GroundedState : CharacterBaseState
         owner.transform.position += Velocity * Time.deltaTime;
 
 
+        if (IsGliding())
+        {
+            owner.ChangeState<GlidingState>();
+        }
 
         if(TakingLift2() != null)
         {

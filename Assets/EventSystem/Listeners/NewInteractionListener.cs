@@ -15,7 +15,11 @@ public class NewInteractionListener : MonoBehaviour
     {
         objectToInteract = info.interactedObject;
 
-        objectToInteract.GetComponent<Interaction>().StartInteraction(objectToInteract);
+        if (objectToInteract.GetComponent<Interaction>() != null)
+        {
+
+            objectToInteract.GetComponent<Interaction>().StartInteraction(objectToInteract);
+        }
     }
 }
 
