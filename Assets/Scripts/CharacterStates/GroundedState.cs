@@ -14,7 +14,7 @@ public class GroundedState : CharacterBaseState
 
     public override void ToDo()
     {
-        owner.transform.parent = null;
+
         #region Input
         Vector3 input = GetDirectionInput();
 
@@ -29,6 +29,7 @@ public class GroundedState : CharacterBaseState
         }
         #endregion
         Gravity();
+        #region Buttons
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ApplyForce(new Vector3(0, jumpHeight, 0));
@@ -41,7 +42,8 @@ public class GroundedState : CharacterBaseState
         {
             MaxSpeed *= 2;
         }
-        if (GetRaycast().normal != Vector3.up)
+        #endregion
+        if (GetRaycast().normal.y< 0.9f || GetRaycast().normal.y > 1.1f)
         {
             owner.ChangeState<GlidingState>();
         }
