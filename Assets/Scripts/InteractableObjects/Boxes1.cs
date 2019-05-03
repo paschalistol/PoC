@@ -19,7 +19,6 @@ public class Boxes1 : MonoBehaviour
     private void Awake()
     {
         boxCollider = gameObject.GetComponent<BoxCollider>();
-
         generalFunctions = gameObject.GetComponent<GeneralFunctions>();
     }
     private void Update()

@@ -7,7 +7,7 @@ public class Interaction : MonoBehaviour
 
     public void StartInteraction(GameObject gameObject)
     {
-
+        Debug.Log(gameObject.tag);
 
         switch (gameObject.tag)
         {
@@ -28,8 +28,17 @@ public class Interaction : MonoBehaviour
             //case 17:
             //    //gameObject.GetComponent<Key>().TakeKeyInteraction();
             //    break;
+            //case "SafeDoor":
+            //    gameObject.GetComponent<Door>().
+            //    break;
             case "SceneTransfer":
                 gameObject.GetComponent<SceneTransfer>().ChangeLevel();
+                break;
+            case "Key":
+                Debug.Log("KeyInteractedWith");
+                
+                gameObject.GetComponent<Key>().KeyInteraction();
+                
                 break;
             default:
                 break;

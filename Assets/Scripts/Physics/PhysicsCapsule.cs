@@ -12,17 +12,18 @@ public class PhysicsCapsule : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<PhysicsScript>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        body = GetComponent<PhysicsScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        velocity = body.Decelerate(velocity);
         velocity = body.Gravity(velocity);
         velocity = body.CapsuleCollisionCheck(velocity, capsuleCollider, skinWidth);
-        velocity = body.Decelerate(velocity);
         
         transform.position += velocity * Time.deltaTime;
+
     }
 }

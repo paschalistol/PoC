@@ -18,8 +18,8 @@ using UnityEngine;
 
 
         // Start is called before the first frame update
-        void Start() { 
-           
+        void Start() {
+        Debug.Log("PhysicsStarting");
         }
 
 
@@ -47,6 +47,7 @@ using UnityEngine;
                 }
 
                 BoxCollisionCheck(velocity, collider, skinWidth);
+            Debug.Log("BoxCollisionCheck");
                 return velocity;
             }
         }
@@ -110,7 +111,8 @@ using UnityEngine;
         {
             Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
             velocity += gravity;
-            return velocity;
+        Debug.Log("BoxCGravity");
+        return velocity;
         }
 
     public Vector3 Decelerate(Vector3 velocity)

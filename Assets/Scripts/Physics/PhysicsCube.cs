@@ -20,10 +20,9 @@ public class PhysicsCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Running cube update!");
+        velocity = whereAreMyDragons.Decelerate(velocity);
         velocity = whereAreMyDragons.Gravity(velocity);
         velocity = whereAreMyDragons.BoxCollisionCheck(velocity, boxCollider, skinWidth);
-        velocity = whereAreMyDragons.Decelerate(velocity);
         //velocity = whereAreMyDragons.Decelerate(whereAreMyDragons.BoxCollisionCheck(velocity = whereAreMyDragons.Gravity(velocity), boxCollider));
         transform.position += velocity * Time.deltaTime;
     }
