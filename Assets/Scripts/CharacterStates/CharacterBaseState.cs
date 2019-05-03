@@ -167,7 +167,7 @@ public class CharacterBaseState : State
         }
         direction.y = 0;
         Velocity += direction * acceleration * Time.deltaTime;
-
+        Debug.Log("acc: "+(direction.z * acceleration * Time.deltaTime));
         if (Velocity.magnitude > MaxSpeed)
         {
             Vector3 temp = Velocity.normalized;
