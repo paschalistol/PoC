@@ -23,10 +23,9 @@ public class HoldItemBase : State
 
     protected void InteractWithObject()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
 
-            GameObject gameObject = ReturnObjectInFront();
+
+            GameObject gameObject = objectCarried;
 
             if (gameObject != null)
             {
@@ -38,7 +37,7 @@ public class HoldItemBase : State
 
                 EventSystem.Current.FireEvent(interactedInfo);
             }
-        }
+        
     }
 
     protected GameObject ReturnObjectInFront()

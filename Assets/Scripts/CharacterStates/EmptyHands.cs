@@ -15,6 +15,9 @@ public class EmptyHands : HoldItemBase
 
         if (Input.GetKeyDown(KeyCode.E) && ReturnObjectInFront() != null)
         {
+
+
+            objectCarried = ReturnObjectInFront();
             InteractWithObject();
             SetHolding(true);
             
