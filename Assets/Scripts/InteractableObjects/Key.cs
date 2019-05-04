@@ -10,7 +10,7 @@ public class Key : MonoBehaviour
 
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-    private PhysicsScript whereAreMyDragons;
+    //private PhysicsScript whereAreMyDragons;
     protected const float skinWidth = 0.2f;
 
    // protected bool usingGravity;
@@ -24,13 +24,6 @@ public class Key : MonoBehaviour
         body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
     }
-
-    /**
-     * Interaction: lyssna efter om vi försöker plocka upp nyckeln
-     * Interaction: ändra till isHeld
-     * Om den inte är "på" spelaren eller fienden - Run Gravity
-     * 
-     * **/
     void Update()
     {
 

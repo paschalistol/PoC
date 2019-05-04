@@ -19,7 +19,7 @@ using UnityEngine;
 
         // Start is called before the first frame update
         void Start() {
-        Debug.Log("PhysicsStarting");
+
         }
 
 
@@ -111,7 +111,7 @@ using UnityEngine;
         {
             Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
             velocity += gravity;
-        Debug.Log("BoxCGravity");
+
         return velocity;
         }
 

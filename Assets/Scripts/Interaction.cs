@@ -40,6 +40,9 @@ public class Interaction : MonoBehaviour
                 gameObject.GetComponent<Key>().KeyInteraction();
                 
                 break;
+            case "FuseBoxItem":
+                gameObject.GetComponent<FuseBoxItem>().isHeld = !gameObject.GetComponent<FuseBoxItem>().isHeld;
+                break;
             default:
                 break;
         }
