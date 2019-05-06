@@ -21,7 +21,7 @@ public class BatteryBehavior : MonoBehaviour
         //Debug.Log("position of char" + transform.position + " position of fusebox" + fuseBox.transform.position);
         if ((Vector3.Distance(transform.position, fuseBox.transform.position) < 3) && Input.GetKeyDown(KeyCode.E))
         {
-            SwitchEvent switchedInfo = new SwitchEvent ();
+            SwitchLiftEvent switchedInfo = new SwitchLiftEvent ();
             switchedInfo.eventDescription = "Pressed item has been activated: " ;
             switchedInfo.switchedObject = fuseBox.gameObject;
             switchedInfo.speaker = speaker;

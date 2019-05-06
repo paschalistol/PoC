@@ -20,7 +20,7 @@ public class UnitDeathEventInfo : DebugEvent
     //public GameObject particleSystem;
 }
 
-public class SwitchEvent : DebugEvent
+public class SwitchLiftEvent : DebugEvent
 {
     public GameObject switchedObject;
     public GameObject speaker;
@@ -28,12 +28,42 @@ public class SwitchEvent : DebugEvent
     public GameObject particles;
     public int timesCalled;
 }
-    public class InteractionEvent : DebugEvent
+
+public class InteractionEvent : DebugEvent
 {
     public GameObject interactedObject;
 }
 
-    public class UnlockEvent : DebugEvent
-    {
-        public GameObject doorObject;
-    }
+public class UnlockEvent : DebugEvent
+{
+    public GameObject doorObject;
+}
+
+public class FuseBoxEvent : DebugEvent
+{
+    public AudioClip audioClip;
+    public GameObject particles;
+    public GameObject gameObject;
+}
+
+public class OpenDoorEvent : DebugEvent
+{
+    public AudioClip audioClip;
+    public GameObject particles;
+    public GameObject gameObject;
+}
+
+public class TookKeyEvent : DebugEvent
+{
+    public AudioClip audioClip;
+    public GameObject particles;
+    public GameObject gameObject;
+}
+
+public class WaterSplashEvent : DebugEvent
+{
+    public AudioClip audioClip;
+    public GameObject particles;
+    public GameObject gameObject;
+}
+

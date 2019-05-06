@@ -14,6 +14,10 @@ public class FuseBoxItem : MonoBehaviour
     private static int count;
     [HideInInspector]public bool isHeld;
 
+    [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject endParticles;
+
+
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -34,11 +38,10 @@ public class FuseBoxItem : MonoBehaviour
         RaycastHit raycastHit;
        
         bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, transform.rotation, transform.localScale.z);
-        Debug.Log("This is the raycast hit: " + raycastHit.collider.gameObject);
+
         if (Input.GetKeyDown(KeyCode.E) && raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
         {
             Debug.Log("After raycast");
-            gameObject.SetActive(false);
             count++;
             //InteractionEvent interactedInfo = new InteractionEvent();
             //interactedInfo.eventDescription = "The door has been unlocked!";
@@ -48,10 +51,33 @@ public class FuseBoxItem : MonoBehaviour
             //fuseBox.GetComponent<FuseBox>().count++;
             //fuseBox.GetComponent<FuseBox>().InteractWithFuseBox();
 
-            if(count == itemQuantity)
+            FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
+            fuseBoxEvent.gameObject = gameObject;
+            fuseBoxEvent.eventDescription = "Fusebox item: " + count;
+            fuseBoxEvent.particles = particles;
+
+            EventSystem.Current.FireEvent(fuseBoxEvent);
+
+            if (count == itemQuantity)
             {
-               lockedDoor.GetComponent<Door>().InteractWithDoor();
+                //Run particles on fusebox activation of door
+                lockedDoor.GetComponent<Door>().InteractWithDoor();
+
+                OpenDoorEvent doorEvent = new OpenDoorEvent();
+                Debug.Log("DoorOpened1");
+                doorEvent.gameObject = gameObject;
+                Debug.Log("DoorOpened2");
+                doorEvent.eventDescription = "A door has been opened!";
+                Debug.Log("DoorOpened3");
+                doorEvent.particles = endParticles;
+                Debug.Log("DoorOpened4");
+
+                EventSystem.Current.FireEvent(doorEvent);
+
+                Debug.Log("DoorOpened5");
+              
             }
+            gameObject.SetActive(false); 
         }
     }
 }

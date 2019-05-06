@@ -7,9 +7,9 @@ using UnityEngine;
     {
         void Start()
         {
-        EventSystem.Current.RegisterListener<SwitchEvent>(OnSwitch);
+        EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnSwitch);
         }
-        void OnSwitch(SwitchEvent info)
+        void OnSwitch(SwitchLiftEvent info)
         {
             Debug.Log(info.eventDescription + info.switchedObject + " PriorityLevel: " + (info.VerbosityLvl = 1));
         }

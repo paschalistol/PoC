@@ -10,12 +10,12 @@ public class InteractionListener : MonoBehaviour
     {
 
 
-        EventSystem.Current.RegisterListener<SwitchEvent>(OnSwitch);
+        EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnSwitch);
   
     }
     // Switch between turning on or off the switch (this code will be the bases for
     // most interactions with electrical power withing the game) 
-    void OnSwitch(SwitchEvent info)
+    void OnSwitch(SwitchLiftEvent info)
     {
             lift.GetComponent<Lift2>().onOff = !lift.GetComponent<Lift2>().onOff;
     }
