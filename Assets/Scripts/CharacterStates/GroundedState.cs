@@ -15,7 +15,6 @@ public class GroundedState : CharacterBaseState
 
     public override void ToDo()
     {
-
         #region Input
         Vector3 input = GetDirectionInput();
 
@@ -29,6 +28,7 @@ public class GroundedState : CharacterBaseState
             Accelerate(input);
         }
         #endregion
+        ChangeCharRotation();
         Gravity();
         #region Buttons
         if (Input.GetKeyDown(KeyCode.Space))
