@@ -152,7 +152,7 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
 
-        return (raycastHit.normal.y < 0.9f || raycastHit.normal.y > 1.1f) && raycastHit.normal.y !=0 ;
+        return (raycastHit.normal.y < 0.9f || raycastHit.normal.y > 1.1f) && raycastHit.normal.y !=0 && raycastHit.collider.gameObject.layer == 9;
     }
 
     protected bool IsGrounded()
