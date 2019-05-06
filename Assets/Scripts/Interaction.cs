@@ -43,6 +43,9 @@ public class Interaction : MonoBehaviour
             case "FuseBoxItem":
                 gameObject.GetComponent<FuseBoxItem>().isHeld = !gameObject.GetComponent<FuseBoxItem>().isHeld;
                 break;
+            case "Gold":
+                gameObject.GetComponent<Gold>().isHeld = !gameObject.GetComponent<Gold>().isHeld;
+                break;
             default:
                 break;
         }
