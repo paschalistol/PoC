@@ -152,8 +152,7 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
 
-
-        return raycastHit.normal.y < 0.9f || raycastHit.normal.y > 1.1f;
+        return (raycastHit.normal.y < 0.9f || raycastHit.normal.y > 1.1f) && raycastHit.normal.y !=0 ;
     }
 
     protected bool IsGrounded()
@@ -273,15 +272,6 @@ public class CharacterBaseState : State
            
         }
 
-    }
-
-    protected bool IsSnowboarding()
-    {
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.pickups);
-        return capsuleCast;
     }
 
 

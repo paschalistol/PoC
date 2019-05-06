@@ -8,6 +8,7 @@ public class GroundedState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
+
         dynamicFriction = 0.35f;
         MaxSpeed = 10;
     }
@@ -64,11 +65,7 @@ public class GroundedState : CharacterBaseState
             owner.ChangeState<InTheAirState>();
 
         }
-        //if (IsSnowboarding())
-        //{
 
-        //    owner.ChangeState<SnowboardState>();
-        //}
 
     }
 
