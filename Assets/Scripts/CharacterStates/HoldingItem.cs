@@ -30,14 +30,18 @@ public class HoldingItem : HoldItemBase
     public override void ToDo()
     {
 
+
+        if(objectCarried == null)
+            SetHolding(false);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-
             //owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment | (1 << layerNumber);
             objectCarried.layer = layerNumber;
             InteractWithObject();
             SetHolding(false);
         }
+
 
 
         // if (Input.GetKeyDown(KeyCode.R))
@@ -54,7 +58,6 @@ public class HoldingItem : HoldItemBase
         //}
         if (!HoldingSth)
         {
-
             owner.ChangeState<EmptyHands>();
         }
         if (objectCarried != null)
