@@ -37,16 +37,17 @@ public class Key : MonoBehaviour
 
         RaycastHit raycastHit;
         bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, transform.rotation, transform.localScale.z + 3f);
-        if (Input.GetKeyDown(KeyCode.E) && raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor && !used)
+        if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
         {
-            gameObject.SetActive(false);
+            
             //InteractionEvent interactedInfo = new InteractionEvent();
             //interactedInfo.eventDescription = "The door has been unlocked!";
             //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
 
             //EventSystem.Current.FireEvent(interactedInfo);
             lockedDoor.GetComponent<Door>().InteractWithDoor();
-            used = true;
+            Destroy(gameObject);
+            //used = true;
         }
     }
 
@@ -57,7 +58,6 @@ public class Key : MonoBehaviour
         if(isHeld == true)
         {
         transform.parent = null;
-
         }
         isHeld = !isHeld;
     }
