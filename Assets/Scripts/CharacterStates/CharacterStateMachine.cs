@@ -12,6 +12,7 @@ public class CharacterStateMachine : StateMachine
     public LayerMask pickups;
     public LayerMask lift;
     public LayerMask checkPoint;
+    public LayerMask trampoline;
     public float WobbleFactor = 0.50f;
  
     public float test;
