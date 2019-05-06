@@ -310,4 +310,34 @@ public class CharacterBaseState : State
             owner.currentCheckPoint = raycastHit.collider.gameObject;
         }
     }
+
+    protected void Trampoline()
+    {
+        #region Raycast
+        Debug.Log(Velocity + "  " + Velocity.magnitude);
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center - Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            capsuleCollider.radius, Vector3.down, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth + 0.1f, owner.trampoline);
+        #endregion
+        if (raycastHit.collider == null)
+            return;
+        else
+        {
+            
+            #region Apply Normal Force
+            normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
+            Velocity += normal * 2.3f;
+            if(Velocity.magnitude > 40)
+            {
+                Velocity = Velocity.normalized * 40;
+            }
+            Friction(normal.magnitude);
+            #endregion
+            
+
+            
+        }
+    }
 }

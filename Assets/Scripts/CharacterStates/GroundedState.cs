@@ -48,6 +48,7 @@ public class GroundedState : CharacterBaseState
         CollisionCheck();
         DeathCollisionCheck();
         ReachingCheckPoint();
+        Trampoline();
         owner.transform.position += Velocity * Time.deltaTime;
 
 
