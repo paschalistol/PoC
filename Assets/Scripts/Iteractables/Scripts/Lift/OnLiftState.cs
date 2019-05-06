@@ -25,7 +25,7 @@ public class OnLiftState : GroundedState
     public override void ToDo()
     {
 
-       // Velocity = owner.lift2.GetComponent<Lift2>().GetVelocity();
+        ChangeCharRotation();
         #region Input
         Vector3 input = GetDirectionInput();
 

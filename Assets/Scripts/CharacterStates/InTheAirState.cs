@@ -8,9 +8,11 @@ public class InTheAirState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
+
     }
     public override void ToDo()
     {
+        ChangeCharRotation();
         #region Input
         Vector3 input = GetDirectionInput();
 
