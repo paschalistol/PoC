@@ -34,6 +34,7 @@ public class InTheAirState : CharacterBaseState
         DeathCollisionCheck();
         ReachingCheckPoint();
         Trampoline();
+        ReachingGoal();
         owner.transform.position += Velocity * Time.deltaTime;
         if (IsGrounded())
         {
