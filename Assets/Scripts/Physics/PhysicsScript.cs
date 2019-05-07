@@ -20,7 +20,7 @@ using UnityEngine;
         }
 
 
-        public Vector3 BoxCollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
+        public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
         {
             RaycastHit raycastHit;
             #region Raycast
@@ -43,12 +43,12 @@ using UnityEngine;
                     return velocity;
                 }
 
-                BoxCollisionCheck(velocity, collider, skinWidth);
+                CollisionCheck(velocity, collider, skinWidth);
                 return velocity;
             }
         }
 
-        public Vector3 CapsuleCollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
+        public Vector3 CollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
         {
             RaycastHit raycastHit;
             #region Raycast
@@ -72,7 +72,7 @@ using UnityEngine;
                     return velocity;
                 }
 
-                CapsuleCollisionCheck(velocity, collider, skinWidth);
+                CollisionCheck(velocity, collider, skinWidth);
                 return velocity;
             }
             

@@ -21,7 +21,7 @@ public class PhysicsCapsule : MonoBehaviour
     {
         velocity = body.Decelerate(velocity);
         velocity = body.Gravity(velocity);
-        velocity = body.CapsuleCollisionCheck(velocity, capsuleCollider, skinWidth);
+        velocity = body.CollisionCheck(velocity, capsuleCollider, skinWidth);
         
         transform.position += velocity * Time.deltaTime;
 

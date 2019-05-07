@@ -217,6 +217,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e48204556906514493e52c51fedcab8, type: 2}
   currentState: {fileID: 0}
   lift2: {fileID: 0}
+  currentCheckPoint: {fileID: 0}
   environment:
     serializedVersion: 2
     m_Bits: 899584
@@ -229,6 +230,12 @@ MonoBehaviour:
   lift:
     serializedVersion: 2
     m_Bits: 8192
+  checkPoint:
+    serializedVersion: 2
+    m_Bits: 0
+  trampoline:
+    serializedVersion: 2
+    m_Bits: 0
   WobbleFactor: 0.15
   test: 0.1
   velocity: {x: 0, y: 0, z: 0}
@@ -299,3 +306,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7835425ab07dbb743ac8813a550ad3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoad: 1
