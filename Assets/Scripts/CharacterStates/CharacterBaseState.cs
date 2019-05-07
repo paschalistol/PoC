@@ -202,7 +202,7 @@ public class CharacterBaseState : State
                 Velocity = Vector3.zero;
                 return;
             }
-            else if (raycastHit.distance < skinWidth)
+            else if (raycastHit.distance < skinWidth/2)
             {
                 owner.transform.position += raycastHit.distance * raycastHit.normal.normalized;
             }
