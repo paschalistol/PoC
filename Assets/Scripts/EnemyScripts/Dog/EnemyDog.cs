@@ -12,7 +12,7 @@ public class EnemyDog : StateMachine
     public LayerMask visionMask;
     public GameObject player;
     public Oldboi oldboi;
-  
+
     [SerializeField] private float smellDistance;
 
     // Methods
@@ -20,7 +20,7 @@ public class EnemyDog : StateMachine
     {
         Renderer = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
-      
+
         base.Awake();
     }
 
@@ -28,11 +28,6 @@ public class EnemyDog : StateMachine
     {
         return smellDistance;
     }
-
-   /* public void SwitchToFollow(Vector3 position)
-    {
-        ChangeState<DogFetchState>();
-        agent.SetDestination(position);
-        Debug.Log(agent.destination);
-    }*/
 }
+
+

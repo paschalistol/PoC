@@ -26,7 +26,7 @@ public class HoldItemBase : State
 
 
             GameObject gameObject = objectCarried;
-        Debug.Log(gameObject.tag);
+            Debug.Log(gameObject.tag);
             if (gameObject != null)
             {
 

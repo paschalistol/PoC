@@ -49,14 +49,13 @@ public class FuseBoxEvent : DebugEvent
 public class OpenDoorEvent : DebugEvent
 {
     public AudioClip audioClip;
-    public GameObject particles;
     public GameObject gameObject;
+    public GameObject particles;
 }
 
 public class TookKeyEvent : DebugEvent
 {
     public AudioClip audioClip;
-    public GameObject particles;
     public GameObject gameObject;
 }
 

@@ -7,23 +7,20 @@ public class PhysicsCube : MonoBehaviour
 {
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-    private PhysicsScript whereAreMyDragons;
+    private PhysicsScript body;
     protected const float skinWidth = 0.05f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        whereAreMyDragons = GetComponent<PhysicsScript>();
+        body = GetComponent<PhysicsScript>();
         boxCollider = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        velocity = whereAreMyDragons.Decelerate(velocity);
-        velocity = whereAreMyDragons.Gravity(velocity);
-        velocity = whereAreMyDragons.BoxCollisionCheck(velocity, boxCollider, skinWidth);
-        //velocity = whereAreMyDragons.Decelerate(whereAreMyDragons.BoxCollisionCheck(velocity = whereAreMyDragons.Gravity(velocity), boxCollider));
+        velocity = body.Decelerate(velocity);
+        velocity = body.Gravity(velocity);
+        velocity = body.BoxCollisionCheck(velocity, boxCollider, skinWidth);
         transform.position += velocity * Time.deltaTime;
     }
 }

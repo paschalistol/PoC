@@ -11,7 +11,7 @@ public class EnemyBaseState : State
     private CapsuleCollider capsuleCollider;
     protected Light lightField;
     //private Quaternion spreadAngle;
-    protected float lightAngle;
+   // protected float lightAngle;
     private float lightTreshold;
 
     protected Enemy owner;
@@ -38,7 +38,7 @@ public class EnemyBaseState : State
     {
 
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
-        //Debug.Log(lineCast);
+        
         if (lineCast)
             return false;
 

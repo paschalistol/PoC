@@ -26,7 +26,7 @@ public class ChaseState : EnemyBaseState
     {
 
         fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-        lightAngle = lightField.spotAngle;
+       // lightAngle = lightField.spotAngle;
 
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
@@ -37,7 +37,7 @@ public class ChaseState : EnemyBaseState
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 owner.ChangeState<DetectionState>();
         }  else
-            owner.ChangeState<PatrolState>();
+            owner.ChangeState<PatrolState>(); 
 
     }
 }

@@ -15,9 +15,6 @@ using UnityEngine;
         protected float dynamicFriction;
         protected const float gravityConstant = 20f;
 
-
-
-        // Start is called before the first frame update
         void Start() {
 
         }
@@ -47,7 +44,6 @@ using UnityEngine;
                 }
 
                 BoxCollisionCheck(velocity, collider, skinWidth);
-            Debug.Log("BoxCollisionCheck");
                 return velocity;
             }
         }

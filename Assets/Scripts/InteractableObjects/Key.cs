@@ -10,14 +10,11 @@ public class Key : MonoBehaviour
 
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-    //private PhysicsScript whereAreMyDragons;
+    
     protected const float skinWidth = 0.2f;
 
-   // protected bool usingGravity;
     private bool isHeld;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();

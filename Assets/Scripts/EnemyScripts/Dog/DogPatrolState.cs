@@ -10,31 +10,22 @@ public class DogPatrolState : DogBaseState
     
     private GameObject[] DogPoints;
     private GameObject currentPoint;
-    
     private float smellDistance;
-    
     private int Point;
+    private const float noiceDetection = 5f;
 
-    // Methods
     public override void EnterState()
     {
         base.EnterState();
-        
         smellDistance = owner.GetSmellDistance();
-       
-       
         DogPoints = owner.GetComponent<DogPatrolPoints>().GetPoints();
         ChooseRandom();
-       
-        
-
     }
 
     public override void ToDo()
     {
         owner.agent.SetDestination(DogPoints[Point].transform.position);
-       // Debug.Log(owner.agent.destination + " " + DogPoints[Point].transform.position);
-        if (Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position) < 5)
+        if (Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position) < noiceDetection)
         {
             ChooseRandom();
         }
@@ -44,23 +35,9 @@ public class DogPatrolState : DogBaseState
         }
     }
 
-   /* private void ChooseClosest()
-    {
-        int closest = 0;
-        for (int i = 0; i < Dogpoints.Length; i++)
-        {
-            float dist = Vector3.Distance(owner.transform.position, Dogpoints[i].transform.position);
-            if (dist < Vector3.Distance(owner.transform.position, Dogpoints[closest].transform.position))
-                closest = i;
-        }
-        currentPoint = closest;
-    }*/
-
     protected void ChooseRandom()
     {
         Point = Random.Range(0, DogPoints.Length);
-       // owner.agent.SetDestination(DogPoints[Point].transform.position);
-       
     }
 
 

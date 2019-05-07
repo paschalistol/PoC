@@ -3803,16 +3803,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggo (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
-        type: 3}
-      propertyPath: oldboi
-      value: 
-      objectReference: {fileID: 112835610}
-    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1728403544}
     - target: {fileID: 2508828259477824198, guid: e183968d6c5976c49ba58cf6ebd948e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3888,6 +3878,16 @@ PrefabInstance:
       propertyPath: dogPoints.Array.data[2]
       value: 
       objectReference: {fileID: 604704852}
+    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: oldboi
+      value: 
+      objectReference: {fileID: 112835610}
+    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1728403544}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e183968d6c5976c49ba58cf6ebd948e8, type: 3}
 --- !u!1 &427977270
@@ -14615,6 +14615,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oldboi (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7912882803974435779, guid: 7506aeffd01937e4a88dd21147394750,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1728403544}
+    - target: {fileID: 7912882803974435779, guid: 7506aeffd01937e4a88dd21147394750,
+        type: 3}
+      propertyPath: doggo
+      value: 
+      objectReference: {fileID: 1988997900}
     - target: {fileID: 7912882803974435783, guid: 7506aeffd01937e4a88dd21147394750,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14670,16 +14680,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7912882803974435779, guid: 7506aeffd01937e4a88dd21147394750,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1728403544}
-    - target: {fileID: 7912882803974435779, guid: 7506aeffd01937e4a88dd21147394750,
-        type: 3}
-      propertyPath: doggo
-      value: 
-      objectReference: {fileID: 1988997900}
     - target: {fileID: 7912882803974435777, guid: 7506aeffd01937e4a88dd21147394750,
         type: 3}
       propertyPath: points.Array.size

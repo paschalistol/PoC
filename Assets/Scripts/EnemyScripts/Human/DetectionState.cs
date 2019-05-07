@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class DetectionState : EnemyBaseState
 {
     [SerializeField]private float bustedDistance;
-    private float chaseDistance;
+    //private float chaseDistance;
     private float hearingDistance;
     private float lightRange;
 
@@ -21,20 +21,12 @@ public class DetectionState : EnemyBaseState
         
     }
 
-    // Update is called once per frame
-
-     /**
-      * comes into detection = changes color
-      * isn't able to run if statement 
-      * stays this way forever cuz no other conditions
-      * 
-      * 
-      * **/
+    
     public override void ToDo()
     {
 
-        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-        lightAngle = lightField.spotAngle;
+        //fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+        //lightAngle = lightField.spotAngle;
 
         if (LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) <= bustedDistance &&
            Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange &&

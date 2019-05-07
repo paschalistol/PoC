@@ -23,7 +23,6 @@ public class Enemy : StateMachine
     {
         Renderer = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
-      //  flashLight = GetComponent<FlashLight>();
         base.Awake();
     }
 
