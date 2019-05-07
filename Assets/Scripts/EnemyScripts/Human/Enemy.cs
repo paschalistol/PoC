@@ -1,4 +1,5 @@
-﻿
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,6 @@ public class Enemy : StateMachine
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
     public readonly float LightThreshold = 0.4f;
-    public GameObject audioSpeaker;
 
     // Methods
     protected override void Awake()

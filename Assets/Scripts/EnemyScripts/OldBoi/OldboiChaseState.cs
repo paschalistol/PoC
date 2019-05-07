@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,17 +20,17 @@ public class OldboiChaseState : OldboiBaseState
         chaseDistance = owner.GetFieldOfView();
 
 
-       ChaseEvent chaseEvent = new ChaseEvent();
-       chaseEvent.gameObject = owner.gameObject;
-       chaseEvent.eventDescription = "Chasing Enemy";
-       EventSystem.Current.FireEvent(chaseEvent);
+       //ChaseEvent chaseEvent = new ChaseEvent();
+       //chaseEvent.gameObject = owner.gameObject;
+       //chaseEvent.eventDescription = "Chasing Enemy";
+       //EventSystem.Current.FireEvent(chaseEvent);
 
-        SoundEvent soundEvent = new SoundEvent();
-        soundEvent.gameObject = owner.gameObject;
-        soundEvent.eventDescription = "Chasing Sound";
-        soundEvent.audioClip = audioSpeaker;
+        //SoundEvent soundEvent = new SoundEvent();
+        //soundEvent.gameObject = owner.gameObject;
+        //soundEvent.eventDescription = "Chasing Sound";
+        //soundEvent.audioClip = audioSpeaker;
 
-        EventSystem.Current.FireEvent(soundEvent);
+        //EventSystem.Current.FireEvent(soundEvent);
 
     }
     public override void ToDo()

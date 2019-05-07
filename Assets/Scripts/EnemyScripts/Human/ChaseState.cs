@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +23,12 @@ public class ChaseState : EnemyBaseState
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = 25;
         owner.flashLight.GetComponent<Light>().color = Color.red;
+            //ChaseEvent chaseEvent = new ChaseEvent();
+            //chaseEvent.gameObject = owner.gameObject;
+            //chaseEvent.eventDescription = "Chasing Enemy";
+            //chaseEvent.audioSpeaker = audioSpeaker;
+
+            //EventSystem.Current.FireEvent(chaseEvent);
         
 
     }
@@ -33,12 +42,6 @@ public class ChaseState : EnemyBaseState
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
-            ChaseEvent chaseEvent = new ChaseEvent();
-            chaseEvent.gameObject = owner.gameObject;
-            chaseEvent.eventDescription = "Chasing Enemy";
-            chaseEvent.audioSpeaker = audioSpeaker;
-
-            EventSystem.Current.FireEvent(chaseEvent);
 
             owner.agent.SetDestination(owner.player.transform.position);
 

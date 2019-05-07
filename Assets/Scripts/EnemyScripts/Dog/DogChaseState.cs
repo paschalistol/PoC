@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +21,13 @@ public class DogChaseState : DogBaseState
         // hearingRange = owner.GetHearingDistance();
         // chaseDistance = owner.GetFieldOfView();
         smellDistance = owner.GetSmellDistance();
-        audioSpeaker = owner.audioSpeaker;
-            ChaseEvent chaseEvent = new ChaseEvent();
-            chaseEvent.gameObject = owner.gameObject;
-            chaseEvent.eventDescription = "Chasing Enemy";
-            chaseEvent.audioSpeaker = audioSpeaker;
+     //   audioSpeaker = owner.audioSpeaker;
+            //ChaseEvent chaseEvent = new ChaseEvent();
+            //chaseEvent.gameObject = owner.gameObject;
+            //chaseEvent.eventDescription = "Chasing Enemy";
+            //chaseEvent.audioSpeaker = audioSpeaker;
 
-            EventSystem.Current.FireEvent(chaseEvent);
+            //EventSystem.Current.FireEvent(chaseEvent);
         
 
     }

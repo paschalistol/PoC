@@ -1,4 +1,4 @@
-﻿
+﻿//Main Author: Emil Dahl
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class EnemyDog : StateMachine
     public GameObject player;
     public Oldboi oldboi;
 
-    public GameObject audioSpeaker;
+   // public GameObject audioSpeaker;
 
     [SerializeField] private float smellDistance;
 

@@ -1,13 +1,12 @@
-﻿
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enemy/OldboiPatrolState")]
 public class OldboiPatrolState : OldboiBaseState
-{
-    // Attributes
-    
+{  
     private GameObject[] points;
     private float chaseDistance;
     private float hearingRange;
@@ -16,8 +15,6 @@ public class OldboiPatrolState : OldboiBaseState
     
 
     private int currentPoint = 0;
-
-    // Methods
     public override void EnterState()
     {
         base.EnterState();
@@ -50,8 +47,6 @@ public class OldboiPatrolState : OldboiBaseState
            
             owner.ChangeState<OldboiChaseState>();
         }
-        //||
-
     }
 
     private void ChooseClosest()

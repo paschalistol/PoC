@@ -1,4 +1,5 @@
-﻿
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class PatrolState : EnemyBaseState
         }
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > noiceDetection))
+            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
         {     
             owner.ChangeState<ChaseState>();
         }
