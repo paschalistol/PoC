@@ -10,7 +10,7 @@ namespace Callback
     {
         public GameObject SoundPrefab;
         private bool cooldown = false;
-        private readonly float timeToWait = 0.4f;
+        public  float cooldownTime = 0.4f;
 
         void Start()
         {
@@ -32,7 +32,7 @@ namespace Callback
         IEnumerator Cooldown()
         {
             cooldown = true;
-            yield return new WaitForSeconds(timeToWait);
+            yield return new WaitForSeconds(cooldownTime);
             cooldown = false;
         }
         private void OnDisable()
