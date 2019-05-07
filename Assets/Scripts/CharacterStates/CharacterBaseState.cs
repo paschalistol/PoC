@@ -302,4 +302,26 @@ public class CharacterBaseState : State
             
         }
     }
+
+    protected void ReachingGoal()
+    {
+        #region Raycast
+        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        RaycastHit raycastHit;
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.goal);
+        #endregion
+
+        if (raycastHit.collider != null)
+        {
+            
+            WinningEvent winInfo = new WinningEvent();
+            winInfo.eventDescription = "You won!";
+
+            winInfo.gameObject = owner.transform.gameObject;
+            EventSystem.Current.FireEvent(winInfo);
+
+        }
+    }
 }
