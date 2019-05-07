@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Paschalis Tolios
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,99 +14,46 @@ public class Boxes : MonoBehaviour
     Vector3 normal;
     public LayerMask layerMask, waterMask;
     private float staticFriction = 0.8f, dynamicFriction = 0.7f;
-
-
+    private Vector3 collisionPoint;
+    private PhysicsScript body;
+    private bool isHeld,collided = false;
     GeneralFunctions generalFunctions;
     private void Awake()
     {
         boxCollider = gameObject.GetComponent<BoxCollider>();
-
+        body = gameObject.GetComponent<PhysicsScript>();
+        isHeld = false;
         generalFunctions = gameObject.GetComponent<GeneralFunctions>();
     }
     private void Update()
     {
-        Gravity();
-        Float();
-        CollisionCheck();
-        transform.position += velocity * Time.deltaTime;
-    }
-    private void Gravity()
-    {
-        Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
-        velocity += gravity;
-    }
-
-
-
-    public void ApplyForce(Vector3 force)
-    {
-        velocity += force;
-    }
-
-    private void Friction(float normalMag)
-    {
-        if (velocity.magnitude < (staticFriction * normalMag))
+        if (collided && !isHeld)
         {
-            velocity = new Vector3(0, 0, 0);
+            transform.position = collisionPoint;
+            collided = false;
         }
-        else
+        if (!isHeld)
         {
-            velocity += (dynamicFriction * normalMag) * -velocity.normalized;
+            velocity = body.Decelerate(velocity);
+            velocity = body.Gravity(velocity);
+            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            transform.position += velocity * Time.deltaTime;
         }
+        Debug.Log("collided: " + collided + "    isheld: "+ isHeld);
     }
 
-    void CollisionCheck()
+    public void BoxInteraction()
     {
 
-        RaycastHit raycastHit;
-
-        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out raycastHit, transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
-
-
-        if (raycastHit.collider == null)
-            return;
-        else
-        {
-
-            #region Apply Normal Force
-            normal = generalFunctions.Normal3D(velocity, raycastHit.normal);
-            velocity += normal;
-            #endregion
-            Friction(normal.magnitude);
-            if (velocity.magnitude < skinWidth)
-            {
-                velocity = Vector3.zero;
-                return;
-            }
-
-            //CollisionCheck();
-        }
+        isHeld = !isHeld;
     }
 
-    void Float()
+    private void OnCollisionEnter(Collision collision)
     {
-        RaycastHit raycastHit;
-
-        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out raycastHit, transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, waterMask);
-
-        if (raycastHit.collider == null)
-            return;
-        else
-        {
-
-
-            #region Apply Normal Force
-            normal = generalFunctions.Normal3D(velocity, raycastHit.normal);
-            velocity += normal;
-            #endregion
-            Friction(normal.magnitude);
-            if (raycastHit.distance< skinWidth)
-            {
-                velocity = Vector3.zero;
-                return;
-            }
-
-            Float();
-        }
+        Debug.Log("collided!");
+        collided = true;
+        collisionPoint = transform.position;
     }
+
+   
 }

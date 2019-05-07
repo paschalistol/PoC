@@ -30,7 +30,7 @@ public class FuseBoxItem : MonoBehaviour
         {
             velocity = body.Decelerate(velocity);
             velocity = body.Gravity(velocity);
-            velocity = body.BoxCollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
         
