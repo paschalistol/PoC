@@ -38,6 +38,12 @@ public class UnlockEvent : DebugEvent
 {
     public GameObject doorObject;
 }
+public class SoundEvent : DebugEvent
+{
+    public AudioClip audioClip;
+
+    public GameObject gameObject;
+}
 
 public class FuseBoxEvent : DebugEvent
 {

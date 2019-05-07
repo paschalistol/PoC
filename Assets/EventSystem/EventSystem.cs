@@ -41,7 +41,7 @@ using UnityEngine;
             }
             eventListeners[eventType].Add(new EventHandler { Target = target, Method = method });
         }
-        public void UnRegisterListener<T>(System.Action<T> listener) where T : EventInfo
+        public void UnregisterListener<T>(System.Action<T> listener) where T : EventInfo
         {
             var eventType = typeof(T);
             if (eventListeners != null)
