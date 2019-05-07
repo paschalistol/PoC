@@ -76,3 +76,8 @@ public class ChaseEvent : DebugEvent
     public GameObject gameObject;
     public GameObject audioSpeaker;
 }
+
+public class WinningEvent : DebugEvent
+{
+    public GameObject gameObject;
+}
