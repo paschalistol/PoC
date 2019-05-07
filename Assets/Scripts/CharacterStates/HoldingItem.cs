@@ -74,8 +74,11 @@ public class HoldingItem : HoldItemBase
         target.z = 0;
         objectCarried.transform.eulerAngles = target;
         objectCarried.transform.position = Direction();
-        
+        if (objectCarried.GetComponent<Rigidbody>() != null)
+        {
+
         objectCarried.GetComponent<Rigidbody>().velocity = new Vector3(0, owner.GetComponent<CharacterStateMachine>().velocity.y,0);
+        }
 
     }
 
