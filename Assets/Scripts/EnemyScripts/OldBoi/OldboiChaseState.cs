@@ -10,27 +10,26 @@ public class OldboiChaseState : OldboiBaseState
     private float hearingRange;
     [SerializeField] private float bustedDistance;
 
-    private AudioClip audioSpeaker;
+    public AudioClip audioSpeaker;
 
     public override void EnterState()
     {
         base.EnterState();
         hearingRange = owner.GetHearingDistance();
         chaseDistance = owner.GetFieldOfView();
-        audioSpeaker = owner.audioPlayer;
-
-            ChaseEvent chaseEvent = new ChaseEvent();
-            chaseEvent.gameObject = owner.gameObject;
-            chaseEvent.eventDescription = "Chasing Enemy";
 
 
-            EventSystem.Current.FireEvent(chaseEvent);
+       ChaseEvent chaseEvent = new ChaseEvent();
+       chaseEvent.gameObject = owner.gameObject;
+       chaseEvent.eventDescription = "Chasing Enemy";
+       EventSystem.Current.FireEvent(chaseEvent);
+
         SoundEvent soundEvent = new SoundEvent();
         soundEvent.gameObject = owner.gameObject;
         soundEvent.eventDescription = "Chasing Sound";
         soundEvent.audioClip = audioSpeaker;
 
-        EventSystem.Current.FireEvent(chaseEvent);
+        EventSystem.Current.FireEvent(soundEvent);
 
     }
     public override void ToDo()
