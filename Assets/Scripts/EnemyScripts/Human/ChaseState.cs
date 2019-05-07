@@ -10,6 +10,7 @@ public class ChaseState : EnemyBaseState
     private float hearingRange;
     [SerializeField] private float bustedDistance;
     private float lightRange;
+    private GameObject audioSpeaker;
 
     public override void EnterState()
     {
@@ -32,6 +33,13 @@ public class ChaseState : EnemyBaseState
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
+            ChaseEvent chaseEvent = new ChaseEvent();
+            chaseEvent.gameObject = owner.gameObject;
+            chaseEvent.eventDescription = "Chasing Enemy";
+            chaseEvent.audioSpeaker = audioSpeaker;
+
+            EventSystem.Current.FireEvent(chaseEvent);
+
             owner.agent.SetDestination(owner.player.transform.position);
 
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)

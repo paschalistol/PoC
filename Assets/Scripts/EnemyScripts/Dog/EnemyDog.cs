@@ -13,6 +13,8 @@ public class EnemyDog : StateMachine
     public GameObject player;
     public Oldboi oldboi;
 
+    public GameObject audioSpeaker;
+
     [SerializeField] private float smellDistance;
 
     // Methods

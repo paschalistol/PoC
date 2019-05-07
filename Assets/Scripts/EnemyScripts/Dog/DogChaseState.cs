@@ -10,6 +10,7 @@ public class DogChaseState : DogBaseState
   //  private float hearingRange;
     private float smellDistance;
     [SerializeField] private float bustedDistance;
+    private GameObject audioSpeaker;
 
     public override void EnterState()
     {
@@ -17,6 +18,13 @@ public class DogChaseState : DogBaseState
         // hearingRange = owner.GetHearingDistance();
         // chaseDistance = owner.GetFieldOfView();
         smellDistance = owner.GetSmellDistance();
+        audioSpeaker = owner.audioSpeaker;
+            ChaseEvent chaseEvent = new ChaseEvent();
+            chaseEvent.gameObject = owner.gameObject;
+            chaseEvent.eventDescription = "Chasing Enemy";
+            chaseEvent.audioSpeaker = audioSpeaker;
+
+            EventSystem.Current.FireEvent(chaseEvent);
         
 
     }
@@ -24,6 +32,7 @@ public class DogChaseState : DogBaseState
     {
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
         {
+
             owner.agent.SetDestination(owner.player.transform.position);
 
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)

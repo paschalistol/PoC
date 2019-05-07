@@ -17,6 +17,7 @@ public class Enemy : StateMachine
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
     public readonly float LightThreshold = 0.4f;
+    public GameObject audioSpeaker;
 
     // Methods
     protected override void Awake()

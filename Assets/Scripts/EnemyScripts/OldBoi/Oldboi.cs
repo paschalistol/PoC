@@ -14,6 +14,7 @@ public class Oldboi : StateMachine
     public LayerMask visionMask;
     public GameObject player;
     public EnemyDog doggo;
+    public GameObject audioPlayer;
    
     //public GameObject flashLight;
     public CapsuleCollider capsuleCollider;

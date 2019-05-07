@@ -47,7 +47,6 @@ public class SoundEvent : DebugEvent
 
 public class FuseBoxEvent : DebugEvent
 {
-    public AudioClip audioClip;
     public GameObject particles;
     public GameObject gameObject;
 }
@@ -72,3 +71,8 @@ public class WaterSplashEvent : DebugEvent
     public GameObject gameObject;
 }
 
+public class ChaseEvent : DebugEvent
+{
+    public GameObject gameObject;
+    public GameObject audioSpeaker;
+}
