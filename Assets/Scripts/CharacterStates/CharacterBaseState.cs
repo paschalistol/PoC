@@ -306,7 +306,7 @@ public class CharacterBaseState : State
         }
     }
 
-    protected void ReachingGoal()
+   /* protected void ReachingGoal()
     {
         #region Raycast
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
@@ -327,4 +327,5 @@ public class CharacterBaseState : State
 
         }
     }
+    */
 }
