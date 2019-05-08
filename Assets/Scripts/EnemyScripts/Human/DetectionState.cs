@@ -42,6 +42,7 @@ public class DetectionState : EnemyBaseState
             deathInfo.eventDescription = "U big dead lmao!";
 
             deathInfo.deadUnit = owner.player.transform.gameObject;
+            deathInfo.spawnPoint = owner.player.transform.gameObject.GetComponent<CharacterStateMachine>().currentCheckPoint;
             EventSystem.Current.FireEvent(deathInfo);
 
         }

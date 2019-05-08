@@ -214,7 +214,7 @@ public class CharacterBaseState : State
             }
             else if (raycastHit.distance < 0.1f)
             {
-                Debug.Log(raycastHit.distance);
+                //Debug.Log(raycastHit.distance);
                 owner.transform.position += new Vector3(0,skinWidth,0);
             }
 
@@ -279,7 +279,7 @@ public class CharacterBaseState : State
             return;
         else
         {
-
+            Debug.Log("woowie");
             owner.currentCheckPoint = raycastHit.collider.gameObject;
         }
     }
