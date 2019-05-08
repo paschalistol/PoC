@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +26,6 @@ public class DogBaseState : State
         //fieldOfView = owner.GetFieldOfView();
         
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
-    }
-    public  void Awake()
-    {
     }
 
     public override void InitializeState(StateMachine owner)

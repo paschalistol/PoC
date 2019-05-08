@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Paschalis Tolios
+//Secondary Authors: Emil Dahl, Johan Ekman
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ public class Interaction : MonoBehaviour
 
     public void StartInteraction(GameObject gameObject)
     {
-        Debug.Log(gameObject.tag);
+
 
         switch (gameObject.tag)
         {
@@ -39,9 +41,9 @@ public class Interaction : MonoBehaviour
                 gameObject.GetComponent<Key>().KeyInteraction();
                 break;
             case "Box":
-                Debug.Log("BoxInteractedWith");
 
-                gameObject.GetComponent<Box>().BoxInteraction();
+
+                gameObject.GetComponent<Boxes>().BoxInteraction();
 
                 break;
             case "FuseBoxItem":

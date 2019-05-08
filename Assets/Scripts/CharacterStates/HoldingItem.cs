@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Main Author: Paschalis Tolios
+//Secondary Author: Emil Dahl
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +9,12 @@ using UnityEngine;
 public class HoldingItem : HoldItemBase
 {
     private int layerNumber;
+    public AudioClip audioSpeaker;
     public override void EnterState()
     {
 
         base.EnterState();
         objectCarried = ReturnObjectInFront();
-
         if (objectCarried != null)
         {
         layerNumber = objectCarried.layer;
@@ -26,6 +29,14 @@ public class HoldingItem : HoldItemBase
                 objectCarried.transform.parent = null;
             }
         }
+        SoundEvent soundEvent = new SoundEvent();
+        soundEvent.gameObject = owner.gameObject;
+        soundEvent.eventDescription = "Chasing Sound";
+        soundEvent.audioClip = audioSpeaker;
+
+        EventSystem.Current.FireEvent(soundEvent);
+
+
     }
     public override void ToDo()
     {
@@ -80,6 +91,7 @@ public class HoldingItem : HoldItemBase
         objectCarried.GetComponent<Rigidbody>().velocity = new Vector3(0, owner.GetComponent<CharacterStateMachine>().velocity.y,0);
         }
 
+
     }
 
     Vector3 ThrowTo()
@@ -93,10 +105,10 @@ public class HoldingItem : HoldItemBase
     }
     private Vector3 Direction()
     {
-        Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
-        float x = owner.transform.position.x + project.x * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2) ;
+        Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized ;
+        float x = owner.transform.position.x + project.x * (0.2f+ capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2) ;
         float y = objectCarried.transform.localScale.y/2 + capsuleCollider.height/2 + owner.transform.position.y;
-        float z = owner.transform.position.z + project.z * (capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2) ;
+        float z = owner.transform.position.z + project.z * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2) ;
         return new Vector3(x, y, z);
     }
 

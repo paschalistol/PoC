@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios, Johan Ekman
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

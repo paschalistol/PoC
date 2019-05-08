@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Main Author: Emil Dahl
+//Secondary Author: Johan Ekman
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

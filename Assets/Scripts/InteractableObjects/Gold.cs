@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Author: Johan Ekman
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Gold : MonoBehaviour
     private PhysicsScript body;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
+    public LayerMask goal;
     [HideInInspector] public bool isHeld;
 
 
@@ -27,8 +29,22 @@ public class Gold : MonoBehaviour
         {
             velocity = body.Decelerate(velocity);
             velocity = body.Gravity(velocity);
-            velocity = body.BoxCollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
+        }
+
+        RaycastHit raycastHit;
+
+        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, transform.rotation, transform.localScale.z, goal);
+
+        if (raycastHit.collider != null)
+        {
+            WinningEvent winInfo = new WinningEvent();
+            winInfo.eventDescription = "You won!";
+
+            //winInfo.gameObject = owner.transform.gameObject;
+            EventSystem.Current.FireEvent(winInfo);
+
         }
     }
 }
