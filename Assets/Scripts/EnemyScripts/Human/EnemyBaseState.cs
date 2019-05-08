@@ -40,7 +40,7 @@ public class EnemyBaseState : State
     {
 
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
-        Debug.Log("lineCast is " + lineCast);
+
        // Debug.Log(DotMethod());
         if (lineCast)
             return false; 

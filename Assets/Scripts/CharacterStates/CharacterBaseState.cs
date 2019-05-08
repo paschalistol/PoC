@@ -29,7 +29,7 @@ public class CharacterBaseState : State
     protected const float jumpHeight = 12;
     protected bool snowboarding = false;
 
-
+    private float normalOffset = 0.03f;
 
 
     public override void InitializeState(StateMachine owner)
@@ -41,6 +41,7 @@ public class CharacterBaseState : State
     public override void EnterState()
     {
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
+
         generalFunctions = owner.GetComponent<GeneralFunctions>();
     }
     protected void ApplyForce(Vector3 vector)
@@ -91,11 +92,17 @@ public class CharacterBaseState : State
 
     protected void ChangeCharRotation()
     {
+
+        //Quaternion slopeRotation = Quaternion.FromToRotation(owner.transform.up,Vector3.up);
+        //owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, slopeRotation * owner.transform.rotation, 1 * Time.deltaTime);
+
+
         Vector3 target;
         target.x = 0;
-        target.y = Camera.main.transform.rotation.y;
         target.z = 0;
-        owner.transform.eulerAngles = target;
+        target.y = Camera.main.transform.rotation.y;
+
+    owner.transform.eulerAngles = target;
     }
 
 
@@ -123,7 +130,7 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
 
-        return (raycastHit.normal.y < 0.9f || raycastHit.normal.y > 1.1f) && raycastHit.normal.y !=0 && raycastHit.collider.gameObject.layer == 9;
+        return (raycastHit.normal.y < 1  - normalOffset || raycastHit.normal.y > 1 + normalOffset) && raycastHit.normal.y !=0 && raycastHit.collider.gameObject.layer == 9;
     }
 
     protected bool IsGrounded()
@@ -205,9 +212,10 @@ public class CharacterBaseState : State
                 Velocity = Vector3.zero;
                 return;
             }
-            else if (raycastHit.distance < skinWidth/2)
+            else if (raycastHit.distance < 0.1f)
             {
-                owner.transform.position += raycastHit.distance * raycastHit.normal.normalized;
+                Debug.Log(raycastHit.distance);
+                owner.transform.position += new Vector3(0,skinWidth,0);
             }
 
             CollisionCheck();
