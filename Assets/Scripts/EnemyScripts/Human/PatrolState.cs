@@ -10,7 +10,7 @@ public class PatrolState : EnemyBaseState
     // Attributes
     
     private GameObject[] points;
-    //private float chaseDistance;
+    private float chaseDistance;
     private float hearingRange;
     private float maxSpeed;
     private const float noiceDetection = 5f;
@@ -38,19 +38,17 @@ public class PatrolState : EnemyBaseState
 
     public override void ToDo()
     {
-       // fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-       // lightAngle = lightField.spotAngle;
+       fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+       //lightAngle = lightField.spotAngle;
 
         owner.agent.SetDestination(points[currentPoint].transform.position);
        
         if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
         {
             currentPoint = (currentPoint + 1) % points.Length;
-           
         }
-        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange) ||
-            (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
+        if (LineOfSight() || (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
+            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5) && Input.anyKeyDown)
         {     
             owner.ChangeState<ChaseState>();
         }

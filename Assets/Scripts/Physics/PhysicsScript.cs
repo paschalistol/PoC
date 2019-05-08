@@ -10,17 +10,12 @@ using UnityEngine;
 
         //protected CapsuleCollider capsuleCollider;
         //protected const float skinWidth = 0.0f;
-    //protected Vector3 Velocity;
+        //protected Vector3 Velocity;
         private float deceleration = 3;
         protected Vector3 normal;
         protected const float staticFriction = 0.55f;
         protected float dynamicFriction;
-        protected const float gravityConstant = 20f;
-
-        void Start() {
-
-        }
-
+        protected const float gravityConstant = 10f;
 
         public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
         {

@@ -12,7 +12,7 @@ public class EnemyBaseState : State
     protected float fieldOfView;
     private CapsuleCollider capsuleCollider;
     protected Light lightField;
-    //private Quaternion spreadAngle;
+    private Quaternion spreadAngle;
    // protected float lightAngle;
     private float lightTreshold;
 
@@ -28,7 +28,7 @@ public class EnemyBaseState : State
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
         lightField = owner.flashLight.GetComponent<Light>();
         lightTreshold = owner.LightThreshold;
-        //spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
+        spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
     }
 
     public override void InitializeState(StateMachine owner)
@@ -40,13 +40,13 @@ public class EnemyBaseState : State
     {
 
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
-        
+        Debug.Log("lineCast is " + lineCast);
+       // Debug.Log(DotMethod());
         if (lineCast)
-            return false;
-
+            return false; 
+      
         if (DotMethod() > lightTreshold && Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < lightField.range)
             return true;
-
         return false;
     }
 

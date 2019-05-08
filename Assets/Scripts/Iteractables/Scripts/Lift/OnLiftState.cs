@@ -39,7 +39,7 @@ public class OnLiftState : GroundedState
             Accelerate(input);
         }
         #endregion
-        Debug.Log(Velocity.z);
+
 
         Gravity();
         #region Buttons
