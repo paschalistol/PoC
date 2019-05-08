@@ -20,8 +20,6 @@ public class HoldingItem : HoldItemBase
         layerNumber = objectCarried.layer;
             if (layerNumber != 17)
             {
-
-               // owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment & ~(1 << layerNumber);
                objectCarried.layer = 0;
             }
             else
@@ -31,7 +29,7 @@ public class HoldingItem : HoldItemBase
         }
         SoundEvent soundEvent = new SoundEvent();
         soundEvent.gameObject = owner.gameObject;
-        soundEvent.eventDescription = "Chasing Sound";
+        soundEvent.eventDescription = "PickUp Sound";
         soundEvent.audioClip = audioSpeaker;
 
         EventSystem.Current.FireEvent(soundEvent);
@@ -54,18 +52,16 @@ public class HoldingItem : HoldItemBase
         }
 
 
+        
+        //Throw item
 
         // if (Input.GetKeyDown(KeyCode.R))
         //{
-
         //    objectCarried.layer = 11;
         //    objectCarried.transform.position += ThrowTo();
-
         //    objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo()*10);
         //   // objectCarried.GetComponent<Boxes>().ApplyForce(ThrowTo());
-
         //    SetHolding(false);
-
         //}
         if (!HoldingSth)
         {
