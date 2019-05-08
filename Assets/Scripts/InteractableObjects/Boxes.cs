@@ -50,7 +50,7 @@ public class Boxes : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collided!");
+
         collided = true;
         collisionPoint = transform.position;
     }
