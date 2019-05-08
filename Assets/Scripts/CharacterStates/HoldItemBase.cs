@@ -49,7 +49,7 @@ public class HoldItemBase : State
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
         RaycastHit raycastHit;
         bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, LookDirection().normalized, out raycastHit, capsuleCollider.radius, owner.pickups);
-        Debug.Log(raycastHit.distance);
+
         if (raycastHit.collider != null)
         {
             objectCarried = raycastHit.transform.gameObject;
