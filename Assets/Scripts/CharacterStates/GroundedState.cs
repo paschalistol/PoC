@@ -25,11 +25,12 @@ public class GroundedState : CharacterBaseState
         dynamicFriction = 0.35f;
         MaxSpeed = 10;
 
-        anim = owner.GetComponent<Animator>();
+     //   anim = owner.GetComponent<Animator>();
     }
 
     public override void ToDo()
     {
+        Gravity();
         #region Input
         Vector3 input = GetDirectionInput();
 
@@ -44,22 +45,21 @@ public class GroundedState : CharacterBaseState
         }
         #endregion
         ChangeCharRotation();
-        Gravity();
 
-        Speed();
+      //  Speed();
 
 
         #region Buttons
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ApplyForce(new Vector3(0, jumpHeight, 0));
-            anim.SetTrigger("jump");
+            //anim.SetTrigger("jump");
 
-            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
-            {
-                anim.SetTrigger(jumpHash);
-            }
+            //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
+            //{
+            //    anim.SetTrigger(jumpHash);
+            //}
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -71,10 +71,10 @@ public class GroundedState : CharacterBaseState
         }
         #endregion
 
-        CollisionCheck();
         DeathCollisionCheck();
         ReachingCheckPoint();
         Trampoline();
+        CollisionCheck();
         //ReachingGoal();
         owner.transform.position += Velocity * Time.deltaTime;
 

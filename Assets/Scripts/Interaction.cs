@@ -32,6 +32,7 @@ public class Interaction : MonoBehaviour
             //    gameObject.GetComponent<Door>().
             //    break;
             case "SceneTransfer":
+                Debug.Log("t");
                 gameObject.GetComponent<SceneTransfer>().ChangeLevel();
                 break;
             case "Key":

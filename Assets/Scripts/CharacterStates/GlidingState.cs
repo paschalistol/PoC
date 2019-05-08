@@ -41,7 +41,7 @@ public class GlidingState : CharacterBaseState
 
 
 
-        if (!IsGliding() && Velocity.magnitude > maxSpeed)
+        if (!IsGliding() && Velocity.magnitude < maxSpeed)
         {
 
             if (time > offset)
@@ -65,7 +65,7 @@ public class GlidingState : CharacterBaseState
             owner.ChangeState<InTheAirState>();
             }
             time += Time.deltaTime;
-            Debug.Log(time);
+
             if (IsGliding())
             {
                 time = 0;

@@ -39,7 +39,7 @@ public class Boxes : MonoBehaviour
             velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
-        Debug.Log("collided: " + collided + "    isheld: "+ isHeld);
+
     }
 
     public void BoxInteraction()

@@ -1,4 +1,4 @@
-Ben The Burgler : Version: 0.002 (Inhouse Patch Notes)
+﻿Ben The Burgler : Version: 0.002 (Inhouse Patch Notes)
 
 1. A) Pickpocketing system in place, character can approach enemies and steal their key. For this to work the designers 
 in question have to make sure that the key is of layertype "Key".
@@ -62,3 +62,13 @@ TODO!
 4. HoldItem (GLITCH BUG)
 5. Particles and shit
 
+
+Problem 8/5, 20:00!!
+
+1. Player i första nivå följer inte prefab
+2. Layarmasks är fel
+3. Byggnaden och dörren hade fel layer
+4. lift hade fel scale, får inte vara negativ
+5. INGET LJUS!!!
+6. Boxar hade fel skripter (interaction saknades)
+7. Dörren saknade allt den behövde (skripter, tag, den var inte i pickup layermask!)

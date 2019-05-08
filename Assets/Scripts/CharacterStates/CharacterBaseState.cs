@@ -197,6 +197,7 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
         #endregion
+        Debug.Log(raycastHit.distance);
         if (raycastHit.collider == null)
             return;
         else
@@ -212,9 +213,9 @@ public class CharacterBaseState : State
                 Velocity = Vector3.zero;
                 return;
             }
-            else if (raycastHit.distance < 0.1f)
+            else if (raycastHit.distance < skinWidth/2)
             {
-                //Debug.Log(raycastHit.distance);
+
                 owner.transform.position += new Vector3(0,skinWidth,0);
             }
 
@@ -279,7 +280,7 @@ public class CharacterBaseState : State
             return;
         else
         {
-            Debug.Log("woowie");
+
             owner.currentCheckPoint = raycastHit.collider.gameObject;
         }
     }
