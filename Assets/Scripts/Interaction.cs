@@ -9,8 +9,6 @@ public class Interaction : MonoBehaviour
 
     public void StartInteraction(GameObject gameObject)
     {
-
-
         switch (gameObject.tag)
         {
             //case 11:
@@ -41,8 +39,6 @@ public class Interaction : MonoBehaviour
                 gameObject.GetComponent<Key>().KeyInteraction();
                 break;
             case "Box":
-
-
                 gameObject.GetComponent<Boxes>().BoxInteraction();
 
                 break;

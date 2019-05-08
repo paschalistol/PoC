@@ -63,7 +63,6 @@ public class FuseBoxItem : MonoBehaviour
 
                 EventSystem.Current.FireEvent(doorEvent);
             }
-
             Destroy(gameObject); 
         }
     }
