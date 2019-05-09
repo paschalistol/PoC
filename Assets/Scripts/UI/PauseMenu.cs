@@ -1,4 +1,5 @@
-﻿//Author Johan Ekman
+﻿//Main Author Johan Ekman
+//Secondary Author: Paschalis Tolios
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (paused)
@@ -25,12 +27,15 @@ public class PauseMenu : MonoBehaviour
 
         
     }
-
+    private void Start()
+    {
+        Resume();
+    }
     public void Resume()
     {
+        paused = false;
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
-        paused = false;
     }
 
     public void Pause()

@@ -16,8 +16,8 @@ public class FuseBoxItem : MonoBehaviour
     private static int count;
     [HideInInspector]public bool isHeld;
 
-    [SerializeField] private GameObject particles;
-    [SerializeField] private GameObject endParticles;
+    //[SerializeField] private GameObject particles;
+    //[SerializeField] private GameObject endParticles;
 
 
     void Start()
@@ -47,7 +47,7 @@ public class FuseBoxItem : MonoBehaviour
             FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
             fuseBoxEvent.gameObject = gameObject;
             fuseBoxEvent.eventDescription = "Fusebox item: " + count;
-            fuseBoxEvent.particles = particles;
+            //fuseBoxEvent.particles = particles;
 
             EventSystem.Current.FireEvent(fuseBoxEvent);
                 Debug.Log("Running update!");
@@ -59,7 +59,7 @@ public class FuseBoxItem : MonoBehaviour
                 OpenDoorEvent doorEvent = new OpenDoorEvent();
                 doorEvent.gameObject = gameObject;
                 doorEvent.eventDescription = "A door has been opened!";
-                doorEvent.particles = endParticles;
+                //doorEvent.particles = endParticles;
 
                 EventSystem.Current.FireEvent(doorEvent);
             }

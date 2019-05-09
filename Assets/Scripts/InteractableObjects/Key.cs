@@ -46,7 +46,7 @@ public class Key : MonoBehaviour
             //EventSystem.Current.FireEvent(interactedInfo);
             lockedDoor.GetComponent<Door>().InteractWithDoor();
             Destroy(gameObject);
-            //used = true;
+            used = true;
         }
     }
 
@@ -54,6 +54,7 @@ public class Key : MonoBehaviour
 
     public void KeyInteraction()
     {
+        Debug.Log("walla walla");
         if(isHeld == true)
         {
         transform.parent = null;

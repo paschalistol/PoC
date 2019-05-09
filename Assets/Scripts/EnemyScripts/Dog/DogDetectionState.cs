@@ -13,6 +13,7 @@ public class DogDetectionState : DogBaseState
     // private float hearingDistance;
     private float smellDistance;
 
+
     public override void EnterState()
     {
         base.EnterState();
@@ -38,10 +39,10 @@ public class DogDetectionState : DogBaseState
         {
             //do something 
 
-            Debug.Log("Deathcollider is not null!");
+
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
-
+            deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
             deathInfo.deadUnit = owner.player.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
 

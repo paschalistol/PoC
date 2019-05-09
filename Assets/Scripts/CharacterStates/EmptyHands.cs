@@ -20,6 +20,7 @@ public class EmptyHands : HoldItemBase
 
 
             objectCarried = ReturnObjectInFront();
+            Debug.Log(ReturnObjectInFront());
             InteractWithObject();
             SetHolding(true);
             

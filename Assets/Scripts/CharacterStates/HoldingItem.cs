@@ -27,12 +27,12 @@ public class HoldingItem : HoldItemBase
                 objectCarried.transform.parent = null;
             }
         }
-        SoundEvent soundEvent = new SoundEvent();
-        soundEvent.gameObject = owner.gameObject;
-        soundEvent.eventDescription = "PickUp Sound";
-        soundEvent.audioClip = audioSpeaker;
+        //SoundEvent soundEvent = new SoundEvent();
+        //soundEvent.gameObject = owner.gameObject;
+        //soundEvent.eventDescription = "PickUp Sound";
+        //soundEvent.audioClip = audioSpeaker;
 
-        EventSystem.Current.FireEvent(soundEvent);
+        //EventSystem.Current.FireEvent(soundEvent);
 
 
     }

@@ -32,6 +32,7 @@ public class OldboiDetectionState : OldboiBaseState
             Debug.Log("Deathcollider is not null!");
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
+            deathInfo.spawnPoint = owner.player.transform.gameObject.GetComponent<CharacterStateMachine>().currentCheckPoint;
 
             deathInfo.deadUnit = owner.player.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);

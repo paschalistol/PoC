@@ -1,4 +1,5 @@
-﻿//Author Johan Ekman
+﻿//Main Author Johan Ekman
+//Secondary Author: Paschalis Tolios
 
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,6 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }

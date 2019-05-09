@@ -197,7 +197,7 @@ public class CharacterBaseState : State
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
         #endregion
-        Debug.Log(raycastHit.distance);
+
         if (raycastHit.collider == null)
             return;
         else
