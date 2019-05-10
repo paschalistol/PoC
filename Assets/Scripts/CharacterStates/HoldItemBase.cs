@@ -12,7 +12,6 @@ public class HoldItemBase : State
     protected CapsuleCollider capsuleCollider;
     protected bool HoldingSth {get { return owner.holdingSth; }set { owner.holdingSth = value; } }
 
-
     public override void InitializeState(StateMachine owner)
     {
         this.owner = (CharacterHoldItemStateMachine)owner;
@@ -35,9 +34,7 @@ public class HoldItemBase : State
                 InteractionEvent interactedInfo = new InteractionEvent();
                 interactedInfo.eventDescription = "Pressed item has been activated: ";
                 interactedInfo.interactedObject = gameObject;
-
-
-                EventSystem.Current.FireEvent(interactedInfo);
+                EventSystem.Current.FireEvent(interactedInfo);       
             }
         
     }

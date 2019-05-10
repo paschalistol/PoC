@@ -32,16 +32,13 @@ public class Interaction : MonoBehaviour
             //    gameObject.GetComponent<Door>().
             //    break;
             case "SceneTransfer":
-                Debug.Log("t");
                 gameObject.GetComponent<SceneTransfer>().ChangeLevel();
                 break;
             case "Key":
-                Debug.Log("KeyInteractedWith");
                 gameObject.GetComponent<Key>().KeyInteraction();
                 break;
             case "Box":
                 gameObject.GetComponent<Boxes>().BoxInteraction();
-
                 break;
             case "FuseBoxItem":
                 gameObject.GetComponent<FuseBoxItem>().isHeld = !gameObject.GetComponent<FuseBoxItem>().isHeld;

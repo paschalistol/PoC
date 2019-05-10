@@ -54,7 +54,8 @@ public class Key : MonoBehaviour
 
     public void KeyInteraction()
     {
-        Debug.Log("walla walla");
+        
+        Debug.Log("walla does it work now?");
         if(isHeld == true)
         {
         transform.parent = null;
