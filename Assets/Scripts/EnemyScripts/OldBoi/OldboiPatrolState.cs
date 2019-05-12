@@ -42,7 +42,7 @@ public class OldboiPatrolState : OldboiBaseState
 
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
+            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5 && !Input.anyKeyDown))
         {
            
             owner.ChangeState<OldboiChaseState>();

@@ -10,6 +10,7 @@ public class OldboiChaseState : OldboiBaseState
     private float chaseDistance;
     private float hearingRange;
     [SerializeField] private float bustedDistance;
+    private const float speed = 0.1f;
 
     public AudioClip audioSpeaker;
 
@@ -35,6 +36,11 @@ public class OldboiChaseState : OldboiBaseState
     }
     public override void ToDo()
     {
+        
+
+        Vector3 direction = owner.player.transform.position - owner.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, speed);
 
         Debug.Log(bustedDistance);
 
@@ -42,11 +48,17 @@ public class OldboiChaseState : OldboiBaseState
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
-            Vector3.RotateTowards(owner.agent.transform.position, owner.player.transform.position, 90f, 90f);
+
+           
             //owner.agent.SetDestination(owner.player.transform.position);
             //  owner.doggo.SwitchToFollow(owner.agent.transform.position);
             //owner.doggo.agent.SetDestination(owner.player.transform.position);
-            owner.doggo.ChangeState<DogFetchState>();
+            foreach(GameObject dog in owner.dogs){
+                dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
+                
+                //owner.doggo.ChangeState<DogFetchState>();
+            }
+          
             
            // owner.doggo.agent.SetDestination(owner.transform.position);
             Debug.Log("waddup");

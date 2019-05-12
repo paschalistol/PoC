@@ -14,7 +14,8 @@ public class Oldboi : StateMachine
     [SerializeField] private float hearingDistance;
     public LayerMask visionMask;
     public GameObject player;
-    public EnemyDog doggo;
+    public GameObject doggo;
+    public GameObject[] dogs;
    // public Audio audioPlayer;
    
     //public GameObject flashLight;
