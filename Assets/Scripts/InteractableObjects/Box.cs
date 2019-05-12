@@ -23,7 +23,6 @@ public class Box : MonoBehaviour
 
     void Update()
     {
-
         if (!isHeld)
         {
             velocity = body.Decelerate(velocity);

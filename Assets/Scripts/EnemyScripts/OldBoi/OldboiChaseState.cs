@@ -42,7 +42,8 @@ public class OldboiChaseState : OldboiBaseState
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
-            owner.agent.SetDestination(owner.player.transform.position);
+            Vector3.RotateTowards(owner.agent.transform.position, owner.player.transform.position, 90f, 90f);
+            //owner.agent.SetDestination(owner.player.transform.position);
             //  owner.doggo.SwitchToFollow(owner.agent.transform.position);
             //owner.doggo.agent.SetDestination(owner.player.transform.position);
             owner.doggo.ChangeState<DogFetchState>();

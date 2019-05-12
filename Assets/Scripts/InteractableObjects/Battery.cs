@@ -10,10 +10,39 @@ public class Battery : MonoBehaviour
     public GameObject fuseBox;
     public GameObject lift;
     private bool used = false;
- 
+
+    protected const float skinWidth = 0.1f;
+    private PhysicsScript body;
+    protected Vector3 velocity;
+    protected BoxCollider boxCollider;
+    [HideInInspector] public bool isHeld;
+
+    private void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        body = gameObject.GetComponent<PhysicsScript>();
+        isHeld = false;
+    }
+
 
     private void Update()
     {
+        if (body.RespawnCollisionCheck(velocity, boxCollider))
+        {
+            RespawnEvent respawnEvent = new RespawnEvent();
+            respawnEvent.gameObject = gameObject;
+
+            EventSystem.Current.FireEvent(respawnEvent);
+        }
+
+        if (!isHeld)
+        {
+            velocity = body.Decelerate(velocity);
+            velocity = body.Gravity(velocity);
+            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            transform.position += velocity * Time.deltaTime;
+        }
+
         RaycastHit raycastHit;
         bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out raycastHit, transform.rotation, transform.localScale.y + 0.003f);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
@@ -29,6 +58,4 @@ public class Battery : MonoBehaviour
             // used = true;
         }
     }
-
-
 }

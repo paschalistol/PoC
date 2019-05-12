@@ -16,7 +16,7 @@ using UnityEngine;
         protected Vector3 normal;
         protected const float staticFriction = 0.55f;
         protected float dynamicFriction;
-        protected const float gravityConstant = 10f;
+        protected const float gravityConstant = 5f;
 
         public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
         {

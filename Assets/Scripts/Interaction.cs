@@ -50,6 +50,9 @@ public class Interaction : MonoBehaviour
             case "Gold":
                 gameObject.GetComponent<Gold>().isHeld = !gameObject.GetComponent<Gold>().isHeld;
                 break;
+            case "Battery":
+                gameObject.GetComponent<Battery>().isHeld = !gameObject.GetComponent<Battery>().isHeld;
+                break;
             default:
                 break;
         }
