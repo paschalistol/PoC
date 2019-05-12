@@ -23,7 +23,7 @@ public class Key : MonoBehaviour
 
     void Start()
     {
-        GetComponent<RespawnItem>().startPosition = transform.position;
+        //GetComponent<RespawnItem>().startPosition = transform.position;
         Debug.Log("Logging");
 
         boxCollider = GetComponent<BoxCollider>();

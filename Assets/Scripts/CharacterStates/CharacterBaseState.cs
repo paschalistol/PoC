@@ -243,6 +243,11 @@ public class CharacterBaseState : State
             
             deathInfo.deadUnit = owner.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
+
+            RespawnEvent respawnEvent = new RespawnEvent();
+            //respawnEvent.gameObject = 
+
+            EventSystem.Current.FireEvent(respawnEvent);
            
         }
 

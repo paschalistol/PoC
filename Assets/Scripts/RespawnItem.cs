@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class RespawnItem : MonoBehaviour
 {
-    [HideInInspector] public Vector3 startPosition;
+    private Vector3 startPosition;
+
+    public void Start()
+    {
+        startPosition = transform.position;
+    }
 
     public void Respawn()
     {

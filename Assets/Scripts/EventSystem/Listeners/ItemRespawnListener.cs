@@ -8,6 +8,7 @@ public class ItemRespawnListener : MonoBehaviour
     void Start()
     {
         EventSystem.Current.RegisterListener<RespawnEvent>(Respawn);
+        //DeathEvent?
     }
 
     // Update is called once per frame
