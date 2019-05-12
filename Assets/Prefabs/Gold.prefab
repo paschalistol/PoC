@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5068737847666576868}
   - component: {fileID: 5068737847666576869}
   - component: {fileID: 5068737847666576890}
+  - component: {fileID: 1238560052861104536}
   m_Layer: 24
   m_Name: Gold
   m_TagString: Gold
@@ -109,6 +110,9 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 2097664
+  respawnEnvironment:
+    serializedVersion: 2
+    m_Bits: 16
 --- !u!114 &5068737847666576869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,4 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0323b02dbf494014192fa8311275a620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goal:
+    serializedVersion: 2
+    m_Bits: 0
   isHeld: 0
+--- !u!114 &1238560052861104536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068737847666576866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf9e527f39d06148bcc44cfb1216a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}

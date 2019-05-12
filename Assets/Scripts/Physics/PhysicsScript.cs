@@ -6,7 +6,8 @@ using UnityEngine;
 
     public class PhysicsScript : MonoBehaviour
     {
-        public LayerMask environment;
+        [SerializeField]private LayerMask environment;
+        [SerializeField]private LayerMask respawnEnvironment;
 
         //protected CapsuleCollider capsuleCollider;
         //protected const float skinWidth = 0.0f;
@@ -75,7 +76,23 @@ using UnityEngine;
             
         }
 
-        public Vector3 Normal3D(Vector3 velocity, Vector3 normal)
+    public bool RespawnCollisionCheck(Vector3 velocity, BoxCollider collider)
+    {
+
+        #region Raycast
+        RaycastHit raycastHit;
+        bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale,
+               velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime, respawnEnvironment);
+        #endregion
+
+        if (raycastHit.collider != null)
+            return true;
+        return false;
+
+
+    }
+
+    public Vector3 Normal3D(Vector3 velocity, Vector3 normal)
         {
 
             float dotProduct = Vector3.Dot(velocity, normal);

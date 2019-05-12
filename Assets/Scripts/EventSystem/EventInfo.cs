@@ -80,3 +80,6 @@ public class WinningEvent : DebugEvent
 {
     public GameObject gameObject;
 }
+
+public class RespawnEvent : DebugEvent { public GameObject gameObject; }
+ 

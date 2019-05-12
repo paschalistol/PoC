@@ -28,6 +28,14 @@ public class FuseBoxItem : MonoBehaviour
     }
     void Update()
     {
+        if (body.RespawnCollisionCheck(velocity, boxCollider))
+        {
+            RespawnEvent respawnEvent = new RespawnEvent();
+            respawnEvent.gameObject = gameObject;
+
+            EventSystem.Current.FireEvent(respawnEvent);
+        }
+
         if (!isHeld)
         {
             velocity = body.Decelerate(velocity);
