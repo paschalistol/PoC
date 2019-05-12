@@ -11,21 +11,34 @@ namespace Callback
         public GameObject SoundPrefab;
         private bool cooldown = false;
         private readonly float timeToWait = 0.4f;
-
+        private GameObject go;
+        private AudioSource audioSource;
+        private SoundEvent se;
         void Start()
         {
             EventSystem.Current.RegisterListener<SoundEvent>(PlaySound);
 
         }
+
+        public GameObject GetGO()
+        {
+            return go;
+        }
         void PlaySound(SoundEvent info)
         {
+            se = info;
             if (!cooldown)
             {
-                GameObject go = Instantiate(SoundPrefab);
-                AudioSource audioSource = go.GetComponent<AudioSource>();
+                go = Instantiate(SoundPrefab);
+                audioSource = go.GetComponent<AudioSource>();
                 audioSource.clip = info.audioClip;
                 audioSource.Play();
-                Destroy(go, audioSource.clip.length);
+                
+                if (!info.looped)
+                {
+
+                    Destroy(go, audioSource.clip.length);
+                }
                 StartCoroutine(Cooldown());
             }
         }

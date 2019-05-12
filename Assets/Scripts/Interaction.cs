@@ -6,7 +6,11 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-
+    [SerializeField] private AudioClip pickupSound;
+    public AudioClip GetAudioClip()
+    {
+        return pickupSound;
+    }
     public void StartInteraction(GameObject gameObject)
     {
         switch (gameObject.tag)

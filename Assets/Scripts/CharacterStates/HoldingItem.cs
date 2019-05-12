@@ -9,7 +9,7 @@ using UnityEngine;
 public class HoldingItem : HoldItemBase
 {
     private int layerNumber;
-    public AudioClip audioSpeaker;
+    private SoundEvent soundEvent;
     public override void EnterState()
     {
 
@@ -17,30 +17,36 @@ public class HoldingItem : HoldItemBase
         objectCarried = ReturnObjectInFront();
         if (objectCarried != null)
         {
-        layerNumber = objectCarried.layer;
+            layerNumber = objectCarried.layer;
             if (layerNumber != 17)
             {
-               objectCarried.layer = 0;
+                objectCarried.layer = 0;
             }
             else
             {
                 objectCarried.transform.parent = null;
             }
-        }
-        //SoundEvent soundEvent = new SoundEvent();
-        //soundEvent.gameObject = owner.gameObject;
-        //soundEvent.eventDescription = "PickUp Sound";
-        //soundEvent.audioClip = audioSpeaker;
+            soundEvent = new SoundEvent();
+            soundEvent.gameObject = owner.gameObject;
+            soundEvent.eventDescription = "PickUp Sound";
+            soundEvent.audioClip = objectCarried.GetComponent<Interaction>().GetAudioClip();
+            soundEvent.looped = false;
+            if (soundEvent.audioClip != null)
+            {
+            Debug.Log(soundEvent.audioClip);
 
-        //EventSystem.Current.FireEvent(soundEvent);
+                EventSystem.Current.FireEvent(soundEvent);
+            }
+        }
 
 
     }
+
     public override void ToDo()
     {
 
 
-        if(objectCarried == null)
+        if (objectCarried == null)
             SetHolding(false);
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -52,7 +58,7 @@ public class HoldingItem : HoldItemBase
         }
 
 
-        
+
         //Throw item
 
         // if (Input.GetKeyDown(KeyCode.R))
@@ -84,7 +90,7 @@ public class HoldingItem : HoldItemBase
         if (objectCarried.GetComponent<Rigidbody>() != null)
         {
 
-        objectCarried.GetComponent<Rigidbody>().velocity = new Vector3(0, owner.GetComponent<CharacterStateMachine>().velocity.y,0);
+            objectCarried.GetComponent<Rigidbody>().velocity = new Vector3(0, owner.GetComponent<CharacterStateMachine>().velocity.y, 0);
         }
 
 
@@ -93,18 +99,18 @@ public class HoldingItem : HoldItemBase
     Vector3 ThrowTo()
     {
 
-        float x = LookDirection().x * 3 ;
+        float x = LookDirection().x * 3;
         float y = 50;
-        float z = LookDirection().z * 3 ;
+        float z = LookDirection().z * 3;
         return new Vector3(x, y, z);
 
     }
     private Vector3 Direction()
     {
-        Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized ;
-        float x = owner.transform.position.x + project.x * (0.2f+ capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2) ;
-        float y = objectCarried.transform.localScale.y/2 + capsuleCollider.height/2 + owner.transform.position.y;
-        float z = owner.transform.position.z + project.z * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2) ;
+        Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
+        float x = owner.transform.position.x + project.x * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2);
+        float y = objectCarried.transform.localScale.y / 2 + capsuleCollider.height / 2 + owner.transform.position.y;
+        float z = owner.transform.position.z + project.z * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2);
         return new Vector3(x, y, z);
     }
 

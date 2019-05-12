@@ -1076,11 +1076,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231770331}
     m_Modifications:
-    - target: {fileID: 4676020026091829532, guid: 0f5d021fe7a28cf47a5f018cff2935d2,
-        type: 3}
-      propertyPath: m_Name
-      value: InteractionListener
-      objectReference: {fileID: 0}
     - target: {fileID: 4676020026091829535, guid: 0f5d021fe7a28cf47a5f018cff2935d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1135,6 +1130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676020026091829532, guid: 0f5d021fe7a28cf47a5f018cff2935d2,
+        type: 3}
+      propertyPath: m_Name
+      value: InteractionListener
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4676020026091829534, guid: 0f5d021fe7a28cf47a5f018cff2935d2, type: 3}
@@ -4543,6 +4543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1 &332611951
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,6 +7088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1 &531858899
 GameObject:
   m_ObjectHideFlags: 0
@@ -7711,6 +7713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!4 &576374016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4529262592942840, guid: 065211b13cf2c0b45a7ad739ba6e8cc2,
@@ -8314,6 +8317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1001 &605606795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10780,8 +10784,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805363724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 78.15289, y: -13.35362, z: -253.25897}
-  m_LocalScale: {x: 200, y: 1, z: 397.96884}
+  m_LocalPosition: {x: 78.15289, y: -13.35362, z: -293.98}
+  m_LocalScale: {x: 336.5003, y: 1, z: 607.49994}
   m_Children: []
   m_Father: {fileID: 305607761}
   m_RootOrder: 0
@@ -11367,7 +11371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845673720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.5, y: -14.53, z: 162.6}
+  m_LocalPosition: {x: 68.5, y: -14.53, z: 191.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 544406964}
@@ -11409,7 +11413,7 @@ MonoBehaviour:
     m_Bits: 8192
   checkPoint:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 68157440
   trampoline:
     serializedVersion: 2
     m_Bits: 8388608
@@ -12371,6 +12375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1 &924920150
 GameObject:
   m_ObjectHideFlags: 0
@@ -13186,6 +13191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1001 &1012004183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15911,6 +15917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!4 &1256909079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4529262592942840, guid: 065211b13cf2c0b45a7ad739ba6e8cc2,
@@ -17035,6 +17042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!114 &1361916885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18286,6 +18294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!1001 &1536584118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19872,11 +19881,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231770331}
     m_Modifications:
-    - target: {fileID: 5194188666427655507, guid: f75f6bfe4465c00419fb9647fc254f58,
-        type: 3}
-      propertyPath: m_Name
-      value: DeathListener
-      objectReference: {fileID: 0}
     - target: {fileID: 5194188666427655505, guid: f75f6bfe4465c00419fb9647fc254f58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19931,6 +19935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5194188666427655507, guid: f75f6bfe4465c00419fb9647fc254f58,
+        type: 3}
+      propertyPath: m_Name
+      value: DeathListener
       objectReference: {fileID: 0}
     - target: {fileID: 5194188666427655504, guid: f75f6bfe4465c00419fb9647fc254f58,
         type: 3}
@@ -22416,11 +22425,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231770331}
     m_Modifications:
-    - target: {fileID: 1836246665392548898, guid: 85a60c3e9c804a3428b4791a65cedff6,
-        type: 3}
-      propertyPath: m_Name
-      value: EventSystem
-      objectReference: {fileID: 0}
     - target: {fileID: 1836246665392548908, guid: 85a60c3e9c804a3428b4791a65cedff6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22475,6 +22479,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836246665392548898, guid: 85a60c3e9c804a3428b4791a65cedff6,
+        type: 3}
+      propertyPath: m_Name
+      value: EventSystem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85a60c3e9c804a3428b4791a65cedff6, type: 3}
