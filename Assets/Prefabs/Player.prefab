@@ -195,7 +195,7 @@ MonoBehaviour:
   currentState: {fileID: 0}
   pickups:
     serializedVersion: 2
-    m_Bits: 722944
+    m_Bits: 17500160
   holdingSth: 0
 --- !u!114 &6428021081155650228
 MonoBehaviour:
@@ -220,10 +220,10 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   environment:
     serializedVersion: 2
-    m_Bits: 899584
+    m_Bits: 17676800
   deadlyEnvironment:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   pickups:
     serializedVersion: 2
     m_Bits: 233472
@@ -232,13 +232,13 @@ MonoBehaviour:
     m_Bits: 8192
   checkPoint:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   trampoline:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8388608
   goal:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33554432
   WobbleFactor: 0.15
   test: 0.1
   velocity: {x: 0, y: 0, z: 0}
@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 0}
 --- !u!114 &1975284414869124775
 MonoBehaviour:
   m_ObjectHideFlags: 0
