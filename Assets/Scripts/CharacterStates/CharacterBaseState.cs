@@ -100,7 +100,7 @@ public class CharacterBaseState : State
         Vector3 target;
         target.x = 0;
         target.z = 0;
-        target.y = Camera.main.transform.rotation.y;
+        target.y = Camera.main.transform.eulerAngles.y;
 
     owner.transform.eulerAngles = target;
     }

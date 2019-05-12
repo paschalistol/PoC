@@ -13,49 +13,51 @@ namespace Callback
         private readonly float timeToWait = 0.4f;
         private GameObject go;
         private AudioSource audioSource;
-        private SoundEvent se;
         void Start()
         {
             EventSystem.Current.RegisterListener<SoundEvent>(PlaySound);
+            EventSystem.Current.RegisterListener<StopSoundEvent>(StopSound);
 
         }
-
-        public GameObject GetGO()
+        //Stop sound that is being looped
+        void StopSound(StopSoundEvent info)
         {
-            return go;
+            Destroy(info.AudioPlayer);
         }
+
         void PlaySound(SoundEvent info)
         {
-            se = info;
             if (!cooldown)
             {
                 go = Instantiate(SoundPrefab);
                 audioSource = go.GetComponent<AudioSource>();
                 audioSource.clip = info.audioClip;
                 audioSource.Play();
-                
+                info.objectPlaying = go;
                 if (!info.looped)
                 {
-
                     Destroy(go, audioSource.clip.length);
                 }
                 StartCoroutine(Cooldown());
             }
         }
+        //Cooldown so that not too many sound being instantiated the same time
         IEnumerator Cooldown()
         {
             cooldown = true;
             yield return new WaitForSeconds(timeToWait);
             cooldown = false;
         }
-        private void OnDisable()
-        {
-            if (EventSystem.Current != null)
-            {
-                EventSystem.Current.UnregisterListener<SoundEvent>(PlaySound);
-            }
+        //Unregister Listener
+        //private void OnDisable()
+        //{
+        //    if (EventSystem.Current != null)
+        //    {
+        //        EventSystem.Current.UnregisterListener<SoundEvent>(PlaySound);
+        //        EventSystem.Current.UnregisterListener<StopSoundEvent>(StopSound);
+        //    }
 
-        }
+        //}
 
     }
 }

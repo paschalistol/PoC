@@ -42,7 +42,8 @@ public class Interaction : MonoBehaviour
                 gameObject.GetComponent<Key>().KeyInteraction();
                 break;
             case "Box":
-                gameObject.GetComponent<Boxes>().BoxInteraction();
+                Debug.Log("box");
+                gameObject.GetComponent<Box>().BoxInteraction();
                 break;
             case "FuseBoxItem":
                 gameObject.GetComponent<FuseBoxItem>().isHeld = !gameObject.GetComponent<FuseBoxItem>().isHeld;

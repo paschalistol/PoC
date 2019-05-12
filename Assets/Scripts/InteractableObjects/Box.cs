@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
 
     protected const float skinWidth = 0.2f;
 
-    private bool isHeld;
+    private bool isHeld = false;
 
     void Start()
     {
@@ -34,10 +34,7 @@ public class Box : MonoBehaviour
 
     public void BoxInteraction()
     {
-        if (isHeld == true)
-        {
-            transform.parent = null;
-        }
+
         isHeld = !isHeld;
     }
 

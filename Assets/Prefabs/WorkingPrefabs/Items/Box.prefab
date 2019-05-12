@@ -16,10 +16,8 @@ GameObject:
   - component: {fileID: 571242004591992469}
   - component: {fileID: 571242004591992466}
   - component: {fileID: 571242004591992467}
-  - component: {fileID: 1627620076313985508}
-  - component: {fileID: 1627620076313985509}
   m_Layer: 11
-  m_Name: Box (3)
+  m_Name: Box
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,34 +150,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f39224d38768f4eacada77213e12cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1627620076313985508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5777606410677590930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSound: {fileID: 0}
---- !u!114 &1627620076313985509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5777606410677590930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e88ff016085a0214fa9c0beab06ad0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  waterMask:
-    serializedVersion: 2
-    m_Bits: 0

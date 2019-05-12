@@ -44,8 +44,12 @@ public class SoundEvent : DebugEvent
     public bool looped = false;
     public GameObject gameObject;
     public bool stop;
+    public GameObject objectPlaying;
 }
-
+public class StopSoundEvent : DebugEvent
+{
+    public GameObject AudioPlayer;
+}
 public class FuseBoxEvent : DebugEvent
 {
     public GameObject particles;

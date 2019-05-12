@@ -33,13 +33,25 @@ public class HoldingItem : HoldItemBase
             soundEvent.looped = false;
             if (soundEvent.audioClip != null)
             {
-            Debug.Log(soundEvent.audioClip);
-
                 EventSystem.Current.FireEvent(soundEvent);
             }
         }
+    }
+    public override void ExitState()
+    {
+        if (soundEvent != null)
+        {
 
+            StopSoundEvent stopSoundEvent = new StopSoundEvent();
+            stopSoundEvent.AudioPlayer = soundEvent.objectPlaying;
+            stopSoundEvent.eventDescription = "Stop Sound";
+            if (stopSoundEvent.AudioPlayer != null)
+            {
+                EventSystem.Current.FireEvent(stopSoundEvent);
+            }
+        }
 
+        base.ExitState();
     }
 
     public override void ToDo()
@@ -61,14 +73,13 @@ public class HoldingItem : HoldItemBase
 
         //Throw item
 
-        // if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    objectCarried.layer = 11;
-        //    objectCarried.transform.position += ThrowTo();
-        //    objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo()*10);
-        //   // objectCarried.GetComponent<Boxes>().ApplyForce(ThrowTo());
-        //    SetHolding(false);
-        //}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            objectCarried.layer = layerNumber;
+            objectCarried.transform.position += ThrowTo();
+            objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo() * 3);
+            SetHolding(false);
+        }
         if (!HoldingSth)
         {
             owner.ChangeState<EmptyHands>();
