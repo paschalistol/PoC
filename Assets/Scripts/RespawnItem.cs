@@ -5,7 +5,7 @@ using UnityEngine;
 public class RespawnItem : MonoBehaviour
 {
     private Vector3 startPosition;
-    private const float respawnHeight = 15f;
+    private const float respawnHeight = 20f;
 
     public void Start()
     {
