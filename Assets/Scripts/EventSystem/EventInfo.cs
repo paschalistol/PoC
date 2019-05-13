@@ -99,5 +99,11 @@ public class WinningEvent : DebugEvent
     public GameObject gameObject;
 }
 
+public class AddPointEvent : DebugEvent
+{
+    public GameObject gameObject;
+    public float point;
+}
+
 public class RespawnEvent : DebugEvent { public GameObject gameObject; }
  

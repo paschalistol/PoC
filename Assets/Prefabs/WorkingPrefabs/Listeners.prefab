@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8935451364730532299}
   - component: {fileID: 3487773452025121799}
   - component: {fileID: 3766805673409763879}
+  - component: {fileID: 644185900750914803}
   m_Layer: 17
   m_Name: Listeners
   m_TagString: Untagged
@@ -63,6 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5f7d32101d91b4a9a6ce43de94edbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParticlesPrefab: {fileID: 0}
+  go: {fileID: 0}
 --- !u!114 &7428345623501455792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +155,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundPrefab: {fileID: 6479891025069951669, guid: 9d8e751b658eeb041ac235946d04b83b,
     type: 3}
+--- !u!114 &644185900750914803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598432071655377028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0b853075e43074285946daa75433d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreScript: {fileID: 0}

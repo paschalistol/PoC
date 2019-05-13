@@ -48,8 +48,8 @@ public class Interaction : MonoBehaviour
             case "FuseBoxItem":
                 gameObject.GetComponent<FuseBoxItem>().isHeld = !gameObject.GetComponent<FuseBoxItem>().isHeld;
                 break;
-            case "Gold":
-                gameObject.GetComponent<Gold>().isHeld = !gameObject.GetComponent<Gold>().isHeld;
+            case "Valuables":
+                gameObject.GetComponent<Valuable>().AddPoint();
                 break;
             case "Battery":
                 gameObject.GetComponent<Battery>().isHeld = !gameObject.GetComponent<Battery>().isHeld;
