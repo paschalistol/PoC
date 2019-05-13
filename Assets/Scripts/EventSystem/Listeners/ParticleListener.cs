@@ -7,10 +7,10 @@ using UnityEngine;
 public class ParticleListener : MonoBehaviour
 {
     [SerializeField] private GameObject ParticlesPrefab;
+    [SerializeField] private GameObject go;
 
     void Start()
     {
-
         EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
         EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
 
@@ -23,7 +23,7 @@ public class ParticleListener : MonoBehaviour
 
     void RunParticles(ParticleEvent eventInfo)
     {
-        GameObject go = Instantiate(ParticlesPrefab);
+        go = Instantiate(eventInfo.particles);
         ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         system.Play();
@@ -33,7 +33,7 @@ public class ParticleListener : MonoBehaviour
 
     void StopParticles(StopParticleEvent eventInfo)
     {
-        Destroy(ParticlesPrefab);
+        Destroy(go);
     }
 
 

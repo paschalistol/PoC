@@ -53,7 +53,7 @@ public class StopSoundEvent : DebugEvent
 }
 public class ParticleEvent : DebugEvent
 {
-    public ParticleSystem system;
+    public GameObject particles;
     public GameObject objectPlaying;
     //public bool looped;
     //public bool stop;
@@ -63,8 +63,6 @@ public class StopParticleEvent : DebugEvent
 {
     public GameObject particles;
 }
-
-
 public class FuseBoxEvent : DebugEvent
 {
     public GameObject particles;
