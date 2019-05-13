@@ -11,7 +11,7 @@ public class CharacterBaseState : State
     protected CharacterStateMachine owner;
 
     // protected float wobbleValue { get { return owner.WobbleFactor;  } }
-    protected float wobbleValue { get { return owner.WobbleFactor;  } }
+    protected float wobbleValue { get { return owner.WobbleFactor; } }
     protected CapsuleCollider capsuleCollider;
     protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
@@ -30,7 +30,8 @@ public class CharacterBaseState : State
     protected bool snowboarding = false;
 
     private float normalOffset = 0.03f;
-
+    private Vector3 point1, point2;
+    private RaycastHit raycastHit;
 
     public override void InitializeState(StateMachine owner)
     {
@@ -60,49 +61,42 @@ public class CharacterBaseState : State
     {
         float rndWobble = Random.Range(0.0f, 1.0f);
 
-      
+
         Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         if (rndWobble < wobbleValue && input != Vector3.zero)
         {
             float rndDirection = Random.Range(0.0f, 1.0f);
 
-           
-                if (rndDirection < 0.5)
-                {
-                    input = Quaternion.Euler(0, -90, 0) * input;
 
-                }
-                else if (rndDirection > 0.5)
-                {
-                    input = Quaternion.Euler(0, 90, 0) * input;
+            if (rndDirection < 0.5)
+            {
+                input = Quaternion.Euler(0, -90, 0) * input;
 
-                }
+            }
+            else if (rndDirection > 0.5)
+            {
+                input = Quaternion.Euler(0, 90, 0) * input;
+
+            }
 
         }
-            
-        
+
+
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
-        input = Vector3.ProjectOnPlane(input, GroundCast().normal).normalized;
-       // ChangeCharRotation();
+        input = Vector3.ProjectOnPlane(input, DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).normal).normalized;
+        // ChangeCharRotation();
         return input;
     }
 
 
     protected void ChangeCharRotation()
     {
-
-        //Quaternion slopeRotation = Quaternion.FromToRotation(owner.transform.up,Vector3.up);
-        //owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, slopeRotation * owner.transform.rotation, 1 * Time.deltaTime);
-
-
-        Vector3 target;
-        target.x = 0;
-        target.z = 0;
+        Vector3 target = Vector3.zero;
         target.y = Camera.main.transform.eulerAngles.y;
 
-    owner.transform.eulerAngles = target;
+        owner.transform.eulerAngles = target;
     }
 
 
@@ -112,39 +106,24 @@ public class CharacterBaseState : State
     }
 
 
-    private RaycastHit GroundCast()
-    {
-        RaycastHit raycastHit;
-
-        bool capsuleCast = Physics.CapsuleCast(owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius), owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius),
-            capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
-
-        return raycastHit;
-    }
 
     protected bool IsGliding()
     {
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
         bool capsulecast = Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
 
-        return (raycastHit.normal.y < 1  - normalOffset || raycastHit.normal.y > 1 + normalOffset) && raycastHit.normal.y !=0 && raycastHit.collider.gameObject.layer == 9;
+        return (raycastHit.normal.y < 1 - normalOffset || raycastHit.normal.y > 1 + normalOffset) && raycastHit.normal.y != 0 && raycastHit.collider.gameObject.layer == 9;
     }
 
     protected bool IsGrounded()
     {
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.environment);
-        return capsuleCast;
+
+        return DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).collider != null;
     }
 
     protected void Accelerate(Vector3 direction)
     {
- 
+
         if (direction.magnitude > 1)
         {
             direction = direction.normalized;
@@ -180,23 +159,22 @@ public class CharacterBaseState : State
         }
     }
 
-
+    private RaycastHit DoRaycastHit(Vector3 direction, float magnitude, LayerMask layerMask)
+    {
+        Debug.DrawRay(point1, owner.transform.up, Color.red);
+        Debug.DrawRay(point2, -owner.transform.up, Color.blue);
+        point1 = owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        point2 = owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            capsuleCollider.radius, direction, out raycastHit, magnitude, layerMask);
+        return raycastHit;
+    }
 
     protected void CollisionCheck()
     {
+        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
 
 
-        #region Raycast
-        Debug.DrawRay(owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius), owner.transform.up, Color.red);
-        Debug.DrawRay(owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius), -owner.transform.up, Color.blue);
-        //Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        //Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
-            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
-        #endregion
 
         if (raycastHit.collider == null)
             return;
@@ -213,10 +191,10 @@ public class CharacterBaseState : State
                 Velocity = Vector3.zero;
                 return;
             }
-            else if (raycastHit.distance < skinWidth/2)
+            else if (raycastHit.distance < skinWidth / 2)
             {
 
-                owner.transform.position += new Vector3(0,skinWidth,0);
+                owner.transform.position += new Vector3(0, skinWidth, 0);
             }
 
             CollisionCheck();
@@ -226,13 +204,8 @@ public class CharacterBaseState : State
 
     protected void DeathCollisionCheck()
     {
-        #region Raycast
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
-            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
-        #endregion
+
+        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
 
         if (raycastHit.collider != null)
         {
@@ -240,7 +213,7 @@ public class CharacterBaseState : State
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "You are dead";
             deathInfo.spawnPoint = owner.currentCheckPoint;
-            
+
             deathInfo.deadUnit = owner.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
 
@@ -248,7 +221,7 @@ public class CharacterBaseState : State
             //respawnEvent.gameObject = 
 
             EventSystem.Current.FireEvent(respawnEvent);
-           
+
         }
 
     }
@@ -256,13 +229,7 @@ public class CharacterBaseState : State
 
     protected GameObject TakingLift2()
     {
-        #region Raycast
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, Vector3.down, out raycastHit, groundCheckDistance + skinWidth, owner.lift);
-        #endregion
-
+        DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.lift);
         if (raycastHit.collider != null)
         {
             owner.lift2 = raycastHit.transform.gameObject;
@@ -272,15 +239,10 @@ public class CharacterBaseState : State
         return null;
     }
 
-    protected void ReachingCheckPoint() {
-        #region Raycast
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
-            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
-        #endregion
+    protected void ReachingCheckPoint()
+    {
 
+        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
         if (raycastHit.collider == null)
             return;
         else
@@ -292,54 +254,48 @@ public class CharacterBaseState : State
 
     protected void Trampoline()
     {
-        #region Raycast
 
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center - Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
-            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth + 0.1f, owner.trampoline);
-        #endregion
+        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
         if (raycastHit.collider == null)
             return;
         else
         {
-            
+
             #region Apply Normal Force
             normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal * 4f;
-            if(Velocity.magnitude > 40)
+            if (Velocity.magnitude > 40)
             {
                 Velocity = Velocity.normalized * 40;
             }
             Friction(normal.magnitude);
             #endregion
-            
 
-            
-        }
-    }
 
-   /* protected void ReachingGoal()
-    {
-        #region Raycast
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
-            capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.goal);
-        #endregion
-
-        if (raycastHit.collider != null)
-        {
-            
-            WinningEvent winInfo = new WinningEvent();
-            winInfo.eventDescription = "You won!";
-
-            winInfo.gameObject = owner.transform.gameObject;
-            EventSystem.Current.FireEvent(winInfo);
 
         }
     }
-    */
+
+    /* protected void ReachingGoal()
+     {
+         #region Raycast
+         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
+         RaycastHit raycastHit;
+         bool capsulecast = Physics.CapsuleCast(point1, point2,
+             capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.goal);
+         #endregion
+
+         if (raycastHit.collider != null)
+         {
+
+             WinningEvent winInfo = new WinningEvent();
+             winInfo.eventDescription = "You won!";
+
+             winInfo.gameObject = owner.transform.gameObject;
+             EventSystem.Current.FireEvent(winInfo);
+
+         }
+     }
+     */
 }
