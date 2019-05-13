@@ -61,5 +61,11 @@ public class OldboiPatrolState : OldboiBaseState
         currentPoint = closest;
     }
 
-    
+    public override void ExitState()
+    {
+        base.ExitState();
+        owner.agent.SetDestination(owner.transform.position);
+    }
+
+
 }

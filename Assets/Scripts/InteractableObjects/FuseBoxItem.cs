@@ -46,7 +46,7 @@ public class FuseBoxItem : MonoBehaviour
         
         RaycastHit raycastHit;
        
-        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, transform.rotation, transform.localScale.z);
+        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
 
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
         {    

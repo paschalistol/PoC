@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    [SerializeField]private GameObject lockedDoor;
+    [SerializeField] private GameObject lockedDoor;
     private PhysicsScript body;
-    [HideInInspector]public bool used = false;
+    [HideInInspector] public bool used = false;
 
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
-   // private Vector3 startPosition;
+    // private Vector3 startPosition;
 
 
     protected const float skinWidth = 0.2f;
@@ -24,8 +24,6 @@ public class Key : MonoBehaviour
     void Start()
     {
         //GetComponent<RespawnItem>().startPosition = transform.position;
-        Debug.Log("Logging");
-
         boxCollider = GetComponent<BoxCollider>();
         body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
@@ -62,7 +60,7 @@ public class Key : MonoBehaviour
             //    //doorOffset = currentDoorRotation - 2f;
 
 
-            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, lockedDoor.transform.parent.rotation, 10f);
+            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
             {
 
@@ -77,27 +75,24 @@ public class Key : MonoBehaviour
             }
 
         }
-
-
-     
     }
 
-   
+
 
     public void KeyInteraction()
     {
-        
+
         Debug.Log("walla does it work now?");
-        if(isHeld == true)
+        if (isHeld == true)
         {
-        transform.parent = null;
+            transform.parent = null;
         }
         isHeld = !isHeld;
     }
 
 
 
-    
+
 
 
 }

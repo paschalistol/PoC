@@ -21,12 +21,12 @@ public class DeathListener : MonoBehaviour
 
     void DeathInteraction(UnitDeathEventInfo deathInfo)
     {
-
+        Debug.Log("DeathInterction");
         objectToInteract = deathInfo.deadUnit;
-        spawnPoint = deathInfo.spawnPoint;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //spawnPoint = deathInfo.spawnPoint;
         PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
         text.text = ""+PlayerPrefs.GetInt("DeathCounter");
-        player.gameObject.transform.position = spawnPoint.transform.position;
+        //player.gameObject.transform.position = spawnPoint.transform.position;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
