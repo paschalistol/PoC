@@ -6,8 +6,14 @@ using UnityEngine;
 
 public class ParticleListener : MonoBehaviour
 {
+    [SerializeField] private GameObject ParticlesPrefab;
+    [SerializeField] private GameObject go;
+
     void Start()
     {
+        EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
+        EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
+
         EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnLiftParticles);
         EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorParticles);
         EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxParticles);
@@ -15,10 +21,25 @@ public class ParticleListener : MonoBehaviour
         //EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxSound);
     }
 
+    void RunParticles(ParticleEvent eventInfo)
+    {
+        go = Instantiate(eventInfo.particles);
+        ParticleSystem system = go.GetComponent<ParticleSystem>();
+        go.transform.position = eventInfo.objectPlaying.transform.position;
+        system.Play();
+        StartCoroutine(ParticleDelay(system, go));
+        system.Pause();
+    }
+
+    void StopParticles(StopParticleEvent eventInfo)
+    {
+        Destroy(go);
+    }
+
 
     void OnLiftParticles(SwitchLiftEvent info)
     {
-        GameObject go = Instantiate(info.particles);
+        GameObject go = Instantiate(ParticlesPrefab);
         ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = info.speaker.transform.position;
         system.Play();
@@ -28,19 +49,12 @@ public class ParticleListener : MonoBehaviour
 
     void OpenDoorParticles(OpenDoorEvent info)
     {
-
-        Debug.Log(info.gameObject );
-        Debug.Log(info.particles);
         GameObject go = Instantiate(info.particles);
-        Debug.Log(go.transform.position);
-
         ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = info.gameObject.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
         system.Pause();
-        Debug.Log(go.transform.position);
-        Debug.Log("Running enumerator");  
     }
 
     void FuseBoxParticles(FuseBoxEvent info)
@@ -50,8 +64,6 @@ public class ParticleListener : MonoBehaviour
         go.transform.position = info.gameObject.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
-        
-        Debug.Log("DoorOpenedListener2");
     }
 
     void WaterSplashParticles(WaterSplashEvent info)
@@ -61,8 +73,6 @@ public class ParticleListener : MonoBehaviour
         go.transform.position = info.gameObject.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
-
-        Debug.Log("waterSplash");
     }
 
 

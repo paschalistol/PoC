@@ -10,6 +10,7 @@ public class Battery : MonoBehaviour
     public GameObject fuseBox;
     public GameObject lift;
     private bool used = false;
+    [SerializeField] private GameObject particles;
 
     protected const float skinWidth = 0.1f;
     private PhysicsScript body;
@@ -54,6 +55,11 @@ public class Battery : MonoBehaviour
 
             lift.GetComponent<Lift2>().onOff = true;
             EventSystem.Current.FireEvent(interactedInfo);
+
+            ParticleEvent particleEvent = new ParticleEvent();
+            particleEvent.eventDescription = "Particles Created!";
+            particleEvent.objectPlaying = gameObject;
+            particleEvent.particles = particles;
             Destroy(gameObject);
             // used = true;
         }
