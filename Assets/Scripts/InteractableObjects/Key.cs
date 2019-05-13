@@ -62,7 +62,7 @@ public class Key : MonoBehaviour
             //    //doorOffset = currentDoorRotation - 2f;
 
 
-            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.forward, out raycastHit, lockedDoor.transform.parent.rotation, 10f);
+            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.parent.forward, out raycastHit, lockedDoor.transform.parent.rotation, 10f);
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
             {
 
