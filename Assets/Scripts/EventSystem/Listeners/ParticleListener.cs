@@ -6,35 +6,41 @@ using UnityEngine;
 
 public class ParticleListener : MonoBehaviour
 {
-    [SerializeField] private GameObject ParticlesPrefab;
-    [SerializeField] private GameObject go;
+    private GameObject ParticlesPrefab;
+    //private GameObject go;
 
     void Start()
     {
         EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
-        EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
+        //EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
 
         EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnLiftParticles);
         EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorParticles);
         EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxParticles);
         //EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorSound);
         //EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxSound);
+
+        Debug.Log("Started");
     }
 
     void RunParticles(ParticleEvent eventInfo)
     {
-        go = Instantiate(eventInfo.particles);
+        Debug.Log("RunningParticles!");
+        GameObject go = Instantiate(eventInfo.particles);
         ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
+        Debug.Log("particles be like" + eventInfo.particles);
         system.Pause();
+        Debug.Log("EndingParticles!");
+
     }
 
-    void StopParticles(StopParticleEvent eventInfo)
-    {
-        Destroy(go);
-    }
+    //void StopParticles(StopParticleEvent eventInfo)
+    //{
+    //    Destroy(go);
+    //}
 
 
     void OnLiftParticles(SwitchLiftEvent info)

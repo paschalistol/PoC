@@ -23,11 +23,15 @@ public class Battery : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
+            Debug.Log("p: " + particles + "g: " + gameObject);
+            Debug.Log("EventFired!");
     }
 
 
     private void Update()
     {
+
+        Debug.Log("State of particles: " + particles);
         if (body.RespawnCollisionCheck(velocity, boxCollider))
         {
             RespawnEvent respawnEvent = new RespawnEvent();
@@ -60,6 +64,9 @@ public class Battery : MonoBehaviour
             particleEvent.eventDescription = "Particles Created!";
             particleEvent.objectPlaying = gameObject;
             particleEvent.particles = particles;
+
+            EventSystem.Current.FireEvent(particleEvent);
+
             Destroy(gameObject);
             // used = true;
         }
