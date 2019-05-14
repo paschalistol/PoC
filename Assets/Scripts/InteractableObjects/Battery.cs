@@ -10,7 +10,7 @@ public class Battery : MonoBehaviour
     public GameObject fuseBox;
     public GameObject lift;
     private bool used = false;
-    [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject onfuseboxActivationParticles;
 
     protected const float skinWidth = 0.1f;
     private PhysicsScript body;
@@ -23,7 +23,7 @@ public class Battery : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
-            Debug.Log("p: " + particles + "g: " + gameObject);
+            Debug.Log("p: " + onfuseboxActivationParticles + "g: " + gameObject);
             Debug.Log("EventFired!");
     }
 
@@ -31,7 +31,7 @@ public class Battery : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("State of particles: " + particles);
+        Debug.Log("State of particles: " + onfuseboxActivationParticles);
         if (body.RespawnCollisionCheck(velocity, boxCollider))
         {
             RespawnEvent respawnEvent = new RespawnEvent();
@@ -60,12 +60,12 @@ public class Battery : MonoBehaviour
             lift.GetComponent<Lift2>().onOff = true;
             EventSystem.Current.FireEvent(interactedInfo);
 
-            ParticleEvent particleEvent = new ParticleEvent();
-            particleEvent.eventDescription = "Particles Created!";
-            particleEvent.objectPlaying = gameObject;
-            particleEvent.particles = particles;
+            //ParticleEvent particleEvent = new ParticleEvent();
+            //particleEvent.eventDescription = "Particles Created!";
+            //particleEvent.objectPlaying = gameObject;
+            //particleEvent.particles = particles;
 
-            EventSystem.Current.FireEvent(particleEvent);
+            //EventSystem.Current.FireEvent(particleEvent);
 
             Destroy(gameObject);
             // used = true;
