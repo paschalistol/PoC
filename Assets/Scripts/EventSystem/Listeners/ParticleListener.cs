@@ -32,7 +32,7 @@ public class ParticleListener : MonoBehaviour
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
         Debug.Log("particles be like" + eventInfo.particles);
-        system.Pause();
+        
         Debug.Log("EndingParticles!");
 
     }
