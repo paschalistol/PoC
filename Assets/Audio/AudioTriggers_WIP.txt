@@ -9,14 +9,20 @@ after enemies give up on chasing: loop sound file "heavyBreathing" 1 or 2 second
 
 Enemies
 Dogs
-footsteps: alternating pitch on (non-existent sound file), match to movement speed(?)
+footsteps: alternating pitch on "beast_walk", match to movement speed(?)
 switching to hostile state: very loud oneshot "beast_bark"
 Hostile state: random constant oneshots between "beastgrowl_Base1", "beastgrowl_Aggressive", "beast_bark"
 Guards
-footsteps: alternativ pitch on soundfile "footsteps_guards", match to movement speed(?)
-switching to hostile state: detection noise (who goes there?, huh?, etc.) (currently non-existent)
-hostile state: random oneshots of bark sound files (get back here!, he's over here!, etc.) (currently non-existent)
+footsteps: alternating pitch on soundfile "footsteps_guards", match to movement speed(?)
+switching to hostile state: detection noise --> oneshot of one of three soundfiles ("guard_whoisthere", guard_whogoesthere", "guard_huh") 
+hostile state: random delayed oneshots of bark sound files ("guard_getbackhere", "guard_stop", "guard_hey") 
 
 Environment
-(if we have doors)
+Doors
 corresponding sound files for unlock, open, close
+
+Ambient (looping)
+When chased/detected by enemies: sound file "runAmok_chase"
+when not chased:
+	level 1 --> sound file "schemingweasel(faster)_Ambient"
+	level 2 --> sound file "hidden agenda_ambient"
