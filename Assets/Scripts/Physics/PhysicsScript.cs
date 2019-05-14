@@ -6,6 +6,9 @@ using UnityEngine;
 
     public class PhysicsScript : MonoBehaviour
     {
+
+        public static PhysicsScript physics;
+        
         [SerializeField]private LayerMask environment;
         [SerializeField]private LayerMask respawnEnvironment;
 
@@ -18,7 +21,12 @@ using UnityEngine;
         protected float dynamicFriction;
         protected const float gravityConstant = 5f;
 
-        public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
+
+    private void Awake()
+    {
+        physics = this;
+    }
+    public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
         {
             RaycastHit raycastHit;
             #region Raycast
