@@ -8,7 +8,7 @@ using UnityEngine;
 public class Key : Interactable
 {
     [SerializeField] private GameObject lockedDoor;
-    private PhysicsScript body;
+    
     [HideInInspector] public bool used = false;
 
     protected Vector3 velocity;
@@ -24,13 +24,13 @@ public class Key : Interactable
     {
         //GetComponent<RespawnItem>().startPosition = transform.position;
         boxCollider = GetComponent<BoxCollider>();
-        body = gameObject.GetComponent<PhysicsScript>();
+        
         isHeld = false;
     }
     void Update()
     {
 
-        if (body.RespawnCollisionCheck(velocity, boxCollider))
+        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
         {
             RespawnEvent respawnEvent = new RespawnEvent();
             respawnEvent.gameObject = gameObject;
@@ -42,9 +42,9 @@ public class Key : Interactable
         RaycastHit raycastHit;
         if (transform.parent == null && !isHeld)
         {
-            velocity = body.Decelerate(velocity);
-            velocity = body.Gravity(velocity);
-            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.physics.Decelerate(velocity);
+            velocity = PhysicsScript.physics.Gravity(velocity);
+            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
         else if (isHeld)

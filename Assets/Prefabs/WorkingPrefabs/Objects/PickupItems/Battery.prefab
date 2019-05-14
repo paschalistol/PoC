@@ -14,9 +14,6 @@ GameObject:
   - component: {fileID: 2162948740616879279}
   - component: {fileID: 2162948740616879276}
   - component: {fileID: 2162948740616879277}
-  - component: {fileID: 2162948740616879266}
-  - component: {fileID: 2162948740616879267}
-  - component: {fileID: 2162948740616879264}
   m_Layer: 16
   m_Name: Battery
   m_TagString: Battery
@@ -110,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseBox: {fileID: 0}
   lift: {fileID: 0}
+  onfuseboxActivationParticles: {fileID: 0}
   isHeld: 0
 --- !u!65 &2162948740616879277
 BoxCollider:
@@ -124,46 +122,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2162948740616879266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162948740616879265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSound: {fileID: 0}
---- !u!114 &2162948740616879267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162948740616879265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504bab6f05d5b53499346d4258712889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  environment:
-    serializedVersion: 2
-    m_Bits: 2560
-  respawnEnvironment:
-    serializedVersion: 2
-    m_Bits: 16
---- !u!114 &2162948740616879264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162948740616879265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf9e527f39d06148bcc44cfb1216a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

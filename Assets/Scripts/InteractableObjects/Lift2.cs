@@ -13,7 +13,6 @@ public class Lift2 : MonoBehaviour
     public bool onOff = false;
     public GameObject audioMachine;
     private Vector3 velocity;
-    GeneralFunctions generalFunctions;
     [SerializeField] private float speed = 1;
 
     
@@ -21,7 +20,7 @@ public class Lift2 : MonoBehaviour
     {
         bigPoints = GetComponent<LiftPoints>().GetPoints();
         currentPoint = 0;
-        generalFunctions = gameObject.GetComponent<GeneralFunctions>();
+     
     }
 
     public Vector3 GetVelocity()

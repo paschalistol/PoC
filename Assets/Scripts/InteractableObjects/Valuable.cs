@@ -12,14 +12,13 @@ public class Valuable : Interactable
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     protected const float skinWidth = 0.2f;
-    public  PhysicsScript body;
     
 
 
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        body = gameObject.GetComponent<PhysicsScript>();
+        
         
 
     }
@@ -28,9 +27,9 @@ public class Valuable : Interactable
     void Update()
     {
         
-            velocity = body.Decelerate(velocity);
-            velocity = body.Gravity(velocity);
-            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.physics.Decelerate(velocity);
+            velocity = PhysicsScript.physics.Gravity(velocity);
+            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         
     }

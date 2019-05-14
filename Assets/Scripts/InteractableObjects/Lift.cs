@@ -11,14 +11,14 @@ public class Lift : MonoBehaviour
     Vector3 normal;
     public LayerMask layerMask;
     private float staticFriction = 0.8f, dynamicFriction = 0.7f;
-    GeneralFunctions generalFunctions;*/
+    */
     public GameObject destination;
 
     private void Awake()
     {
        /* boxCollider = gameObject.GetComponent<BoxCollider>();
 
-        generalFunctions = gameObject.GetComponent<GeneralFunctions>();*/
+        */
 
     }
 

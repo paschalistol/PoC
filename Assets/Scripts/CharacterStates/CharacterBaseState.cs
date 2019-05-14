@@ -13,7 +13,6 @@ public class CharacterBaseState : State
     // protected float wobbleValue { get { return owner.WobbleFactor;  } }
     protected float wobbleValue { get { return owner.WobbleFactor; } }
     protected CapsuleCollider capsuleCollider;
-    protected GeneralFunctions generalFunctions;
     protected const int acceleration = 23;
     protected const float skinWidth = 0.14f;
     protected const float gravityConstant = 20f;
@@ -43,7 +42,7 @@ public class CharacterBaseState : State
     {
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
 
-        generalFunctions = owner.GetComponent<GeneralFunctions>();
+        
     }
     protected void ApplyForce(Vector3 vector)
     {
@@ -182,7 +181,7 @@ public class CharacterBaseState : State
         {
 
             #region Apply Normal Force
-            normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
+            normal = PhysicsScript.physics.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal;
             Friction(normal.magnitude);
             #endregion
@@ -193,8 +192,8 @@ public class CharacterBaseState : State
             }
             else if (raycastHit.distance < skinWidth / 2)
             {
-                
-          //      owner.transform.position += new Vector3(0, skinWidth, 0);
+
+                //      owner.transform.position += new Vector3(0, skinWidth, 0);
             }
 
             CollisionCheck();
@@ -262,7 +261,7 @@ public class CharacterBaseState : State
         {
 
             #region Apply Normal Force
-            normal = generalFunctions.Normal3D(Velocity, raycastHit.normal);
+            normal = PhysicsScript.physics.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal * 4f;
             if (Velocity.magnitude > 40)
             {

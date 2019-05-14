@@ -4,85 +4,86 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class PhysicsScript : MonoBehaviour
-    {
+public class PhysicsScript : MonoBehaviour
+{
 
-        public static PhysicsScript physics;
-        
-        [SerializeField]private LayerMask environment;
-        [SerializeField]private LayerMask respawnEnvironment;
+    public static PhysicsScript physics;
 
-        //protected CapsuleCollider capsuleCollider;
-        //protected const float skinWidth = 0.0f;
-        //protected Vector3 Velocity;
-        private float deceleration = 3;
-        protected Vector3 normal;
-        protected const float staticFriction = 0.55f;
-        protected float dynamicFriction;
-        protected const float gravityConstant = 5f;
+    [SerializeField] private LayerMask environment;
+    [SerializeField] private LayerMask respawnEnvironment;
+
+    //protected CapsuleCollider capsuleCollider;
+    //protected const float skinWidth = 0.0f;
+    //protected Vector3 Velocity;
+    private float deceleration = 3;
+    protected Vector3 normal;
+    protected const float staticFriction = 0.55f;
+    protected float dynamicFriction;
+    protected const float gravityConstant = 5f;
 
 
     private void Awake()
     {
         physics = this;
     }
+
     public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
+    {
+        RaycastHit raycastHit;
+        #region Raycast
+
+        bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
+            velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+        #endregion
+        if (raycastHit.collider == null)
+            return velocity;
+        else
         {
-            RaycastHit raycastHit;
-            #region Raycast
-
-            bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale/2,
-                velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+            #region Apply Normal Force
+            normal = Normal3D(velocity, raycastHit.normal);
+            velocity += normal;
+            Friction(normal.magnitude, velocity);
             #endregion
-            if (raycastHit.collider == null)
-                return velocity;
-            else
+            if (velocity.magnitude < skinWidth)
             {
-                #region Apply Normal Force
-                normal = Normal3D(velocity, raycastHit.normal);
-                velocity += normal;
-                Friction(normal.magnitude, velocity);
-                #endregion
-                if (velocity.magnitude < skinWidth)
-                {
-                    velocity = Vector3.zero;
-                    return velocity;
-                }
-
-                CollisionCheck(velocity, collider, skinWidth);
+                velocity = Vector3.zero;
                 return velocity;
             }
+
+            CollisionCheck(velocity, collider, skinWidth);
+            return velocity;
         }
+    }
 
-        public Vector3 CollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
+    public Vector3 CollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
+    {
+        RaycastHit raycastHit;
+        #region Raycast
+        Vector3 point1 = transform.position + collider.center + Vector3.up * (collider.height / 2 - collider.radius);
+        Vector3 point2 = transform.position + collider.center + Vector3.down * (collider.height / 2 - collider.radius);
+        bool capsulecast = Physics.CapsuleCast(point1, point2,
+            collider.radius, velocity, out raycastHit, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+        #endregion
+        if (raycastHit.collider == null)
+            return velocity;
+        else
         {
-            RaycastHit raycastHit;
-            #region Raycast
-            Vector3 point1 = transform.position + collider.center + Vector3.up * (collider.height / 2 - collider.radius);
-            Vector3 point2 = transform.position + collider.center + Vector3.down * (collider.height / 2 - collider.radius);
-            bool capsulecast = Physics.CapsuleCast(point1, point2,
-                collider.radius, velocity, out raycastHit, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+            #region Apply Normal Force
+            normal = Normal3D(velocity, raycastHit.normal);
+            velocity += normal;
+            Friction(normal.magnitude, velocity);
             #endregion
-            if (raycastHit.collider == null)
-                return velocity;
-            else
+            if (velocity.magnitude < skinWidth)
             {
-                #region Apply Normal Force
-                normal = Normal3D(velocity, raycastHit.normal);
-                velocity += normal;
-                Friction(normal.magnitude, velocity);
-                #endregion
-                if (velocity.magnitude < skinWidth)
-                {
-                    velocity = Vector3.zero;
-                    return velocity;
-                }
-
-                CollisionCheck(velocity, collider, skinWidth);
+                velocity = Vector3.zero;
                 return velocity;
             }
-            
+
+            CollisionCheck(velocity, collider, skinWidth);
+            return velocity;
         }
+
+    }
 
     public bool RespawnCollisionCheck(Vector3 velocity, BoxCollider collider)
     {
@@ -101,37 +102,51 @@ using UnityEngine;
     }
 
     public Vector3 Normal3D(Vector3 velocity, Vector3 normal)
+    {
+
+        float dotProduct = Vector3.Dot(velocity, normal);
+
+        if (dotProduct > 0)
         {
-
-            float dotProduct = Vector3.Dot(velocity, normal);
-
-            if (dotProduct > 0)
-            {
-                dotProduct = 0f;
-            }
-            Vector3 projection = dotProduct * normal;
-            return -projection;
+            dotProduct = 0f;
         }
+        Vector3 projection = dotProduct * normal;
+        return -projection;
+    }
 
-        private void Friction(float normalMag, Vector3 velocity)
+    private void Friction(float normalMag, Vector3 velocity)
+    {
+        if (velocity.magnitude < (staticFriction * normalMag))
         {
-            if (velocity.magnitude < (staticFriction * normalMag))
-            {
-                velocity = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                velocity += (dynamicFriction * normalMag) * -velocity.normalized;
-            }
+            velocity = new Vector3(0, 0, 0);
         }
-
-        public Vector3 Gravity(Vector3 velocity)
+        else
         {
-            Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
-            velocity += gravity;
+            velocity += (dynamicFriction * normalMag) * -velocity.normalized;
+        }
+    }
+
+    public Vector3 Friction(float normalMag, float staticF, float dynamicF, Vector3 velocity)
+    {
+        if (velocity.magnitude < (staticF * normalMag))
+        {
+            velocity = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            velocity += (dynamicF * normalMag) * -velocity.normalized;
+        }
+        return velocity;
+    }
+    public Vector3 Gravity(Vector3 velocity)
+    {
+        Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
+        velocity += gravity;
+
+
 
         return velocity;
-        }
+    }
 
     public Vector3 Decelerate(Vector3 velocity)
     {
@@ -140,4 +155,18 @@ using UnityEngine;
         velocity -= tempVel.normalized * deceleration * Time.deltaTime;
         return velocity;
     }
+
+    public Vector2 NormalForce(Vector2 velocity, Vector2 normal)
+    {
+        float dotProduct = Vector2.Dot(velocity, normal);
+        if (dotProduct > 0)
+        {
+            dotProduct = 0f;
+        }
+        Vector2 projection = dotProduct * normal;
+        return -projection;
+
+    }
+
+
 }
