@@ -42,27 +42,7 @@ public class GroundedState : CharacterBaseState
         #region Input
         Vector3 input = GetDirectionInput();
 
-
-        if (input.magnitude <= 0)
-        {
-            Decelerate();
-            playingParticles = false;
-        }
-        else
-        {
-            Accelerate(input);
-
-            if (!playingParticles)
-            {
-                ParticleEvent particleEvent = new ParticleEvent();
-                particleEvent.particles = walkingParticles;
-                particleEvent.objectPlaying = owner.gameObject;
-                EventSystem.Current.FireEvent(particleEvent);
-
-                playingParticles = !playingParticles;
-            }
-
-        }
+        CheckInput(input);
         #endregion
         ChangeCharRotation();
 
@@ -109,6 +89,32 @@ public class GroundedState : CharacterBaseState
 
         }
 
+
+    }
+
+    //checks for the current input. Creates walking particles. 
+    private void CheckInput(Vector3 input)
+    {
+        if (input.magnitude <= 0)
+        {
+            Decelerate();
+            playingParticles = false;
+        }
+        else
+        {
+            Accelerate(input);
+
+            if (!playingParticles)
+            {
+                ParticleEvent particleEvent = new ParticleEvent();
+                particleEvent.particles = walkingParticles;
+                particleEvent.objectPlaying = owner.gameObject;
+                EventSystem.Current.FireEvent(particleEvent);
+
+                playingParticles = !playingParticles;
+            }
+
+        }
 
     }
 
