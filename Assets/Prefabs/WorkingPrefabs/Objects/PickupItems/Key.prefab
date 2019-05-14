@@ -16,10 +16,9 @@ GameObject:
   - component: {fileID: 6930314266012103729}
   - component: {fileID: 6930314266012103731}
   - component: {fileID: 6930314266012103730}
-  - component: {fileID: 6930314266012103739}
   - component: {fileID: 489314795336040033}
   m_Layer: 17
-  m_Name: Key (1) 1 (1)
+  m_Name: Key
   m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 0}
 --- !u!114 &2848477392517986134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,19 +158,6 @@ MonoBehaviour:
   respawnEnvironment:
     serializedVersion: 2
     m_Bits: 16
---- !u!114 &6930314266012103739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4638430119202039375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupSound: {fileID: 0}
 --- !u!114 &489314795336040033
 MonoBehaviour:
   m_ObjectHideFlags: 0

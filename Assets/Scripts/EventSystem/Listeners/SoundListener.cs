@@ -1,4 +1,5 @@
 ﻿//Author: Paschalis Tolios 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,18 +14,22 @@ namespace Callback
         private readonly float timeToWait = 0.4f;
         private GameObject go;
         private AudioSource audioSource;
+
+        //Register Listener
         void Start()
         {
             EventSystem.Current.RegisterListener<SoundEvent>(PlaySound);
             EventSystem.Current.RegisterListener<StopSoundEvent>(StopSound);
 
         }
+
         //Stop sound that is being looped
         void StopSound(StopSoundEvent info)
         {
             Destroy(info.AudioPlayer);
         }
 
+        //Instantiate an AudioPlayer
         void PlaySound(SoundEvent info)
         {
             if (!cooldown)
@@ -41,6 +46,7 @@ namespace Callback
                 StartCoroutine(Cooldown());
             }
         }
+
         //Cooldown so that not too many sound being instantiated the same time
         IEnumerator Cooldown()
         {
@@ -48,6 +54,7 @@ namespace Callback
             yield return new WaitForSeconds(timeToWait);
             cooldown = false;
         }
+
         //Unregister Listener
         //private void OnDisable()
         //{
@@ -56,7 +63,6 @@ namespace Callback
         //        EventSystem.Current.UnregisterListener<SoundEvent>(PlaySound);
         //        EventSystem.Current.UnregisterListener<StopSoundEvent>(StopSound);
         //    }
-
         //}
 
     }
