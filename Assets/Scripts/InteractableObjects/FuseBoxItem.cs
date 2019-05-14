@@ -1,10 +1,11 @@
 ﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FuseBoxItem : MonoBehaviour
+public class FuseBoxItem : Interactable
 {
     protected const float skinWidth = 0.2f;
     private PhysicsScript body;
@@ -73,5 +74,15 @@ public class FuseBoxItem : MonoBehaviour
             }
             Destroy(gameObject); 
         }
+    }
+
+    public override void StartInteraction()
+    {
+        isHeld = !isHeld;
+    }
+
+    public override AudioClip GetAudioClip()
+    {
+        return null;
     }
 }

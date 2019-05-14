@@ -1,4 +1,5 @@
 ﻿//Author: Paschalis Tolios
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,11 @@ public class Door : Interactable
     private GameObject parent;
 
     [Header("Sounds")]
-    [SerializeField]
-    private AudioClip doorOpenSound, doorCloseSound, unlockDoorSound;
+    [SerializeField] private AudioClip doorOpenSound;
+    [SerializeField] private AudioClip doorCloseSound;
+    [SerializeField] private AudioClip unlockDoorSound;
+
+
     public override AudioClip GetAudioClip()
     {
         return doorOpenSound;

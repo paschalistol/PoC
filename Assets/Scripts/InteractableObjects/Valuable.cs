@@ -1,9 +1,11 @@
-﻿//Author: Johan Ekman
+﻿//Main Author: Johan Ekman
+//Secondary Author: Paschalis Tolios
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Valuable : MonoBehaviour
+public class Valuable : Interactable
 {
 
     public float value;
@@ -35,12 +37,21 @@ public class Valuable : MonoBehaviour
 
     public void AddPoint()
     {
-        Debug.Log("0");
+
+
+    }
+
+    public override void StartInteraction()
+    {
         AddPointEvent addPointInfo = new AddPointEvent();
         addPointInfo.eventDescription = "Getting points!";
         addPointInfo.point = value;
         EventSystem.Current.FireEvent(addPointInfo);
         Destroy(gameObject);
+    }
 
+    public override AudioClip GetAudioClip()
+    {
+        return null;
     }
 }

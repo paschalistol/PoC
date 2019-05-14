@@ -15,10 +15,13 @@ public class GroundedState : CharacterBaseState
     public float direction;
     [SerializeField] private AudioClip groundedSound;
     [SerializeField] private float dynamicFrictionCoeff = 0.35f, maxSpeedCoeff = 10;
+    private GameObject walkingParticles;
+    private bool playingParticles;
+
     public override void EnterState()
     {
         base.EnterState();
-
+        walkingParticles = owner.walkingParticles; 
         dynamicFriction = dynamicFrictionCoeff;
         MaxSpeed = maxSpeedCoeff;
         SoundEvent soundEvent = new SoundEvent();
@@ -39,15 +42,7 @@ public class GroundedState : CharacterBaseState
         #region Input
         Vector3 input = GetDirectionInput();
 
-
-        if (input.magnitude <= 0)
-        {
-            Decelerate();
-        }
-        else
-        {
-            Accelerate(input);
-        }
+        CheckInput(input);
         #endregion
         ChangeCharRotation();
 
@@ -84,11 +79,6 @@ public class GroundedState : CharacterBaseState
         owner.transform.position += Velocity * Time.deltaTime;
 
 
-        if (IsGliding())
-        {
-            owner.ChangeState<GlidingState>();
-        }
-
         if(TakingLift2() != null)
         {
             owner.ChangeState<OnLiftState>();
@@ -102,6 +92,32 @@ public class GroundedState : CharacterBaseState
 
     }
 
+    //checks for the current input. Creates walking particles. 
+    private void CheckInput(Vector3 input)
+    {
+        if (input.magnitude <= 0)
+        {
+            Decelerate();
+            playingParticles = false;
+        }
+        else
+        {
+            Accelerate(input);
+
+            if (!playingParticles)
+            {
+                ParticleEvent particleEvent = new ParticleEvent();
+                particleEvent.particles = walkingParticles;
+                particleEvent.objectPlaying = owner.gameObject;
+                EventSystem.Current.FireEvent(particleEvent);
+
+                playingParticles = !playingParticles;
+            }
+
+        }
+
+    }
+
     void Speed()
     {
         speed = Input.GetAxis("Vertical");
@@ -109,11 +125,12 @@ public class GroundedState : CharacterBaseState
 
         anim.SetFloat("speed", speed);
         anim.SetFloat("direction", direction);
+    }
 
+    private IEnumerator humansBeWalking()
+    {
 
-
-
-
+        yield return new WaitForSeconds(5);
     }
 
 }

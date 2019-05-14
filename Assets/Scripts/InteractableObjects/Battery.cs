@@ -1,12 +1,13 @@
 ﻿//Main Author: Paschalis Tolios
 //Secondary author: Emil Dahl
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : MonoBehaviour
+public class Battery : Interactable
 {
-    
+
     public GameObject fuseBox;
     public GameObject lift;
     private bool used = false;
@@ -23,8 +24,8 @@ public class Battery : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
-            Debug.Log("p: " + onfuseboxActivationParticles + "g: " + gameObject);
-            Debug.Log("EventFired!");
+        Debug.Log("p: " + onfuseboxActivationParticles + "g: " + gameObject);
+        Debug.Log("EventFired!");
     }
 
 
@@ -52,7 +53,7 @@ public class Battery : MonoBehaviour
         bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out raycastHit, transform.rotation, transform.localScale.y + 0.003f);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
         {
-           
+
             InteractionEvent interactedInfo = new InteractionEvent();
             interactedInfo.eventDescription = "Pressed item has been activated: ";
             interactedInfo.interactedObject = gameObject;
@@ -63,12 +64,22 @@ public class Battery : MonoBehaviour
             //ParticleEvent particleEvent = new ParticleEvent();
             //particleEvent.eventDescription = "Particles Created!";
             //particleEvent.objectPlaying = gameObject;
-            //particleEvent.particles = particles;
+            //particleEvent.particles = onfuseboxActivationParticles;
 
             //EventSystem.Current.FireEvent(particleEvent);
 
             Destroy(gameObject);
             // used = true;
         }
+    }
+
+    public override void StartInteraction()
+    {
+        isHeld = !isHeld;
+    }
+
+    public override AudioClip GetAudioClip()
+    {
+        return null;
     }
 }

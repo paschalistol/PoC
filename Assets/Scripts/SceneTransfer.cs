@@ -5,14 +5,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransfer : MonoBehaviour
+public class SceneTransfer : Interactable
 {
     [SerializeField]
-    private int levelToLoad = 1;
-    public void ChangeLevel()
-    {
-        GameObject parent = transform.parent.gameObject;
-        SceneManager.LoadScene("Level 3");
+    private AudioClip changeSceneSound;
 
+    [SerializeField]
+    private int levelToLoad = 1;
+    private SoundEvent soundEvent;
+    public override AudioClip GetAudioClip()
+    {
+        return changeSceneSound;
+    }
+
+    public override void StartInteraction()
+    {
+        soundEvent = new SoundEvent
+        {
+            eventDescription = "PickUp Sound",
+            audioClip = changeSceneSound,
+            looped = false
+        };
+        if (soundEvent.audioClip != null)
+        {
+            EventSystem.Current.FireEvent(soundEvent);
+            StartCoroutine(WaitForSound());
+        }
+        SceneManager.LoadScene("Level 3");
+    }
+    IEnumerator  WaitForSound()
+    {
+        while (soundEvent.objectPlaying != null)
+        {
+
+        yield return null;
+        }
     }
 }

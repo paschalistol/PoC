@@ -1,23 +1,25 @@
-﻿//Emil Dahl
+﻿//Author: Paschalis Tolios
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionListener : MonoBehaviour
 {
-    public GameObject lift;
+    private GameObject objectToInteract;
     void Start()
     {
-
-
-        EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnSwitch);
-  
+        EventSystem.Current.RegisterListener<InteractionEvent>(Interacted);
     }
-    // Switch between turning on or off the switch (this code will be the bases for
-    // most interactions with electrical power withing the game) 
-    void OnSwitch(SwitchLiftEvent info)
+
+    void Interacted(InteractionEvent info)
     {
-            lift.GetComponent<Lift2>().onOff = !lift.GetComponent<Lift2>().onOff;
+        objectToInteract = info.interactedObject;
+
+        if (objectToInteract.GetComponent<Interactable>() != null)
+        {
+            info.interactedObject.GetComponent<Interactable>().StartInteraction();
+
+        }
     }
 }
 

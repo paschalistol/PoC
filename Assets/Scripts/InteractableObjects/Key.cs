@@ -1,10 +1,11 @@
 ﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : Interactable
 {
     [SerializeField] private GameObject lockedDoor;
     private PhysicsScript body;
@@ -14,8 +15,6 @@ public class Key : MonoBehaviour
     protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
-    // private Vector3 startPosition;
-
 
     protected const float skinWidth = 0.2f;
 
@@ -69,7 +68,7 @@ public class Key : MonoBehaviour
                 //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
 
                 //EventSystem.Current.FireEvent(interactedInfo);
-                lockedDoor.GetComponent<Door>().StartInteraction();
+                lockedDoor.GetComponent<Interactable>().StartInteraction();
                 Destroy(gameObject);
                 used = true;
             }
@@ -79,10 +78,8 @@ public class Key : MonoBehaviour
 
 
 
-    public void KeyInteraction()
+    public override void StartInteraction()
     {
-
-        Debug.Log("walla does it work now?");
         if (isHeld == true)
         {
             transform.parent = null;
@@ -90,9 +87,8 @@ public class Key : MonoBehaviour
         isHeld = !isHeld;
     }
 
-
-
-
-
-
+    public override AudioClip GetAudioClip()
+    {
+        return null;
+    }
 }

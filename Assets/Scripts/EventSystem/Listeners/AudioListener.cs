@@ -19,7 +19,6 @@ public class AudioListener : MonoBehaviour
     
     void OnLiftSound(SwitchLiftEvent info)
     {
-
         AudioSource source = GetComponent<AudioSource>();
         source.clip = info.audioClip;
         source.Play();
