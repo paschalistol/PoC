@@ -17,6 +17,7 @@ public class CharacterStateMachine : StateMachine
     public LayerMask trampoline;
     public LayerMask goal;
     public float WobbleFactor = 0.50f;
+    public GameObject walkingParticles;
  
     public float test;
     [HideInInspector] public Vector3 velocity;
