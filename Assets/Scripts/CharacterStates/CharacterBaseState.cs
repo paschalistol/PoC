@@ -133,7 +133,7 @@ public class CharacterBaseState : State
 
         if (Velocity.magnitude > MaxSpeed)
         {
-            Vector3 temp = Velocity.normalized;
+            Vector3 temp = Velocity;
             temp.y = 0;
             temp = temp.normalized * MaxSpeed;
             temp.y = Velocity.y;
@@ -151,7 +151,7 @@ public class CharacterBaseState : State
     {
         if (Velocity.magnitude < (staticFriction * normalMag))
         {
-            Velocity = new Vector3(0, 0, 0);
+            Velocity = Vector3.zero;
         }
         else
         {
@@ -193,8 +193,8 @@ public class CharacterBaseState : State
             }
             else if (raycastHit.distance < skinWidth / 2)
             {
-
-                owner.transform.position += new Vector3(0, skinWidth, 0);
+                
+          //      owner.transform.position += new Vector3(0, skinWidth, 0);
             }
 
             CollisionCheck();
