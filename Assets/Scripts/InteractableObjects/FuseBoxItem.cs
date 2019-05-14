@@ -63,7 +63,7 @@ public class FuseBoxItem : MonoBehaviour
             if (count == itemQuantity)
             {
                 //Run particles on fusebox activation of door
-                lockedDoor.GetComponent<Door>().InteractWithDoor();
+                lockedDoor.GetComponent<Door>().StartInteraction();
                 OpenDoorEvent doorEvent = new OpenDoorEvent();
                 doorEvent.gameObject = gameObject;
                 doorEvent.eventDescription = "A door has been opened!";

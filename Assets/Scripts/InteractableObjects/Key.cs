@@ -69,7 +69,7 @@ public class Key : MonoBehaviour
                 //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
 
                 //EventSystem.Current.FireEvent(interactedInfo);
-                lockedDoor.GetComponent<Door>().InteractWithDoor();
+                lockedDoor.GetComponent<Door>().StartInteraction();
                 Destroy(gameObject);
                 used = true;
             }

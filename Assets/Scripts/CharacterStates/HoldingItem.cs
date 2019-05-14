@@ -29,7 +29,7 @@ public class HoldingItem : HoldItemBase
             soundEvent = new SoundEvent();
             soundEvent.gameObject = owner.gameObject;
             soundEvent.eventDescription = "PickUp Sound";
-            soundEvent.audioClip = objectCarried.GetComponent<Interaction>().GetAudioClip();
+            soundEvent.audioClip = objectCarried.GetComponent<Interactable>().GetAudioClip();
             soundEvent.looped = false;
             if (soundEvent.audioClip != null)
             {

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : Interactable
 {
     private PhysicsScript body;
     protected Vector3 velocity;
@@ -13,7 +13,13 @@ public class Box : MonoBehaviour
     protected const float skinWidth = 0.2f;
 
     private bool isHeld = false;
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] pickupSounds;
+    public override AudioClip GetAudioClip()
+    {
 
+        return pickupSounds[Random.Range(0, pickupSounds.Length)];
+    }
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -32,15 +38,10 @@ public class Box : MonoBehaviour
         }
     }
 
-    public void BoxInteraction()
+    public override void StartInteraction()
     {
-
         isHeld = !isHeld;
     }
-
-
-
-
 
 
 }

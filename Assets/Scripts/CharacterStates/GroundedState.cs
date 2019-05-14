@@ -13,19 +13,24 @@ public class GroundedState : CharacterBaseState
     public Animator anim;
     public float speed;
     public float direction;
-    private object rb;
-    int jumpHash = Animator.StringToHash("Jump");
-    int runStateHash = Animator.StringToHash("Base Layer.Run");
-
-
+    [SerializeField] private AudioClip groundedSound;
+    [SerializeField] private float dynamicFrictionCoeff = 0.35f, maxSpeedCoeff = 10;
     public override void EnterState()
     {
         base.EnterState();
 
-        dynamicFriction = 0.35f;
-        MaxSpeed = 10;
-
-     //   anim = owner.GetComponent<Animator>();
+        dynamicFriction = dynamicFrictionCoeff;
+        MaxSpeed = maxSpeedCoeff;
+        SoundEvent soundEvent = new SoundEvent();
+        soundEvent.gameObject = owner.gameObject;
+        soundEvent.eventDescription = "Grounded Sound";
+        soundEvent.audioClip = groundedSound;
+        soundEvent.looped = false;
+        if (soundEvent.audioClip != null)
+        {
+            EventSystem.Current.FireEvent(soundEvent);
+        }
+        //   anim = owner.GetComponent<Animator>();
     }
 
     public override void ToDo()

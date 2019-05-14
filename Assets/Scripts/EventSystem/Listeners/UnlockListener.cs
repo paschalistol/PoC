@@ -17,6 +17,6 @@ public class UnlockListener : MonoBehaviour
     void UnlockDoorInteraction(UnlockEvent doorInfo)
     {
         objectToInteract = doorInfo.doorObject;
-        objectToInteract.GetComponent<Door>().InteractWithDoor();
+     //   objectToInteract.GetComponent<Door>().InteractWithDoor();
     }
 }

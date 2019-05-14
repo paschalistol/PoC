@@ -9,9 +9,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character/InTheAir")]
 public class InTheAirState : CharacterBaseState
 {
+    [SerializeField] private AudioClip jumpSound;
     public override void EnterState()
     {
         base.EnterState();
+        SoundEvent soundEvent = new SoundEvent();
+        soundEvent.gameObject = owner.gameObject;
+        soundEvent.eventDescription = "Jump Sound";
+        soundEvent.audioClip = jumpSound;
+        soundEvent.looped = false;
+        if (soundEvent.audioClip != null)
+        {
+            EventSystem.Current.FireEvent(soundEvent);
+        }
 
     }
     public override void ToDo()

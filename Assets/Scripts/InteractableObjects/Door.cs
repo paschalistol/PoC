@@ -3,16 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : Interactable
 {
     [SerializeField]
     private int rotationSpeed = 40, rotation=90;
-    public void InteractWithDoor()
+    private GameObject parent;
+
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioClip doorOpenSound, doorCloseSound, unlockDoorSound;
+    public override AudioClip GetAudioClip()
     {
-        GameObject parent = transform.parent.gameObject;
-        StartCoroutine(RotateDoor(parent));
-        
+        return doorOpenSound;
     }
+
+    private void Awake()
+    {
+        parent = transform.parent.gameObject;
+    }
+
+    public override void StartInteraction()
+    {
+        StartCoroutine(RotateDoor(parent)); 
+    }
+
     IEnumerator RotateDoor(GameObject parent)
     {
         float temp = parent.transform.eulerAngles.y + rotation;
