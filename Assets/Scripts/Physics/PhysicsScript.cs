@@ -14,10 +14,10 @@ public static class PhysicsScript
     private static  float gravityConstant = 5f;
 
 
-     private   RaycastHit raycastHit;
 
     public static Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth, LayerMask layerMask)
     {
+        RaycastHit raycastHit;
         #region Raycast
 
         Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
