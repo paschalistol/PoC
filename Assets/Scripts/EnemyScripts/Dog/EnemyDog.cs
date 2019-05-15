@@ -9,9 +9,10 @@ public class EnemyDog : StateMachine
     // Attributes
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
-    public LayerMask visionMask;
-    public GameObject player;
-    public Oldboi oldboi;
+    [SerializeField]public LayerMask visionMask { get; set; }
+    [SerializeField]public LayerMask safeZoneMask { get; set; }
+    [SerializeField]public GameObject player { get; set; }
+    [SerializeField]public Oldboi oldboi { get; set; }
 
    // public GameObject audioSpeaker;
 

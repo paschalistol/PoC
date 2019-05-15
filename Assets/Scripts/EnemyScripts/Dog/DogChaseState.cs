@@ -33,15 +33,15 @@ public class DogChaseState : DogBaseState
     }
     public override void ToDo()
     {
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance || InSafeZone())
+            owner.ChangeState<DogPatrolState>();
+        else 
         {
-
             owner.agent.SetDestination(owner.player.transform.position);
-
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 owner.ChangeState<DogDetectionState>();
-        }  else
-            owner.ChangeState<DogPatrolState>();
+        }
+
 
     }
 }
