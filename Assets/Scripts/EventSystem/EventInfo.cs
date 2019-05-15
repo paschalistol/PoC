@@ -105,5 +105,11 @@ public class AddPointEvent : DebugEvent
     public float point;
 }
 
+public class MusicBasedOnChased : SoundEvent
+{
+    public bool enemyChasing;
+
+}
+
 public class RespawnEvent : DebugEvent { public GameObject gameObject; }
  
