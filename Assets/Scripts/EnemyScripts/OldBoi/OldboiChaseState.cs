@@ -42,7 +42,7 @@ public class OldboiChaseState : OldboiBaseState
         Quaternion rotation = Quaternion.LookRotation(direction);
         owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, speed);
 
-        Debug.Log(bustedDistance);
+        //Debug.Log(bustedDistance);
 
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&

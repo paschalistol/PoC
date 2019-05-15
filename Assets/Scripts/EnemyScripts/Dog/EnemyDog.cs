@@ -9,10 +9,11 @@ public class EnemyDog : StateMachine
     // Attributes
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
-    [SerializeField]public LayerMask visionMask { get; set; }
-    [SerializeField]public LayerMask safeZoneMask { get; set; }
-    [SerializeField]public GameObject player { get; set; }
-    [SerializeField]public Oldboi oldboi { get; set; }
+    //public LayerMask visionMask;
+    public LayerMask safeZoneMask;
+    public GameObject player;
+    public Oldboi oldboi; 
+    
 
    // public GameObject audioSpeaker;
 
@@ -31,6 +32,7 @@ public class EnemyDog : StateMachine
     {
         return smellDistance;
     }
+   
 }
 
 

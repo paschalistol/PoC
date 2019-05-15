@@ -17,7 +17,7 @@ public class ParticleListener : MonoBehaviour
 
     void RunParticles(ParticleEvent eventInfo)
     {
-        Debug.Log("RunningParticles!");
+        //Debug.Log("RunningParticles!");
         GameObject go = Instantiate(eventInfo.particles);
         ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;

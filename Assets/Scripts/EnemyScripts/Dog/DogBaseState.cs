@@ -34,16 +34,30 @@ public class DogBaseState : State
         this.owner = (EnemyDog)owner;
     }
 
+  
+
     protected bool InSafeZone()
     {
+        RaycastHit raycastHit;
+        #region Raycast
 
-        Vector3 collisionVector = PhysicsScript.CollisionCheck(owner.agent.velocity, boxCollider, skinWidth, owner.safeZoneMask);
-        return collisionVector == Vector3.zero ? true : false;
+        Physics.BoxCast(boxCollider.transform.position, boxCollider.transform.localScale / 2,
+            owner.agent.velocity, out raycastHit, boxCollider.transform.rotation, owner.agent.velocity.magnitude * Time.deltaTime + skinWidth, owner.safeZoneMask);
+        #endregion
+        if(raycastHit.collider != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
 
 
-        //fieldOfView = owner.GetFieldOfView();
+    //fieldOfView = owner.GetFieldOfView();
     /* protected bool LineOfSight()
      {
          //Debug.Log(owner.agent.velocity.normalized);

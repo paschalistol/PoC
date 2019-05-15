@@ -8330,6 +8330,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1978390215}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &615985993
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615985985}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &618895632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11178,6 +11194,9 @@ MonoBehaviour:
   goal:
     serializedVersion: 2
     m_Bits: 33554432
+  safezone:
+    serializedVersion: 2
+    m_Bits: 134217728
   WobbleFactor: 0
   walkingParticles: {fileID: 7177482580394495241, guid: 2200f2e90f42727498d18c1dca87bbe4,
     type: 3}
@@ -15280,9 +15299,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1203274669}
   - component: {fileID: 1203274668}
+  - component: {fileID: 1203274670}
   m_Layer: 27
   m_Name: SafeZone
-  m_TagString: Untagged
+  m_TagString: Safezone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15295,7 +15315,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203274667}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -15308,12 +15328,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203274667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.42, y: -14.09, z: 60.13}
-  m_LocalScale: {x: 21.20777, y: 3.5725152, z: 26.003262}
+  m_LocalPosition: {x: 91.2, y: -14.09, z: 62.8}
+  m_LocalScale: {x: 85.36764, y: 3.5725152, z: 26.003262}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1203274670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203274667}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1214368558
 GameObject:
   m_ObjectHideFlags: 0
@@ -21760,6 +21796,16 @@ PrefabInstance:
       propertyPath: oldboi
       value: 
       objectReference: {fileID: 1130881430}
+    - target: {fileID: 2508828259477824203, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: safeZoneMask.m_Bits
+      value: 134217728
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508828259477824202, guid: e183968d6c5976c49ba58cf6ebd948e8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2508828259477824192, guid: e183968d6c5976c49ba58cf6ebd948e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e183968d6c5976c49ba58cf6ebd948e8, type: 3}
@@ -23764,6 +23810,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
+        type: 3}
+      propertyPath: dogs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 845673720}
+    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
+        type: 3}
+      propertyPath: dogs.Array.data[0]
+      value: 
+      objectReference: {fileID: 863057878}
+    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
+        type: 3}
+      propertyPath: dogs.Array.data[1]
+      value: 
+      objectReference: {fileID: 615985985}
     - target: {fileID: 1702820384596381218, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23834,26 +23900,6 @@ PrefabInstance:
       propertyPath: points.Array.data[2]
       value: 
       objectReference: {fileID: 485023967}
-    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
-        type: 3}
-      propertyPath: dogs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 845673720}
-    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
-        type: 3}
-      propertyPath: dogs.Array.data[0]
-      value: 
-      objectReference: {fileID: 863057878}
-    - target: {fileID: 1702820384596381222, guid: fd19dfbd7ecc6864d81e196ee0bf6e83,
-        type: 3}
-      propertyPath: dogs.Array.data[1]
-      value: 
-      objectReference: {fileID: 615985985}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd19dfbd7ecc6864d81e196ee0bf6e83, type: 3}
 --- !u!1001 &8927170132398101899
