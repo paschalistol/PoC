@@ -13,9 +13,6 @@ GameObject:
   - component: {fileID: 3845103618715364816}
   - component: {fileID: 3845103618715364823}
   - component: {fileID: 3845103618715364822}
-  - component: {fileID: 3845103618715364819}
-  - component: {fileID: 3845103618715364844}
-  - component: {fileID: 5242048764366224628}
   m_Layer: 21
   m_Name: FuseBoxItem
   m_TagString: FuseBoxItem
@@ -111,46 +108,3 @@ MonoBehaviour:
   fuseBox: {fileID: 0}
   itemQuantity: 2
   isHeld: 0
---- !u!114 &3845103618715364819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845103618715364821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504bab6f05d5b53499346d4258712889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  environment:
-    serializedVersion: 2
-    m_Bits: 512
-  respawnEnvironment:
-    serializedVersion: 2
-    m_Bits: 16
---- !u!114 &3845103618715364844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845103618715364821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01023fc8b3924f64bb0cd5194704c244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5242048764366224628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845103618715364821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf9e527f39d06148bcc44cfb1216a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0, z: 0}

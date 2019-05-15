@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Box : Interactable
 {
-    private PhysicsScript body;
+   
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
 
@@ -24,7 +24,7 @@ public class Box : Interactable
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        body = gameObject.GetComponent<PhysicsScript>();
+        
         isHeld = false;
     }
 
@@ -32,9 +32,9 @@ public class Box : Interactable
     {
         if (!isHeld)
         {
-            velocity = body.Decelerate(velocity);
-            velocity = body.Gravity(velocity);
-            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.physics.Decelerate(velocity);
+            velocity = PhysicsScript.physics.Gravity(velocity);
+            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
     }

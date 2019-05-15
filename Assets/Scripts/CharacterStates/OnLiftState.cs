@@ -13,7 +13,8 @@ public class OnLiftState : GroundedState
     public override void EnterState()
     {
         base.EnterState();
-
+        
+        
     }
 
     public override void ToDo()
@@ -53,7 +54,7 @@ public class OnLiftState : GroundedState
 
         CollisionCheck();
 
-        owner.transform.position += (Velocity) *Time.deltaTime;
+        owner.transform.position += (owner.lift2.GetComponent<Lift2>().GetVelocity() +Velocity) *Time.deltaTime;
 
 
         if (!IsGrounded())
@@ -66,10 +67,6 @@ public class OnLiftState : GroundedState
 
             owner.ChangeState<GroundedState>();
         }
-    }
-    public override void ExitState()
-    {
-
-
+        // owner.transform.parent = owner.lift2.transform;
     }
 }

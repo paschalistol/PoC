@@ -8,7 +8,6 @@ using UnityEngine;
 public class FuseBoxItem : Interactable
 {
     protected const float skinWidth = 0.2f;
-    private PhysicsScript body;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     [SerializeField] private GameObject lockedDoor;
@@ -24,12 +23,12 @@ public class FuseBoxItem : Interactable
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        body = gameObject.GetComponent<PhysicsScript>();
+        
         isHeld = false;
     }
     void Update()
     {
-        if (body.RespawnCollisionCheck(velocity, boxCollider))
+        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
         {
             RespawnEvent respawnEvent = new RespawnEvent();
             respawnEvent.gameObject = gameObject;
@@ -39,9 +38,9 @@ public class FuseBoxItem : Interactable
 
         if (!isHeld)
         {
-            velocity = body.Decelerate(velocity);
-            velocity = body.Gravity(velocity);
-            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.physics.Decelerate(velocity);
+            velocity = PhysicsScript.physics.Gravity(velocity);
+            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
         

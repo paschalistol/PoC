@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da283272e2a4ab4190f29b3ec95a0d4, type: 3}
   m_Name: GroundedState
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  speed: 0
+  direction: 0
+  groundedSound: {fileID: 8300000, guid: 256b816fb7f06c24a9c1c97a3fb251c6, type: 3}
+  dynamicFrictionCoeff: 0.35
+  maxSpeedCoeff: 10

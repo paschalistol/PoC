@@ -14,7 +14,7 @@ public class Battery : Interactable
     [SerializeField] private GameObject onfuseboxActivationParticles;
 
     protected const float skinWidth = 0.1f;
-    private PhysicsScript body;
+
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     [HideInInspector] public bool isHeld;
@@ -22,7 +22,6 @@ public class Battery : Interactable
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        body = gameObject.GetComponent<PhysicsScript>();
         isHeld = false;
         Debug.Log("p: " + onfuseboxActivationParticles + "g: " + gameObject);
         Debug.Log("EventFired!");
@@ -33,7 +32,7 @@ public class Battery : Interactable
     {
 
         Debug.Log("State of particles: " + onfuseboxActivationParticles);
-        if (body.RespawnCollisionCheck(velocity, boxCollider))
+        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
         {
             RespawnEvent respawnEvent = new RespawnEvent();
             respawnEvent.gameObject = gameObject;
@@ -43,9 +42,9 @@ public class Battery : Interactable
 
         if (!isHeld)
         {
-            velocity = body.Decelerate(velocity);
-            velocity = body.Gravity(velocity);
-            velocity = body.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.physics.Decelerate(velocity);
+            velocity = PhysicsScript.physics.Gravity(velocity);
+            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
             transform.position += velocity * Time.deltaTime;
         }
 

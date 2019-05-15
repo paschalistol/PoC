@@ -7,18 +7,10 @@ using UnityEngine;
 public class ParticleListener : MonoBehaviour
 {
     private GameObject ParticlesPrefab;
-    //private GameObject go;
 
     void Start()
     {
         EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
-        //EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
-
-        EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnLiftParticles);
-        EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorParticles);
-        EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxParticles);
-        //EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorSound);
-        //EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxSound);
 
         Debug.Log("Started");
     }
@@ -37,51 +29,6 @@ public class ParticleListener : MonoBehaviour
 
     }
 
-    //void StopParticles(StopParticleEvent eventInfo)
-    //{
-    //    Destroy(go);
-    //}
-
-
-    void OnLiftParticles(SwitchLiftEvent info)
-    {
-        GameObject go = Instantiate(ParticlesPrefab);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
-        go.transform.position = info.speaker.transform.position;
-        system.Play();
-        StartCoroutine(ParticleDelay(system, go));
-        system.Pause();
-    }
-
-    void OpenDoorParticles(OpenDoorEvent info)
-    {
-        GameObject go = Instantiate(info.particles);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
-        go.transform.position = info.gameObject.transform.position;
-        system.Play();
-        StartCoroutine(ParticleDelay(system, go));
-        system.Pause();
-    }
-
-    void FuseBoxParticles(FuseBoxEvent info)
-    {
-        GameObject go = Instantiate(info.particles);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
-        go.transform.position = info.gameObject.transform.position;
-        system.Play();
-        StartCoroutine(ParticleDelay(system, go));
-    }
-
-    void WaterSplashParticles(WaterSplashEvent info)
-    {
-        GameObject go = Instantiate(info.particles);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
-        go.transform.position = info.gameObject.transform.position;
-        system.Play();
-        StartCoroutine(ParticleDelay(system, go));
-    }
-
-
     private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob)
     {
         while (system.isEmitting || system.particleCount > 0)
@@ -90,4 +37,58 @@ public class ParticleListener : MonoBehaviour
         }
        Destroy(ob);
     }
+
 }
+
+
+//Legacy
+
+//private GameObject go;
+//EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnLiftParticles);
+//EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorParticles);
+//EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxParticles);
+//EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
+//EventSystem.Current.RegisterListener<OpenDoorEvent>(OpenDoorSound);
+//EventSystem.Current.RegisterListener<FuseBoxEvent>(FuseBoxSound);
+//void StopParticles(StopParticleEvent eventInfo)
+//{
+//    Destroy(go);
+//}
+
+//void OnLiftParticles(SwitchLiftEvent info)
+//{
+//    GameObject go = Instantiate(ParticlesPrefab);
+//    ParticleSystem system = go.GetComponent<ParticleSystem>();
+//    go.transform.position = info.speaker.transform.position;
+//    system.Play();
+//    StartCoroutine(ParticleDelay(system, go));
+//    system.Pause();
+//}
+
+//void OpenDoorParticles(OpenDoorEvent info)
+//{
+//    GameObject go = Instantiate(info.particles);
+//    ParticleSystem system = go.GetComponent<ParticleSystem>();
+//    go.transform.position = info.gameObject.transform.position;
+//    system.Play();
+//    StartCoroutine(ParticleDelay(system, go));
+//    system.Pause();
+//}
+
+//void FuseBoxParticles(FuseBoxEvent info)
+//{
+//    GameObject go = Instantiate(info.particles);
+//    ParticleSystem system = go.GetComponent<ParticleSystem>();
+//    go.transform.position = info.gameObject.transform.position;
+//    system.Play();
+//    StartCoroutine(ParticleDelay(system, go));
+//}
+
+//void WaterSplashParticles(WaterSplashEvent info)
+//{
+//    GameObject go = Instantiate(info.particles);
+//    ParticleSystem system = go.GetComponent<ParticleSystem>();
+//    go.transform.position = info.gameObject.transform.position;
+//    system.Play();
+//    StartCoroutine(ParticleDelay(system, go));
+//}
