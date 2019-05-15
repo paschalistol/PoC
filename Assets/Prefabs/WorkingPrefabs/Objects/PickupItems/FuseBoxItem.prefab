@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2184230554110520116}
   - component: {fileID: 2184230554110520115}
   - component: {fileID: 2184230554110520114}
-  - component: {fileID: 2184230554110520119}
   - component: {fileID: 7182116400780294672}
   m_Layer: 21
   m_Name: FuseBoxItem
@@ -110,24 +109,9 @@ MonoBehaviour:
   fuseBox: {fileID: 0}
   itemQuantity: 2
   isHeld: 0
---- !u!114 &2184230554110520119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2184230554110520113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504bab6f05d5b53499346d4258712889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   environment:
     serializedVersion: 2
     m_Bits: 512
-  respawnEnvironment:
-    serializedVersion: 2
-    m_Bits: 16
 --- !u!114 &7182116400780294672
 MonoBehaviour:
   m_ObjectHideFlags: 0

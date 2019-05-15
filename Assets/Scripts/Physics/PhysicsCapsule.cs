@@ -1,31 +1,31 @@
-﻿//Main Author: Emil Dahl
+﻿////Main Author: Emil Dahl
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class PhysicsCapsule : MonoBehaviour
-{
+//public class PhysicsCapsule : MonoBehaviour
+//{
 
-    protected Vector3 velocity;
-    protected CapsuleCollider capsuleCollider;
-    private PhysicsScript body;
-    protected const float skinWidth = 0.2f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        capsuleCollider = GetComponent<CapsuleCollider>();
-        body = GetComponent<PhysicsScript>();
-    }
+//    protected Vector3 velocity;
+//    protected CapsuleCollider capsuleCollider;
+//    private PhysicsScript body;
+//    protected const float skinWidth = 0.2f;
+//    // Start is called before the first frame update
+//    void Start()
+//    {
+//        capsuleCollider = GetComponent<CapsuleCollider>();
+//        body = GetComponent<PhysicsScript>();
+//    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        velocity = body.Decelerate(velocity);
-        velocity = body.Gravity(velocity);
-        velocity = body.CollisionCheck(velocity, capsuleCollider, skinWidth);
+//    // Update is called once per frame
+//    void Update()
+//    {
+//        velocity = body.Decelerate(velocity);
+//        velocity = body.Gravity(velocity);
+//        velocity = body.CollisionCheck(velocity, capsuleCollider, skinWidth);
         
-        transform.position += velocity * Time.deltaTime;
+//        transform.position += velocity * Time.deltaTime;
 
-    }
-}
+//    }
+//}

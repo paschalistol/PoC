@@ -15,7 +15,7 @@ public class FuseBoxItem : Interactable
     [SerializeField]private int itemQuantity = 2;
     private static int count;
     [HideInInspector]public bool isHeld;
-
+    [SerializeField] private LayerMask environment;
     //[SerializeField] private GameObject particles;
     //[SerializeField] private GameObject endParticles;
 
@@ -28,19 +28,13 @@ public class FuseBoxItem : Interactable
     }
     void Update()
     {
-        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
-        {
-            RespawnEvent respawnEvent = new RespawnEvent();
-            respawnEvent.gameObject = gameObject;
 
-            EventSystem.Current.FireEvent(respawnEvent);
-        }
 
         if (!isHeld)
         {
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
         

@@ -12,7 +12,7 @@ public class ParticleListener : MonoBehaviour
     {
         EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
 
-        Debug.Log("Started");
+
     }
 
     void RunParticles(ParticleEvent eventInfo)
@@ -23,9 +23,9 @@ public class ParticleListener : MonoBehaviour
         go.transform.position = eventInfo.objectPlaying.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
-        Debug.Log("particles be like" + eventInfo.particles);
+
         
-        Debug.Log("EndingParticles!");
+    
 
     }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Box : Interactable
 {
-   
+    [SerializeField] private LayerMask environment;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
 
@@ -32,9 +32,9 @@ public class Box : Interactable
     {
         if (!isHeld)
         {
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
     }

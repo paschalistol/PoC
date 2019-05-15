@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5777606410677590959}
   - component: {fileID: 5777606410677590928}
   - component: {fileID: 5777606410677590956}
-  - component: {fileID: 571242004591992466}
   - component: {fileID: 571242004591992467}
   m_Layer: 11
   m_Name: Box
@@ -106,24 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766cb0e64086cbd498a0c228318b7a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &571242004591992466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5777606410677590930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504bab6f05d5b53499346d4258712889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  environment:
-    serializedVersion: 2
-    m_Bits: 528
-  respawnEnvironment:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &571242004591992467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f39224d38768f4eacada77213e12cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environment:
+    serializedVersion: 2
+    m_Bits: 512
   pickupSounds:
   - {fileID: 8300000, guid: 5a9387d3ddae6384684fbace69291d7c, type: 3}
   - {fileID: 8300000, guid: b6211062945d1474781d10a2e1e86386, type: 3}

@@ -12,7 +12,7 @@ public class Valuable : Interactable
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     protected const float skinWidth = 0.2f;
-    
+    [SerializeField] private LayerMask environment;
 
 
     void Start()
@@ -27,9 +27,9 @@ public class Valuable : Interactable
     void Update()
     {
         
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         
     }

@@ -4,36 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicsScript : MonoBehaviour
+public static class PhysicsScript
 {
 
-    public static PhysicsScript physics;
-
-    [SerializeField] private LayerMask environment;
-    [SerializeField] private LayerMask respawnEnvironment;
-
-    //protected CapsuleCollider capsuleCollider;
-    //protected const float skinWidth = 0.0f;
-    //protected Vector3 Velocity;
-    private float deceleration = 3;
-    protected Vector3 normal;
-    protected const float staticFriction = 0.55f;
-    protected float dynamicFriction;
-    protected const float gravityConstant = 5f;
+    private static float deceleration = 3;
+    private static Vector3 normal;
+    private static  float staticFriction = 0.55f;
+    private static float dynamicFriction;
+    private static  float gravityConstant = 5f;
 
 
-    private void Awake()
-    {
-        physics = this;
-    }
 
-    public Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth)
+    public static Vector3 CollisionCheck(Vector3 velocity, BoxCollider collider, float skinWidth, LayerMask layerMask)
     {
         RaycastHit raycastHit;
         #region Raycast
 
         bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
-            velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+            velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
         #endregion
         if (raycastHit.collider == null)
             return velocity;
@@ -50,19 +38,19 @@ public class PhysicsScript : MonoBehaviour
                 return velocity;
             }
 
-            CollisionCheck(velocity, collider, skinWidth);
+            CollisionCheck(velocity, collider, skinWidth, layerMask);
             return velocity;
         }
     }
 
-    public Vector3 CollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth)
+    public static Vector3 CollisionCheck(Vector3 velocity, CapsuleCollider collider, float skinWidth, LayerMask layerMask)
     {
         RaycastHit raycastHit;
         #region Raycast
-        Vector3 point1 = transform.position + collider.center + Vector3.up * (collider.height / 2 - collider.radius);
-        Vector3 point2 = transform.position + collider.center + Vector3.down * (collider.height / 2 - collider.radius);
+        Vector3 point1 = collider.transform.position + collider.center + collider.transform.up * (collider.height / 2 - collider.radius);
+        Vector3 point2 = collider.transform.position + collider.center - collider.transform.up * (collider.height / 2 - collider.radius);
         bool capsulecast = Physics.CapsuleCast(point1, point2,
-            collider.radius, velocity, out raycastHit, velocity.magnitude * Time.deltaTime + skinWidth, environment);
+            collider.radius, velocity, out raycastHit, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
         #endregion
         if (raycastHit.collider == null)
             return velocity;
@@ -79,29 +67,14 @@ public class PhysicsScript : MonoBehaviour
                 return velocity;
             }
 
-            CollisionCheck(velocity, collider, skinWidth);
+            CollisionCheck(velocity, collider, skinWidth, layerMask);
             return velocity;
         }
 
     }
 
-    public bool RespawnCollisionCheck(Vector3 velocity, BoxCollider collider)
-    {
 
-        #region Raycast
-        RaycastHit raycastHit;
-        bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale,
-               velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime, respawnEnvironment);
-        #endregion
-
-        if (raycastHit.collider != null)
-            return true;
-        return false;
-
-
-    }
-
-    public Vector3 Normal3D(Vector3 velocity, Vector3 normal)
+    public static Vector3 Normal3D(Vector3 velocity, Vector3 normal)
     {
 
         float dotProduct = Vector3.Dot(velocity, normal);
@@ -114,7 +87,7 @@ public class PhysicsScript : MonoBehaviour
         return -projection;
     }
 
-    private void Friction(float normalMag, Vector3 velocity)
+    private static void Friction(float normalMag, Vector3 velocity)
     {
         if (velocity.magnitude < (staticFriction * normalMag))
         {
@@ -126,7 +99,7 @@ public class PhysicsScript : MonoBehaviour
         }
     }
 
-    public Vector3 Friction(float normalMag, float staticF, float dynamicF, Vector3 velocity)
+    public static Vector3 Friction(float normalMag, float staticF, float dynamicF, Vector3 velocity)
     {
         if (velocity.magnitude < (staticF * normalMag))
         {
@@ -138,7 +111,7 @@ public class PhysicsScript : MonoBehaviour
         }
         return velocity;
     }
-    public Vector3 Gravity(Vector3 velocity)
+    public static Vector3 Gravity(Vector3 velocity)
     {
         Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;
         velocity += gravity;
@@ -148,7 +121,7 @@ public class PhysicsScript : MonoBehaviour
         return velocity;
     }
 
-    public Vector3 Decelerate(Vector3 velocity)
+    public static Vector3 Decelerate(Vector3 velocity)
     {
         Vector3 tempVel = new Vector3(velocity.x, 0, velocity.z);
         //Vector3 tempVel = new Vector3(Velocity.x, Velocity.y, Velocity.z);
@@ -156,7 +129,7 @@ public class PhysicsScript : MonoBehaviour
         return velocity;
     }
 
-    public Vector2 NormalForce(Vector2 velocity, Vector2 normal)
+    public static Vector2 NormalForce(Vector2 velocity, Vector2 normal)
     {
         float dotProduct = Vector2.Dot(velocity, normal);
         if (dotProduct > 0)

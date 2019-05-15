@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Battery : Interactable
 {
-
+    [SerializeField] private LayerMask environment;
     public GameObject fuseBox;
     public GameObject lift;
     private bool used = false;
@@ -23,28 +23,22 @@ public class Battery : Interactable
     {
         boxCollider = GetComponent<BoxCollider>();
         isHeld = false;
-        Debug.Log("p: " + onfuseboxActivationParticles + "g: " + gameObject);
-        Debug.Log("EventFired!");
+
+
     }
 
 
     private void Update()
     {
 
-        Debug.Log("State of particles: " + onfuseboxActivationParticles);
-        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
-        {
-            RespawnEvent respawnEvent = new RespawnEvent();
-            respawnEvent.gameObject = gameObject;
 
-            EventSystem.Current.FireEvent(respawnEvent);
-        }
+
 
         if (!isHeld)
         {
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
 

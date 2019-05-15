@@ -9,7 +9,7 @@ public class Key : Interactable
 {
     [SerializeField] private GameObject lockedDoor;
     [SerializeField] private GameObject[] unlockableDoors;
-    
+    [SerializeField] private LayerMask environment;
     [HideInInspector] public bool used = false;
 
     protected Vector3 velocity;
@@ -31,21 +31,14 @@ public class Key : Interactable
     void Update()
     {
 
-        if (PhysicsScript.physics.RespawnCollisionCheck(velocity, boxCollider))
-        {
-            RespawnEvent respawnEvent = new RespawnEvent();
-            respawnEvent.gameObject = gameObject;
-
-            EventSystem.Current.FireEvent(respawnEvent);
-        }
 
 
         RaycastHit raycastHit;
         if (transform.parent == null && !isHeld)
         {
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
         else if (isHeld)

@@ -34,6 +34,7 @@ public class HoldItemBase : State
                 InteractionEvent interactedInfo = new InteractionEvent();
                 interactedInfo.eventDescription = "Pressed item has been activated: ";
                 interactedInfo.interactedObject = gameObject;
+            Debug.Log(interactedInfo);
                 EventSystem.Current.FireEvent(interactedInfo);       
             }
         

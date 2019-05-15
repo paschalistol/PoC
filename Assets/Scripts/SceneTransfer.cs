@@ -11,7 +11,7 @@ public class SceneTransfer : Interactable
     private AudioClip changeSceneSound;
 
     [SerializeField]
-    private int levelToLoad = 1;
+    //private int levelToLoad = 1;
     private SoundEvent soundEvent;
     public override AudioClip GetAudioClip()
     {

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8544248488786816756}
   - component: {fileID: 8544248488786816757}
   - component: {fileID: 8544248488786816746}
-  - component: {fileID: 8544248488786816744}
   - component: {fileID: 8544248488786816747}
   m_Layer: 24
   m_Name: Valuable
@@ -93,24 +92,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8544248488786816744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8544248488786816750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504bab6f05d5b53499346d4258712889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  environment:
-    serializedVersion: 2
-    m_Bits: 512
-  respawnEnvironment:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &8544248488786816747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,4 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 20
-  body: {fileID: 8544248488786816744}
+  environment:
+    serializedVersion: 2
+    m_Bits: 512

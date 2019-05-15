@@ -10,7 +10,7 @@ public class Trampolin : Interactable
 
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-
+    [SerializeField] private LayerMask environment;
     protected const float skinWidth = 0.2f;
 
     private bool isHeld;
@@ -27,9 +27,9 @@ public class Trampolin : Interactable
     {
         if (!isHeld)
         {
-            velocity = PhysicsScript.physics.Decelerate(velocity);
-            velocity = PhysicsScript.physics.Gravity(velocity);
-            velocity = PhysicsScript.physics.CollisionCheck(velocity, boxCollider, skinWidth);
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
     }

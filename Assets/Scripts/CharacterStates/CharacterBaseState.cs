@@ -84,7 +84,7 @@ public class CharacterBaseState : State
 
         // Move in camera's direction
         input = Camera.main.transform.rotation * input;
-        input = Vector3.ProjectOnPlane(input, DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).normal).normalized;
+        input = Vector3.ProjectOnPlane(input, GetRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).normal).normalized;
         // ChangeCharRotation();
         return input;
     }
@@ -117,7 +117,7 @@ public class CharacterBaseState : State
     protected bool IsGrounded()
     {
 
-        return DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).collider != null;
+        return GetRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.environment).collider != null;
     }
 
     protected void Accelerate(Vector3 direction)
@@ -140,6 +140,7 @@ public class CharacterBaseState : State
         }
 
     }
+    
     protected void Decelerate()
     {
         Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
@@ -158,20 +159,20 @@ public class CharacterBaseState : State
         }
     }
 
-    private RaycastHit DoRaycastHit(Vector3 direction, float magnitude, LayerMask layerMask)
+    private RaycastHit GetRaycastHit(Vector3 direction, float magnitude, LayerMask layerMask)
     {
         Debug.DrawRay(point1, owner.transform.up, Color.red);
         Debug.DrawRay(point2, -owner.transform.up, Color.blue);
         point1 = owner.transform.position + capsuleCollider.center + owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         point2 = owner.transform.position + capsuleCollider.center - owner.transform.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        bool capsulecast = Physics.CapsuleCast(point1, point2,
+        Physics.CapsuleCast(point1, point2,
             capsuleCollider.radius, direction, out raycastHit, magnitude, layerMask);
         return raycastHit;
     }
 
     protected void CollisionCheck()
     {
-        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
+        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
 
 
 
@@ -181,7 +182,7 @@ public class CharacterBaseState : State
         {
 
             #region Apply Normal Force
-            normal = PhysicsScript.physics.Normal3D(Velocity, raycastHit.normal);
+            normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal;
             Friction(normal.magnitude);
             #endregion
@@ -189,11 +190,6 @@ public class CharacterBaseState : State
             {
                 Velocity = Vector3.zero;
                 return;
-            }
-            else if (raycastHit.distance < skinWidth / 2)
-            {
-
-                //      owner.transform.position += new Vector3(0, skinWidth, 0);
             }
 
             CollisionCheck();
@@ -204,7 +200,7 @@ public class CharacterBaseState : State
     protected void DeathCollisionCheck()
     {
 
-        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
+        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
 
         if (raycastHit.collider != null)
         {
@@ -228,7 +224,7 @@ public class CharacterBaseState : State
 
     protected GameObject TakingLift2()
     {
-        DoRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.lift);
+        GetRaycastHit(Vector3.down, groundCheckDistance + skinWidth, owner.lift);
         if (raycastHit.collider != null)
         {
             owner.lift2 = raycastHit.transform.gameObject;
@@ -241,7 +237,7 @@ public class CharacterBaseState : State
     protected void ReachingCheckPoint()
     {
 
-        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
+        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
         if (raycastHit.collider == null)
             return;
         else
@@ -254,14 +250,14 @@ public class CharacterBaseState : State
     protected void Trampoline()
     {
 
-        DoRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
+        GetRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
         if (raycastHit.collider == null)
             return;
         else
         {
 
             #region Apply Normal Force
-            normal = PhysicsScript.physics.Normal3D(Velocity, raycastHit.normal);
+            normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal * 4f;
             if (Velocity.magnitude > 40)
             {
