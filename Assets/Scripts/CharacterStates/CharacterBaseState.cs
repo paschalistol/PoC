@@ -254,7 +254,7 @@ public class CharacterBaseState : State
     protected void Trampoline()
     {
 
-        DoRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
+        DoRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
         if (raycastHit.collider == null)
             return;
         else

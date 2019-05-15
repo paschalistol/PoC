@@ -8,6 +8,7 @@ using UnityEngine;
 public class Key : Interactable
 {
     [SerializeField] private GameObject lockedDoor;
+    [SerializeField] private GameObject[] unlockableDoors;
     
     [HideInInspector] public bool used = false;
 
@@ -49,25 +50,10 @@ public class Key : Interactable
         }
         else if (isHeld)
         {
-            //float currentDoorRotation = lockedDoor.transform.parent.eulerAngles.y;
-            //float currentDoorPosition = lockedDoor.transform.parent.position.z - 5;
-            //float doorRotation = lockedDoor.transform.parent.rotation.y;
-
-            //if (currentDoorRotation > doorAngle)
-            //    //doorOffset = currentDoorRotation + 2f;
-            //else
-            //    //doorOffset = currentDoorRotation - 2f;
-
-
             bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
             {
 
-                //InteractionEvent interactedInfo = new InteractionEvent();
-                //interactedInfo.eventDescription = "The door has been unlocked!";
-                //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
-
-                //EventSystem.Current.FireEvent(interactedInfo);
                 lockedDoor.GetComponent<Interactable>().StartInteraction();
                 Destroy(gameObject);
                 used = true;
@@ -75,9 +61,6 @@ public class Key : Interactable
 
         }
     }
-
-
-
     public override void StartInteraction()
     {
         if (isHeld == true)
@@ -92,3 +75,16 @@ public class Key : Interactable
         return null;
     }
 }
+            //float currentDoorRotation = lockedDoor.transform.parent.eulerAngles.y;
+            //float currentDoorPosition = lockedDoor.transform.parent.position.z - 5;
+            //float doorRotation = lockedDoor.transform.parent.rotation.y;
+
+            //if (currentDoorRotation > doorAngle)
+            //    //doorOffset = currentDoorRotation + 2f;
+            //else
+            //    //doorOffset = currentDoorRotation - 2f;
+                //InteractionEvent interactedInfo = new InteractionEvent();
+                //interactedInfo.eventDescription = "The door has been unlocked!";
+                //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
+
+                //EventSystem.Current.FireEvent(interactedInfo);
