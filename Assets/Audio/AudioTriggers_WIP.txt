@@ -1,7 +1,7 @@
 ﻿Audio triggers
 
 Player character
-footsteps: alternating pitch on sound file "Player_Step", match to movement speed(?)
+footsteps: alternating pitch on sound file "Player_Step", match to movement speed(?). need to be slightly muffled when sneaking. 
 picking up item: random between "pickup1" and "pickup2" + slight pitch change. right after that, play oneshot "value_feedback" for the score counter
 jump: oneshot "jump_sound" ✔
 land: oneshot "land_sound" ✔
