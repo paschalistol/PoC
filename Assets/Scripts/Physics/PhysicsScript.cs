@@ -20,7 +20,7 @@ public static class PhysicsScript
         RaycastHit raycastHit;
         #region Raycast
 
-        bool boxCast = Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
+        Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
             velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
         #endregion
         if (raycastHit.collider == null)
