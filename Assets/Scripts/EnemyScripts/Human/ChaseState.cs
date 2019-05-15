@@ -14,6 +14,7 @@ public class ChaseState : EnemyBaseState
     [SerializeField] private float bustedDistance;
     private float lightRange;
     private GameObject audioSpeaker;
+    private MusicBasedOnChased musicBasedOnChased;
 
     public override void EnterState()
     {
@@ -23,13 +24,15 @@ public class ChaseState : EnemyBaseState
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = 25;
         owner.flashLight.GetComponent<Light>().color = Color.red;
-            //ChaseEvent chaseEvent = new ChaseEvent();
-            //chaseEvent.gameObject = owner.gameObject;
-            //chaseEvent.eventDescription = "Chasing Enemy";
-            //chaseEvent.audioSpeaker = audioSpeaker;
+        //ChaseEvent chaseEvent = new ChaseEvent();
+        //chaseEvent.gameObject = owner.gameObject;
+        //chaseEvent.eventDescription = "Chasing Enemy";
+        //chaseEvent.audioSpeaker = audioSpeaker;
 
-            //EventSystem.Current.FireEvent(chaseEvent);
-        
+        //EventSystem.Current.FireEvent(chaseEvent);
+        musicBasedOnChased = new MusicBasedOnChased();
+        musicBasedOnChased.enemyChasing = true;
+        EventSystem.Current.FireEvent(musicBasedOnChased);
 
     }
     public override void ToDo()
@@ -50,5 +53,11 @@ public class ChaseState : EnemyBaseState
         }  else
             owner.ChangeState<PatrolState>(); 
 
+    }
+    public override void ExitState()
+    {
+        musicBasedOnChased = new MusicBasedOnChased();
+        musicBasedOnChased.enemyChasing = false;
+        EventSystem.Current.FireEvent(musicBasedOnChased);
     }
 }
