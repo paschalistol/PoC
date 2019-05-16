@@ -11,12 +11,8 @@ public class StartGame : MonoBehaviour
     void Awake()
     {
         PlayerPrefs.SetInt("DeathCounter", 0);
-        score = 0;
+        PlayerPrefs.SetFloat("Highscore", 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

@@ -14,7 +14,7 @@ public class ItemRespawnListener : MonoBehaviour
     // Update is called once per frame
     void Respawn(RespawnEvent eventInfo)
     {
-        eventInfo.gameObject.GetComponent<RespawnItem>().Respawn();
+     //   eventInfo.gameObject.GetComponent<RespawnItem>().Respawn();
         Debug.Log("FiredEvent");
     }
 }

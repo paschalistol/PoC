@@ -26,6 +26,7 @@ public class Box : Interactable
         boxCollider = GetComponent<BoxCollider>();
         
         isHeld = false;
+        startPosition = transform.position;
     }
 
     void Update()
@@ -43,6 +44,5 @@ public class Box : Interactable
     {
         isHeld = !isHeld;
     }
-
 
 }

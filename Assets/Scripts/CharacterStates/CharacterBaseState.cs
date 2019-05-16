@@ -197,6 +197,47 @@ public class CharacterBaseState : State
 
     }
 
+
+    //float tempSkinwidth;
+    //protected void CollisionCheck()
+    //{
+    //    GetRaycastHit(Velocity, Mathf.Infinity, owner.environment);
+
+
+    //    if (raycastHit.collider != null)
+    //    {
+    //        #region H
+    //        float angle = Vector3.Angle(Velocity.normalized, raycastHit.normal) - 90;
+    //        Debug.Log(Velocity + " " + angle);
+    //        float sin = Mathf.Sin(angle);
+    //        float h = skinWidth / sin;
+    //        tempSkinwidth = (skinWidth > h ? skinWidth : h);
+    //        #endregion
+    //        if (Velocity.magnitude * Time.deltaTime + tempSkinwidth > raycastHit.distance - tempSkinwidth)
+    //        {
+
+
+
+    //            if (Velocity.magnitude < tempSkinwidth)
+    //            {
+    //                Velocity = Vector3.zero;
+    //                return;
+    //            }
+    //            #region Apply Normal Force
+    //            normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
+    //            Velocity += normal;
+    //            Friction(normal.magnitude);
+    //            #endregion
+
+    //            CollisionCheck();
+    //        }
+
+    //    }
+
+    //}
+
+
+
     protected void DeathCollisionCheck()
     {
 
@@ -212,10 +253,10 @@ public class CharacterBaseState : State
             deathInfo.deadUnit = owner.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
 
-            RespawnEvent respawnEvent = new RespawnEvent();
-            //respawnEvent.gameObject = 
 
-            EventSystem.Current.FireEvent(respawnEvent);
+            owner.transform.position = owner.currentCheckPoint.transform.position;
+
+
 
         }
 
@@ -238,13 +279,8 @@ public class CharacterBaseState : State
     {
 
         GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
-        if (raycastHit.collider == null)
-            return;
-        else
-        {
-
+        if (raycastHit.collider != null)
             owner.currentCheckPoint = raycastHit.collider.gameObject;
-        }
     }
 
     protected void Trampoline()

@@ -18,8 +18,8 @@ public class AddPointListener : MonoBehaviour
     // Update is called once per frame
     void AddPointEventInfo(AddPointEvent addPoint)
     {
-        Debug.Log("1");
-        Debug.Log(scoreScript);
+
+
         scoreScript.AddScore(addPoint.point);
         
     }

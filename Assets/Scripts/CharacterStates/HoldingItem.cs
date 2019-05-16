@@ -56,7 +56,15 @@ public class HoldingItem : HoldItemBase
 
     public override void ToDo()
     {
+        if (DeathListener.Death())
+        {
+            GameObject temp = objectCarried;
+            DeathListener.SetDied(false);
+            ReleaseItem();
+            objectCarried = null;          
+            RespawnItem(temp);
 
+        }
 
         if (objectCarried == null)
             SetHolding(false);
@@ -64,9 +72,8 @@ public class HoldingItem : HoldItemBase
         if (Input.GetKeyDown(KeyCode.E))
         {
             //owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment | (1 << layerNumber);
-            objectCarried.layer = layerNumber;
-            InteractWithObject();
-            SetHolding(false);
+
+            ReleaseItem();
         }
 
 
@@ -89,7 +96,24 @@ public class HoldingItem : HoldItemBase
             TransformCarriedObject();
         }
     }
+    private void RespawnItem(GameObject temp)
+    {
 
+        if (temp != null)
+        {
+
+            temp.GetComponent<Interactable>().RespawnItem();
+
+        }
+    }
+
+
+    private void ReleaseItem()
+    {
+        objectCarried.layer = layerNumber;
+        InteractWithObject();
+        SetHolding(false);
+    }
     private void TransformCarriedObject()
     {
         Vector3 target;

@@ -34,11 +34,6 @@ public class Valuable : Interactable
         
     }
 
-    public void AddPoint()
-    {
-
-
-    }
 
     public override void StartInteraction()
     {
