@@ -170,32 +170,61 @@ public class CharacterBaseState : State
         return raycastHit;
     }
 
-    protected void CollisionCheck()
+
+    float tempSkinwidth;
+    public void CollisionCheck()
     {
-        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
 
+        if (GetRaycastHit(Velocity, Mathf.Infinity, owner.environment).collider != null)
 
-
-        if (raycastHit.collider == null)
-            return;
-        else
         {
 
-            #region Apply Normal Force
-            normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
-            Velocity += normal;
-            Friction(normal.magnitude);
-            #endregion
-            if (Velocity.magnitude < skinWidth)
+            float angle = (Vector3.Angle(raycastHit.normal, Velocity.normalized) - 90) * Mathf.Deg2Rad;
+            float h = skinWidth / Mathf.Sin(angle);
+
+            if (Velocity.magnitude * Time.deltaTime + tempSkinwidth > raycastHit.distance - tempSkinwidth)
             {
-                Velocity = Vector3.zero;
-                return;
+
+                tempSkinwidth = (skinWidth > h ? skinWidth : h);
+                normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
+                Velocity += normal;
+                Friction(normal.magnitude);
+
+                if (Velocity.magnitude < tempSkinwidth)
+                {
+                    return;
+                }
+                CollisionCheck();
             }
-
-            CollisionCheck();
         }
-
     }
+
+    //protected void CollisionCheck()
+    //{
+    //    GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.environment);
+
+
+
+    //    if (raycastHit.collider == null)
+    //        return;
+    //    else
+    //    {
+
+    //        #region Apply Normal Force
+    //        normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
+    //        Velocity += normal;
+    //        Friction(normal.magnitude);
+    //        #endregion
+    //        if (Velocity.magnitude < skinWidth)
+    //        {
+    //            Velocity = Vector3.zero;
+    //            return;
+    //        }
+
+    //        CollisionCheck();
+    //    }
+
+    //}
 
 
     //float tempSkinwidth;
@@ -235,6 +264,7 @@ public class CharacterBaseState : State
     //    }
 
     //}
+
 
 
 

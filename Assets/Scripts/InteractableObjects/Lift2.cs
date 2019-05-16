@@ -12,15 +12,15 @@ public class Lift2 : MonoBehaviour
     public Vector3 direction;
     public bool onOff = false;
     public GameObject audioMachine;
-    private Vector3 velocity;
+    private Vector3 velocity, startVelocity;
     [SerializeField] private float speed = 1;
-
+    
     
     private void Start()
     {
         bigPoints = GetComponent<LiftPoints>().GetPoints();
         currentPoint = 0;
-     
+        startVelocity = velocity;
     }
 
     public Vector3 GetVelocity()
@@ -32,6 +32,7 @@ public class Lift2 : MonoBehaviour
 
         if (onOff)
         {
+
             direction = bigPoints[currentPoint].transform.position - transform.position;
             velocity = direction.normalized  * speed ;
 
@@ -42,6 +43,10 @@ public class Lift2 : MonoBehaviour
                 onOff = false;
                 currentPoint = (currentPoint + 1) % bigPoints.Length;
             }
+        }
+        if (!onOff)
+        {
+            velocity = Vector3.zero;
         }
     }
     public void ActivateLift() {
