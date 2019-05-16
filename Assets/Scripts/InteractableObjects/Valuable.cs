@@ -15,8 +15,9 @@ public class Valuable : Interactable
     [SerializeField] private LayerMask environment;
 
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boxCollider = GetComponent<BoxCollider>();
         
         

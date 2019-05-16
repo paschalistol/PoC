@@ -21,8 +21,9 @@ public class Key : Interactable
 
     private bool isHeld;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         //GetComponent<RespawnItem>().startPosition = transform.position;
         boxCollider = GetComponent<BoxCollider>();
         

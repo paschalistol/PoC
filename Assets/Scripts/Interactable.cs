@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     protected Vector3 startPosition;
-    private void Start()
+    protected virtual void Start()
     {
-
+        startPosition = transform.position;
     }
     public abstract void StartInteraction();
     public virtual void RespawnItem()

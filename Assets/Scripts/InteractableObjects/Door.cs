@@ -15,7 +15,10 @@ public class Door : Interactable
     [SerializeField] private AudioClip doorCloseSound;
     [SerializeField] private AudioClip unlockDoorSound;
 
-
+    protected override void Start()
+    {
+        base.Start();
+    }
     public override AudioClip GetAudioClip()
     {
         return doorOpenSound;
