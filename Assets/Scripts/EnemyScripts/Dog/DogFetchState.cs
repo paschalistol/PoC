@@ -19,6 +19,7 @@ public class DogFetchState : DogBaseState
     }
     public override void ToDo()
     {
+        
         owner.agent.SetDestination(owner.player.transform.position);
 
         if (Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < bustedDistance)

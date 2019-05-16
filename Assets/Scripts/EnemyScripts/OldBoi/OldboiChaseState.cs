@@ -32,10 +32,8 @@ public class OldboiChaseState : OldboiBaseState
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
             foreach(GameObject dog in owner.dogs){
-                dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
-                
+                dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();   
             }
-         
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 owner.ChangeState<OldboiDetectionState>();
 
