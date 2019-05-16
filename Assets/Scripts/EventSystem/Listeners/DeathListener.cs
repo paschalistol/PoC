@@ -21,7 +21,7 @@ public class DeathListener : MonoBehaviour
 
     void DeathInteraction(UnitDeathEventInfo deathInfo)
     {
-        Debug.Log("DeathInterction");
+
         objectToInteract = deathInfo.deadUnit;
         //spawnPoint = deathInfo.spawnPoint;
         PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
