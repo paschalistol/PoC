@@ -34,7 +34,7 @@ public class Score : MonoBehaviour
 
     }
 
-    public void AddScore(float x)
+    public static void AddScore(float x)
     {
         PlayerPrefs.SetFloat("Highscore", PlayerPrefs.GetFloat("Highscore", 0) + x) ;
     }

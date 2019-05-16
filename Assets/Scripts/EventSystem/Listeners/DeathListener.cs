@@ -10,7 +10,6 @@ public class DeathListener : MonoBehaviour
 {
     private GameObject objectToInteract;
     private GameObject spawnPoint;
-    public GameObject player;
     public Text text;
     private static bool died;
     void Start()
