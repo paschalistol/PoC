@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/OldboiFetchState")]
+[CreateAssetMenu(menuName = "Enemy/DogFetchState")]
 public class DogFetchState : DogBaseState
 {
 
@@ -25,5 +25,11 @@ public class DogFetchState : DogBaseState
         {
             owner.ChangeState<DogDetectionState>();
         }
+
+        if (owner.inSafeZone)
+        {
+            owner.ChangeState<DogPatrolState>();
+        }
+
     }
 }

@@ -31,7 +31,7 @@ public class DogPatrolState : DogBaseState
         {
             ChooseRandom();
         }
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance && !owner.inSafeZone)
         {
            owner.ChangeState<DogChaseState>();
         }

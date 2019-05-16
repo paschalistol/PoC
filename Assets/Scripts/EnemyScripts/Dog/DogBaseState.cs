@@ -36,7 +36,7 @@ public class DogBaseState : State
 
   
 
-    protected bool InSafeZone()
+    protected bool InSafeZoneCheck()
     {
         RaycastHit raycastHit;
         #region Raycast
