@@ -34,17 +34,16 @@ public class DogDetectionState : DogBaseState
       * **/
     public override void ToDo()
     {
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance &&
-            Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) <= bustedDistance)
         {
             //do something 
-
 
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
             deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
             deathInfo.deadUnit = owner.player.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
+            Debug.Log("GettingBustedByDoggo");
 
         }
         else

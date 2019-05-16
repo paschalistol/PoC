@@ -22,7 +22,7 @@ public class DogFetchState : DogBaseState
         
         owner.agent.SetDestination(owner.player.transform.position);
 
-        if (Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < bustedDistance)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
         {
             owner.ChangeState<DogDetectionState>();
         }
