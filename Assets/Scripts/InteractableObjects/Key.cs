@@ -24,7 +24,6 @@ public class Key : Interactable
     protected override void Start()
     {
         base.Start();
-        //GetComponent<RespawnItem>().startPosition = transform.position;
         boxCollider = GetComponent<BoxCollider>();
         
         isHeld = false;
@@ -69,16 +68,19 @@ public class Key : Interactable
         return null;
     }
 }
-            //float currentDoorRotation = lockedDoor.transform.parent.eulerAngles.y;
-            //float currentDoorPosition = lockedDoor.transform.parent.position.z - 5;
-            //float doorRotation = lockedDoor.transform.parent.rotation.y;
+#region KeyLegacy
+        //GetComponent<RespawnItem>().startPosition = transform.position;
+//float currentDoorRotation = lockedDoor.transform.parent.eulerAngles.y;
+//float currentDoorPosition = lockedDoor.transform.parent.position.z - 5;
+//float doorRotation = lockedDoor.transform.parent.rotation.y;
 
-            //if (currentDoorRotation > doorAngle)
-            //    //doorOffset = currentDoorRotation + 2f;
-            //else
-            //    //doorOffset = currentDoorRotation - 2f;
-                //InteractionEvent interactedInfo = new InteractionEvent();
-                //interactedInfo.eventDescription = "The door has been unlocked!";
-                //interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
+//if (currentDoorRotation > doorAngle)
+//    //doorOffset = currentDoorRotation + 2f;
+//else
+//    //doorOffset = currentDoorRotation - 2f;
+//InteractionEvent interactedInfo = new InteractionEvent();
+//interactedInfo.eventDescription = "The door has been unlocked!";
+//interactedInfo.interactedObject = raycastHit.collider.transform.gameObject;
 
-                //EventSystem.Current.FireEvent(interactedInfo);
+//EventSystem.Current.FireEvent(interactedInfo);
+#endregion

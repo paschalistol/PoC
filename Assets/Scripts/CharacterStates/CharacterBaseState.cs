@@ -254,10 +254,15 @@ public class CharacterBaseState : State
             EventSystem.Current.FireEvent(deathInfo);
 
 
-            owner.transform.position = owner.currentCheckPoint.transform.position;
+ 
 
 
 
+        }
+        if (DeathListener.Death())
+        {
+        owner.transform.position = owner.currentCheckPoint.transform.position;
+            DeathListener.SetDied(false);
         }
 
     }

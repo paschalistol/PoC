@@ -14,11 +14,8 @@ public class Oldboi : StateMachine
     [SerializeField] private float hearingDistance;
     public LayerMask visionMask;
     public GameObject player;
-    public GameObject doggo;
     public GameObject[] dogs;
-   // public Audio audioPlayer;
    
-    //public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
 
     // Methods
@@ -26,7 +23,6 @@ public class Oldboi : StateMachine
     {
         Renderer = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
-      //  flashLight = GetComponent<FlashLight>();
         base.Awake();
     }
 
@@ -40,3 +36,9 @@ public class Oldboi : StateMachine
         return hearingDistance;
     }
 }
+#region OldboiLegacy 
+//  flashLight = GetComponent<FlashLight>();
+//public GameObject flashLight;
+//public GameObject doggo;
+// public Audio audioPlayer;
+#endregion
