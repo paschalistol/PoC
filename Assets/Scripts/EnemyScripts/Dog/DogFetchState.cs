@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/OldboiFetchState")]
+[CreateAssetMenu(menuName = "Enemy/DogFetchState")]
 public class DogFetchState : DogBaseState
 {
 
@@ -19,11 +19,18 @@ public class DogFetchState : DogBaseState
     }
     public override void ToDo()
     {
+        
         owner.agent.SetDestination(owner.player.transform.position);
 
         if (Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < bustedDistance)
         {
             owner.ChangeState<DogDetectionState>();
         }
+
+        if (owner.inSafeZone)
+        {
+            owner.ChangeState<DogPatrolState>();
+        }
+
     }
 }

@@ -10,8 +10,8 @@ public class DeathListener : MonoBehaviour
 {
     private GameObject objectToInteract;
     private GameObject spawnPoint;
-    public GameObject player;
     public Text text;
+    private static bool died;
     void Start()
     {
 
@@ -26,7 +26,24 @@ public class DeathListener : MonoBehaviour
         //spawnPoint = deathInfo.spawnPoint;
         PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
         text.text = ""+PlayerPrefs.GetInt("DeathCounter");
+        DecreaseHighscore();
+        died = true;
         //player.gameObject.transform.position = spawnPoint.transform.position;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    void DecreaseHighscore()
+    {
+        AddPointEvent addPointInfo = new AddPointEvent();
+        addPointInfo.eventDescription = "Losing points!";
+        addPointInfo.point = - Mathf.Clamp( Random.Range(1, 10) , 0, PlayerPrefs.GetFloat("Highscore", 0));
+        EventSystem.Current.FireEvent(addPointInfo);
+    }
+    public static bool Death()
+    {
+        return died;
+    }
+    public static void SetDied(bool d)
+    {
+        died = d;
     }
 }

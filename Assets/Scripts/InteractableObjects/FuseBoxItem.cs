@@ -20,8 +20,9 @@ public class FuseBoxItem : Interactable
     //[SerializeField] private GameObject endParticles;
 
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boxCollider = GetComponent<BoxCollider>();
         
         isHeld = false;

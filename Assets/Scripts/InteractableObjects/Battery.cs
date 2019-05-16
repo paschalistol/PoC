@@ -19,8 +19,9 @@ public class Battery : Interactable
     protected BoxCollider boxCollider;
     [HideInInspector] public bool isHeld;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         boxCollider = GetComponent<BoxCollider>();
         isHeld = false;
 

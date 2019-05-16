@@ -6,25 +6,36 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
 
-    public float score;
-    Text scoreText;
+
+    [SerializeField] private Text scoreText;
+    [SerializeField] private float stepToChangeScore;
+    private float scoreShown;
     void Start()
     {
-        score = 0;
-        scoreText = GetComponent<Text>();
+
+        scoreShown = PlayerPrefs.GetFloat("Highscore", 0);
+        scoreText.text = "" + scoreShown.ToString("00000000");
     }
 
-    
+
     void Update()
     {
-        scoreText.text = "Score: " + score;
-        
+
+        if (scoreShown < PlayerPrefs.GetFloat("Highscore", 0))
+        {
+            scoreShown += (PlayerPrefs.GetFloat("Highscore", 0) - scoreShown >= stepToChangeScore ? stepToChangeScore : PlayerPrefs.GetFloat("Highscore", 0) - scoreShown);
+        }
+        else if (scoreShown > PlayerPrefs.GetFloat("Highscore", 0))
+        {
+            scoreShown -= (scoreShown -PlayerPrefs.GetFloat("Highscore", 0) >= stepToChangeScore ? stepToChangeScore : PlayerPrefs.GetFloat("Highscore", 0) - scoreShown);
+        }
+
+        scoreText.text = "Score: " + scoreShown.ToString("00000000");
+
     }
 
-    public void AddScore(float x)
+    public static void AddScore(float x)
     {
-        Debug.Log("2");
-        score += x;
-        Debug.Log("3");
+        PlayerPrefs.SetFloat("Highscore", PlayerPrefs.GetFloat("Highscore", 0) + x) ;
     }
 }

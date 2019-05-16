@@ -21,11 +21,13 @@ public class Box : Interactable
 
         return pickupSounds[Random.Range(0, pickupSounds.Length)];
     }
-    void Start()
+    protected override void Start() 
     {
+        base.Start();
         boxCollider = GetComponent<BoxCollider>();
         
         isHeld = false;
+
     }
 
     void Update()
@@ -43,6 +45,5 @@ public class Box : Interactable
     {
         isHeld = !isHeld;
     }
-
 
 }

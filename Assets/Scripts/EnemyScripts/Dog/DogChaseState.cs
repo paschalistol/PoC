@@ -14,53 +14,31 @@ public class DogChaseState : DogBaseState
     private float smellDistance;
     [SerializeField] private float bustedDistance;
     private GameObject audioSpeaker;
-public bool inSafezone = false;
     public override void EnterState()
     {
         base.EnterState();
         // hearingRange = owner.GetHearingDistance();
         // chaseDistance = owner.GetFieldOfView();
         smellDistance = owner.GetSmellDistance();
-        //   audioSpeaker = owner.audioSpeaker;
-        //ChaseEvent chaseEvent = new ChaseEvent();
-        //chaseEvent.gameObject = owner.gameObject;
-        //chaseEvent.eventDescription = "Chasing Enemy";
-        //chaseEvent.audioSpeaker = audioSpeaker;
+    //   audioSpeaker = owner.audioSpeaker;
+    //ChaseEvent chaseEvent = new ChaseEvent();
+    //chaseEvent.gameObject = owner.gameObject;
+    //chaseEvent.eventDescription = "Chasing Enemy";
+    //chaseEvent.audioSpeaker = audioSpeaker;
 
-        
+
     //EventSystem.Current.FireEvent(chaseEvent);
 
 
 }
+    /// <summary>
+    /// Decides if the dog will return to patrol or attack while chasing the player.
+    /// </summary>
     public override void ToDo()
     {
-
-         void OnTriggerEnter(Collision collision)
-        {
-            if (collision != null)
-            {
-                Debug.Log("yeet");
-            }
-            if (collision.transform.tag == "Safezone")
-            {
-                inSafezone = true;
-                Debug.Log("in");
-            }
-        }
-
-         void OnTriggerExit(Collision collision)
-        {
-            if (collision.transform.tag == "Safezone")
-            {
-                inSafezone = false;
-                Debug.Log("out");
-            }
-        }
-
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance || inSafezone)
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance || owner.inSafeZone)
         {
             owner.ChangeState<DogPatrolState>();
-            
         }
         else
         {
@@ -68,7 +46,13 @@ public bool inSafezone = false;
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 owner.ChangeState<DogDetectionState>();
         }
-
-
     }
+    //public override void ExitState()
+    //{
+    //    Debug.Log("Walla");
+    //    owner.agent.transform.position = owner.agent.transform.position;
+    //    base.ExitState();
+    //}
 }
+
+    
