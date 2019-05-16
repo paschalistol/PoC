@@ -7,9 +7,9 @@ using UnityEngine;
 public class Door : Interactable
 {
     [SerializeField]
-    private int rotationSpeed = 40, rotation=90;
+    private int rotationSpeed = 40, rotation = 90;
     private GameObject parent;
-
+    private bool used = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip doorOpenSound;
     [SerializeField] private AudioClip doorCloseSound;
@@ -31,15 +31,19 @@ public class Door : Interactable
 
     public override void StartInteraction()
     {
-        StartCoroutine(RotateDoor(parent)); 
+        if (used == false)
+        {
+            StartCoroutine(RotateDoor(parent));
+            used = true;
+        }
     }
 
     IEnumerator RotateDoor(GameObject parent)
     {
         float temp = parent.transform.eulerAngles.y + rotation;
-        while (parent.transform.eulerAngles.y <temp)
+        while (parent.transform.eulerAngles.y < temp)
         {
-            parent.transform.eulerAngles += new Vector3(0, 1, 0) *Time.deltaTime * rotationSpeed;
+            parent.transform.eulerAngles += new Vector3(0, 1, 0) * Time.deltaTime * rotationSpeed;
 
             yield return null;
         }
