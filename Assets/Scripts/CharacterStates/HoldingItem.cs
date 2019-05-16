@@ -66,8 +66,10 @@ public class HoldingItem : HoldItemBase
 
         }
 
-        if (objectCarried == null)
+        if (objectCarried == null) {
+
             SetHolding(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {

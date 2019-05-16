@@ -39,9 +39,12 @@ public class Lift2 : MonoBehaviour
 
             if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 1)
             {
+                onOff = false;
                 currentPoint = (currentPoint + 1) % bigPoints.Length;
-
             }
         }
+    }
+    public void ActivateLift() {
+        onOff = true;
     }
 }

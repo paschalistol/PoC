@@ -20,10 +20,12 @@ public class EmptyHands : HoldItemBase
 
 
             objectCarried = ReturnObjectInFront();
-            Debug.Log(ReturnObjectInFront());
             InteractWithObject();
-            SetHolding(true);
-            
+            if (!objectCarried.CompareTag("Only Interaction"))
+            {
+                SetHolding(true);
+            }
+
         }
         if (HoldingSth)
         {

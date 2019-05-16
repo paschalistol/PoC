@@ -25,33 +25,30 @@ public class HoldItemBase : State
     protected void InteractWithObject()
     {
 
+        if (objectCarried != null)
+        {
 
-            GameObject gameObject = objectCarried;
+            InteractionEvent interactedInfo = new InteractionEvent();
+            interactedInfo.eventDescription = "Pressed item has been activated: ";
+            interactedInfo.interactedObject = objectCarried;
 
-            if (gameObject != null)
-            {
+            EventSystem.Current.FireEvent(interactedInfo);
+        }
 
-                InteractionEvent interactedInfo = new InteractionEvent();
-                interactedInfo.eventDescription = "Pressed item has been activated: ";
-                interactedInfo.interactedObject = gameObject;
-            Debug.Log(interactedInfo);
-                EventSystem.Current.FireEvent(interactedInfo);       
-            }
-        
     }
 
     protected GameObject ReturnObjectInFront()
     {
-        Vector3 look = LookDirection();
+
         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
         RaycastHit raycastHit;
-        bool capsuleCast = Physics.CapsuleCast(point1, point2, capsuleCollider.radius, LookDirection().normalized, out raycastHit, capsuleCollider.radius, owner.pickups);
+        Physics.CapsuleCast(point1, point2, capsuleCollider.radius, LookDirection().normalized, out raycastHit, capsuleCollider.radius, owner.pickups);
 
         if (raycastHit.collider != null)
         {
             objectCarried = raycastHit.transform.gameObject;
-            objectCarried.transform.position += new Vector3(0, 0.5f, 0);
+            //objectCarried.transform.position += new Vector3(0, 0.5f, 0);
             return objectCarried;
         }
         return null;
