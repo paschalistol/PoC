@@ -12,6 +12,7 @@ public class DogFetchState : DogBaseState
     private float chaseDistance;
     private float hearingRange;
     [SerializeField] private float bustedDistance;
+    private UnitDeathEventInfo deathInfo;
 
     public override void EnterState()
     {
@@ -24,15 +25,13 @@ public class DogFetchState : DogBaseState
             owner.ChangeState<DogPatrolState>();
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
         {
-            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
             deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
             deathInfo.deadUnit = owner.player.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
-            Debug.Log("GettingBustedByDoggo");
 
-            owner.ChangeState<DogDetectionState>();
-            Debug.Log("bla");
+            owner.ChangeState<DogPatrolState>();
         }
         //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
 

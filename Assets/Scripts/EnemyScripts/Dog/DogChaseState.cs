@@ -9,27 +9,14 @@ using UnityEngine;
 public class DogChaseState : DogBaseState
 {
 
-    //  private float chaseDistance;
-    //  private float hearingRange;
     private float smellDistance;
     [SerializeField] private float bustedDistance;
-    private GameObject audioSpeaker;
+    private UnitDeathEventInfo deathInfo;
+
     public override void EnterState()
     {
         base.EnterState();
-        // hearingRange = owner.GetHearingDistance();
-        // chaseDistance = owner.GetFieldOfView();
         smellDistance = owner.GetSmellDistance();
-    //   audioSpeaker = owner.audioSpeaker;
-    //ChaseEvent chaseEvent = new ChaseEvent();
-    //chaseEvent.gameObject = owner.gameObject;
-    //chaseEvent.eventDescription = "Chasing Enemy";
-    //chaseEvent.audioSpeaker = audioSpeaker;
-
-
-    //EventSystem.Current.FireEvent(chaseEvent);
-
-
 }
     /// <summary>
     /// Decides if the dog will return to patrol or attack while chasing the player.
@@ -44,15 +31,34 @@ public class DogChaseState : DogBaseState
         {
             owner.agent.SetDestination(owner.player.transform.position);
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
-                owner.ChangeState<DogDetectionState>();
+            {
+                deathInfo = new UnitDeathEventInfo();
+                deathInfo.eventDescription = "U big dead lmao!";
+                deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+                deathInfo.deadUnit = owner.player.transform.gameObject;
+                EventSystem.Current.FireEvent(deathInfo);
+
+                owner.ChangeState<DogPatrolState>();
+            }
         }
     }
-    //public override void ExitState()
-    //{
-    //    Debug.Log("Walla");
-    //    owner.agent.transform.position = owner.agent.transform.position;
-    //    base.ExitState();
-    //}
 }
-
-    
+#region ChaseLegacy
+//public override void ExitState()
+//{
+//    Debug.Log("Walla");
+//    owner.agent.transform.position = owner.agent.transform.position;
+//    base.ExitState();
+//}
+//   audioSpeaker = owner.audioSpeaker;
+//ChaseEvent chaseEvent = new ChaseEvent();
+//chaseEvent.gameObject = owner.gameObject;
+//chaseEvent.eventDescription = "Chasing Enemy";
+//chaseEvent.audioSpeaker = audioSpeaker;
+//private GameObject audioSpeaker;
+//EventSystem.Current.FireEvent(chaseEvent);
+// hearingRange = owner.GetHearingDistance();
+// chaseDistance = owner.GetFieldOfView();
+//  private float chaseDistance;
+//  private float hearingRange;
+#endregion
