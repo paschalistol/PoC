@@ -10,7 +10,7 @@ public class DogChaseState : DogBaseState
 {
 
     private float smellDistance;
-    [SerializeField] private float bustedDistance;
+    private const float bustedDistance = 2f;
     private UnitDeathEventInfo deathInfo;
 
     public override void EnterState()

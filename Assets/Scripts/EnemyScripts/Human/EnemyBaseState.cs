@@ -4,17 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider))]
 public class EnemyBaseState : State
 {
     // Attributes
-    [SerializeField] protected float moveSpeed;
     [SerializeField] protected Material material;
-    protected float fieldOfView;
+    [SerializeField] protected float moveSpeed;
     private CapsuleCollider capsuleCollider;
+    private Vector3 heading;
+    private float lightTreshold, dotProduct;
     protected Light lightField;
-    private Quaternion spreadAngle;
-   // protected float lightAngle;
-    private float lightTreshold;
+    protected float fieldOfView;
 
     protected Enemy owner;
 
@@ -28,7 +28,6 @@ public class EnemyBaseState : State
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
         lightField = owner.flashLight.GetComponent<Light>();
         lightTreshold = owner.LightThreshold;
-        spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
     }
 
     public override void InitializeState(StateMachine owner)
@@ -41,7 +40,6 @@ public class EnemyBaseState : State
 
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
 
-       // Debug.Log(DotMethod());
         if (lineCast)
             return false; 
       
@@ -52,8 +50,13 @@ public class EnemyBaseState : State
 
     protected float DotMethod()
     {
-        Vector3 heading = (owner.player.transform.position - owner.transform.position).normalized;
-        float dotProduct = Vector3.Dot(owner.agent.velocity, heading);
+        heading = (owner.player.transform.position - owner.transform.position).normalized;
+        dotProduct = Vector3.Dot(owner.agent.velocity, heading);
         return dotProduct;
     }
 }
+#region EnemyBaseLegacy
+//     spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
+//// protected float lightAngle;
+// //private Quaternion spreadAngle;
+#endregion

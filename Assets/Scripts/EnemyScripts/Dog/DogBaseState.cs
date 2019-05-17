@@ -9,14 +9,14 @@ using UnityEngine;
 public class DogBaseState : State
 {
     // Attributes
-    [SerializeField] protected float moveSpeed;
     [SerializeField] protected Material material;
-    private float fieldOfView;
-    private const float skinWidth = 0.2f;
     private RaycastHit raycastHit;
     private BoxCollider boxCollider;
-
     protected EnemyDog owner;
+
+    [SerializeField] protected float moveSpeed;
+    private const float skinWidth = 0.2f;
+    private float fieldOfView;
 
 
     // Methods

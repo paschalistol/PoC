@@ -9,12 +9,11 @@ using UnityEngine;
 public class ChaseState : EnemyBaseState
 {
 
-    private float chaseDistance;
-    private float hearingRange;
-    [SerializeField] private float bustedDistance;
-    private float lightRange;
-    private GameObject audioSpeaker;
     private MusicBasedOnChased musicBasedOnChased;
+    private UnitDeathEventInfo deathInfo;
+    private GameObject audioSpeaker;
+    private float chaseDistance, hearingRange, distanceToPlayer, lightRange;
+    private const float bustedDistance = 2f;
 
     public override void EnterState()
     {
@@ -24,12 +23,6 @@ public class ChaseState : EnemyBaseState
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = 25;
         owner.flashLight.GetComponent<Light>().color = Color.red;
-        //ChaseEvent chaseEvent = new ChaseEvent();
-        //chaseEvent.gameObject = owner.gameObject;
-        //chaseEvent.eventDescription = "Chasing Enemy";
-        //chaseEvent.audioSpeaker = audioSpeaker;
-
-        //EventSystem.Current.FireEvent(chaseEvent);
         musicBasedOnChased = new MusicBasedOnChased();
         musicBasedOnChased.enemyChasing = true;
         EventSystem.Current.FireEvent(musicBasedOnChased);
@@ -39,17 +32,22 @@ public class ChaseState : EnemyBaseState
     {
 
         fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-       // lightAngle = lightField.spotAngle;
+        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
-        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < lightRange) ||
-            (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
+        if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
         {
 
             owner.agent.SetDestination(owner.player.transform.position);
 
-            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
-                owner.ChangeState<DetectionState>();
+            if (distanceToPlayer < bustedDistance)
+            {
+                deathInfo = new UnitDeathEventInfo();
+                deathInfo.eventDescription = "U big dead lmao!";
+                deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+                deathInfo.deadUnit = owner.player.transform.gameObject;
+                EventSystem.Current.FireEvent(deathInfo);
+            }
         }  else
             owner.ChangeState<PatrolState>(); 
 
@@ -61,3 +59,12 @@ public class ChaseState : EnemyBaseState
         EventSystem.Current.FireEvent(musicBasedOnChased);
     }
 }
+#region ChaseLegacy
+       // lightAngle = lightField.spotAngle;
+        //ChaseEvent chaseEvent = new ChaseEvent();
+        //chaseEvent.gameObject = owner.gameObject;
+        //chaseEvent.eventDescription = "Chasing Enemy";
+        //chaseEvent.audioSpeaker = audioSpeaker;
+
+        //EventSystem.Current.FireEvent(chaseEvent);
+ #endregion

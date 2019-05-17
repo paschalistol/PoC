@@ -12,11 +12,9 @@ public class DogPatrolState : DogBaseState
     
     private GameObject[] DogPoints;
     private GameObject currentPoint;
-    private float smellDistance;
     private int Point;
     private const float noiceDetection = 5f;
-    private float distanceToPoint;
-    private float distanceToEnemy;
+    private float smellDistance, distanceToPoint, distanceToEnemy;
 
     public override void EnterState()
     {

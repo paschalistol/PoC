@@ -11,7 +11,7 @@ public class DogFetchState : DogBaseState
 
     private float chaseDistance;
     private float hearingRange;
-    [SerializeField] private float bustedDistance;
+    private const float bustedDistance = 2f;
     private UnitDeathEventInfo deathInfo;
 
     public override void EnterState()
@@ -33,7 +33,7 @@ public class DogFetchState : DogBaseState
 
             owner.ChangeState<DogPatrolState>();
         }
-        //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
 
     }
 }
+        //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));

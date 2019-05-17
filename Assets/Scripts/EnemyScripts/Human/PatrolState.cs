@@ -10,12 +10,8 @@ public class PatrolState : EnemyBaseState
     // Attributes
     
     private GameObject[] points;
-    private float chaseDistance;
-    private float hearingRange;
-    private float maxSpeed;
     private const float noiceDetection = 5f;
-   // private CharacterStateMachine charStateM;
-    private float lightRange;
+    private float distanceToPlayer, distanceToPoint, lightRange, maxSpeed, hearingRange, chaseDistance;
     
 
     private int currentPoint = 0;
@@ -24,7 +20,6 @@ public class PatrolState : EnemyBaseState
     public override void EnterState()
     {
         base.EnterState();
-        //chaseDistance = owner.GetFieldOfView();
         
         hearingRange = owner.GetHearingDistance();
        
@@ -39,16 +34,19 @@ public class PatrolState : EnemyBaseState
     public override void ToDo()
     {
        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-       //lightAngle = lightField.spotAngle;
 
         owner.agent.SetDestination(points[currentPoint].transform.position);
-       
-        if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
+
+        distanceToPoint = Vector3.Distance(owner.transform.position, points[currentPoint].transform.position);
+        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+
+
+        if (distanceToPoint < 1)
         {
             currentPoint = (currentPoint + 1) % points.Length;
         }
-        if (LineOfSight() || (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5) && Input.anyKeyDown)
+
+        if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5) && Input.anyKeyDown)
         {     
             owner.ChangeState<ChaseState>();
         }
@@ -65,6 +63,10 @@ public class PatrolState : EnemyBaseState
         }
         currentPoint = closest;
     }
+    #region PatrolLegacy
+    //chaseDistance = owner.GetFieldOfView();
+    // private CharacterStateMachine charStateM;
+    //lightAngle = lightField.spotAngle;
+    #endregion
 
-    
 }
