@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    
     protected Vector3 startPosition;
     protected virtual void Start()
     {
@@ -15,4 +16,5 @@ public abstract class Interactable : MonoBehaviour
         transform.position = startPosition;
     }
     public abstract AudioClip GetAudioClip();
+   
 }

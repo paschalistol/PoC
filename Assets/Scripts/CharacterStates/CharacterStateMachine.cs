@@ -17,7 +17,7 @@ public class CharacterStateMachine : StateMachine
     public LayerMask goal;
     public float WobbleFactor = 0.50f;
     public GameObject walkingParticles;
- 
+    public bool standOnTrampoline = false;
 
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float maxSpeed;
