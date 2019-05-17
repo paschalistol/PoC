@@ -47,7 +47,7 @@ public class Trampolin : Interactable
         isHeld = !isHeld;
     }
 
-    public void Bounce()
+    /*public void Bounce()
     {
         RaycastHit raycastHit;
         #region Raycast
@@ -57,6 +57,6 @@ public class Trampolin : Interactable
         #endregion
         if (raycastHit.collider == null)
             return velocity;
-    }
+    }*/
 
 }
