@@ -14,7 +14,7 @@ public class CharacterBaseState : State
     protected float wobbleValue { get { return owner.WobbleFactor; } }
     protected CapsuleCollider capsuleCollider;
     protected const int acceleration = 23;
-    protected const float skinWidth = 0.14f;
+    protected const float skinWidth = 0.1f;
     protected const float gravityConstant = 20f;
     protected const float groundCheckDistance = 0.25f;
     protected Vector3 Velocity { get { return owner.velocity; } set { owner.velocity = value; } }
