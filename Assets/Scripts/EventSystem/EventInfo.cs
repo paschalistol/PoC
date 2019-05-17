@@ -76,7 +76,7 @@ public class OpenDoorEvent : DebugEvent
     public GameObject particles;
 }
 
-public class TookKeyEvent : DebugEvent
+public class TookEvent : DebugEvent
 {
     public AudioClip audioClip;
     public GameObject gameObject;

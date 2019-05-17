@@ -19,15 +19,22 @@ public class DogFetchState : DogBaseState
     }
     public override void ToDo()
     {
-        
         owner.agent.SetDestination(owner.player.transform.position);
-
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
-            owner.ChangeState<DogDetectionState>();
-        
         if (owner.inSafeZone)
             owner.ChangeState<DogPatrolState>();
-        
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
+        {
+            UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
+            deathInfo.eventDescription = "U big dead lmao!";
+            deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+            deathInfo.deadUnit = owner.player.transform.gameObject;
+            EventSystem.Current.FireEvent(deathInfo);
+            Debug.Log("GettingBustedByDoggo");
+
+            owner.ChangeState<DogDetectionState>();
+            Debug.Log("bla");
+        }
+        //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
 
     }
 }

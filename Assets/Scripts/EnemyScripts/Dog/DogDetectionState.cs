@@ -17,26 +17,20 @@ public class DogDetectionState : DogBaseState
     public override void EnterState()
     {
         base.EnterState();
+            Debug.Log("dgfd");
 
         //  chaseDistance = owner.GetFieldOfView();
         //   hearingDistance = owner.GetHearingDistance();
         smellDistance = owner.GetSmellDistance();
     }
 
-    // Update is called once per frame
-
-     /**
-      * comes into detection = changes color
-      * isn't able to run if statement 
-      * stays this way forever cuz no other conditions
-      * 
-      * 
-      * **/
     public override void ToDo()
     {
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) <= bustedDistance)
+
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
         {
             //do something 
+            Debug.Log ("dgfd2");
 
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
@@ -46,10 +40,10 @@ public class DogDetectionState : DogBaseState
             Debug.Log("GettingBustedByDoggo");
 
         }
-        else
-        {
-            owner.ChangeState<DogPatrolState>();
-        }
+        //else
+        //{
+        //    owner.ChangeState<DogPatrolState>();
+        //}
        
         
     }
