@@ -8,20 +8,15 @@ using UnityEngine;
 public class OldboiPatrolState : OldboiBaseState
 {  
     private GameObject[] points;
-    private float chaseDistance;
-    private float hearingRange;
-    private float maxSpeed;
     private CharacterStateMachine charStateM;
-    
-
     private int currentPoint = 0;
+    private float chaseDistance, hearingRange, maxSpeed, distanceToPlayer;
+
     public override void EnterState()
     {
         base.EnterState();
         chaseDistance = owner.GetFieldOfView();
         hearingRange = owner.GetHearingDistance();
-       
-       
         points = owner.GetComponent<OldboiPatrolPoints>().GetPoints();
         ChooseClosest();
     }
@@ -30,15 +25,16 @@ public class OldboiPatrolState : OldboiBaseState
     {
        
         owner.agent.SetDestination(points[currentPoint].transform.position);
-       
+        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+
+
         if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
         {
             currentPoint = (currentPoint + 1) % points.Length;
            
         }
 
-        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
-            (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
+        if ((LineOfSight() && distanceToPlayer < chaseDistance) || (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
             (owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5 && Input.anyKeyDown)))
         {
             Debug.Log(owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed());
