@@ -7,11 +7,8 @@ public class SafeZone : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("RunningTriggerEnterOnZone");
-        if (collision != null)
-        {
-            Debug.Log("yeet");
-        }
+
+
         if (collision.transform.tag == "Dog")
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = true;

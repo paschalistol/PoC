@@ -11,7 +11,6 @@ public class CharacterStateMachine : StateMachine
     public GameObject currentCheckPoint;
     public LayerMask environment;
     public LayerMask deadlyEnvironment;
-    public LayerMask pickups;
     public LayerMask lift;
     public LayerMask checkPoint;
     public LayerMask trampoline;
@@ -19,7 +18,7 @@ public class CharacterStateMachine : StateMachine
     public float WobbleFactor = 0.50f;
     public GameObject walkingParticles;
  
-    public float test;
+
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float maxSpeed;
 

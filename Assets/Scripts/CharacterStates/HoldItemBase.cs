@@ -11,7 +11,9 @@ public class HoldItemBase : State
     protected GameObject objectCarried;
     protected CapsuleCollider capsuleCollider;
     protected bool HoldingSth {get { return owner.holdingSth; }set { owner.holdingSth = value; } }
-
+    private Vector3 point2, point1;
+    private RaycastHit raycastHit;
+    private float pickupCoeff = 2;
     public override void InitializeState(StateMachine owner)
     {
         this.owner = (CharacterHoldItemStateMachine)owner;
@@ -20,6 +22,9 @@ public class HoldItemBase : State
     public override void EnterState()
     {
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
+
+        point1 = capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
+        point2 = capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
     }
 
     protected void InteractWithObject()
@@ -40,15 +45,13 @@ public class HoldItemBase : State
     protected GameObject ReturnObjectInFront()
     {
 
-        Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-        RaycastHit raycastHit;
-        Physics.CapsuleCast(point1, point2, capsuleCollider.radius, LookDirection().normalized, out raycastHit, capsuleCollider.radius, owner.pickups);
+
+        Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, capsuleCollider.radius, owner.transform.forward, out raycastHit, capsuleCollider.radius*pickupCoeff, owner.Interactables);
 
         if (raycastHit.collider != null)
         {
             objectCarried = raycastHit.transform.gameObject;
-            //objectCarried.transform.position += new Vector3(0, 0.5f, 0);
+
             return objectCarried;
         }
         return null;

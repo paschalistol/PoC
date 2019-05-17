@@ -16,7 +16,8 @@ public class CameraScript : MonoBehaviour
     public LayerMask layerMask;
     private bool FirstPers;
     private Vector3 relationshipToChar;
-
+    private RaycastHit raycastHit;
+    private Vector3 move;
     private void Awake()
     {
         rotationY = transform.eulerAngles.y;
@@ -51,9 +52,9 @@ public class CameraScript : MonoBehaviour
     }
     Vector3 CollisionCheck()
     {
-        RaycastHit raycastHit;
-        Vector3 move = new Vector3(0, 0, 0);
-        bool sphereCast = Physics.SphereCast(character.transform.position, radius, relationshipToChar, out raycastHit, (relationshipToChar ).magnitude, layerMask);
+
+        move  = Vector3.zero;
+        Physics.SphereCast(character.transform.position, radius, relationshipToChar, out raycastHit, (relationshipToChar).magnitude, layerMask);
         Debug.DrawRay(character.transform.position, relationshipToChar, Color.red);
         if (raycastHit.collider != null)
         {

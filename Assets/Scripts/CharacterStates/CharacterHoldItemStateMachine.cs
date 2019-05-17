@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterHoldItemStateMachine : StateMachine
 {
-    public LayerMask pickups;
+    public LayerMask Interactables;
     [HideInInspector] public bool holdingSth;
 
 
