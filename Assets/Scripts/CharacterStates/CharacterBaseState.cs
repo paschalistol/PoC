@@ -171,7 +171,7 @@ public class CharacterBaseState : State
     }
 
 
-    float tempSkinwidth;
+    float tempSkinwidth, angle, h;
     public void CollisionCheck()
     {
 
@@ -179,13 +179,13 @@ public class CharacterBaseState : State
 
         {
 
-            float angle = (Vector3.Angle(raycastHit.normal, Velocity.normalized) - 90) * Mathf.Deg2Rad;
-            float h = skinWidth / Mathf.Sin(angle);
+            angle = (Vector3.Angle(raycastHit.normal, Velocity.normalized) - 90) * Mathf.Deg2Rad;
+            h = skinWidth / Mathf.Sin(angle);
 
+                tempSkinwidth = (skinWidth > h ? skinWidth : h);
             if (Velocity.magnitude * Time.deltaTime + tempSkinwidth > raycastHit.distance - tempSkinwidth)
             {
 
-                tempSkinwidth = (skinWidth > h ? skinWidth : h);
                 normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
                 Velocity += normal;
                 Friction(normal.magnitude);
