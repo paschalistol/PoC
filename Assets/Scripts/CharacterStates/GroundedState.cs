@@ -73,7 +73,8 @@ public class GroundedState : CharacterBaseState
 
         DeathCollisionCheck();
         ReachingCheckPoint();
-        Trampoline();
+        //Trampoline();
+        Bouncing();
         CollisionCheck();
         //ReachingGoal();
         owner.transform.position += Velocity * Time.deltaTime;

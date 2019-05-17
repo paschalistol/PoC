@@ -10,9 +10,9 @@ public class Box : Interactable
     [SerializeField] private LayerMask environment;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-
+    public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
-
+    protected float bounceHeight = 20;
     private bool isHeld = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip[] pickupSounds;
@@ -39,11 +39,27 @@ public class Box : Interactable
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
+        Bouncing();
     }
 
     public override void StartInteraction()
     {
         isHeld = !isHeld;
+    }
+
+    public virtual void ApplyForce(Vector3 vector)
+    {
+        velocity = vector;
+
+    }
+
+    protected void Bouncing()
+    {
+        if (standOnTrampoline)
+        {
+            ApplyForce(Vector3.up * bounceHeight);
+            standOnTrampoline = false;
+        }
     }
 
 }
