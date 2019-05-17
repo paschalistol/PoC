@@ -27,7 +27,7 @@ public class CharacterBaseState : State
     protected Vector3 normal;
     protected const float jumpHeight = 12;
     protected bool snowboarding = false;
-
+    protected float bounceHeight = 20;
     private float normalOffset = 0.03f;
     private Vector3 point1, point2;
     private RaycastHit raycastHit;
@@ -321,7 +321,7 @@ public class CharacterBaseState : State
     protected void Trampoline()
     {
 
-        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth + 0.2f, owner.trampoline);
+        GetRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth + 0.2f, owner.trampoline);
         if (raycastHit.collider == null)
             return;
         else
@@ -332,13 +332,10 @@ public class CharacterBaseState : State
             Velocity += normal * 4f;
             
             #endregion*/
-            ApplyForce(Vector3.up * 40);
-            if (Velocity.magnitude > 40)
-            {
-                Velocity = Velocity.normalized * 40;
-            }
+            ApplyForce(Vector3.up * bounceHeight);
+          
             Friction(normal.magnitude);
-            Debug.Log("OI");
+            
 
         }
     }

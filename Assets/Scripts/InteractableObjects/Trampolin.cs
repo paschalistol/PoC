@@ -12,6 +12,7 @@ public class Trampolin : Interactable
     protected BoxCollider boxCollider;
     [SerializeField] private LayerMask environment;
     protected const float skinWidth = 0.2f;
+    private BoxCollider collider;
 
     private bool isHeld;
     // Start is called before the first frame update
@@ -45,11 +46,17 @@ public class Trampolin : Interactable
         Debug.Log("StartingInteraction");
         isHeld = !isHeld;
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void Bounce()
     {
-        if(other.transform.tag == "Player")
-        {
-            Debug.Log("yeet");
-        }
+        RaycastHit raycastHit;
+        #region Raycast
+
+        Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
+            velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
+        #endregion
+        if (raycastHit.collider == null)
+            return velocity;
     }
+
 }
