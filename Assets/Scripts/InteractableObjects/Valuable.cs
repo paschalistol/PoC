@@ -25,7 +25,7 @@ public class Valuable : Interactable
     }
 
     
-    void Update()
+    protected virtual void Update()
     {
         
             velocity = PhysicsScript.Decelerate(velocity);

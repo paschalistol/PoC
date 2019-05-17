@@ -37,7 +37,7 @@ public class DetectionState : EnemyBaseState
         {
             //do something 
 
-            Debug.Log("Deathcollider is not null!");
+
             UnitDeathEventInfo deathInfo = new UnitDeathEventInfo();
             deathInfo.eventDescription = "U big dead lmao!";
 
