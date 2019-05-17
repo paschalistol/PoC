@@ -45,4 +45,11 @@ public class Trampolin : Interactable
         Debug.Log("StartingInteraction");
         isHeld = !isHeld;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            Debug.Log("yeet");
+        }
+    }
 }

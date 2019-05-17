@@ -10,7 +10,7 @@ public class CharacterBaseState : State
 {
     protected CharacterStateMachine owner;
 
-    // protected float wobbleValue { get { return owner.WobbleFactor;  } }
+    
     protected float wobbleValue { get { return owner.WobbleFactor; } }
     protected CapsuleCollider capsuleCollider;
     protected const int acceleration = 23;
@@ -271,7 +271,7 @@ public class CharacterBaseState : State
     protected void DeathCollisionCheck()
     {
 
-        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
+        GetRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.deadlyEnvironment);
 
         if (raycastHit.collider != null)
         {
@@ -321,23 +321,24 @@ public class CharacterBaseState : State
     protected void Trampoline()
     {
 
-        GetRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth, owner.trampoline);
+        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth + 0.2f, owner.trampoline);
         if (raycastHit.collider == null)
             return;
         else
         {
 
-            #region Apply Normal Force
+            /*#region Apply Normal Force
             normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
             Velocity += normal * 4f;
+            
+            #endregion*/
+            ApplyForce(Vector3.up * 40);
             if (Velocity.magnitude > 40)
             {
                 Velocity = Velocity.normalized * 40;
             }
             Friction(normal.magnitude);
-            #endregion
-
-
+            Debug.Log("OI");
 
         }
     }
