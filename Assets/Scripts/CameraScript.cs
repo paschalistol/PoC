@@ -17,6 +17,11 @@ public class CameraScript : MonoBehaviour
     private bool FirstPers;
     private Vector3 relationshipToChar;
 
+    private void Awake()
+    {
+        rotationY = transform.eulerAngles.y;
+    }
+
     void Update()
     {
         GetMouseInput();

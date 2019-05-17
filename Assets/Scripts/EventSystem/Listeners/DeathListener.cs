@@ -10,13 +10,13 @@ public class DeathListener : MonoBehaviour
 {
     private GameObject objectToInteract;
     private GameObject spawnPoint;
-    public Text text;
+    public TMPro.TMP_Text deathcounterText;
     private static bool died;
     void Start()
     {
 
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(DeathInteraction);
-        text.text = "" + PlayerPrefs.GetInt("DeathCounter");
+        deathcounterText.text = "" + PlayerPrefs.GetInt("DeathCounter");
     }
 
     void DeathInteraction(UnitDeathEventInfo deathInfo)
@@ -25,7 +25,7 @@ public class DeathListener : MonoBehaviour
         objectToInteract = deathInfo.deadUnit;
         //spawnPoint = deathInfo.spawnPoint;
         PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
-        text.text = ""+PlayerPrefs.GetInt("DeathCounter");
+        deathcounterText.text = ""+PlayerPrefs.GetInt("DeathCounter");
         DecreaseHighscore();
         died = true;
         //player.gameObject.transform.position = spawnPoint.transform.position;

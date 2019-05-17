@@ -15,6 +15,8 @@ public class DogPatrolState : DogBaseState
     private float smellDistance;
     private int Point;
     private const float noiceDetection = 5f;
+    private float distanceToPoint;
+    private float distanceToEnemy;
 
     public override void EnterState()
     {
@@ -27,11 +29,15 @@ public class DogPatrolState : DogBaseState
     public override void ToDo()
     {
         owner.agent.SetDestination(DogPoints[Point].transform.position);
-        if (Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position) < noiceDetection)
+        distanceToPoint = Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position);
+        if (distanceToPoint < noiceDetection)
         {
             ChooseRandom();
         }
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < smellDistance && !owner.inSafeZone)
+
+        distanceToEnemy = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+
+        if (distanceToEnemy < smellDistance && !owner.inSafeZone)
         {
            owner.ChangeState<DogChaseState>();
         }

@@ -7,14 +7,14 @@ public class Score : MonoBehaviour
 {
 
 
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TMPro.TMP_Text scoreText;
     [SerializeField] private float stepToChangeScore;
     private float scoreShown;
     void Start()
     {
 
         scoreShown = PlayerPrefs.GetFloat("Highscore", 0);
-        scoreText.text = "" + scoreShown.ToString("00000000");
+        scoreText.text = "" + scoreShown.ToString("000000");
     }
 
 
@@ -30,7 +30,7 @@ public class Score : MonoBehaviour
             scoreShown -= (scoreShown -PlayerPrefs.GetFloat("Highscore", 0) >= stepToChangeScore ? stepToChangeScore : PlayerPrefs.GetFloat("Highscore", 0) - scoreShown);
         }
 
-        scoreText.text = "Score: " + scoreShown.ToString("00000000");
+        scoreText.text = "Score: " + scoreShown.ToString("000000");
 
     }
 
