@@ -52,10 +52,11 @@ public class CharacterBaseState : State
 
     protected void Bouncing()
     {
-        if (owner.standOnTrampoline)
+        if (owner.standOnTrampoline == true)
         {
             ApplyForce(Vector3.up * 20);
         }
+        owner.standOnTrampoline = false;
     }
 
     protected void Gravity()

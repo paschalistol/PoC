@@ -11,8 +11,9 @@ public class Trampolin : Interactable
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     [SerializeField] private LayerMask environment;
+    [SerializeField] private LayerMask bounceLayer;
     protected const float skinWidth = 0.2f;
-    private BoxCollider collider;
+    
 
     private bool isHeld;
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class Trampolin : Interactable
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
+        Bounce();
     }
 
     public override AudioClip GetAudioClip()
@@ -47,16 +49,30 @@ public class Trampolin : Interactable
         isHeld = !isHeld;
     }
 
-    /*public void Bounce()
+    public void Bounce()
     {
         RaycastHit raycastHit;
         #region Raycast
 
-        Physics.BoxCast(collider.transform.position, collider.transform.localScale / 2,
-            velocity, out raycastHit, collider.transform.rotation, velocity.magnitude * Time.deltaTime + skinWidth, layerMask);
+        Physics.BoxCast(boxCollider.transform.position, boxCollider.transform.localScale / 2,
+            Vector3.up, out raycastHit, boxCollider.transform.rotation, 0.5f, bounceLayer);
         #endregion
         if (raycastHit.collider == null)
-            return velocity;
-    }*/
+            return;
+        else
+        {
+            if(raycastHit.collider.transform.gameObject.tag == ("player"))
+            {
+                CharacterStateMachine player = GameObject.Find("Player").GetComponent<CharacterStateMachine>();
+                player.standOnTrampoline = true;
+            }
+
+            if (raycastHit.collider.transform.gameObject.tag == ("Box"))
+            {
+                Box box = GameObject.Find("Box").GetComponent<Box>();
+                box.standOnTrampoline = true;
+            }
+        }
+    }
 
 }
