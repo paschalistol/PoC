@@ -1,11 +1,11 @@
 ﻿Audio triggers
 
 Player character
-footsteps: alternating pitch on sound file "Player_Step", match to movement speed(?). need to be slightly muffled when sneaking. 
+footsteps: alternating pitch on sound file "Player_Step", match to movement speed(?). needs to be slightly muffled when sneaking. 
 picking up item: random between "pickup1" and "pickup2" + slight pitch change. right after that, play oneshot "value_feedback" for the score counter
 jump: oneshot "jump_sound" ✔
 land: oneshot "land_sound" ✔
-after enemies give up on chasing: loop sound file "heavyBreathing" 1 or 2 seconds
+after enemies give up on chasing: oneshot sound file "heavyBreathing" 
 
 Enemies
 Dogs
@@ -14,6 +14,7 @@ switching to hostile state: very loud oneshot "beast_bark"
 Hostile state: random constant oneshots between "beastgrowl_Base1", "beastgrowl_Aggressive", "beast_bark"
 Guards
 footsteps: alternating pitch on soundfile "footsteps_guards", match to movement speed(?)
+keys: random triggering of soundfile "sound of moving keys"
 switching to hostile state: detection noise --> oneshot of one of three soundfiles ("guard_whoisthere", guard_whogoesthere", "guard_huh") 
 hostile state: random delayed oneshots of bark sound files ("guard_getbackhere", "guard_stop", "guard_hey") 
 

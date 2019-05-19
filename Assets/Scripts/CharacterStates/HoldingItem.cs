@@ -18,14 +18,9 @@ public class HoldingItem : HoldItemBase
         if (objectCarried != null)
         {
             layerNumber = objectCarried.layer;
-            if (layerNumber != 17)
-            {
                 objectCarried.layer = 0;
-            }
-            else
-            {
                 objectCarried.transform.parent = null;
-            }
+
             soundEvent = new SoundEvent();
             soundEvent.gameObject = owner.gameObject;
             soundEvent.eventDescription = "PickUp Sound";

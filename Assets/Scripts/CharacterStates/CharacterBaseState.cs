@@ -50,6 +50,15 @@ public class CharacterBaseState : State
 
     }
 
+    protected void Bouncing()
+    {
+        if (owner.standOnTrampoline == true)
+        {
+            ApplyForce(Vector3.up * 20);
+        }
+        owner.standOnTrampoline = false;
+    }
+
     protected void Gravity()
     {
         Vector3 gravity = Vector3.down * gravityConstant * Time.deltaTime;

@@ -14,7 +14,7 @@ public class Door : Interactable
     [SerializeField] private AudioClip doorOpenSound;
     [SerializeField] private AudioClip doorCloseSound;
     [SerializeField] private AudioClip unlockDoorSound;
-
+    private float rotationGoal;
     protected override void Start()
     {
         base.Start();
@@ -40,8 +40,8 @@ public class Door : Interactable
 
     IEnumerator RotateDoor(GameObject parent)
     {
-        float temp = parent.transform.eulerAngles.y + rotation;
-        while (parent.transform.eulerAngles.y < temp)
+        rotationGoal = parent.transform.eulerAngles.y + rotation;
+        while (parent.transform.eulerAngles.y < rotationGoal)
         {
             parent.transform.eulerAngles += new Vector3(0, 1, 0) * Time.deltaTime * rotationSpeed;
 
