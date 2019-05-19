@@ -41,6 +41,8 @@ public class Key : Interactable
             velocity = PhysicsScript.Gravity(velocity);
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
+
+
         }
         else if (isHeld)
         {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1702820384596381223}
   - component: {fileID: 1702820384596381220}
   m_Layer: 0
-  m_Name: Oldboi (1)
+  m_Name: Oldboi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: fb543232d83ea584f8f269816d5fa4c2, type: 2}
-  - {fileID: 11400000, guid: e3996a5112072d1488fa7822b4e3bf17, type: 2}
+  - {fileID: 11400000, guid: a353ff788bd27d1459812dab693d1540, type: 2}
   currentState: {fileID: 0}
   Renderer: {fileID: 0}
   agent: {fileID: 0}
@@ -120,7 +120,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 0}
-  doggo: {fileID: 0}
   dogs: []
   capsuleCollider: {fileID: 1702820384596381217}
 --- !u!195 &1702820384596381223

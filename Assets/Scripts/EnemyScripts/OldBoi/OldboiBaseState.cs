@@ -12,9 +12,7 @@ public class OldboiBaseState : State
     private CapsuleCollider capsuleCollider;
 
     protected Oldboi owner;
-    
-
-
+   
     // Methods
     public override void EnterState()
     {

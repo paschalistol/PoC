@@ -12,7 +12,7 @@ public class EnemyDog : StateMachine
     //public LayerMask visionMask;
     public LayerMask safeZoneMask;
     public GameObject player;
-    public Oldboi oldboi;
+    
 
     public bool inSafeZone;
    // public GameObject audioSpeaker;

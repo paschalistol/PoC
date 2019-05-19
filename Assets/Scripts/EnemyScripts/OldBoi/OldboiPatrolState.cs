@@ -38,7 +38,7 @@ public class OldboiPatrolState : OldboiBaseState
             (owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5 && Input.anyKeyDown)))
         {
             Debug.Log(owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed());
-            owner.ChangeState<OldboiChaseState>();
+            owner.ChangeState<OldboiAlertState>();
         }
     }
 

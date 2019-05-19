@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5777606410677590928}
   - component: {fileID: 5777606410677590956}
   - component: {fileID: 571242004591992467}
+  - component: {fileID: 3970820358695294457}
   m_Layer: 11
   m_Name: Box
   m_TagString: Box
@@ -120,6 +121,19 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 2560
+  standOnTrampoline: 0
   pickupSounds:
   - {fileID: 8300000, guid: 5a9387d3ddae6384684fbace69291d7c, type: 3}
   - {fileID: 8300000, guid: b6211062945d1474781d10a2e1e86386, type: 3}
+--- !u!114 &3970820358695294457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777606410677590930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf9e527f39d06148bcc44cfb1216a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

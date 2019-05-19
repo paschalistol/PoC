@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7939699266272103413}
   m_Layer: 0
   m_Name: Doggo (1)
-  m_TagString: Untagged
+  m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,16 +109,15 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 983cfa3ff803ba345bda8a0704ea78ff, type: 2}
   - {fileID: 11400000, guid: 64a244d6790a3c04d873b858249fc79b, type: 2}
-  - {fileID: 11400000, guid: 52e32d8e9733dfe4d803ebc0b7575e45, type: 2}
   - {fileID: 11400000, guid: 466496899d9e73548b9f4ba840ac1e8a, type: 2}
   currentState: {fileID: 0}
   Renderer: {fileID: 0}
   agent: {fileID: 0}
-  visionMask:
+  safeZoneMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 134217728
   player: {fileID: 0}
-  oldboi: {fileID: 0}
+  inSafeZone: 0
   smellDistance: 15
 --- !u!65 &7939699266272103414
 BoxCollider:

@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/OldboiChaseState")]
-public class OldboiChaseState : OldboiBaseState
+[CreateAssetMenu(menuName = "Enemy/OldboiAlertState")]
+public class OldboiAlertState : OldboiBaseState
 {
  
     private float chaseDistance;
     private float hearingRange;
-    [SerializeField] private float bustedDistance;
-    private const float speed = 0.1f;
+    private const float bustedDistance = 2f;
+    private const float rotationalSpeed = 0.1f;
 
-    public AudioClip audioSpeaker;
+    //public AudioClip audioSpeaker;
 
     public override void EnterState()
     {
@@ -25,7 +25,7 @@ public class OldboiChaseState : OldboiBaseState
         
         Vector3 direction = owner.player.transform.position - owner.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
-        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, speed);
+        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, rotationalSpeed);
 
         if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
             (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
@@ -34,9 +34,6 @@ public class OldboiChaseState : OldboiBaseState
             foreach(GameObject dog in owner.dogs){
                 dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();   
             }
-            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
-                owner.ChangeState<OldboiDetectionState>();
-
         }  else
             owner.ChangeState<OldboiPatrolState>();
 
