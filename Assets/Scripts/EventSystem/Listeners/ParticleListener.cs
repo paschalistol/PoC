@@ -7,26 +7,28 @@ using UnityEngine;
 public class ParticleListener : MonoBehaviour
 {
     private GameObject ParticlesPrefab;
+    private GameObject go;
+    private ParticleSystem system;
 
     void Start()
     {
         EventSystem.Current.RegisterListener<ParticleEvent>(RunParticles);
-
-
+        EventSystem.Current.RegisterListener<StopParticleEvent>(StopParticles);
     }
 
     void RunParticles(ParticleEvent eventInfo)
     {
         //Debug.Log("RunningParticles!");
-        GameObject go = Instantiate(eventInfo.particles);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
+        go = Instantiate(eventInfo.particles);
+        system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         system.Play();
         StartCoroutine(ParticleDelay(system, go));
+    }
 
-        
-    
-
+    void StopParticles(StopParticleEvent eventInfo)
+    {
+        Destroy(go);
     }
 
     private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob)
@@ -40,7 +42,7 @@ public class ParticleListener : MonoBehaviour
 
 }
 
-
+#region ParticleLegacy
 //Legacy
 
 //private GameObject go;
@@ -92,3 +94,4 @@ public class ParticleListener : MonoBehaviour
 //    system.Play();
 //    StartCoroutine(ParticleDelay(system, go));
 //}
+#endregion
