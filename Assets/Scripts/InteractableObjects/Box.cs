@@ -54,8 +54,6 @@ public class Box : Interactable
     {
         if (standOnTrampoline)
         {
-            //velocity = Vector3.up * bounceHeight + velocity.normalized;
-            //velocity = velocity + new Vector3(0, bounceHeight, 0);
             velocity = new Vector3(velocity.x * 1.18f, bounceHeight, velocity.z * 1.18f);
             standOnTrampoline = false;
         }

@@ -1,5 +1,5 @@
 ﻿//Main Author: Paschalis Tolios
-//Secondary Author: Emil Dahl
+//Secondary Author: Emil Dahl Johan Ekman
 
 using System.Collections;
 using System.Collections.Generic;
