@@ -23,7 +23,7 @@ public class DogBaseState : State
     public override void EnterState()
     {
         base.EnterState();
-        owner.Renderer.material = material;
+        //owner.Renderer.material = material;
         owner.agent.speed = moveSpeed;
         
         boxCollider = owner.GetComponent<BoxCollider>();
