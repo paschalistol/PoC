@@ -63,11 +63,11 @@ public class GroundedState : CharacterBaseState
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            MaxSpeed /= 2;
+            MaxSpeed = maxSpeedCoeff /2;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            MaxSpeed *= 2;
+            MaxSpeed = maxSpeedCoeff *2;
         }
         #endregion
 

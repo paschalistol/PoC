@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &509811170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382824191252153999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a8360b27575474c8f6ff5fd59e1b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questPanel: {fileID: 0}
+  questText: {fileID: 0}
+  textToDisplay: "Alright, tonight's mission:\r\n\t\t- Get as many valuables as possible
+    from the houses\r\n\t\t- Try not to get caught\r\n\t\t- Escape the same way you
+    came\r\n\tThe rich people are away on business, and only the guards are left.
+    Luckily, the guards operate alone and are paid to guard one specific house only,
+    which makes it easier for you! \r\n\tThey usually carry a spare key and are not
+    too bright, meaning they should be fairly easy to sneak up on.\r\n\r\n\tGood luck!"
+  timeToShowQuestText: 10
+--- !u!1001 &6086332688152717217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2315757740696412462, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_Name
+      value: QuestTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9200134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.480011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.437721
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.08565015
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.45079046
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412437, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: lift
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315757740696412456, guid: 3b5f128de642d2441b6d1195515d5393,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0b67131018dd264993f96e04e3c7eb8, type: 2}
+    m_RemovedComponents:
+    - {fileID: 2315757740696412437, guid: 3b5f128de642d2441b6d1195515d5393, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3b5f128de642d2441b6d1195515d5393, type: 3}
+--- !u!1 &8382824191252153999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2315757740696412462, guid: 3b5f128de642d2441b6d1195515d5393,
+    type: 3}
+  m_PrefabInstance: {fileID: 6086332688152717217}
+  m_PrefabAsset: {fileID: 0}
