@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SafeZone : MonoBehaviour
 {
-
     void OnTriggerEnter(Collider collision)
     {
-
-
         if (collision.transform.CompareTag("Dog"))
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = true;
