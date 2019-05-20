@@ -23,8 +23,8 @@ public class QuestSystem : Interactable
 
         questText.text = textToDisplay;
         questPanel.SetActive(true);
-        timeShown = 0;
-        StartCoroutine(CloseQuestText());
+        //timeShown = 0;
+        //StartCoroutine(CloseQuestText());
     }
 
     IEnumerator  CloseQuestText()
