@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questPanel: {fileID: 0}
   questText: {fileID: 0}
-  textToDisplay: "Alright, tonight's mission:\r\n\t\t- Get as many valuables as possible
-    from the houses\r\n\t\t- Try not to get caught\r\n\t\t- Escape the same way you
-    came\r\n\tThe rich people are away on business, and only the guards are left.
-    Luckily, the guards operate alone and are paid to guard one specific house only,
-    which makes it easier for you! \r\n\tThey usually carry a spare key and are not
-    too bright, meaning they should be fairly easy to sneak up on.\r\n\r\n\tGood luck!"
+  textToDisplay: "Alright, tonight's mission:\r\n- Get as many valuables as possible
+    from the houses\r\n- Try not to get caught\r\n- Escape the same way you came\r\n\nThe
+    rich people are away on business, and only the guards are left. Luckily, the guards
+    operate alone and are paid to guard one specific house only, which makes it easier
+    for you! \r\nThey usually carry a spare key and are not too bright, meaning they
+    should be fairly easy to sneak up on.\r\n\r\nGood luck!"
   timeToShowQuestText: 10
 --- !u!1001 &6086332688152717217
 PrefabInstance:
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 2315757740696412462, guid: 3b5f128de642d2441b6d1195515d5393,
         type: 3}
       propertyPath: m_Name
-      value: QuestTrigger
+      value: QuestTrigger Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2315757740696412458, guid: 3b5f128de642d2441b6d1195515d5393,
         type: 3}
