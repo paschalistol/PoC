@@ -18,8 +18,8 @@ public class HoldingItem : HoldItemBase
         if (objectCarried != null)
         {
             layerNumber = objectCarried.layer;
-                objectCarried.layer = 0;
-                objectCarried.transform.parent = null;
+            objectCarried.layer = 0;
+            objectCarried.transform.parent = null;
 
             soundEvent = new SoundEvent();
             soundEvent.gameObject = owner.gameObject;
@@ -51,15 +51,19 @@ public class HoldingItem : HoldItemBase
 
     public override void ToDo()
     {
+
         if (DeathListener.Death())
         {
+            Debug.Log("go");
             GameObject temp = objectCarried;
             DeathListener.SetDied(false);
             ReleaseItem();
-            objectCarried = null;          
+            objectCarried = null;
             RespawnItem(temp);
 
         }
+
+
 
         if (objectCarried == null) {
 
@@ -79,10 +83,7 @@ public class HoldingItem : HoldItemBase
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            objectCarried.layer = layerNumber;
-            objectCarried.transform.position += ThrowTo();
-            objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo() * 3);
-            SetHolding(false);
+            Throw();
         }
         if (!HoldingSth)
         {
@@ -95,6 +96,7 @@ public class HoldingItem : HoldItemBase
     }
     private void RespawnItem(GameObject temp)
     {
+        Debug.Log(temp);
 
         if (temp != null)
         {
@@ -131,12 +133,34 @@ public class HoldingItem : HoldItemBase
     Vector3 ThrowTo()
     {
 
-        float x = LookDirection().x * 3;
-        float y = 50;
-        float z = LookDirection().z * 3;
+        float x = LookDirection().x/2;
+        float y = 10;
+        float z = LookDirection().z/2;
         return new Vector3(x, y, z);
 
     }
+
+    private void Throw()
+    {
+        objectCarried.layer = layerNumber;
+        //objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo() * 3);
+        SetHolding(false);
+        InteractWithObject();
+        objectCarried.transform.position += ThrowTo();
+        SetThrowEvent();
+    }
+
+    private void SetThrowEvent()
+    {
+        ThrowEvent throwInfo = new ThrowEvent();
+        throwInfo.eventDescription = "Pressed item has been activated: ";
+        throwInfo.gameObject = objectCarried;
+        throwInfo.throwDirection = ThrowTo();
+
+        EventSystem.Current.FireEvent(throwInfo);
+    }
+
+
     private Vector3 Direction()
     {
         Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;

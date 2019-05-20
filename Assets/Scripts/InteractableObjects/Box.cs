@@ -25,7 +25,7 @@ public class Box : Interactable
     {
         base.Start();
         boxCollider = GetComponent<BoxCollider>();
-        
+       
         isHeld = false;
 
     }
@@ -39,6 +39,7 @@ public class Box : Interactable
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
+
         Bouncing();
     }
 
@@ -47,19 +48,28 @@ public class Box : Interactable
         isHeld = !isHeld;
     }
 
-    public virtual void ApplyForce(Vector3 vector)
-    {
-        velocity = vector;
-
-    }
+ 
 
     protected void Bouncing()
     {
         if (standOnTrampoline)
         {
-            ApplyForce(Vector3.up * bounceHeight);
+            //velocity = Vector3.up * bounceHeight + velocity.normalized;
+            //velocity = velocity + new Vector3(0, bounceHeight, 0);
+            velocity = new Vector3(velocity.x * 1.2f, bounceHeight, velocity.z * 1.2f);
             standOnTrampoline = false;
         }
+    }
+
+    public override void BeingThrown(Vector3 throwDirection)
+    {
+        velocity = throwDirection;
+    }
+
+    protected override void OnCollisionStay(Collision collision)
+    {
+
+
     }
 
 }

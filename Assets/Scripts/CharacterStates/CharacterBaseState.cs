@@ -292,16 +292,10 @@ public class CharacterBaseState : State
             deathInfo.deadUnit = owner.transform.gameObject;
             EventSystem.Current.FireEvent(deathInfo);
 
-
- 
-
-
-
         }
         if (DeathListener.Death())
         {
-        owner.transform.position = owner.currentCheckPoint.transform.position;
-            DeathListener.SetDied(false);
+            owner.transform.position = owner.currentCheckPoint.transform.position;
         }
 
     }
