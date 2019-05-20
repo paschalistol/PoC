@@ -51,8 +51,10 @@ public class HoldingItem : HoldItemBase
 
     public override void ToDo()
     {
+
         if (DeathListener.Death())
         {
+            Debug.Log("go");
             GameObject temp = objectCarried;
             DeathListener.SetDied(false);
             ReleaseItem();
@@ -94,6 +96,7 @@ public class HoldingItem : HoldItemBase
     }
     private void RespawnItem(GameObject temp)
     {
+        Debug.Log(temp);
 
         if (temp != null)
         {

@@ -27,6 +27,10 @@ public class EmptyHands : HoldItemBase
             }
 
         }
+        if (DeathListener.Death()) 
+        {
+            DeathListener.SetDied(false);
+        }
         if (HoldingSth)
         {
             owner.ChangeState<HoldingItem>();

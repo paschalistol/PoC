@@ -39,7 +39,7 @@ public class Box : Interactable
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
         }
-        Debug.Log(velocity);
+
         Bouncing();
     }
 
@@ -66,13 +66,9 @@ public class Box : Interactable
         velocity = throwDirection;
     }
 
-    protected virtual void OnCollisionStay(Collision collision)
+    protected override void OnCollisionStay(Collision collision)
     {
 
-        if (gameObject.CompareTag("Only Interaction") == false && collision.gameObject.layer != 0)
-        {
-            RespawnItem();
-        }
 
     }
 

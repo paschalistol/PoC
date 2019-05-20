@@ -11,7 +11,7 @@ public class DeathListener : MonoBehaviour
     private GameObject objectToInteract;
     private GameObject spawnPoint;
     public TMPro.TMP_Text deathcounterText;
-    private static bool died;
+    private static bool died = false;
     void Start()
     {
 
@@ -37,6 +37,7 @@ public class DeathListener : MonoBehaviour
         addPointInfo.eventDescription = "Losing points!";
         addPointInfo.point = - Mathf.Clamp( Random.Range(1, 10) , 0, PlayerPrefs.GetFloat("Highscore", 0));
         EventSystem.Current.FireEvent(addPointInfo);
+
     }
     public static bool Death()
     {
