@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransfer : Interactable
 {
+    public int levelToLoad;
+
     [SerializeField]
     private AudioClip changeSceneSound;
 
@@ -31,7 +33,7 @@ public class SceneTransfer : Interactable
             EventSystem.Current.FireEvent(soundEvent);
             StartCoroutine(WaitForSound());
         }
-        SceneManager.LoadScene("Level 3");
+        SceneManager.LoadScene(levelToLoad);
     }
     IEnumerator  WaitForSound()
     {
