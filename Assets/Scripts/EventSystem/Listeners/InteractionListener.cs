@@ -14,11 +14,13 @@ public class InteractionListener : MonoBehaviour
     void Interacted(InteractionEvent info)
     {
         objectToInteract = info.interactedObject;
+        Interactable interact = objectToInteract.GetComponent<Interactable>();
 
-        if (objectToInteract.GetComponent<Interactable>() != null)
+
+        if (interact != null)
         {
-            info.interactedObject.GetComponent<Interactable>().StartInteraction();
-
+            interact.StartInteraction();
+            
         }
     }
 }

@@ -114,4 +114,10 @@ public class MusicBasedOnChased : SoundEvent
 public class RespawnEvent : DebugEvent {
     public GameObject gameObject;
 }
+
+public class ThrowEvent : DebugEvent
+{
+    public GameObject gameObject;
+    public Vector3 throwDirection;
+}
  

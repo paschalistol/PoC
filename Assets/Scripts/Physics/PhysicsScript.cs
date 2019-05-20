@@ -11,7 +11,7 @@ public static class PhysicsScript
     private static Vector3 normal;
     private static  float staticFriction = 0.55f;
     private static float dynamicFriction;
-    private static  float gravityConstant = 5f;
+    private static  float gravityConstant = 20f;
 
 
 

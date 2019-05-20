@@ -11,6 +11,7 @@ public abstract class Interactable : MonoBehaviour
         startPosition = transform.position;
     }
     public abstract void StartInteraction();
+    public virtual void BeingThrown(Vector3 throwDirection) {}
     public virtual void RespawnItem()
     {
         transform.position = startPosition;
