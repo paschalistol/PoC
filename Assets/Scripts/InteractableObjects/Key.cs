@@ -26,7 +26,7 @@ public class Key : Interactable
     {
         base.Start();
         boxCollider = GetComponent<BoxCollider>();
-        
+
         isHeld = false;
     }
     void Update()
@@ -70,6 +70,7 @@ public class Key : Interactable
     {
         return null;
     }
+
 }
 #region KeyLegacy
         //GetComponent<RespawnItem>().startPosition = transform.position;
