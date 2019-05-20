@@ -29,7 +29,7 @@ public class InTheAirState : CharacterBaseState
         ChangeCharRotation();
         #region Input
         Vector3 input = GetDirectionInput();
-
+        
         if (input.magnitude <= 0)
         {
             Decelerate();

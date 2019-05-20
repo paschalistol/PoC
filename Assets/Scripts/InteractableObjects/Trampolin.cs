@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿//Johan Ekman
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Trampolin : Interactable
 {
@@ -13,7 +15,9 @@ public class Trampolin : Interactable
     [SerializeField] private LayerMask environment;
     [SerializeField] private LayerMask bounceLayer;
     protected const float skinWidth = 0.2f;
-    
+    public bool standOnTrampoline = false;
+    protected float bounceHeight = 25;
+
 
     private bool isHeld;
     // Start is called before the first frame update
@@ -36,6 +40,8 @@ public class Trampolin : Interactable
             transform.position += velocity * Time.deltaTime;
         }
         Bounce();
+        Bouncing();
+        
     }
 
     public override AudioClip GetAudioClip()
@@ -45,7 +51,7 @@ public class Trampolin : Interactable
 
     public override void StartInteraction()
     {
-        Debug.Log("StartingInteraction");
+        
         isHeld = !isHeld;
     }
 
@@ -69,10 +75,35 @@ public class Trampolin : Interactable
 
             if (raycastHit.collider.transform.gameObject.tag == ("Box"))
             {
-                Box box = GameObject.Find("Box").GetComponent<Box>();
+                System.String boxName = raycastHit.collider.transform.gameObject.name;
+                Box box = GameObject.Find(boxName).GetComponent<Box>();
+                
                 box.standOnTrampoline = true;
             }
+            /*if (raycastHit.collider.transform.gameObject.tag == ("Trampoline"))
+            {
+                System.String trampolineName = raycastHit.collider.transform.gameObject.name;
+                Trampolin trampoline = GameObject.Find(trampolineName).GetComponent<Trampolin>();
+
+                trampoline.standOnTrampoline = true;
+            }*/
         }
     }
+
+    protected void Bouncing()
+    {
+        if (standOnTrampoline)
+        {
+            velocity = new Vector3(velocity.x * 1.18f, bounceHeight, velocity.z * 1.18f);
+            standOnTrampoline = false;
+        }
+    }
+
+    public override void BeingThrown(Vector3 throwDirection)
+    {
+        velocity = throwDirection;
+    }
+
+
 
 }

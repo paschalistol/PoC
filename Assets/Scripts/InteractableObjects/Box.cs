@@ -1,5 +1,5 @@
 ﻿//Main Author: Emil Dahl
-//Secondary Author: Paschalis Tolios
+//Secondary Author: Paschalis Tolios Johan Ekman
 
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ public class Box : Interactable
     protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
-    protected float bounceHeight = 20;
+    protected float bounceHeight = 25;
     private bool isHeld = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip[] pickupSounds;
@@ -56,7 +56,7 @@ public class Box : Interactable
         {
             //velocity = Vector3.up * bounceHeight + velocity.normalized;
             //velocity = velocity + new Vector3(0, bounceHeight, 0);
-            velocity = new Vector3(velocity.x * 1.2f, bounceHeight, velocity.z * 1.2f);
+            velocity = new Vector3(velocity.x * 1.18f, bounceHeight, velocity.z * 1.18f);
             standOnTrampoline = false;
         }
     }
@@ -66,10 +66,5 @@ public class Box : Interactable
         velocity = throwDirection;
     }
 
-    protected override void OnCollisionStay(Collision collision)
-    {
-
-
-    }
 
 }

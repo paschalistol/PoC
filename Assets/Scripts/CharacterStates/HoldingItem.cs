@@ -143,10 +143,10 @@ public class HoldingItem : HoldItemBase
     private void Throw()
     {
         objectCarried.layer = layerNumber;
-        //objectCarried.GetComponent<Rigidbody>().AddForce(ThrowTo() * 3);
+        
         SetHolding(false);
         InteractWithObject();
-        objectCarried.transform.position += ThrowTo();
+        
         SetThrowEvent();
     }
 
