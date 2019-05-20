@@ -9,7 +9,7 @@ public class SafeZone : MonoBehaviour
     {
 
 
-        if (collision.transform.tag == "Dog")
+        if (collision.transform.CompareTag("Dog"))
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = true;
             Debug.Log("in");
@@ -18,7 +18,7 @@ public class SafeZone : MonoBehaviour
 
     void OnTriggerExit(Collider collision)
     {
-        if (collision.transform.tag == "Dog")
+        if (collision.transform.CompareTag("Dog"))
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = false;
             Debug.Log("out");
