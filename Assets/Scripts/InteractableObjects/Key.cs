@@ -57,11 +57,11 @@ public class Key : Interactable
         }
         isHeld = !isHeld;
 
-        if (startParticles.particles != null)
+        /*if (startParticles.particles != null)
         {
             usedOnce = false;
             ParticleStopper();
-        }
+        }*/
     }
 
     public override AudioClip GetAudioClip()
