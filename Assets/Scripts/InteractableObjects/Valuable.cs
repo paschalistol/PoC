@@ -21,8 +21,7 @@ public class Valuable : Interactable
     {
         base.Start();
         boxCollider = GetComponent<BoxCollider>();
-        
-        
+
 
     }
 
@@ -55,7 +54,13 @@ public class Valuable : Interactable
         }
         Destroy(gameObject);
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartInteraction();
+        }
+    }
     public override AudioClip GetAudioClip()
     {
         return interactionSound;
