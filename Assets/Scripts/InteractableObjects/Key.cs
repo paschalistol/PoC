@@ -10,14 +10,18 @@ public class Key : Interactable
 {
     [SerializeField] private GameObject lockedDoor;
     [SerializeField] private GameObject[] unlockableDoors;
+    [SerializeField] private GameObject particles;
     [SerializeField] private LayerMask environment;
     [HideInInspector] public bool used = false;
 
+    private ParticleEvent startParticles;
+    private StopParticleEvent stopParticles;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
 
+    private bool usedOnce = false;
     protected const float skinWidth = 0.2f;
 
     private bool isHeld;
@@ -42,14 +46,21 @@ public class Key : Interactable
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
 
+            if (!usedOnce)
+            {
+                startParticles = new ParticleEvent();
+                startParticles.objectPlaying = gameObject;
+                startParticles.particles = particles;
 
+                EventSystem.Current.FireEvent(startParticles);
+                usedOnce = true;
+            }
         }
         else if (isHeld)
         {
             bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
             {
-
                 lockedDoor.GetComponent<Interactable>().StartInteraction();
                 Destroy(gameObject);
                 used = true;
@@ -64,6 +75,17 @@ public class Key : Interactable
             transform.parent = null;
         }
         isHeld = !isHeld;
+        usedOnce = false;
+
+        if (startParticles.particles != null)
+        {
+            stopParticles = new StopParticleEvent();
+            stopParticles.particlesToStop = startParticles.particles;
+
+            EventSystem.Current.FireEvent(stopParticles);
+            Debug.Log("waddup");
+
+        }
     }
 
     public override AudioClip GetAudioClip()

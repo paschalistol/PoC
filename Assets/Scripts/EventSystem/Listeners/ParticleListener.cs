@@ -8,6 +8,7 @@ public class ParticleListener : MonoBehaviour
 {
     private GameObject ParticlesPrefab;
     private ParticleSystem system;
+    private GameObject go;
 
     void Start()
     {
@@ -18,12 +19,12 @@ public class ParticleListener : MonoBehaviour
     void RunParticles(ParticleEvent eventInfo)
     {
         //Debug.Log("RunningParticles!");
-        GameObject go = Instantiate(eventInfo.particles);
-        ParticleSystem system = go.GetComponent<ParticleSystem>();
+        go = Instantiate(eventInfo.particles);
+        system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         eventInfo.particles = go;
         system.Play();
-        StartCoroutine(ParticleDelay(system, go, eventInfo));
+        StartCoroutine(ParticleDelay(system));
     }
 
     void StopParticles(StopParticleEvent eventInfo)
@@ -31,15 +32,18 @@ public class ParticleListener : MonoBehaviour
         Destroy(eventInfo.particlesToStop);
     }
 
-    private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob, 
-        ParticleEvent eventInfo)
+    private IEnumerator ParticleDelay(ParticleSystem system)
     {
         while (system.isEmitting || system.particleCount > 0)
         {
             
             yield return null;
         }
-       Destroy(ob);
+
+        if (go != null)
+        {
+            Destroy(go);
+        }
     }
 
 }

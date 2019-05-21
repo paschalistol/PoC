@@ -9,7 +9,10 @@ public class Box : Interactable
 {
     [SerializeField] private LayerMask environment;
     [SerializeField] private GameObject particles;
+
     private ParticleEvent startParticles;
+    private StopParticleEvent stopParticles;
+
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
@@ -61,12 +64,10 @@ public class Box : Interactable
         usedOnce = false;
 
         if (startParticles.particles != null) {
-            StopParticleEvent stopParticles = new StopParticleEvent();
+            stopParticles = new StopParticleEvent();
             stopParticles.particlesToStop = startParticles.particles;
 
             EventSystem.Current.FireEvent(stopParticles);
-            Debug.Log("waddup");
-            
         }
     }
 

@@ -14,7 +14,6 @@ public class DeathListener : MonoBehaviour
     private static bool died = false;
     void Start()
     {
-
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(DeathInteraction);
         deathcounterText.text = "" + PlayerPrefs.GetInt("DeathCounter");
     }
