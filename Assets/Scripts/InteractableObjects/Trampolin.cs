@@ -67,27 +67,28 @@ public class Trampolin : Interactable
             return;
         else
         {
-            if(raycastHit.collider.transform.gameObject.tag == ("Player"))
+            GameObject obj = raycastHit.collider.transform.gameObject;
+
+            if (obj.tag == ("Player"))
             {
-                System.String playerName = raycastHit.collider.transform.gameObject.name;
+                System.String playerName = obj.name;
                 CharacterStateMachine player = GameObject.Find(playerName).GetComponent<CharacterStateMachine>();
                 player.standOnTrampoline = true;
             }
 
-            if (raycastHit.collider.transform.gameObject.tag == ("Box"))
+            if (obj.tag == ("Box"))
             {
-                System.String boxName = raycastHit.collider.transform.gameObject.name;
+                System.String boxName = obj.name;
                 Box box = GameObject.Find(boxName).GetComponent<Box>();
                 
                 box.standOnTrampoline = true;
             }
-            /*if (raycastHit.collider.transform.gameObject.tag == ("Trampoline"))
+            if (obj.tag == ("Trampoline") && obj != gameObject)
             {
-                System.String trampolineName = raycastHit.collider.transform.gameObject.name;
+                System.String trampolineName = obj.name;
                 Trampolin trampoline = GameObject.Find(trampolineName).GetComponent<Trampolin>();
-
                 trampoline.standOnTrampoline = true;
-            }*/
+            }
         }
     }
 
