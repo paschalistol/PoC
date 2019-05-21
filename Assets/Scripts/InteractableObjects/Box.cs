@@ -17,7 +17,7 @@ public class Box : Interactable
     protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
-    protected float bounceHeight = 25;
+    [SerializeField] private float bounceHeight = 25;
     private bool isHeld = false;
     private bool usedOnce = false;
     [Header("Sounds")]
@@ -56,6 +56,7 @@ public class Box : Interactable
             }
         }
         Bouncing();
+        
     }
 
     public override void StartInteraction()
@@ -77,7 +78,7 @@ public class Box : Interactable
     {
         if (standOnTrampoline)
         {
-            velocity = new Vector3(velocity.x * 1.18f, bounceHeight, velocity.z * 1.18f);
+            velocity = new Vector3(velocity.x * 1.2f, bounceHeight, velocity.z * 1.2f);
             standOnTrampoline = false;
         }
     }

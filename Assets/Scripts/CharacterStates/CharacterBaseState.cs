@@ -53,7 +53,7 @@ public class CharacterBaseState : State
     {
         if (owner.standOnTrampoline == true)
         {
-            ApplyForce(Vector3.up * owner.bounceHeight);
+            ApplyForce(new Vector3(Velocity.x * 1.18f, owner.bounceHeight, Velocity.z * 1.18f));
         }
         owner.standOnTrampoline = false;
     }
