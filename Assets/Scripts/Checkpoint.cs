@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && checkpointNo > currentCheckpoint)
+        if (other.CompareTag("Player") )
         {
                 currentCheckpoint = checkpointNo;
             other.GetComponent<CharacterStateMachine>().currentCheckPoint = restartPosition;
