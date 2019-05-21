@@ -7,7 +7,6 @@ using UnityEngine;
 public class ParticleListener : MonoBehaviour
 {
     private GameObject ParticlesPrefab;
-    private GameObject go;
     private ParticleSystem system;
 
     void Start()
@@ -19,16 +18,17 @@ public class ParticleListener : MonoBehaviour
     void RunParticles(ParticleEvent eventInfo)
     {
         //Debug.Log("RunningParticles!");
-        go = Instantiate(eventInfo.particles);
-        system = go.GetComponent<ParticleSystem>();
+        GameObject go = Instantiate(eventInfo.particles);
+        ParticleSystem system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
+        eventInfo.particles = go;
         system.Play();
         StartCoroutine(ParticleDelay(system, go, eventInfo));
     }
 
     void StopParticles(StopParticleEvent eventInfo)
     {
-        Destroy(go);
+        Destroy(eventInfo.particlesToStop);
     }
 
     private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob, 

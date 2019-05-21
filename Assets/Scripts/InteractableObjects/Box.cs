@@ -8,12 +8,15 @@ using UnityEngine;
 public class Box : Interactable
 {
     [SerializeField] private LayerMask environment;
+    [SerializeField] private GameObject particles;
+    private ParticleEvent startParticles;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
     protected float bounceHeight = 25;
     private bool isHeld = false;
+    private bool usedOnce = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip[] pickupSounds;
     public override AudioClip GetAudioClip()
@@ -38,14 +41,33 @@ public class Box : Interactable
             velocity = PhysicsScript.Gravity(velocity);
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
-        }
 
+            if (!usedOnce)
+            {
+                startParticles = new ParticleEvent();
+                startParticles.objectPlaying = gameObject;
+                startParticles.particles = particles;
+
+                EventSystem.Current.FireEvent(startParticles);
+                usedOnce = true;
+            }
+        }
         Bouncing();
     }
 
     public override void StartInteraction()
     {
         isHeld = !isHeld;
+        usedOnce = false;
+
+        if (startParticles.particles != null) {
+            StopParticleEvent stopParticles = new StopParticleEvent();
+            stopParticles.particlesToStop = startParticles.particles;
+
+            EventSystem.Current.FireEvent(stopParticles);
+            Debug.Log("waddup");
+            
+        }
     }
 
  
