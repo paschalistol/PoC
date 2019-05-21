@@ -40,19 +40,11 @@ public class Box : Interactable
     {
         if (!isHeld)
         {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
+            AddPhysics();
 
             if (!usedOnce)
             {
-                startParticles = new ParticleEvent();
-                startParticles.objectPlaying = gameObject;
-                startParticles.particles = particles;
-
-                EventSystem.Current.FireEvent(startParticles);
-                usedOnce = true;
+                ParticleStarter();
             }
         }
         Bouncing();
@@ -62,17 +54,48 @@ public class Box : Interactable
     public override void StartInteraction()
     {
         isHeld = !isHeld;
-        usedOnce = false;
 
         if (startParticles.particles != null) {
+            usedOnce = false;
+            ParticleStopper();
+        }
+    }
+
+    private void AddPhysics()
+    {
+        velocity = PhysicsScript.Decelerate(velocity);
+        velocity = PhysicsScript.Gravity(velocity);
+        velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
+        transform.position += velocity * Time.deltaTime;
+    }
+
+    private void ParticleStarter()
+    {
+        
+        startParticles = new ParticleEvent();
+        startParticles.objectPlaying = gameObject;
+        startParticles.particles = particles;
+
+        EventSystem.Current.FireEvent(startParticles);
+        usedOnce = true;
+    }
+
+    private void ParticleStopper()
+    {
+        if (startParticles.particles == null)
+            return;
+
+        if (startParticles.particles != null)
+        {
             stopParticles = new StopParticleEvent();
             stopParticles.particlesToStop = startParticles.particles;
 
             EventSystem.Current.FireEvent(stopParticles);
+            Debug.Log("Stopped particles");
         }
     }
 
- 
+
 
     protected void Bouncing()
     {

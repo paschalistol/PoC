@@ -9,6 +9,8 @@ public class ParticleListener : MonoBehaviour
     private GameObject ParticlesPrefab;
     private ParticleSystem system;
     private GameObject go;
+    private float startTime = 30f;
+    private float currentTime;
 
     void Start()
     {
@@ -18,38 +20,55 @@ public class ParticleListener : MonoBehaviour
 
     void RunParticles(ParticleEvent eventInfo)
     {
-        //Debug.Log("RunningParticles!");
         go = Instantiate(eventInfo.particles);
         system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         eventInfo.particles = go;
         system.Play();
-        StartCoroutine(ParticleDelay(system));
+
+        if (!system.isEmitting && go != null)
+        {
+            Destroy(go);
+        }
+
     }
 
     void StopParticles(StopParticleEvent eventInfo)
     {
+        if(system != null)
         Destroy(eventInfo.particlesToStop);
     }
 
-    private IEnumerator ParticleDelay(ParticleSystem system)
+    void CustomTimer(GameObject go)
     {
-        while (system.isEmitting || system.particleCount > 0)
-        {
-            
-            yield return null;
-        }
+        currentTime = startTime;
 
-        if (go != null)
+        while (currentTime >= 0)
         {
-            Destroy(go);
+            currentTime -= Time.deltaTime;
         }
+        Destroy(go);
+
     }
+
 
 }
 
 #region ParticleLegacy
 //Legacy
+    //private IEnumerator ParticleDelay(ParticleSystem system)
+    //{
+    //    while (system.isEmitting || system.particleCount > 0)
+    //    {
+            
+    //        yield return null;
+    //    }
+
+    //    if (go != null)
+    //    {
+    //        Destroy(go);
+    //    }
+    //}
 
 //private GameObject go;
 //EventSystem.Current.RegisterListener<SwitchLiftEvent>(OnLiftParticles);

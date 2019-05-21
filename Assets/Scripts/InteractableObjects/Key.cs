@@ -35,37 +35,18 @@ public class Key : Interactable
     }
     void Update()
     {
-
-
-
-        RaycastHit raycastHit;
         if (transform.parent == null && !isHeld)
         {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
+            AddPhysics();
 
             if (!usedOnce)
             {
-                startParticles = new ParticleEvent();
-                startParticles.objectPlaying = gameObject;
-                startParticles.particles = particles;
-
-                EventSystem.Current.FireEvent(startParticles);
-                usedOnce = true;
+                ParticleStarter();
             }
         }
         else if (isHeld)
         {
-            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
-            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
-            {
-                lockedDoor.GetComponent<Interactable>().StartInteraction();
-                Destroy(gameObject);
-                used = true;
-            }
-
+            UsingKeyCheck();
         }
     }
     public override void StartInteraction()
@@ -75,16 +56,11 @@ public class Key : Interactable
             transform.parent = null;
         }
         isHeld = !isHeld;
-        usedOnce = false;
 
         if (startParticles.particles != null)
         {
-            stopParticles = new StopParticleEvent();
-            stopParticles.particlesToStop = startParticles.particles;
-
-            EventSystem.Current.FireEvent(stopParticles);
-
-
+            usedOnce = false;
+            ParticleStopper();
         }
     }
 
@@ -93,9 +69,46 @@ public class Key : Interactable
         return null;
     }
 
+    private void AddPhysics()
+    {
+        velocity = PhysicsScript.Decelerate(velocity);
+        velocity = PhysicsScript.Gravity(velocity);
+        velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
+        transform.position += velocity * Time.deltaTime;
+    }
+
+    private void ParticleStarter()
+    {
+        startParticles = new ParticleEvent();
+        startParticles.objectPlaying = gameObject;
+        startParticles.particles = particles;
+
+        EventSystem.Current.FireEvent(startParticles);
+        usedOnce = true;
+    }
+
+    private void ParticleStopper()
+    {
+        stopParticles = new StopParticleEvent();
+        stopParticles.particlesToStop = startParticles.particles;
+
+        EventSystem.Current.FireEvent(stopParticles);
+    }
+
+    private void UsingKeyCheck()
+    {
+        RaycastHit raycastHit;
+        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
+        if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
+        {
+            lockedDoor.GetComponent<Interactable>().StartInteraction();
+            Destroy(gameObject);
+            used = true;
+        }
+    }
 }
 #region KeyLegacy
-        //GetComponent<RespawnItem>().startPosition = transform.position;
+//GetComponent<RespawnItem>().startPosition = transform.position;
 //float currentDoorRotation = lockedDoor.transform.parent.eulerAngles.y;
 //float currentDoorPosition = lockedDoor.transform.parent.position.z - 5;
 //float doorRotation = lockedDoor.transform.parent.rotation.y;
