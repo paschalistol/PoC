@@ -56,7 +56,6 @@ public class HoldingItem : HoldItemBase
         {
             Debug.Log("go");
             GameObject temp = objectCarried;
-            DeathListener.SetDied(false);
             ReleaseItem();
             objectCarried = null;
             RespawnItem(temp);

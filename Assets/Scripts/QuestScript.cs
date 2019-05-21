@@ -7,7 +7,7 @@ public class QuestScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             gameObject.SetActive(false);
         }

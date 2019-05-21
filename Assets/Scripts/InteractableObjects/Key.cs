@@ -83,7 +83,7 @@ public class Key : Interactable
             stopParticles.particlesToStop = startParticles.particles;
 
             EventSystem.Current.FireEvent(stopParticles);
-            Debug.Log("waddup");
+
 
         }
     }
