@@ -13,10 +13,12 @@ public class GroundedState : CharacterBaseState
     public Animator anim;
     public float speed;
     public float direction;
-    [SerializeField] private AudioClip groundedSound;
+    [SerializeField] private AudioClip groundedSound, footsteps;
     [SerializeField] private float dynamicFrictionCoeff = 0.35f, maxSpeedCoeff = 10;
     private GameObject walkingParticles;
     private bool playingParticles;
+    private SoundEvent walkingSound;
+    private StopSoundEvent stopSoundEvent;
 
     public override void EnterState()
     {
@@ -24,6 +26,7 @@ public class GroundedState : CharacterBaseState
         walkingParticles = owner.walkingParticles; 
         dynamicFriction = dynamicFrictionCoeff;
         MaxSpeed = maxSpeedCoeff;
+        walkingSound = new SoundEvent();
         SoundEvent soundEvent = new SoundEvent();
         soundEvent.gameObject = owner.gameObject;
         soundEvent.eventDescription = "Grounded Sound";
@@ -45,7 +48,28 @@ public class GroundedState : CharacterBaseState
         CheckInput(input);
         #endregion
         ChangeCharRotation();
+        if (input.magnitude > 0 && walkingSound.objectPlaying == null)
+        {
 
+            walkingSound.gameObject = owner.gameObject;
+            walkingSound.eventDescription = "Grounded Sound";
+            walkingSound.audioClip = footsteps;
+            walkingSound.looped = true;
+            if (walkingSound.audioClip != null)
+            {
+                EventSystem.Current.FireEvent(walkingSound);
+            }
+        }
+        if(input.magnitude == 0 && walkingSound.objectPlaying != null)
+        {
+            stopSoundEvent = new StopSoundEvent();
+            stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
+            stopSoundEvent.eventDescription = "Stop Sound";
+            if (stopSoundEvent.AudioPlayer != null)
+            {
+                EventSystem.Current.FireEvent(stopSoundEvent);
+            }
+        }
       //  Speed();
 
 
@@ -92,7 +116,20 @@ public class GroundedState : CharacterBaseState
 
 
     }
-
+    public override void ExitState()
+    {
+        if (walkingSound.objectPlaying != null)
+        {
+            stopSoundEvent = new StopSoundEvent();
+            stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
+            stopSoundEvent.eventDescription = "Stop Sound";
+            if (stopSoundEvent.AudioPlayer != null)
+            {
+                EventSystem.Current.FireEvent(stopSoundEvent);
+            }
+        }
+        base.ExitState();
+    }
     //checks for the current input. Creates walking particles. 
     private void CheckInput(Vector3 input)
     {

@@ -13,7 +13,9 @@ public class Valuable : Interactable
     protected BoxCollider boxCollider;
     protected const float skinWidth = 0.2f;
     [SerializeField] private LayerMask environment;
-
+    [SerializeField] private AudioClip interactionSound = null;
+    private AddPointEvent addPointInfo;
+    private SoundEvent soundEvent;
 
     protected override void Start()
     {
@@ -38,15 +40,24 @@ public class Valuable : Interactable
 
     public override void StartInteraction()
     {
-        AddPointEvent addPointInfo = new AddPointEvent();
+         addPointInfo = new AddPointEvent();
         addPointInfo.eventDescription = "Getting points!";
         addPointInfo.point = value;
         EventSystem.Current.FireEvent(addPointInfo);
+        SoundEvent soundEvent = new SoundEvent();
+
+        soundEvent.eventDescription = "Jump Sound";
+        soundEvent.audioClip = interactionSound;
+        soundEvent.looped = false;
+        if (soundEvent.audioClip != null)
+        {
+            EventSystem.Current.FireEvent(soundEvent);
+        }
         Destroy(gameObject);
     }
 
     public override AudioClip GetAudioClip()
     {
-        return null;
+        return interactionSound;
     }
 }

@@ -45,7 +45,7 @@ public class InTheAirState : CharacterBaseState
         //Trampoline();
         Bouncing();
         //ReachingGoal();
-        Debug.Log(input);
+
         owner.transform.position += Velocity * Time.deltaTime;
         if (IsGrounded())
         {
