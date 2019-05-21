@@ -295,6 +295,7 @@ public class CharacterBaseState : State
         if (DeathListener.Death())
         {
             owner.transform.position = owner.currentCheckPoint.transform.position;
+            DeathListener.SetDied(false);
         }
 
     }
