@@ -28,8 +28,7 @@ public class InTheAirState : CharacterBaseState
     {
         ChangeCharRotation();
         #region Input
-        Vector3 input = GetDirectionInput();
-        
+        Vector3 input = GetDirectionInput() * 10;
         if (input.magnitude <= 0)
         {
             Decelerate();
@@ -46,6 +45,7 @@ public class InTheAirState : CharacterBaseState
         //Trampoline();
         Bouncing();
         //ReachingGoal();
+        Debug.Log(input);
         owner.transform.position += Velocity * Time.deltaTime;
         if (IsGrounded())
         {

@@ -18,6 +18,7 @@ public class CharacterStateMachine : StateMachine
     public float WobbleFactor = 0.50f;
     public GameObject walkingParticles;
     public bool standOnTrampoline = false;
+    [SerializeField] public float bounceHeight = 20;
 
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float maxSpeed;

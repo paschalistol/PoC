@@ -12,7 +12,7 @@ public class QuestSystem : Interactable
     [TextArea]
     [SerializeField] private string textToDisplay;
     [SerializeField] private float timeToShowQuestText;
-    private float timeShown;
+    [SerializeField] private float timeShown;
     public override AudioClip GetAudioClip()
     {
         throw new System.NotImplementedException();
@@ -35,6 +35,17 @@ public class QuestSystem : Interactable
             yield return null;
         }
         questPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            questPanel.SetActive(true);
+        }else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            questPanel.SetActive(false);
+        }
     }
 
 }

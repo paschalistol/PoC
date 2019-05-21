@@ -27,7 +27,6 @@ public class CharacterBaseState : State
     protected Vector3 normal;
     protected const float jumpHeight = 12;
     protected bool snowboarding = false;
-    protected float bounceHeight = 20;
     private float normalOffset = 0.03f;
     private Vector3 point1, point2;
     private RaycastHit raycastHit;
@@ -54,7 +53,7 @@ public class CharacterBaseState : State
     {
         if (owner.standOnTrampoline == true)
         {
-            ApplyForce(Vector3.up * 20);
+            ApplyForce(Vector3.up * owner.bounceHeight);
         }
         owner.standOnTrampoline = false;
     }
@@ -335,7 +334,7 @@ public class CharacterBaseState : State
             Velocity += normal * 4f;
             
             #endregion*/
-            ApplyForce(Vector3.up * bounceHeight);
+            ApplyForce(Vector3.up * owner.bounceHeight);
           
             Friction(normal.magnitude);
             
