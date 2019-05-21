@@ -315,10 +315,11 @@ public class CharacterBaseState : State
     protected void ReachingCheckPoint()
     {
 
-        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
-        if (raycastHit.collider != null)
-            owner.currentCheckPoint = raycastHit.collider.gameObject;
+        //GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth, owner.checkPoint);
+        //if (raycastHit.collider != null)
+        //    owner.currentCheckPoint = raycastHit.collider.gameObject;
     }
+    
 
     protected void Trampoline()
     {
