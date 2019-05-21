@@ -14,7 +14,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void BeingThrown(Vector3 throwDirection) {}
     public virtual void RespawnItem()
     {
-        Debug.Log("t2");
+
         transform.position = startPosition;
     }
     public abstract AudioClip GetAudioClip();
