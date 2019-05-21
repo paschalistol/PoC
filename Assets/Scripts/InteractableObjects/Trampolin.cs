@@ -69,7 +69,8 @@ public class Trampolin : Interactable
         {
             if(raycastHit.collider.transform.gameObject.tag == ("Player"))
             {
-                CharacterStateMachine player = GameObject.Find("Player").GetComponent<CharacterStateMachine>();
+                System.String playerName = raycastHit.collider.transform.gameObject.name;
+                CharacterStateMachine player = GameObject.Find(playerName).GetComponent<CharacterStateMachine>();
                 player.standOnTrampoline = true;
             }
 

@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 6428021081155650225}
   m_Layer: 10
   m_Name: Player
-  m_TagString: player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -565,7 +565,7 @@ MonoBehaviour:
   currentState: {fileID: 0}
   Interactables:
     serializedVersion: 2
-    m_Bits: 19642368
+    m_Bits: 28030976
   holdingSth: 0
 --- !u!114 &6428021081155650228
 MonoBehaviour:
@@ -607,6 +607,7 @@ MonoBehaviour:
   WobbleFactor: 0
   walkingParticles: {fileID: 7177482580394495241, guid: 2200f2e90f42727498d18c1dca87bbe4,
     type: 3}
+  standOnTrampoline: 0
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 0
 --- !u!136 &6428021081155650225
