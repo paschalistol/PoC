@@ -56,7 +56,7 @@ public class Box : Interactable
             }
         }
         Bouncing();
-        Debug.Log(velocity);
+        
     }
 
     public override void StartInteraction()
