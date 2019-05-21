@@ -55,13 +55,14 @@ public class ParticleEvent : DebugEvent
 {
     public GameObject particles;
     public GameObject objectPlaying;
+    public bool isLooping;
     //public bool looped;
     //public bool stop;
 }
 
 public class StopParticleEvent : DebugEvent
 {
-    public GameObject particles;
+    public GameObject particlesToStop;
 }
 public class FuseBoxEvent : DebugEvent
 {

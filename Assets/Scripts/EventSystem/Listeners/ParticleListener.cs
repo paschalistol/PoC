@@ -23,7 +23,7 @@ public class ParticleListener : MonoBehaviour
         system = go.GetComponent<ParticleSystem>();
         go.transform.position = eventInfo.objectPlaying.transform.position;
         system.Play();
-        StartCoroutine(ParticleDelay(system, go));
+        StartCoroutine(ParticleDelay(system, go, eventInfo));
     }
 
     void StopParticles(StopParticleEvent eventInfo)
@@ -31,10 +31,12 @@ public class ParticleListener : MonoBehaviour
         Destroy(go);
     }
 
-    private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob)
+    private IEnumerator ParticleDelay(ParticleSystem system, GameObject ob, 
+        ParticleEvent eventInfo)
     {
         while (system.isEmitting || system.particleCount > 0)
         {
+            
             yield return null;
         }
        Destroy(ob);
