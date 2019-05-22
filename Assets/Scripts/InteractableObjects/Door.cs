@@ -36,6 +36,11 @@ public class Door : Interactable
             StartCoroutine(RotateDoor(parent));
             used = true;
         }
+
+        if(gameObject.GetComponent<ActiveGold>() != null)
+        {
+            gameObject.GetComponent<ActiveGold>().SetGoldActive();
+        }
     }
 
     IEnumerator RotateDoor(GameObject parent)
