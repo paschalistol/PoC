@@ -589,7 +589,7 @@ MonoBehaviour:
   currentCheckPoint: {fileID: 0}
   environment:
     serializedVersion: 2
-    m_Bits: 95402496
+    m_Bits: 78625280
   deadlyEnvironment:
     serializedVersion: 2
     m_Bits: 262144
@@ -800,6 +800,11 @@ PrefabInstance:
     - target: {fileID: 4889916270699016, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 95612694983450844, guid: 313ad0ef31f75b84f9f31c0528802fdd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}

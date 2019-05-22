@@ -148,12 +148,19 @@ public class CharacterBaseState : State
         }
 
     }
-    
+    Vector3 tempVel;
     protected void Decelerate()
     {
-        Vector3 tempVel = new Vector3(Velocity.x, 0, Velocity.z);
-        //Vector3 tempVel = new Vector3(Velocity.x, Velocity.y, Velocity.z);
+        tempVel = new Vector3(Velocity.x, 0, Velocity.z);
+        if ((tempVel.normalized * deceleration * Time.deltaTime).magnitude >Velocity.magnitude)
+        {
+
         Velocity -= tempVel.normalized * deceleration * Time.deltaTime;
+        }
+        else
+        {
+            Velocity = new Vector3(0, Velocity.y, 0);
+        }
     }
     private void Friction(float normalMag)
     {

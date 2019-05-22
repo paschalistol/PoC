@@ -57,7 +57,7 @@ public class Key : Interactable
         }
         isHeld = !isHeld;
 
-        if (startParticles.particles != null)
+        if (startParticles != null)
         {
             usedOnce = false;
             ParticleStopper();
