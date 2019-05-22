@@ -10,6 +10,7 @@ public class HoldingItem : HoldItemBase
 {
     private int layerNumber;
     private SoundEvent soundEvent;
+    private static bool died;
     public override void EnterState()
     {
 
@@ -52,13 +53,9 @@ public class HoldingItem : HoldItemBase
     public override void ToDo()
     {
 
-        if (DeathListener.Death())
+        if (died)
         {
-            Debug.Log("go");
-            GameObject temp = objectCarried;
-            ReleaseItem();
-            objectCarried = null;
-            RespawnItem(temp);
+            ReleaseAndRespawn();
 
         }
 
@@ -95,7 +92,6 @@ public class HoldingItem : HoldItemBase
     }
     private void RespawnItem(GameObject temp)
     {
-        Debug.Log(temp);
 
         if (temp != null)
         {
@@ -104,7 +100,23 @@ public class HoldingItem : HoldItemBase
 
         }
     }
+    public static void SetDied()
+    {
+        died = true;
+    }
+    public void ReleaseAndRespawn()
+    {
 
+        if (objectCarried != null)
+        {
+
+            GameObject temp = objectCarried;
+            ReleaseItem();
+            objectCarried = null;
+            RespawnItem(temp);
+        }
+        died = false;
+    }
 
     private void ReleaseItem()
     {

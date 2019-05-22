@@ -26,7 +26,14 @@ public class Valuable : Interactable
 
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartInteraction();
+        }
+    }
+
     protected virtual void Update()
     {
         

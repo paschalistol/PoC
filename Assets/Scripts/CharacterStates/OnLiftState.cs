@@ -27,7 +27,7 @@ public class OnLiftState : GroundedState
 
         if (input.magnitude <= 0)
         {
-           
+            Decelerate();  
         }
         else
         {

@@ -13,13 +13,13 @@ public class CharacterBaseState : State
     
     protected float wobbleValue { get { return owner.WobbleFactor; } }
     protected CapsuleCollider capsuleCollider;
-    protected const int acceleration = 23;
+    protected const int acceleration = 100;
     protected const float skinWidth = 0.1f;
     protected const float gravityConstant = 20f;
     protected const float groundCheckDistance = 0.25f;
     protected Vector3 Velocity { get { return owner.velocity; } set { owner.velocity = value; } }
     protected float MaxSpeed { get { return owner.maxSpeed; } set { owner.maxSpeed = value; } }
-    protected const float deceleration = 5;
+    protected const float deceleration = 50;
     protected Vector2 airResistance;
     protected const float staticFriction = 0.55f;
     protected float dynamicFriction;
@@ -295,6 +295,8 @@ public class CharacterBaseState : State
         if (DeathListener.Death())
         {
             owner.transform.position = owner.currentCheckPoint.transform.position;
+            HoldingItem.SetDied();
+            DeathListener.SetDied(false);
         }
 
     }
@@ -321,37 +323,12 @@ public class CharacterBaseState : State
     }
     
 
-    protected void Trampoline()
-    {
+    
 
-        GetRaycastHit(Vector3.down, Velocity.magnitude * Time.deltaTime + skinWidth + 0.2f, owner.trampoline);
-        if (raycastHit.collider == null)
-            return;
-        else
-        {
-
-            /*#region Apply Normal Force
-            normal = PhysicsScript.Normal3D(Velocity, raycastHit.normal);
-            Velocity += normal * 4f;
-            
-            #endregion*/
-            ApplyForce(Vector3.up * owner.bounceHeight);
-          
-            Friction(normal.magnitude);
-            
-
-        }
-    }
-
-    /* protected void ReachingGoal()
+     /*protected void ReachingGoal()
      {
-         #region Raycast
-         Vector3 point1 = owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius);
-         Vector3 point2 = owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius);
-         RaycastHit raycastHit;
-         bool capsulecast = Physics.CapsuleCast(point1, point2,
-             capsuleCollider.radius, Velocity, out raycastHit, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.goal);
-         #endregion
+         
+        GetRaycastHit(Velocity, Velocity.magnitude * Time.deltaTime + skinWidth * 2f, owner.goal);
 
          if (raycastHit.collider != null)
          {
@@ -363,6 +340,6 @@ public class CharacterBaseState : State
              EventSystem.Current.FireEvent(winInfo);
 
          }
-     }
-     */
+     }*/
+     
 }

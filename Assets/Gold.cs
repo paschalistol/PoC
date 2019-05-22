@@ -1,11 +1,8 @@
-﻿//Main Author: Emil Dahl
-//Secondary Author: Paschalis Tolios Johan Ekman
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : Interactable
+public class Gold : Interactable
 {
     [SerializeField] private LayerMask environment;
     [SerializeField] private GameObject particles;
@@ -18,6 +15,7 @@ public class Box : Interactable
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
     [SerializeField] private float bounceHeight = 25;
+    
     private bool isHeld = false;
     private bool usedOnce = false;
     [Header("Sounds")]
@@ -27,11 +25,11 @@ public class Box : Interactable
 
         return pickupSounds[Random.Range(0, pickupSounds.Length)];
     }
-    protected override void Start() 
+    protected override void Start()
     {
         base.Start();
         boxCollider = GetComponent<BoxCollider>();
-       
+
         isHeld = false;
 
     }
@@ -40,50 +38,29 @@ public class Box : Interactable
     {
         if (!isHeld)
         {
-            AddPhysics();
+            velocity = PhysicsScript.Decelerate(velocity);
+            velocity = PhysicsScript.Gravity(velocity);
+            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
+            transform.position += velocity * Time.deltaTime;
 
             if (!usedOnce)
             {
-                ParticleStarter();
+                startParticles = new ParticleEvent();
+                startParticles.objectPlaying = gameObject;
+                startParticles.particles = particles;
+
+                EventSystem.Current.FireEvent(startParticles);
+                usedOnce = true;
             }
         }
         Bouncing();
-        
+
     }
 
     public override void StartInteraction()
     {
         isHeld = !isHeld;
-
-        if (startParticles.particles != null) {
-            usedOnce = false;
-            ParticleStopper();
-        }
-    }
-
-    private void AddPhysics()
-    {
-        velocity = PhysicsScript.Decelerate(velocity);
-        velocity = PhysicsScript.Gravity(velocity);
-        velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-        transform.position += velocity * Time.deltaTime;
-    }
-
-    private void ParticleStarter()
-    {
-        
-        startParticles = new ParticleEvent();
-        startParticles.objectPlaying = gameObject;
-        startParticles.particles = particles;
-
-        EventSystem.Current.FireEvent(startParticles);
-        usedOnce = true;
-    }
-
-    private void ParticleStopper()
-    {
-        if (startParticles.particles == null)
-            return;
+        usedOnce = false;
 
         if (startParticles.particles != null)
         {
@@ -91,7 +68,6 @@ public class Box : Interactable
             stopParticles.particlesToStop = startParticles.particles;
 
             EventSystem.Current.FireEvent(stopParticles);
-            Debug.Log("Stopped particles");
         }
     }
 
@@ -110,6 +86,8 @@ public class Box : Interactable
     {
         velocity = throwDirection;
     }
+
+   
 
 
 }
