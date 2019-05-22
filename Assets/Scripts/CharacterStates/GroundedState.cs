@@ -130,6 +130,7 @@ public class GroundedState : CharacterBaseState
         }
         base.ExitState();
     }
+    private ParticleEvent particleEvent;
     //checks for the current input. Creates walking particles. 
     private void CheckInput(Vector3 input)
     {
@@ -144,7 +145,7 @@ public class GroundedState : CharacterBaseState
 
             if (!playingParticles)
             {
-                ParticleEvent particleEvent = new ParticleEvent();
+                particleEvent = new ParticleEvent();
                 particleEvent.particles = walkingParticles;
                 particleEvent.objectPlaying = owner.gameObject;
                 EventSystem.Current.FireEvent(particleEvent);
