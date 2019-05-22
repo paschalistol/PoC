@@ -38,7 +38,7 @@ public class Lift2 : MonoBehaviour
 
             transform.position += velocity * Time.deltaTime;
 
-            if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 1)
+            if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 0.1f)
             {
                 onOff = false;
                 currentPoint = (currentPoint + 1) % bigPoints.Length;
