@@ -43,14 +43,15 @@ public class Door : Interactable
         }
     }
     int temp;
+
     IEnumerator RotateDoor(GameObject parent)
     {
         rotationGoal = parent.transform.eulerAngles.y + rotation;
         temp = (int)(rotationGoal / 360);
-
         rotationGoal = rotationGoal % 360;
-        parent.transform.eulerAngles = new Vector3(0, parent.transform.eulerAngles.y- 360 * temp, 0);
-        while ((parent.transform.eulerAngles.y) % 360 < rotationGoal)
+        parent.transform.eulerAngles = new Vector3(0, parent.transform.eulerAngles.y - 360 * temp, 0);
+        Debug.Log((parent.transform.eulerAngles.y) % 360 + " " + rotationGoal);
+        while ((parent.transform.eulerAngles.y)  < rotationGoal)
         {
 
             parent.transform.eulerAngles += new Vector3(0, 1, 0) * Time.deltaTime * rotationSpeed;
