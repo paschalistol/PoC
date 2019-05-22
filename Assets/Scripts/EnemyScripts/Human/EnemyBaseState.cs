@@ -54,7 +54,7 @@ public class EnemyBaseState : State
     {
         heading = (owner.player.transform.position - owner.transform.position).normalized;
         dotProduct = Vector3.Dot(owner.agent.velocity.normalized, heading);
-        Debug.Log("heading: " + heading + " " + "And between the two: " + dotProduct);
+
         return dotProduct;
     }
 }

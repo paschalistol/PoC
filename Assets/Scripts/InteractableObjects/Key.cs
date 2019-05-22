@@ -23,7 +23,7 @@ public class Key : Interactable
 
     private bool usedOnce = false;
     protected const float skinWidth = 0.2f;
-
+    [SerializeField] private LayerMask door;
     private bool isHeld;
 
     protected override void Start()
@@ -95,10 +95,10 @@ public class Key : Interactable
         EventSystem.Current.FireEvent(stopParticles);
     }
 
+        RaycastHit raycastHit;
     private void UsingKeyCheck()
     {
-        RaycastHit raycastHit;
-        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth);
+        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth*3,door);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
         {
             lockedDoor.GetComponent<Interactable>().StartInteraction();

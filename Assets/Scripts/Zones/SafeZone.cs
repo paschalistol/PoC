@@ -19,7 +19,6 @@ public class SafeZone : MonoBehaviour
         if (collision.transform.CompareTag("Dog"))
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = false;
-            Debug.Log("out");
         }
     }
 }
