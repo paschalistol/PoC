@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 322, y: -130.7, z: 241}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8349765701615986920}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,9 +108,95 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 8595968
-  particles: {fileID: 0}
+  particles: {fileID: 8349765701615986923}
   standOnTrampoline: 0
   bounceHeight: 25
   pickupSounds:
   - {fileID: 8300000, guid: 5a9387d3ddae6384684fbace69291d7c, type: 3}
   - {fileID: 8300000, guid: b6211062945d1474781d10a2e1e86386, type: 3}
+--- !u!1001 &5730714789215367972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2610810217667632901}
+    m_Modifications:
+    - target: {fileID: 4352664264546048975, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemParticlesV2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 479.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 32.36409
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 78.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352664264546048050, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+        type: 3}
+      propertyPath: ShapeModule.m_MeshRenderer
+      value: 
+      objectReference: {fileID: 2610810217667632903}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d07dbc90abaebe142becdfbd1c08bfc4, type: 3}
+--- !u!1 &8349765701615986923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4352664264546048975, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5730714789215367972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8349765701615986920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4352664264546048972, guid: d07dbc90abaebe142becdfbd1c08bfc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5730714789215367972}
+  m_PrefabAsset: {fileID: 0}
