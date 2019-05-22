@@ -27,7 +27,9 @@ public class EnemyBaseState : State
         owner.agent.speed = moveSpeed;
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
         lightField = owner.flashLight.GetComponent<Light>();
-        lightTreshold = owner.LightThreshold;
+        // lightTreshold = owner.LightThreshold;
+        lightTreshold = 0.65f;
+       
     }
 
     public override void InitializeState(StateMachine owner)
@@ -51,7 +53,8 @@ public class EnemyBaseState : State
     protected float DotMethod()
     {
         heading = (owner.player.transform.position - owner.transform.position).normalized;
-        dotProduct = Vector3.Dot(owner.agent.velocity, heading);
+        dotProduct = Vector3.Dot(owner.agent.velocity.normalized, heading);
+        Debug.Log("heading: " + heading + " " + "And between the two: " + dotProduct);
         return dotProduct;
     }
 }
