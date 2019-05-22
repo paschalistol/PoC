@@ -13,8 +13,8 @@ public class OnLiftState : GroundedState
     public override void EnterState()
     {
         base.EnterState();
-        
-        
+
+        owner.transform.position += new Vector3(0, skinWidth, 0);
     }
 
     public override void ToDo()
