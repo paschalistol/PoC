@@ -47,7 +47,7 @@ public class PatrolState : EnemyBaseState
         if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5)
             && Input.anyKeyDown)
         {     
-            owner.ChangeState<ChaseState>();
+            owner.ChangeState<InvestigationState>();
         }
     }
 

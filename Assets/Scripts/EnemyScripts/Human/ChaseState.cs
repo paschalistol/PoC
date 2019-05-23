@@ -26,7 +26,6 @@ public class ChaseState : EnemyBaseState
         musicBasedOnChased = new MusicBasedOnChased();
         musicBasedOnChased.enemyChasing = true;
         EventSystem.Current.FireEvent(musicBasedOnChased);
-
     }
     public override void ToDo()
     {
@@ -37,7 +36,6 @@ public class ChaseState : EnemyBaseState
         if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
             owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
         {
-
             owner.agent.SetDestination(owner.player.transform.position);
 
             if (distanceToPlayer < bustedDistance)
@@ -49,8 +47,7 @@ public class ChaseState : EnemyBaseState
                 EventSystem.Current.FireEvent(deathInfo);
             }
         }  else
-            owner.ChangeState<PatrolState>(); 
-
+            owner.ChangeState<InvestigationState>(); 
     }
     public override void ExitState()
     {
