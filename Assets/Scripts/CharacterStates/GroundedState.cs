@@ -14,7 +14,9 @@ public class GroundedState : CharacterBaseState
     public float speed;
     public float direction;
     [SerializeField] private AudioClip groundedSound, footsteps;
-    [SerializeField] private float dynamicFrictionCoeff = 0.35f, maxSpeedCoeff = 10;
+    [SerializeField] private float dynamicFrictionCoeff = 0.35f;
+    private float maxSpeedCoeff = 5;
+    private const float movementMultiplier = 2f;
     private GameObject walkingParticles;
     private bool playingParticles;
     private SoundEvent walkingSound;
@@ -41,6 +43,7 @@ public class GroundedState : CharacterBaseState
 
     public override void ToDo()
     {
+        Debug.Log(MaxSpeed);
         Gravity();
         #region Input
         Vector3 input = GetDirectionInput();
@@ -87,7 +90,7 @@ public class GroundedState : CharacterBaseState
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            MaxSpeed = maxSpeedCoeff /2;
+            MaxSpeed = maxSpeedCoeff * movementMultiplier;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -113,8 +116,6 @@ public class GroundedState : CharacterBaseState
             owner.ChangeState<InTheAirState>();
 
         }
-
-
     }
     public override void ExitState()
     {
@@ -166,11 +167,6 @@ public class GroundedState : CharacterBaseState
         anim.SetFloat("direction", direction);
     }
 
-    private IEnumerator humansBeWalking()
-    {
-
-        yield return new WaitForSeconds(5);
-    }
 
 }
 

@@ -12,13 +12,13 @@ public class ChaseState : EnemyBaseState
     private MusicBasedOnChased musicBasedOnChased;
     private UnitDeathEventInfo deathInfo;
     private GameObject audioSpeaker;
-    private float chaseDistance, hearingRange, distanceToPlayer, lightRange;
+    private float chaseDistance, distanceToPlayer, lightRange;
     private const float bustedDistance = 2f;
 
     public override void EnterState()
     {
         base.EnterState();
-        hearingRange = owner.GetHearingDistance();
+        //hearingRange = owner.GetHearingDistance();
         chaseDistance = owner.GetFieldOfView();
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = 25;
@@ -35,7 +35,7 @@ public class ChaseState : EnemyBaseState
         distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
         if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
+            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
         {
 
             owner.agent.SetDestination(owner.player.transform.position);

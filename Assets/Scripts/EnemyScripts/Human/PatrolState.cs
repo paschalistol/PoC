@@ -11,7 +11,7 @@ public class PatrolState : EnemyBaseState
     
     private GameObject[] points;
     private const float noiceDetection = 5f;
-    private float distanceToPlayer, distanceToPoint, lightRange, maxSpeed, hearingRange, chaseDistance;
+    private float distanceToPlayer, distanceToPoint, lightRange, maxSpeed, chaseDistance;
     
 
     private int currentPoint = 0;
@@ -20,8 +20,6 @@ public class PatrolState : EnemyBaseState
     public override void EnterState()
     {
         base.EnterState();
-        
-        hearingRange = owner.GetHearingDistance();
        
         points = owner.GetComponent<PatrolPoints>().GetPoints();
         ChooseClosest();
@@ -46,7 +44,8 @@ public class PatrolState : EnemyBaseState
             currentPoint = (currentPoint + 1) % points.Length;
         }
 
-        if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5) && Input.anyKeyDown)
+        if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5)
+            && Input.anyKeyDown)
         {     
             owner.ChangeState<ChaseState>();
         }

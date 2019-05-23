@@ -13,8 +13,9 @@ public class EnemyBaseState : State
     private CapsuleCollider capsuleCollider;
     private Vector3 heading;
     private float lightTreshold, dotProduct;
-    protected Light lightField;
+    protected float lightField;
     protected float fieldOfView;
+    protected float hearingRange;
 
     protected Enemy owner;
 
@@ -26,9 +27,9 @@ public class EnemyBaseState : State
         owner.Renderer.material = material;
         owner.agent.speed = moveSpeed;
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
-        lightField = owner.flashLight.GetComponent<Light>();
-        // lightTreshold = owner.LightThreshold;
+        lightField = owner.flashLight.GetComponent<Light>().range;
         lightTreshold = 0.65f;
+        hearingRange = lightField * 1.5f;
        
     }
 
@@ -45,7 +46,7 @@ public class EnemyBaseState : State
         if (lineCast)
             return false; 
       
-        if (DotMethod() > lightTreshold && Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < lightField.range)
+        if (DotMethod() > lightTreshold && Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < lightField)
             return true;
         return false;
     }
@@ -54,11 +55,11 @@ public class EnemyBaseState : State
     {
         heading = (owner.player.transform.position - owner.transform.position).normalized;
         dotProduct = Vector3.Dot(owner.agent.velocity.normalized, heading);
-
         return dotProduct;
     }
 }
 #region EnemyBaseLegacy
+        // lightTreshold = owner.LightThreshold;
 //     spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
 //// protected float lightAngle;
 // //private Quaternion spreadAngle;
