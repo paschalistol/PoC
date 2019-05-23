@@ -6,10 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Lift/OnLiftState")]
 public class OnLiftState : GroundedState
 {
-
-
-  
-
     public override void EnterState()
     {
         base.EnterState();

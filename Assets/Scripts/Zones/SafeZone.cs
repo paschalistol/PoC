@@ -10,7 +10,6 @@ public class SafeZone : MonoBehaviour
         if (collision.transform.CompareTag("Dog"))
         {
             collision.transform.gameObject.GetComponent<EnemyDog>().inSafeZone = true;
-            Debug.Log("in");
         }
     }
 

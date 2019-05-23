@@ -39,22 +39,22 @@ public class ParticleListener : MonoBehaviour
         Destroy(eventInfo.particlesToStop);
     }
 
-    void CustomTimer(GameObject go)
-    {
-        currentTime = startTime;
-
-        while (currentTime >= 0)
-        {
-            currentTime -= Time.deltaTime;
-        }
-        Destroy(go);
-
-    }
-
 
 }
 
 #region ParticleLegacy
+
+    //void CustomTimer(GameObject go)
+    //{
+    //    currentTime = startTime;
+
+    //    while (currentTime >= 0)
+    //    {
+    //        currentTime -= Time.deltaTime;
+    //    }
+    //    Destroy(go);
+
+    //}
 //Legacy
     //private IEnumerator ParticleDelay(ParticleSystem system)
     //{

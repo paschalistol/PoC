@@ -30,7 +30,6 @@ public class EnemyBaseState : State
         lightField = owner.flashLight.GetComponent<Light>().range;
         lightTreshold = 0.65f;
         hearingRange = lightField * 1.5f;
-       
     }
 
     public override void InitializeState(StateMachine owner)
@@ -40,9 +39,7 @@ public class EnemyBaseState : State
 
     protected bool LineOfSight()
     {
-
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
-
         if (lineCast)
             return false; 
       
