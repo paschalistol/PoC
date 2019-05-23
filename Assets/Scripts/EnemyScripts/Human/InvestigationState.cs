@@ -35,13 +35,10 @@ public class InvestigationState : EnemyBaseState
     }
     public override void ToDo()
     {
-        
-        
-            owner.agent.SetDestination(investigatePosition);
-            Debug.Log(currentTime);
-        
-            currentTime -= Time.deltaTime;
+        owner.agent.SetDestination(investigatePosition);
+        Debug.Log(currentTime);
 
+        currentTime -= Time.deltaTime;
 
         if (currentTime <= 0)
         {
@@ -62,16 +59,16 @@ public class InvestigationState : EnemyBaseState
     }
 }
 #region ChaseLegacy
-       // lightAngle = lightField.spotAngle;
-        //ChaseEvent chaseEvent = new ChaseEvent();
-        //chaseEvent.gameObject = owner.gameObject;
-        //chaseEvent.eventDescription = "Chasing Enemy";
-        //chaseEvent.audioSpeaker = audioSpeaker;
+// lightAngle = lightField.spotAngle;
+//ChaseEvent chaseEvent = new ChaseEvent();
+//chaseEvent.gameObject = owner.gameObject;
+//chaseEvent.eventDescription = "Chasing Enemy";
+//chaseEvent.audioSpeaker = audioSpeaker;
 
-        //EventSystem.Current.FireEvent(chaseEvent);
-        //hearingRange = owner.GetHearingDistance();
- #endregion
-        //if ((owner.agent.remainingDistance == 2f))
-        //{
-        //    Debug.Log(currentTime);
-        //}
+//EventSystem.Current.FireEvent(chaseEvent);
+//hearingRange = owner.GetHearingDistance();
+//if ((owner.agent.remainingDistance == 2f))
+//{
+//    Debug.Log(currentTime);
+//}
+#endregion
