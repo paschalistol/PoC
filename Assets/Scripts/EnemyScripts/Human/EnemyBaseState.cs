@@ -13,9 +13,9 @@ public class EnemyBaseState : State
     private CapsuleCollider capsuleCollider;
     private Vector3 heading;
     private float lightTreshold, dotProduct;
-    protected float lightField;
-    protected float fieldOfView;
-    protected float hearingRange;
+    protected float lightField, fieldOfView, hearingRange;
+    protected const float investigationDistance = 5f;
+
 
     protected Enemy owner;
 

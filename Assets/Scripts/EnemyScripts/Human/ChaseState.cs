@@ -47,7 +47,11 @@ public class ChaseState : EnemyBaseState
                 EventSystem.Current.FireEvent(deathInfo);
             }
         }  else
+        {
+            if(distanceToPlayer > investigationDistance)
             owner.ChangeState<InvestigationState>(); 
+
+        }
     }
     public override void ExitState()
     {

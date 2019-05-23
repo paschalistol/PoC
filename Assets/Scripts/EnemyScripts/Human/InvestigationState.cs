@@ -35,9 +35,12 @@ public class InvestigationState : EnemyBaseState
     }
     public override void ToDo()
     {
-        owner.agent.SetDestination(investigatePosition);
-        Debug.Log(currentTime);
-        currentTime -= Time.deltaTime;
+        
+        
+            owner.agent.SetDestination(investigatePosition);
+            Debug.Log(currentTime);
+        
+            currentTime -= Time.deltaTime;
 
 
         if (currentTime <= 0)
@@ -57,8 +60,6 @@ public class InvestigationState : EnemyBaseState
         musicBasedOnChased.enemyChasing = false;
         EventSystem.Current.FireEvent(musicBasedOnChased);
     }
-
-  
 }
 #region ChaseLegacy
        // lightAngle = lightField.spotAngle;
