@@ -31,25 +31,30 @@ public class PatrolState : EnemyBaseState
 
     public override void ToDo()
     {
-       fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-
-        owner.agent.SetDestination(points[currentPoint].transform.position);
-
-        distanceToPoint = Vector3.Distance(owner.transform.position, points[currentPoint].transform.position);
-        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
-
-
-        if (distanceToPoint < 1)
+        Debug.Log("isPaused - in Patrol: " + GameController.isPaused);
+        if (!GameController.isPaused)
         {
-            currentPoint = (currentPoint + 1) % points.Length;
-        }
+            fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
 
-        if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5)
-            && Input.anyKeyDown)
-        {     
-            if(distanceToPlayer > investigationDistance)
-            owner.ChangeState<InvestigationState>();
+            owner.agent.SetDestination(points[currentPoint].transform.position);
+
+            distanceToPoint = Vector3.Distance(owner.transform.position, points[currentPoint].transform.position);
+            distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+
+
+            if (distanceToPoint < 1)
+            {
+                currentPoint = (currentPoint + 1) % points.Length;
+            }
+
+            if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5)
+                && Input.anyKeyDown)
+            {
+                if (distanceToPlayer > investigationDistance)
+                    owner.ChangeState<InvestigationState>();
+            }
         }
+        else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
     private void ChooseClosest()

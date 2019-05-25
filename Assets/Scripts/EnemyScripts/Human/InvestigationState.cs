@@ -26,18 +26,23 @@ public class InvestigationState : EnemyBaseState
     }
     public override void ToDo()
     {
-        owner.agent.SetDestination(investigatePosition);
-        
-        currentTime -= Time.deltaTime;
+        if (!GameController.isPaused)
+        {
 
-        if (currentTime <= 0)
-        {
-            owner.ChangeState<PatrolState>();
+            owner.agent.SetDestination(investigatePosition);
+
+            currentTime -= Time.deltaTime;
+
+            if (currentTime <= 0)
+            {
+                owner.ChangeState<PatrolState>();
+            }
+            else if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > hearingLevel)
+                     && Input.anyKeyDown)
+            {
+                owner.ChangeState<ChaseState>();
+            }
         }
-        else if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > hearingLevel)
-                 && Input.anyKeyDown)
-        {
-            owner.ChangeState<ChaseState>();
-        }
+        else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 }

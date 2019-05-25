@@ -29,29 +29,33 @@ public class ChaseState : EnemyBaseState
     }
     public override void ToDo()
     {
-
-        fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
-        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
-
-        if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
+        if (!GameController.isPaused)
         {
-            owner.agent.SetDestination(owner.player.transform.position);
+            fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
+            distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
-            if (distanceToPlayer < bustedDistance)
+            if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
+                owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
             {
-                deathInfo = new UnitDeathEventInfo();
-                deathInfo.eventDescription = "U big dead lmao!";
-                deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
-                deathInfo.deadUnit = owner.player.transform.gameObject;
-                EventSystem.Current.FireEvent(deathInfo);
-            }
-        }  else
-        {
-            if(distanceToPlayer > investigationDistance)
-            owner.ChangeState<InvestigationState>(); 
+                owner.agent.SetDestination(owner.player.transform.position);
 
+                if (distanceToPlayer < bustedDistance)
+                {
+                    deathInfo = new UnitDeathEventInfo();
+                    deathInfo.eventDescription = "U big dead lmao!";
+                    deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+                    deathInfo.deadUnit = owner.player.transform.gameObject;
+                    EventSystem.Current.FireEvent(deathInfo);
+                }
+            }
+            else
+            {
+                if (distanceToPlayer > investigationDistance)
+                    owner.ChangeState<InvestigationState>();
+
+            }
         }
+        else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
     public override void ExitState()
     {
