@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static bool isPaused;
+    public static bool isPaused = false;
     
     // Update is called once per frame
     void Update()

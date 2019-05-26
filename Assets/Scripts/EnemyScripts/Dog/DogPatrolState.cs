@@ -26,19 +26,22 @@ public class DogPatrolState : DogBaseState
 
     public override void ToDo()
     {
-        owner.agent.SetDestination(DogPoints[Point].transform.position);
-        distanceToPoint = Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position);
-        if (distanceToPoint < noiceDetection)
+        if (!GameController.isPaused)
         {
-            ChooseRandom();
-        }
+            owner.agent.SetDestination(DogPoints[Point].transform.position);
+            distanceToPoint = Vector3.Distance(owner.transform.position, DogPoints[Point].transform.position);
+            if (distanceToPoint < noiceDetection)
+            {
+                ChooseRandom();
+            }
 
-        distanceToEnemy = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+            distanceToEnemy = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
-        if (distanceToEnemy < smellDistance && !owner.inSafeZone)
-        {
-           owner.ChangeState<DogChaseState>();
-        }
+            if (distanceToEnemy < smellDistance && !owner.inSafeZone)
+            {
+                owner.ChangeState<DogChaseState>();
+            }
+        }else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
     protected void ChooseRandom()

@@ -22,21 +22,25 @@ public class OldboiAlertState : OldboiBaseState
     }
     public override void ToDo()
     {
-        
-        Vector3 direction = owner.player.transform.position - owner.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, rotationalSpeed);
-
-        if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
-            (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
-            owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
+        if (!GameController.isPaused)
         {
-            foreach(GameObject dog in owner.dogs){
-                dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();   
-            }
-        }  else
-            owner.ChangeState<OldboiPatrolState>();
+            Vector3 direction = owner.player.transform.position - owner.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, rotationalSpeed);
 
+            if ((LineOfSight() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < chaseDistance) ||
+                (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
+                owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
+            {
+                foreach (GameObject dog in owner.dogs)
+                {
+                    dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
+                }
+            }
+            else
+                owner.ChangeState<OldboiPatrolState>();
+        }
+        else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 }
 #region dogLegacy

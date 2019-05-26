@@ -33,15 +33,18 @@ public class Trampolin : Interactable
     // Update is called once per frame
     void Update()
     {
-        if (!isHeld)
+        if (!GameController.isPaused)
         {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
+            if (!isHeld)
+            {
+                velocity = PhysicsScript.Decelerate(velocity);
+                velocity = PhysicsScript.Gravity(velocity);
+                velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
+                transform.position += velocity * Time.deltaTime;
+            }
+            Bounce();
+            Bouncing();
         }
-        Bounce();
-        Bouncing();
         
     }
 

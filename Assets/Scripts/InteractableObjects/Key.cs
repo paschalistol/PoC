@@ -35,18 +35,21 @@ public class Key : Interactable
     }
     void Update()
     {
-        if (transform.parent == null && !isHeld)
+        if (!GameController.isPaused)
         {
-            AddPhysics();
-
-            if (!usedOnce)
+            if (transform.parent == null && !isHeld)
             {
-                ParticleStarter();
+                AddPhysics();
+
+                if (!usedOnce)
+                {
+                    ParticleStarter();
+                }
             }
-        }
-        else if (isHeld)
-        {
-            UsingKeyCheck();
+            else if (isHeld)
+            {
+                UsingKeyCheck();
+            }
         }
     }
     public override void StartInteraction()

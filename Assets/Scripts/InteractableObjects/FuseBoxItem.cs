@@ -30,43 +30,45 @@ public class FuseBoxItem : Interactable
     void Update()
     {
 
-
-        if (!isHeld)
+        if (!GameController.isPaused)
         {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
-        }
-        
-        RaycastHit raycastHit;
-       
-        bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
+            if (!isHeld)
+            {
+                velocity = PhysicsScript.Decelerate(velocity);
+                velocity = PhysicsScript.Gravity(velocity);
+                velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
+                transform.position += velocity * Time.deltaTime;
+            }
 
-        if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
-        {    
-            count++;
-        
-            FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
-            fuseBoxEvent.gameObject = gameObject;
-            fuseBoxEvent.eventDescription = "Fusebox item: " + count;
-            //fuseBoxEvent.particles = particles;
+            RaycastHit raycastHit;
 
-            EventSystem.Current.FireEvent(fuseBoxEvent);
+            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
+
+            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
+            {
+                count++;
+
+                FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
+                fuseBoxEvent.gameObject = gameObject;
+                fuseBoxEvent.eventDescription = "Fusebox item: " + count;
+                //fuseBoxEvent.particles = particles;
+
+                EventSystem.Current.FireEvent(fuseBoxEvent);
                 Debug.Log("Running update!");
 
-            if (count == itemQuantity)
-            {
-                //Run particles on fusebox activation of door
-                lockedDoor.GetComponent<Door>().StartInteraction();
-                OpenDoorEvent doorEvent = new OpenDoorEvent();
-                doorEvent.gameObject = gameObject;
-                doorEvent.eventDescription = "A door has been opened!";
-                //doorEvent.particles = endParticles;
+                if (count == itemQuantity)
+                {
+                    //Run particles on fusebox activation of door
+                    lockedDoor.GetComponent<Door>().StartInteraction();
+                    OpenDoorEvent doorEvent = new OpenDoorEvent();
+                    doorEvent.gameObject = gameObject;
+                    doorEvent.eventDescription = "A door has been opened!";
+                    //doorEvent.particles = endParticles;
 
-                EventSystem.Current.FireEvent(doorEvent);
+                    EventSystem.Current.FireEvent(doorEvent);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject); 
         }
     }
 

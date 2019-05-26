@@ -23,25 +23,28 @@ public class DogChaseState : DogBaseState
     /// </summary>
     public override void ToDo()
     {
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance 
-            || owner.inSafeZone)
+        if (!GameController.isPaused)
         {
-            owner.ChangeState<DogPatrolState>();
-        }
-        else
-        {
-            owner.agent.SetDestination(owner.player.transform.position);
-            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
+            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance
+                || owner.inSafeZone)
             {
-                deathInfo = new UnitDeathEventInfo();
-                deathInfo.eventDescription = "U big dead lmao!";
-                deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
-                deathInfo.deadUnit = owner.player.transform.gameObject;
-                EventSystem.Current.FireEvent(deathInfo);
-
                 owner.ChangeState<DogPatrolState>();
             }
-        }
+            else
+            {
+                owner.agent.SetDestination(owner.player.transform.position);
+                if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
+                {
+                    deathInfo = new UnitDeathEventInfo();
+                    deathInfo.eventDescription = "U big dead lmao!";
+                    deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+                    deathInfo.deadUnit = owner.player.transform.gameObject;
+                    EventSystem.Current.FireEvent(deathInfo);
+
+                    owner.ChangeState<DogPatrolState>();
+                }
+            }
+        }else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 }
 #region ChaseLegacy

@@ -38,17 +38,19 @@ public class Box : Interactable
 
     void Update()
     {
-        if (!isHeld)
+        if (!GameController.isPaused)
         {
-            AddPhysics();
-
-            if (!usedOnce)
+            if (!isHeld)
             {
-                ParticleStarter();
+                AddPhysics();
+
+                if (!usedOnce)
+                {
+                    ParticleStarter();
+                }
             }
+            Bouncing();
         }
-        Bouncing();
-        
     }
 
     public override void StartInteraction()

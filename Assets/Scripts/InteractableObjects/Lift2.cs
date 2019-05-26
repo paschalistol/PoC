@@ -7,7 +7,7 @@ using UnityEngine;
 public class Lift2 : MonoBehaviour
 {
 
-    private GameObject[] bigPoints;
+    private GameObject[] liftPoints;
     private int currentPoint;
     public Vector3 direction;
     public bool onOff = false;
@@ -18,7 +18,7 @@ public class Lift2 : MonoBehaviour
     
     private void Start()
     {
-        bigPoints = GetComponent<LiftPoints>().GetPoints();
+        liftPoints = GetComponent<LiftPoints>().GetPoints();
         currentPoint = 0;
         startVelocity = velocity;
     }
@@ -29,24 +29,26 @@ public class Lift2 : MonoBehaviour
     }
     private void Update()
     {
-
-        if (onOff)
+        if (!GameController.isPaused)
         {
-
-            direction = bigPoints[currentPoint].transform.position - transform.position;
-            velocity = direction.normalized  * speed ;
-
-            transform.position += velocity * Time.deltaTime;
-
-            if (Vector3.Distance(transform.position, bigPoints[currentPoint].transform.position) < 0.1f)
+            if (onOff)
             {
-                onOff = false;
-                currentPoint = (currentPoint + 1) % bigPoints.Length;
+
+                direction = liftPoints[currentPoint].transform.position - transform.position;
+                velocity = direction.normalized * speed;
+
+                transform.position += velocity * Time.deltaTime;
+
+                if (Vector3.Distance(transform.position, liftPoints[currentPoint].transform.position) < 0.1f)
+                {
+                    onOff = false;
+                    currentPoint = (currentPoint + 1) % liftPoints.Length;
+                }
             }
-        }
-        if (!onOff)
-        {
-            velocity = Vector3.zero;
+            if (!onOff)
+            {
+                velocity = Vector3.zero;
+            }
         }
     }
     public void ActivateLift() {

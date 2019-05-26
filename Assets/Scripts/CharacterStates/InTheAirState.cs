@@ -26,31 +26,34 @@ public class InTheAirState : CharacterBaseState
     }
     public override void ToDo()
     {
-        ChangeCharRotation();
-        #region Input
-        Vector3 input = GetDirectionInput() * 10;
-        if (input.magnitude <= 0)
+        if (!GameController.isPaused)
         {
-            Decelerate();
-        }
-        else
-        {
-            Accelerate(input);
-        }
-        #endregion
-        Gravity();
-        CollisionCheck();
-        DeathCollisionCheck();
-        ReachingCheckPoint();
-        //Trampoline();
-        Bouncing();
-        //ReachingGoal();
+            ChangeCharRotation();
+            #region Input
+            Vector3 input = GetDirectionInput() * 10;
+            if (input.magnitude <= 0)
+            {
+                Decelerate();
+            }
+            else
+            {
+                Accelerate(input);
+            }
+            #endregion
+            Gravity();
+            CollisionCheck();
+            DeathCollisionCheck();
+            ReachingCheckPoint();
+            //Trampoline();
+            Bouncing();
+            //ReachingGoal();
 
-        owner.transform.position += Velocity * Time.deltaTime;
-        if (IsGrounded())
-        {
+            owner.transform.position += Velocity * Time.deltaTime;
+            if (IsGrounded())
+            {
 
-            owner.ChangeState<GroundedState>();
+                owner.ChangeState<GroundedState>();
+            }
         }
 
     }

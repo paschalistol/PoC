@@ -43,78 +43,81 @@ public class GroundedState : CharacterBaseState
 
     public override void ToDo()
     {
-        Debug.Log(MaxSpeed);
-        Gravity();
-        #region Input
-        Vector3 input = GetDirectionInput();
-
-        CheckInput(input);
-        #endregion
-        ChangeCharRotation();
-        if (input.magnitude > 0 && walkingSound.objectPlaying == null)
+        if (!GameController.isPaused)
         {
+            Debug.Log(MaxSpeed);
+            Gravity();
+            #region Input
+            Vector3 input = GetDirectionInput();
 
-            walkingSound.gameObject = owner.gameObject;
-            walkingSound.eventDescription = "Grounded Sound";
-            walkingSound.audioClip = footsteps;
-            walkingSound.looped = true;
-            if (walkingSound.audioClip != null)
+            CheckInput(input);
+            #endregion
+            ChangeCharRotation();
+            if (input.magnitude > 0 && walkingSound.objectPlaying == null)
             {
-                EventSystem.Current.FireEvent(walkingSound);
+
+                walkingSound.gameObject = owner.gameObject;
+                walkingSound.eventDescription = "Grounded Sound";
+                walkingSound.audioClip = footsteps;
+                walkingSound.looped = true;
+                if (walkingSound.audioClip != null)
+                {
+                    EventSystem.Current.FireEvent(walkingSound);
+                }
             }
-        }
-        if(input.magnitude == 0 && walkingSound.objectPlaying != null)
-        {
-            stopSoundEvent = new StopSoundEvent();
-            stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
-            stopSoundEvent.eventDescription = "Stop Sound";
-            if (stopSoundEvent.AudioPlayer != null)
+            if (input.magnitude == 0 && walkingSound.objectPlaying != null)
             {
-                EventSystem.Current.FireEvent(stopSoundEvent);
+                stopSoundEvent = new StopSoundEvent();
+                stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
+                stopSoundEvent.eventDescription = "Stop Sound";
+                if (stopSoundEvent.AudioPlayer != null)
+                {
+                    EventSystem.Current.FireEvent(stopSoundEvent);
+                }
             }
-        }
-      //  Speed();
+            //  Speed();
 
 
-        #region Buttons
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ApplyForce(new Vector3(0, jumpHeight, 0));
-            //anim.SetTrigger("jump");
+            #region Buttons
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ApplyForce(new Vector3(0, jumpHeight, 0));
+                //anim.SetTrigger("jump");
 
-            //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            //if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
-            //{
-            //    anim.SetTrigger(jumpHash);
-            //}
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            MaxSpeed = maxSpeedCoeff * movementMultiplier;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            MaxSpeed = maxSpeedCoeff;
-        }
-        #endregion
+                //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+                //if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
+                //{
+                //    anim.SetTrigger(jumpHash);
+                //}
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                MaxSpeed = maxSpeedCoeff * movementMultiplier;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                MaxSpeed = maxSpeedCoeff;
+            }
+            #endregion
 
-        DeathCollisionCheck();
-        ReachingCheckPoint();
-        //Trampoline();
-        Bouncing();
-        CollisionCheck();
-        //ReachingGoal();
-        owner.transform.position += Velocity * Time.deltaTime;
+            DeathCollisionCheck();
+            ReachingCheckPoint();
+            //Trampoline();
+            Bouncing();
+            CollisionCheck();
+            //ReachingGoal();
+            owner.transform.position += Velocity * Time.deltaTime;
 
 
-        if(TakingLift2() != null)
-        {
-            owner.ChangeState<OnLiftState>();
-        }
-        if (!IsGrounded())
-        {
-            owner.ChangeState<InTheAirState>();
+            if (TakingLift2() != null)
+            {
+                owner.ChangeState<OnLiftState>();
+            }
+            if (!IsGrounded())
+            {
+                owner.ChangeState<InTheAirState>();
 
+            }
         }
     }
     public override void ExitState()

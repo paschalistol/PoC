@@ -23,23 +23,26 @@ public class OldboiPatrolState : OldboiBaseState
 
     public override void ToDo()
     {
-       
-        owner.agent.SetDestination(points[currentPoint].transform.position);
-        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
-
-        if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
+        if (!GameController.isPaused)
         {
-            currentPoint = (currentPoint + 1) % points.Length;
-           
-        }
+            owner.agent.SetDestination(points[currentPoint].transform.position);
+            distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
 
-        if ((LineOfSight() && distanceToPlayer < chaseDistance) || (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange && 
-            (owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5 && Input.anyKeyDown)))
-        {
 
-            owner.ChangeState<OldboiAlertState>();
-        }
+            if (Vector3.Distance(owner.transform.position, points[currentPoint].transform.position) < 1)
+            {
+                currentPoint = (currentPoint + 1) % points.Length;
+
+            }
+
+            if ((LineOfSight() && distanceToPlayer < chaseDistance) || (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
+                (owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5 && Input.anyKeyDown)))
+            {
+
+                owner.ChangeState<OldboiAlertState>();
+            }
+        }else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
     private void ChooseClosest()
