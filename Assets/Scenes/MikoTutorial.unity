@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 71b634fec31b38b46a30f6185273a772, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -16382,6 +16382,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1178717147}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
 --- !u!1001 &490953812
@@ -56177,6 +56187,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1178717147}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
 --- !u!4 &1573209488 stripped
@@ -58119,7 +58139,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.43075827, g: 0.5291093, b: 0.754717, a: 1}
   m_Intensity: 0.31
   m_Range: 10
   m_SpotAngle: 30
@@ -58130,7 +58150,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
@@ -58139,7 +58159,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -58155,7 +58175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630940609}
   m_LocalRotation: {x: 0.46516043, y: -0.6243546, z: 0.31470203, w: 0.54292715}
-  m_LocalPosition: {x: 166.5, y: 524, z: 26.9}
+  m_LocalPosition: {x: 168.07, y: 512.49, z: 24.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61205,6 +61225,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1178717147}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Shadows.m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
 --- !u!1 &1698034857
