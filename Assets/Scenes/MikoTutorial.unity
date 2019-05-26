@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1630940610}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -3052,6 +3052,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.480003
@@ -3117,6 +3125,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 35.569633
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -6956,6 +6974,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7543,6 +7571,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.480003
@@ -7608,6 +7644,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 35.999275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -9273,6 +9319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
@@ -15981,8 +16032,8 @@ GameObject:
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &484210687
 Transform:
@@ -18269,6 +18320,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19543,6 +19604,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.059998
@@ -19608,6 +19677,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 26.605507
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -23013,6 +23092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poplar_Tree_1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.325542
@@ -24055,6 +24138,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -26842,6 +26935,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28116,6 +28219,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 51.740837
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8875379
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6690548
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -31754,6 +31877,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33898,8 +34031,8 @@ GameObject:
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!136 &978756985
 CapsuleCollider:
@@ -34816,6 +34949,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -36201,6 +36344,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -38290,6 +38443,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.18
@@ -38360,6 +38521,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Lightmapping
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -39704,6 +39875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
@@ -42503,8 +42679,8 @@ GameObject:
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1199864822
 Transform:
@@ -43249,6 +43425,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -45052,6 +45238,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.300003
@@ -45117,6 +45311,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 47.94381
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -46512,6 +46716,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47700,6 +47909,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.300003
@@ -47765,6 +47982,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 41.02063
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -47859,8 +48086,8 @@ GameObject:
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &1315832809
 SphereCollider:
@@ -49790,6 +50017,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50989,6 +51221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
@@ -52771,6 +53008,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53093,6 +53340,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 49.24691
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649111721256677283, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -55468,6 +55735,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.18
@@ -55534,6 +55809,16 @@ PrefabInstance:
       propertyPath: m_Range
       value: 48.109108
       objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
 --- !u!114 &1538054359 stripped
@@ -55559,6 +55844,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -57365,6 +57660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
@@ -60738,6 +61038,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61277,7 +61587,7 @@ PrefabInstance:
     - target: {fileID: 8894960903057189575, guid: 3c55f2d1afb19c84f98248f48ffff585,
         type: 3}
       propertyPath: m_Intensity
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
@@ -64110,6 +64420,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65175,6 +65495,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65676,6 +66001,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight_03_on (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100920, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 410862, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.18
@@ -65741,6 +66074,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 27.596397
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895717621250268165, guid: d531a36fe4a459641b4edbf2fe08edb6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531a36fe4a459641b4edbf2fe08edb6, type: 3}
@@ -66705,6 +67048,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67402,6 +67755,10 @@ PrefabInstance:
     - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_Name
       value: Poplar_Tree_1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 413218, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68807,6 +69164,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -74188,6 +74555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -74540,6 +74912,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763359929885383489, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763359929885383501, guid: a7ab4bae4c3bc1b4e861e39f2f1cc85d,
         type: 3}
@@ -75434,6 +75816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
@@ -78684,6 +79071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: grass (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147475758931476251, guid: b88758a5e08b5af43885264beffd0f82,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
         type: 3}
