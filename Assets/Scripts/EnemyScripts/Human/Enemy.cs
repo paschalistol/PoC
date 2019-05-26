@@ -17,6 +17,7 @@ public class Enemy : StateMachine
     public GameObject player; //character?
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
+    public GameObject[] dogs;
     //public readonly float LightThreshold = 0.2f;
 
     // Methods

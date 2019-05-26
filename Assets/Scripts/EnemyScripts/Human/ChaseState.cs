@@ -39,6 +39,11 @@ public class ChaseState : EnemyBaseState
             {
                 owner.agent.SetDestination(owner.player.transform.position);
 
+                foreach (GameObject dog in owner.dogs)
+                {
+                    dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
+                }
+
                 if (distanceToPlayer < bustedDistance)
                 {
                     deathInfo = new UnitDeathEventInfo();

@@ -17,5 +17,6 @@ public class GameController : MonoBehaviour
         Debug.Log("Paused or not: " + isPaused);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.T))
             isPaused = !isPaused;
+        
     }
 }

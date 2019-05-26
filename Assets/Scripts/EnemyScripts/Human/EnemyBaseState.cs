@@ -29,7 +29,7 @@ public class EnemyBaseState : State
         owner.agent.speed = moveSpeed;
         capsuleCollider = owner.GetComponent<CapsuleCollider>();
         lightField = owner.flashLight.GetComponent<Light>().range;
-        lightTreshold = 0.65f;
+        lightTreshold = 0.5f;
         hearingRange = lightField * 1.5f;
         
     }
