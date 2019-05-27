@@ -14,6 +14,8 @@ public class Lift2 : MonoBehaviour
     public GameObject audioMachine;
     private Vector3 velocity, startVelocity;
     [SerializeField] private float speed = 1;
+    private float currentTime;
+    [SerializeField] private float liftStartTime = 2.5f;
     
     
     private void Start()
@@ -33,16 +35,19 @@ public class Lift2 : MonoBehaviour
         {
             if (onOff)
             {
-
-                direction = liftPoints[currentPoint].transform.position - transform.position;
-                velocity = direction.normalized * speed;
-
-                transform.position += velocity * Time.deltaTime;
-
-                if (Vector3.Distance(transform.position, liftPoints[currentPoint].transform.position) < 0.1f)
+                currentTime -= Time.deltaTime;
+                if (currentTime <= 0f)
                 {
-                    onOff = false;
-                    currentPoint = (currentPoint + 1) % liftPoints.Length;
+                    direction = liftPoints[currentPoint].transform.position - transform.position;
+                    velocity = direction.normalized * speed;
+
+                    transform.position += velocity * Time.deltaTime;
+
+                    if (Vector3.Distance(transform.position, liftPoints[currentPoint].transform.position) < 0.1f)
+                    {
+                        onOff = false;
+                        currentPoint = (currentPoint + 1) % liftPoints.Length;
+                    }
                 }
             }
             if (!onOff)
@@ -53,5 +58,6 @@ public class Lift2 : MonoBehaviour
     }
     public void ActivateLift() {
         onOff = true;
+        currentTime = liftStartTime;
     }
 }

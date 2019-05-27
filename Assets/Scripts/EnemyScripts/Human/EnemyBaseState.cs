@@ -11,13 +11,12 @@ public class EnemyBaseState : State
     [SerializeField] protected Material material;
     [SerializeField] protected float moveSpeed;
     private CapsuleCollider capsuleCollider;
+    private UnitDeathEventInfo deathInfo;
     private Vector3 heading;
     private float lightTreshold, dotProduct;
     protected float lightField, fieldOfView, hearingRange;
     protected const float investigationDistance = 5f;
  
-
-
     protected Enemy owner;
 
 
@@ -31,7 +30,6 @@ public class EnemyBaseState : State
         lightField = owner.flashLight.GetComponent<Light>().range;
         lightTreshold = 0.5f;
         hearingRange = lightField * 1.5f;
-        
     }
 
     public override void InitializeState(StateMachine owner)
@@ -55,6 +53,31 @@ public class EnemyBaseState : State
         heading = (owner.player.transform.position - owner.transform.position).normalized;
         dotProduct = Vector3.Dot(owner.agent.velocity.normalized, heading);
         return dotProduct;
+    }
+
+    protected void FetchDogs()
+    {
+        foreach (GameObject dog in owner.dogs)
+        {
+            dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
+        }
+    }
+
+    protected void KillPlayer()
+    {
+        deathInfo = new UnitDeathEventInfo();
+        deathInfo.eventDescription = "You have been killed!";
+        deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+        deathInfo.deadUnit = owner.player.transform.gameObject;
+        EventSystem.Current.FireEvent(deathInfo);
+    }
+
+    protected void ScornDogs()
+    {
+        foreach(GameObject dog in owner.dogs)
+        {
+          dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
+        }
     }
 }
 #region EnemyBaseLegacy

@@ -39,24 +39,20 @@ public class ChaseState : EnemyBaseState
             {
                 owner.agent.SetDestination(owner.player.transform.position);
 
-                foreach (GameObject dog in owner.dogs)
-                {
-                    dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
-                }
+                FetchDogs();
 
                 if (distanceToPlayer < bustedDistance)
                 {
-                    deathInfo = new UnitDeathEventInfo();
-                    deathInfo.eventDescription = "U big dead lmao!";
-                    deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
-                    deathInfo.deadUnit = owner.player.transform.gameObject;
-                    EventSystem.Current.FireEvent(deathInfo);
+                    KillPlayer();
                 }
             }
             else
             {
                 if (distanceToPlayer > investigationDistance)
+                {
                     owner.ChangeState<InvestigationState>();
+                    ScornDogs();
+                }
 
             }
         }

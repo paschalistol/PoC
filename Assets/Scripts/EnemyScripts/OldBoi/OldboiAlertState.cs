@@ -38,7 +38,13 @@ public class OldboiAlertState : OldboiBaseState
                 }
             }
             else
+            {
                 owner.ChangeState<OldboiPatrolState>();
+                foreach (GameObject dog in owner.dogs)
+                {
+                    dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
+                }
+            }
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
