@@ -13,6 +13,7 @@ public class DogBaseState : State
     private RaycastHit raycastHit;
     private BoxCollider boxCollider;
     protected EnemyDog owner;
+    private UnitDeathEventInfo deathInfo;
 
     [SerializeField] protected float moveSpeed;
     private const float skinWidth = 0.2f;
@@ -34,8 +35,6 @@ public class DogBaseState : State
         this.owner = (EnemyDog)owner;
     }
 
-  
-
     protected bool InSafeZoneCheck()
     {
         RaycastHit raycastHit;
@@ -53,6 +52,15 @@ public class DogBaseState : State
             return false;
         }
         
+    }
+
+    protected void KillPlayer()
+    {
+        deathInfo = new UnitDeathEventInfo();
+        deathInfo.eventDescription = "You have been killed!";
+        deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
+        deathInfo.deadUnit = owner.player.transform.gameObject;
+        EventSystem.Current.FireEvent(deathInfo);
     }
 
 

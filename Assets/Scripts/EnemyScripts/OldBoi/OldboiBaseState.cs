@@ -10,6 +10,7 @@ public class OldboiBaseState : State
     [SerializeField] protected Material material;
     private float fieldOfView;
     private CapsuleCollider capsuleCollider;
+    private UnitDeathEventInfo deathInfo;
 
     protected Oldboi owner;
    
@@ -34,6 +35,21 @@ public class OldboiBaseState : State
         Debug.DrawRay(owner.agent.transform.position, owner.agent.velocity, Color.red, 0);
         return Physics.CapsuleCast(owner.transform.position + capsuleCollider.center + Vector3.up * (capsuleCollider.height / 2 - capsuleCollider.radius), owner.transform.position + capsuleCollider.center + Vector3.down * (capsuleCollider.height / 2 - capsuleCollider.radius),
            capsuleCollider.radius, owner.agent.velocity, out RaycastHit raycastHit, fieldOfView, owner.visionMask);
+    }
 
+    protected void FetchDogs()
+    {
+        foreach (GameObject dog in owner.dogs)
+        {
+            dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
+        }
+    }
+
+    protected void ScornDogs()
+    {
+        foreach (GameObject dog in owner.dogs)
+        {
+            dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
+        }
     }
 }

@@ -17,7 +17,7 @@ public class DogChaseState : DogBaseState
     {
         base.EnterState();
         smellDistance = owner.GetSmellDistance();
-}
+    }
     /// <summary>
     /// Decides if the dog will return to patrol or attack while chasing the player.
     /// </summary>
@@ -35,12 +35,7 @@ public class DogChaseState : DogBaseState
                 owner.agent.SetDestination(owner.player.transform.position);
                 if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 {
-                    deathInfo = new UnitDeathEventInfo();
-                    deathInfo.eventDescription = "U big dead lmao!";
-                    deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
-                    deathInfo.deadUnit = owner.player.transform.gameObject;
-                    EventSystem.Current.FireEvent(deathInfo);
-
+                    KillPlayer();
                     owner.ChangeState<DogPatrolState>();
                 }
             }

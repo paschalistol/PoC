@@ -32,18 +32,12 @@ public class OldboiAlertState : OldboiBaseState
                 (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearingRange &&
                 owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() >= 5))
             {
-                foreach (GameObject dog in owner.dogs)
-                {
-                    dog.GetComponent<EnemyDog>().ChangeState<DogFetchState>();
-                }
+                FetchDogs();
             }
             else
             {
                 owner.ChangeState<OldboiPatrolState>();
-                foreach (GameObject dog in owner.dogs)
-                {
-                    dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
-                }
+                ScornDogs();
             }
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }

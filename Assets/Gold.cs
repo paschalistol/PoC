@@ -61,6 +61,7 @@ public class Gold : Interactable
     {
         isHeld = !isHeld;
         usedOnce = false;
+        GameController.activatedAlarm = true;
 
         if (startParticles.particles != null)
         {
