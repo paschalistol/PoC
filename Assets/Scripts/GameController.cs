@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     void PauseController()
     {
         Debug.Log("Paused or not: " + isPaused);
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Escape))
             isPaused = !isPaused;
     }
 
