@@ -6,9 +6,11 @@ public abstract class Interactable : MonoBehaviour
 {
     
     protected Vector3 startPosition;
+    
     protected virtual void Start()
     {
         startPosition = transform.position;
+        
     }
     public abstract void StartInteraction();
     public virtual void BeingThrown(Vector3 throwDirection) {}

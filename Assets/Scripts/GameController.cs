@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
     void PauseController()
     {
-        Debug.Log("Paused or not: " + isPaused);
+        //Debug.Log("Paused or not: " + isPaused);
         if (Input.GetKeyDown(KeyCode.Escape))
             isPaused = !isPaused;
     }

@@ -20,6 +20,8 @@ public class Key : Interactable
     protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
+    protected GameObject parentEnemy;
+    protected Vector3 keyStartPos;
 
     private bool usedOnce = false;
     protected const float skinWidth = 0.2f;
@@ -28,10 +30,17 @@ public class Key : Interactable
 
     protected override void Start()
     {
-        base.Start();
+
         boxCollider = GetComponent<BoxCollider>();
 
         isHeld = false;
+
+        if (gameObject.transform.parent != null && gameObject.tag == "Key")
+        {
+            parentEnemy = transform.parent.gameObject;
+            keyStartPos = transform.InverseTransformPoint(transform.position);
+            Debug.Log(gameObject.tag);
+        }
     }
     void Update()
     {
@@ -46,8 +55,9 @@ public class Key : Interactable
                     ParticleStarter();
                 }
             }
-                UsingKeyCheck();   
+            UsingKeyCheck();
         }
+        //Debug.Log(parentEnemy.transform.position + "  " + keyStartPos);
     }
     public override void StartInteraction()
     {
@@ -62,6 +72,17 @@ public class Key : Interactable
             usedOnce = false;
             ParticleStopper();
         }
+    }
+
+    public override void RespawnItem()
+    {
+        base.RespawnItem();
+
+
+        Debug.Log(parentEnemy.name + parentEnemy.transform.position);
+        transform.parent = parentEnemy.transform;
+        transform.position = parentEnemy.transform.position;
+
     }
 
     public override AudioClip GetAudioClip()
@@ -95,10 +116,10 @@ public class Key : Interactable
         EventSystem.Current.FireEvent(stopParticles);
     }
 
-        RaycastHit raycastHit;
+    RaycastHit raycastHit;
     private void UsingKeyCheck()
     {
-        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth*3,door);
+        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth * 3, door);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
         {
             lockedDoor.GetComponent<Interactable>().StartInteraction();

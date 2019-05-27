@@ -31,7 +31,7 @@ public class PatrolState : EnemyBaseState
 
     public override void ToDo()
     {
-        Debug.Log("isPaused - in Patrol: " + GameController.isPaused);
+        //Debug.Log("isPaused - in Patrol: " + GameController.isPaused);
         if (!GameController.isPaused)
         {
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);

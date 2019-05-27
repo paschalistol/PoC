@@ -95,7 +95,7 @@ public class HoldingItem : HoldItemBase
 
         if (temp != null)
         {
-
+            
             temp.GetComponent<Interactable>().RespawnItem();
 
         }
