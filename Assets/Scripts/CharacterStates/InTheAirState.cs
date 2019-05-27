@@ -54,6 +54,8 @@ public class InTheAirState : CharacterBaseState
 
                 owner.ChangeState<GroundedState>();
             }
+
+            owner.grounded = false;
         }
 
     }

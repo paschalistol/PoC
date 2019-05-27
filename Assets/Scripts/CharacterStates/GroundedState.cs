@@ -38,6 +38,7 @@ public class GroundedState : CharacterBaseState
         {
             EventSystem.Current.FireEvent(soundEvent);
         }
+        owner.grounded = true;
         //anim = owner.GetComponent<Animator>();
     }
 

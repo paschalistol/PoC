@@ -30,9 +30,11 @@ public class BobController : MonoBehaviour
 
         }
 
-        if(player.CharacterStateMachine.currentState == GroundedState && player.CharacterStateMachine.currentState != null)
+        if(player.GetComponent<CharacterStateMachine>().grounded == true)
         {
-            anim.setBool("Grounded");
+            anim.SetBool("Grounded", true);
         }
+
+        
     }
 }
