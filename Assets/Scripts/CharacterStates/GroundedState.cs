@@ -38,7 +38,7 @@ public class GroundedState : CharacterBaseState
         {
             EventSystem.Current.FireEvent(soundEvent);
         }
-        //   anim = owner.GetComponent<Animator>();
+        //anim = owner.GetComponent<Animator>();
     }
 
     public override void ToDo()
@@ -63,7 +63,7 @@ public class GroundedState : CharacterBaseState
                 if (walkingSound.audioClip != null)
                 {
                     EventSystem.Current.FireEvent(walkingSound);
-                }
+                }                
             }
             if (input.magnitude == 0 && walkingSound.objectPlaying != null)
             {
@@ -75,7 +75,7 @@ public class GroundedState : CharacterBaseState
                     EventSystem.Current.FireEvent(stopSoundEvent);
                 }
             }
-            //  Speed();
+            //Speed();
 
 
             #region Buttons
@@ -159,17 +159,6 @@ public class GroundedState : CharacterBaseState
 
         }
 
-    }
-
-    void Speed()
-    {
-        speed = Input.GetAxis("Vertical");
-        direction = Input.GetAxis("Horizontal");
-
-        anim.SetFloat("speed", speed);
-        anim.SetFloat("direction", direction);
-    }
-
-
+    }    
 }
 
