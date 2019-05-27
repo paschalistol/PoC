@@ -46,10 +46,7 @@ public class Key : Interactable
                     ParticleStarter();
                 }
             }
-            else if (isHeld)
-            {
-                UsingKeyCheck();
-            }
+                UsingKeyCheck();   
         }
     }
     public override void StartInteraction()
