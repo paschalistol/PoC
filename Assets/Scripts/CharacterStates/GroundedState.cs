@@ -25,7 +25,7 @@ public class GroundedState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
-        walkingParticles = owner.walkingParticles; 
+        walkingParticles = owner.walkingParticles;
         dynamicFriction = dynamicFrictionCoeff;
         MaxSpeed = maxSpeedCoeff;
         walkingSound = new SoundEvent();
@@ -46,7 +46,7 @@ public class GroundedState : CharacterBaseState
     {
         if (!GameController.isPaused)
         {
-            Debug.Log(MaxSpeed);
+            //Debug.Log(MaxSpeed);
             Gravity();
             #region Input
             Vector3 input = GetDirectionInput();
@@ -64,7 +64,7 @@ public class GroundedState : CharacterBaseState
                 if (walkingSound.audioClip != null)
                 {
                     EventSystem.Current.FireEvent(walkingSound);
-                }                
+                }
             }
             if (input.magnitude == 0 && walkingSound.objectPlaying != null)
             {
@@ -91,14 +91,15 @@ public class GroundedState : CharacterBaseState
                 //    anim.SetTrigger(jumpHash);
                 //}
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 MaxSpeed = maxSpeedCoeff * movementMultiplier;
             }
-            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            else
             {
                 MaxSpeed = maxSpeedCoeff;
             }
+            
             #endregion
 
             DeathCollisionCheck();
@@ -160,6 +161,6 @@ public class GroundedState : CharacterBaseState
 
         }
 
-    }    
+    }
 }
 
