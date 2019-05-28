@@ -12,8 +12,9 @@ public class ChaseState : EnemyBaseState
     private MusicBasedOnChased musicBasedOnChased;
     private UnitDeathEventInfo deathInfo;
     private GameObject audioSpeaker;
-    private float chaseDistance, distanceToPlayer, lightRange;
+    private float chaseDistance, distanceToPlayer, lightRange, movementSpeed;
     private const float bustedDistance = 2f;
+    
 
     public override void EnterState()
     {
@@ -33,28 +34,39 @@ public class ChaseState : EnemyBaseState
         {
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
             distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+            movementSpeed = owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed();
 
-            if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
-                owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5))
-            {
+
                 owner.agent.SetDestination(owner.player.transform.position);
-
                 FetchDogs();
+
+            //if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
+            //    owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > soundFromFeet))
+            //{
+            //}
+
+            if (!owner.agent.hasPath)
+            {
+                owner.agent.isStopped = true;
+            }
+            else
+            {
+                owner.agent.isStopped = false;
+            }
 
                 if (distanceToPlayer < bustedDistance)
                 {
                     KillPlayer();
+                owner.ChangeState<PatrolState>();
                 }
-            }
-            else
-            {
-                if (distanceToPlayer > investigationDistance)
+                if ((!LineOfSight() && ((distanceToPlayer < hearingRange && movementSpeed > soundFromFeet
+                     && Input.anyKeyDown)) && distanceToPlayer > investigationDistance))
                 {
                     owner.ChangeState<InvestigationState>();
                     ScornDogs();
                 }
 
-            }
+            
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }

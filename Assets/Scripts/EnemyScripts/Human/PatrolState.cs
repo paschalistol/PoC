@@ -47,12 +47,19 @@ public class PatrolState : EnemyBaseState
                 currentPoint = (currentPoint + 1) % points.Length;
             }
 
-            if (LineOfSight() || (distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > 5
+            if(LineOfSight())
+                    owner.ChangeState<ChaseState>();
+            else if(distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > soundFromFeet
+                && Input.anyKeyDown)
+                     owner.ChangeState<InvestigationState>();
+                
+
+
+            if ((LineOfSight() && distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > soundFromFeet
                 && Input.anyKeyDown) || GameController.activatedAlarm)
             {
-                if (distanceToPlayer > investigationDistance)
-                    owner.ChangeState<InvestigationState>();
-
+      
+                
             }
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }

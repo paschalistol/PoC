@@ -15,7 +15,8 @@ public class EnemyBaseState : State
     private Vector3 heading;
     private float lightTreshold, dotProduct;
     protected float lightField, fieldOfView, hearingRange;
-    protected const float investigationDistance = 5f;
+    protected const float soundFromFeet = 5f;
+    protected const float investigationDistance = 15f;
  
     protected Enemy owner;
 
@@ -30,6 +31,7 @@ public class EnemyBaseState : State
         lightField = owner.flashLight.GetComponent<Light>().range;
         lightTreshold = 0.5f;
         hearingRange = lightField * 1.5f;
+
     }
 
     public override void InitializeState(StateMachine owner)
