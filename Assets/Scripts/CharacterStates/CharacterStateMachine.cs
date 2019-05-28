@@ -33,5 +33,24 @@ public class CharacterStateMachine : StateMachine
         base.Awake();
     }
 
+    public void SavePlayer()
+    {
+        
+        SaveSystem.SavePlayer(this);
+        
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        Vector3 savedPosition;
+        savedPosition.x = data.position[0];
+        savedPosition.y = data.position[1];
+        savedPosition.z = data.position[2];
+
+        transform.position = savedPosition;
+    }
+
    
 }

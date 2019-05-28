@@ -107,6 +107,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   speed: 0
   direction: 0
+  player: {fileID: 6428021081155650227}
 --- !u!1 &2173461380658855569
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +625,7 @@ MonoBehaviour:
   walkingParticles: {fileID: 7177482580394495241, guid: 2200f2e90f42727498d18c1dca87bbe4,
     type: 3}
   standOnTrampoline: 0
+  grounded: 0
   bounceHeight: 20
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 0
