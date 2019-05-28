@@ -1,5 +1,5 @@
 ﻿//Main Author: Emil Dahl
-//Secondary Author: Paschalis Tolios
+//Secondary Author: Paschalis Tolios, Johan Ekman
 
 using System.Collections;
 using System.Collections.Generic;
@@ -20,8 +20,10 @@ public class Key : Interactable
     protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
-    protected GameObject parentEnemy;
-    protected Vector3 keyStartPos;
+    private GameObject parentEnemy;
+    private Vector3 keyRelativePosition;
+    private Quaternion keyRelativeRotation;
+
 
     private bool usedOnce = false;
     protected const float skinWidth = 0.2f;
@@ -38,8 +40,9 @@ public class Key : Interactable
         if (gameObject.transform.parent != null && gameObject.tag == "Key")
         {
             parentEnemy = transform.parent.gameObject;
-            keyStartPos = transform.InverseTransformPoint(transform.position);
-            Debug.Log(gameObject.tag);
+            keyRelativePosition = transform.localPosition;
+            keyRelativeRotation = transform.localRotation;
+            
         }
     }
     void Update()
@@ -77,11 +80,9 @@ public class Key : Interactable
     public override void RespawnItem()
     {
         base.RespawnItem();
-
-
-        Debug.Log(parentEnemy.name + parentEnemy.transform.position);
         transform.parent = parentEnemy.transform;
-        transform.position = parentEnemy.transform.position;
+        transform.localPosition = keyRelativePosition;
+        transform.localRotation = keyRelativeRotation;
 
     }
 
