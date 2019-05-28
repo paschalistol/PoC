@@ -144,9 +144,9 @@ public class HoldingItem : HoldItemBase
     Vector3 ThrowTo()
     {
 
-        float x = LookDirection().x/2;
-        float y = 10;
-        float z = LookDirection().z/2;
+        float x = LookDirection().x * 1.2f;
+        float y = 20;
+        float z = LookDirection().z * 1.2f;
         return new Vector3(x, y, z);
 
     }
