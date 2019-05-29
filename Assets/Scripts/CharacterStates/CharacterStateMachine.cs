@@ -33,7 +33,7 @@ public class CharacterStateMachine : StateMachine
         base.Awake();
     }
 
-    public void SavePlayer()
+   /* public void SavePlayer()
     {
         
         SaveSystem.SavePlayer(this);
@@ -50,7 +50,7 @@ public class CharacterStateMachine : StateMachine
         savedPosition.z = data.position[2];
 
         transform.position = savedPosition;
-    }
+    }*/
 
    
 }
