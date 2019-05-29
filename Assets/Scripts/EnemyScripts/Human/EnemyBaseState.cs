@@ -14,7 +14,7 @@ public class EnemyBaseState : State
     private UnitDeathEventInfo deathInfo;
     private Vector3 heading;
     private float lightTreshold, dotProduct;
-    private const float rotationalSpeed = 0.08f;
+    private const float rotationalSpeed = 0.035f;
     protected float lightField, fieldOfView, hearingRange;
     protected const float soundFromFeet = 5f;
     protected const float investigationDistance = 15f;
@@ -88,6 +88,20 @@ public class EnemyBaseState : State
         Vector3 direction = owner.player.transform.position - owner.transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, rotationalSpeed);
+    }
+
+    protected bool MakingSoundCheck(float distanceToPlayer)
+    {
+        if (InRangeCheck(distanceToPlayer) && moveSpeed > soundFromFeet && Input.anyKeyDown)
+            return true;
+        return false;
+    }
+
+    protected bool InRangeCheck(float distanceToPlayer)
+    {
+        if (distanceToPlayer < hearingRange)
+            return true;
+        return false;
     }
 }
 #region EnemyBaseLegacy
