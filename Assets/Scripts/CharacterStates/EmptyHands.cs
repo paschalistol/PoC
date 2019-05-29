@@ -10,27 +10,46 @@ public class EmptyHands : HoldItemBase
     public override void EnterState()
     {
         base.EnterState();
+        pressE = new PressE();
 
     }
+    PressE pressE;
+    GameObject objectInFront;
     public override void ToDo()
     {
-
-        if (Input.GetKeyDown(KeyCode.E) && ReturnObjectInFront() != null)
+        objectInFront = ReturnObjectInFront();
+        if (objectInFront != null && objectInFront.CompareTag("Valuables") == false)
         {
+            pressE.open = true;
+        EventSystem.Current.FireEvent(pressE);
 
-
-            objectCarried = ReturnObjectInFront();
-            InteractWithObject();
-            if (!objectCarried.CompareTag("Only Interaction"))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                SetHolding(true);
-            }
 
+
+                objectCarried = objectInFront;
+                InteractWithObject();
+                if (!objectCarried.CompareTag("Only Interaction"))
+                {
+                    SetHolding(true);
+                }
+
+            }
+        }
+        else
+        {
+            pressE.open = false;
+            EventSystem.Current.FireEvent(pressE);
         }
 
         if (HoldingSth)
         {
             owner.ChangeState<HoldingItem>();
         }
+    }
+    public override void ExitState()
+    {
+        pressE.open = false;
+        EventSystem.Current.FireEvent(pressE);
     }
 }
