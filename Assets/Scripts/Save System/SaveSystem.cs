@@ -6,20 +6,54 @@ using System.Collections.Generic;
 
 public class SaveSystem : MonoBehaviour
 {
-
     [System.Serializable]
     public class SaveData
     {
         public List<InteractablesData> interactablesData = new List<InteractablesData>();
+        public List<EnemyData> enemiesData = new List<EnemyData>();
+        public PlayerData playerData;
 
+    }
+
+    #region Datatypes
+
+    [System.Serializable]
+    public abstract class Data
+    {
+        public float[] position;
+    }
+
+    [System.Serializable]
+    public class PlayerData : Data
+    {
+
+        public PlayerData(GameObject player)
+        {
+            position = new float[3];
+            position[0] = player.transform.position.x;
+            position[1] = player.transform.position.y;
+            position[2] = player.transform.position.z;
+        }
+    }
+
+    public class EnemyData : Data
+    {
+
+        public EnemyData(GameObject enemy)
+        {
+            position = new float[3];
+            position[0] = enemy.transform.position.x;
+            position[1] = enemy.transform.position.y;
+            position[2] = enemy.transform.position.z;
+        }
     }
 
 
     [System.Serializable]
-    public class InteractablesData
+    public class InteractablesData : Data
     {
 
-        public float[] position;
+
 
         public InteractablesData(GameObject interactables)
         {
@@ -30,89 +64,120 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    #endregion  
 
-    /*#region Player
-    public void SavePlayer(CharacterStateMachine player)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/player.oof";
-        FileStream stream = new FileStream(path, FileMode.Create);
-        PlayerData data = new PlayerData(player);
+    #region Save
 
-        formatter.Serialize(stream, data);
-
-        stream.Close();
-        Debug.Log("saved player");
-    }
-
-    public PlayerData LoadPlayer()
-    {
-        string path = Application.persistentDataPath + "/player.oof";
-        Debug.Log("load playuer");
-        if (File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
-            return data;
-        }
-        else
-        {
-            return null;
-        }
-    }
-    #endregion*/
-
-    #region Interactables
-    public void SaveInteractables()
+    public void Save()
     {
         SaveData saveData = new SaveData();
+
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/Interactables.oof";
-
+        string path = Application.persistentDataPath + "/Save.oof";
         FileStream stream = new FileStream(path, FileMode.Create);
-        for (int i = 0; i < GameManager.gameManager.interactables.Count; i++)
-        {
-            GameObject interactables = GameManager.gameManager.interactables[i];
-            InteractablesData interactablesData = new InteractablesData(interactables);
-            saveData.interactablesData.Add(interactablesData);
-        }
+
+
+        SavingPlayer(saveData);
+        SavingInteractables(saveData);
+        SavingEnemies(saveData);
+
         formatter.Serialize(stream, saveData);
-        Debug.Log("saved inter");
         stream.Close();
 
+        Debug.Log("saved");
     }
 
-    public void LoadInteractables()
+    private void SavingPlayer(SaveData saveData)
     {
-        string path = Application.persistentDataPath + "/Interactables.oof";
+        GameObject player = GameManager.gameManager.player;
+        PlayerData playerData = new PlayerData(player);
+        saveData.playerData = playerData;
+    }
+
+    private void SavingInteractables(SaveData saveData)
+    {
+        for (int i = 0; i < GameManager.gameManager.interactables.Count; i++)
+        {
+            GameObject interactable = GameManager.gameManager.interactables[i];
+            InteractablesData interactableData = new InteractablesData(interactable);
+            saveData.interactablesData.Add(interactableData);
+        }
+    }
+
+    private void SavingEnemies(SaveData saveData)
+    {
+        for (int i = 0; i < GameManager.gameManager.enemies.Count; i++)
+        {
+            GameObject enemy = GameManager.gameManager.enemies[i];
+            EnemyData enemyData = new EnemyData(enemy);
+            saveData.enemiesData.Add(enemyData);
+        }
+    }
+
+    #endregion
+
+
+    #region Load
+
+    public void Load()
+    {
+        string path = Application.persistentDataPath + "/Save.oof";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
             SaveData saveData = formatter.Deserialize(stream) as SaveData;
-            for(int i = 0; i < saveData.interactablesData.Count; i++)
-            {
-                float x = saveData.interactablesData[i].position[0];
-                float y = saveData.interactablesData[i].position[1];
-                float z = saveData.interactablesData[i].position[2];
-                Vector3 savedPosition = new Vector3(x, y, z);
-                GameManager.gameManager.interactables[i].transform.position = savedPosition;
-            }
+
+            LoadPlayer(saveData);
+            LoadInteractables(saveData);
+            LoadEnemies(saveData);
+
             stream.Close();
-            Debug.Log("loaded inter");
-            
+            Debug.Log("loaded");
+
         }
         else
         {
             Debug.Log("no path lol");
         }
+
+    }
+    private void LoadPlayer(SaveData saveData)
+    {
+        float x = saveData.playerData.position[0];
+        float y = saveData.playerData.position[1];
+        float z = saveData.playerData.position[2];
+        Vector3 playersavedPosition = new Vector3(x, y, z);
+        GameManager.gameManager.player.transform.position = playersavedPosition;
+    }
+
+    private void LoadInteractables(SaveData saveData)
+    {
+        for (int i = 0; i < saveData.interactablesData.Count; i++)
+        {
+            float x = saveData.interactablesData[i].position[0];
+            float y = saveData.interactablesData[i].position[1];
+            float z = saveData.interactablesData[i].position[2];
+            Vector3 savedPosition = new Vector3(x, y, z);
+            GameManager.gameManager.interactables[i].transform.position = savedPosition;
+        }
+    }
+
+    private void LoadEnemies(SaveData saveData)
+    {
+        for (int i = 0; i < saveData.enemiesData.Count; i++)
+        {
+            float x = saveData.interactablesData[i].position[0];
+            float y = saveData.interactablesData[i].position[1];
+            float z = saveData.interactablesData[i].position[2];
+            Vector3 savedPosition = new Vector3(x, y, z);
+            GameManager.gameManager.interactables[i].transform.position = savedPosition;
+        }
     }
     #endregion
-    
+
 
 }
