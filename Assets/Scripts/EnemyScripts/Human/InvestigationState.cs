@@ -34,7 +34,7 @@ public class InvestigationState : EnemyBaseState
                 currentTime -= Time.deltaTime;
 
 
-            if (!owner.agent.hasPath || LineOfSight())
+            if ((!owner.agent.hasPath || LineOfSight()) && distanceToPlayer < hearingRange)
             {
                 //owner.agent.isStopped = true;
                 //currentTime = startTime;
