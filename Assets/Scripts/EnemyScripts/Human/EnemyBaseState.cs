@@ -14,10 +14,11 @@ public class EnemyBaseState : State
     private UnitDeathEventInfo deathInfo;
     private Vector3 heading;
     private float lightTreshold, dotProduct;
+    private const float rotationalSpeed = 0.08f;
     protected float lightField, fieldOfView, hearingRange;
     protected const float soundFromFeet = 5f;
     protected const float investigationDistance = 15f;
- 
+
     protected Enemy owner;
 
 
@@ -43,8 +44,8 @@ public class EnemyBaseState : State
     {
         bool lineCast = Physics.Linecast(owner.agent.transform.position, owner.player.transform.position, owner.visionMask);
         if (lineCast)
-            return false; 
-      
+            return false;
+
         if (DotMethod() > lightTreshold && Vector3.Distance(owner.agent.transform.position, owner.player.transform.position) < lightField)
             return true;
         return false;
@@ -76,14 +77,21 @@ public class EnemyBaseState : State
 
     protected void ScornDogs()
     {
-        foreach(GameObject dog in owner.dogs)
+        foreach (GameObject dog in owner.dogs)
         {
-          dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
+            dog.GetComponent<EnemyDog>().ChangeState<DogPatrolState>();
         }
+    }
+
+    protected void RotateEnemy()
+    {
+        Vector3 direction = owner.player.transform.position - owner.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, rotation, rotationalSpeed);
     }
 }
 #region EnemyBaseLegacy
-        // lightTreshold = owner.LightThreshold;
+// lightTreshold = owner.LightThreshold;
 //     spreadAngle = Quaternion.AngleAxis(lightField.spotAngle, owner.agent.velocity);
 //// protected float lightAngle;
 // //private Quaternion spreadAngle;

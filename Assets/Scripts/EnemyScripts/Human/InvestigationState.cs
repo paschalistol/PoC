@@ -12,7 +12,7 @@ public class InvestigationState : EnemyBaseState
     private const float startTime = 10f;
     private const float hearingLevel = 5f;
     private Vector3 investigatePosition;
-    
+
 
     public override void EnterState()
     {
@@ -31,36 +31,22 @@ public class InvestigationState : EnemyBaseState
         {
 
             owner.agent.SetDestination(investigatePosition);
-                currentTime -= Time.deltaTime;
+            currentTime -= Time.deltaTime;
 
 
             if ((!owner.agent.hasPath || LineOfSight()) && distanceToPlayer < hearingRange)
             {
-                //owner.agent.isStopped = true;
-                //currentTime = startTime;
-                //investigatePosition = new Vector3(owner.agent.velocity.x + 2, owner.agent.velocity.y, owner.agent.velocity.z + 2);
+                RotateEnemy();
                 owner.ChangeState<ChaseState>();
             }
             else
-            {
                 owner.agent.isStopped = false;
-                //fienden försöker ta sig till investigate även efter den gått in i patrol - står därefter stilla
-               // investigatePosition = owner.player.transform.position;
-            }
-
             
-            //if (!owner.agent.hasPath)
-            //{
-            //    owner.ChangeState<ChaseState>();
-            //}
-            //else
-            //{
-            //    owner.agent.isStopped = false;
-            //}
+
             if (currentTime <= 0)
                 owner.ChangeState<PatrolState>();
-           
-            
+
+
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }

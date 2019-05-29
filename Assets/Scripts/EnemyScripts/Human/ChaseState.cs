@@ -14,7 +14,7 @@ public class ChaseState : EnemyBaseState
     private GameObject audioSpeaker;
     private float chaseDistance, distanceToPlayer, lightRange, movementSpeed;
     private const float bustedDistance = 2f;
-    
+
 
     public override void EnterState()
     {
@@ -36,17 +36,12 @@ public class ChaseState : EnemyBaseState
             distanceToPlayer = Vector3.Distance(owner.transform.position, owner.player.transform.position);
             movementSpeed = owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed();
 
-
-                owner.agent.SetDestination(owner.player.transform.position);
-                FetchDogs();
-
-            //if ((LineOfSight() && distanceToPlayer < lightRange) || (distanceToPlayer < hearingRange &&
-            //    owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > soundFromFeet))
-            //{
-            //}
+            owner.agent.SetDestination(owner.player.transform.position);
+            FetchDogs();
 
             if (!owner.agent.hasPath)
             {
+                RotateEnemy();
                 owner.agent.isStopped = true;
             }
             else
@@ -54,19 +49,20 @@ public class ChaseState : EnemyBaseState
                 owner.agent.isStopped = false;
             }
 
-                if (distanceToPlayer < bustedDistance)
-                {
-                    KillPlayer();
-                owner.ChangeState<PatrolState>();
-                }
-                if ((!LineOfSight() && ((distanceToPlayer < hearingRange && movementSpeed > soundFromFeet
-                     && Input.anyKeyDown)) && distanceToPlayer > investigationDistance))
-                {
-                    owner.ChangeState<InvestigationState>();
-                    ScornDogs();
-                }
 
-            
+            if (distanceToPlayer < bustedDistance)
+            {
+                KillPlayer();
+                owner.ChangeState<PatrolState>();
+            }
+            if ((!LineOfSight() && ((distanceToPlayer < hearingRange && movementSpeed > soundFromFeet
+                 && Input.anyKeyDown)) && distanceToPlayer > investigationDistance))
+            {
+                owner.ChangeState<InvestigationState>();
+                ScornDogs();
+            }
+
+
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
@@ -78,11 +74,11 @@ public class ChaseState : EnemyBaseState
     }
 }
 #region ChaseLegacy
-       // lightAngle = lightField.spotAngle;
-        //ChaseEvent chaseEvent = new ChaseEvent();
-        //chaseEvent.gameObject = owner.gameObject;
-        //chaseEvent.eventDescription = "Chasing Enemy";
-        //chaseEvent.audioSpeaker = audioSpeaker;
+// lightAngle = lightField.spotAngle;
+//ChaseEvent chaseEvent = new ChaseEvent();
+//chaseEvent.gameObject = owner.gameObject;
+//chaseEvent.eventDescription = "Chasing Enemy";
+//chaseEvent.audioSpeaker = audioSpeaker;
 
-        //EventSystem.Current.FireEvent(chaseEvent);
- #endregion
+//EventSystem.Current.FireEvent(chaseEvent);
+#endregion

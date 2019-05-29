@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/OldboiAlertState")]
 public class OldboiAlertState : OldboiBaseState
 {
- 
+
     private float chaseDistance;
     private float hearingRange;
     private const float bustedDistance = 2f;
