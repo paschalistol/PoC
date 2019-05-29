@@ -42,9 +42,11 @@ public class SoundEvent : DebugEvent
 {
     public AudioClip audioClip;
     public bool looped = false;
-    public GameObject gameObject;
-    public bool stop;
-    public GameObject objectPlaying;
+    public GameObject objectInstatiated;
+}
+public class PressE : DebugEvent
+{
+    public bool open;
 }
 
 public class StopSoundEvent : DebugEvent
