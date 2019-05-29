@@ -34,6 +34,7 @@ public class Door : Interactable
         if (used == false)
         {
 
+        Debug.Log("Door interaction!");
             StartCoroutine(RotateDoor(parent));
             used = true;
         }

@@ -10,10 +10,10 @@ public class FuseBoxItem : Interactable
     protected const float skinWidth = 0.2f;
     protected Vector3 velocity;
     protected BoxCollider boxCollider;
-    [SerializeField] private GameObject lockedDoor;
+    //[SerializeField] private GameObject lockedDoor;
     [SerializeField] private GameObject fuseBox;
-    [SerializeField]private int itemQuantity = 2;
-    private static int count;
+    //[SerializeField]private int itemQuantity = 2;
+    //private static int count;
     [HideInInspector]public bool isHeld;
     [SerializeField] private LayerMask environment;
     //[SerializeField] private GameObject particles;
@@ -46,28 +46,18 @@ public class FuseBoxItem : Interactable
 
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
             {
-                count++;
+                //fuseBox.GetComponent<FuseBox>().;
+                fuseBox.GetComponent<FuseBox>().RunInteraction();
 
-                FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
-                fuseBoxEvent.gameObject = gameObject;
-                fuseBoxEvent.eventDescription = "Fusebox item: " + count;
-                //fuseBoxEvent.particles = particles;
+                //FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
+                //fuseBoxEvent.gameObject = gameObject;
+                //fuseBoxEvent.eventDescription = "Fusebox item: " + count;
+                ////fuseBoxEvent.particles = particles;
 
-                EventSystem.Current.FireEvent(fuseBoxEvent);
-                Debug.Log("Running update!");
-
-                if (count == itemQuantity)
-                {
-                    //Run particles on fusebox activation of door
-                    lockedDoor.GetComponent<Door>().StartInteraction();
-                    OpenDoorEvent doorEvent = new OpenDoorEvent();
-                    doorEvent.gameObject = gameObject;
-                    doorEvent.eventDescription = "A door has been opened!";
-                    //doorEvent.particles = endParticles;
-
-                    EventSystem.Current.FireEvent(doorEvent);
-                }
+                //EventSystem.Current.FireEvent(fuseBoxEvent);
                 Destroy(gameObject);
+              
+              
             }
         }
     }

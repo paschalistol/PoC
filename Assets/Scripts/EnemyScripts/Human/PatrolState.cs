@@ -47,7 +47,7 @@ public class PatrolState : EnemyBaseState
                 currentPoint = (currentPoint + 1) % points.Length;
             }
 
-            if(LineOfSight())
+            if(LineOfSight() || GameController.activatedAlarm)
                     owner.ChangeState<ChaseState>();
             else if(distanceToPlayer < hearingRange && owner.player.GetComponent<CharacterStateMachine>().GetMaxSpeed() > soundFromFeet
                 && Input.anyKeyDown)

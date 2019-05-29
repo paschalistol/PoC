@@ -6,28 +6,27 @@ public class GameController : MonoBehaviour
 {
     public static bool isPaused = false;
     public static bool activatedAlarm = false;
+    public static bool disabledAlaram = false;
 
     private void Start()
     {
-      //  EventSystem.Current.RegisterListener<UnitDeathEventInfo>(RespawnEnemies);
-        
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(AlarmControl);
     }
-    // Update is called once per frame
+    
     void Update()
     {
         PauseController();
-
     }
 
     void PauseController()
     {
-        //Debug.Log("Paused or not: " + isPaused);
         if (Input.GetKeyDown(KeyCode.Escape))
             isPaused = !isPaused;
     }
 
-    void RespawnEnemies()
+    void AlarmControl(UnitDeathEventInfo info)
     {
-        //bla 
+        Debug.Log("EventFired");
+        activatedAlarm = false;
     }
 }

@@ -30,6 +30,7 @@ public class ChaseState : EnemyBaseState
     }
     public override void ToDo()
     {
+        Debug.Log(GameController.activatedAlarm);
         if (!GameController.isPaused)
         {
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
@@ -53,10 +54,13 @@ public class ChaseState : EnemyBaseState
             if (distanceToPlayer < bustedDistance)
             {
                 KillPlayer();
+                ScornDogs();
+                GameController.activatedAlarm = false;
                 owner.ChangeState<PatrolState>();
             }
-            if ((!LineOfSight() && ((distanceToPlayer < hearingRange && movementSpeed > soundFromFeet
-                 && Input.anyKeyDown)) && distanceToPlayer > investigationDistance))
+
+
+            if (!LineOfSight() && (InRangeCheck(distanceToPlayer) && MakingSoundCheck(distanceToPlayer) && distanceToPlayer > investigationDistance))
             {
                 owner.ChangeState<InvestigationState>();
                 ScornDogs();
@@ -66,6 +70,7 @@ public class ChaseState : EnemyBaseState
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
+
     public override void ExitState()
     {
         musicBasedOnChased = new MusicBasedOnChased();

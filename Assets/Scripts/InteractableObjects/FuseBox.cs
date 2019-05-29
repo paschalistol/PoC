@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class FuseBox : MonoBehaviour
 {
-    [HideInInspector] public int count;
+    [SerializeField] private GameObject interactionObject;
+    [SerializeField] private int itemQuantity = 2;
+    [HideInInspector] public int count = 0;
+    [HideInInspector] public bool itemUsed;
 
-    void Start()
+    public void RunInteraction()
     {
-        
-    }
-    void Update()
-    {
-        
-    }
-
-    public void InteractWithFuseBox()
-    {
-        if(count == 2)
-        {
-            
-        }
+        count++;
+        Debug.Log("Number of items used: " + count + " and the door has been opened!");
+        if (count >= itemQuantity)
+            interactionObject.GetComponent<Interactable>().StartInteraction();
     }
 }
+
+#region legacy
+//Run particles on fusebox activation of door
+//OpenDoorEvent doorEvent = new OpenDoorEvent();
+//doorEvent.gameObject = gameObject;
+//doorEvent.eventDescription = "A door has been opened!";
+//doorEvent.particles = endParticles;
+
+//EventSystem.Current.FireEvent(doorEvent);
+#endregion
