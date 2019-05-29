@@ -13275,6 +13275,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6428021081155650228, guid: 6775da959e4804ed8913adc9650ea1ee,
+        type: 3}
+      propertyPath: currentCheckPoint
+      value: 
+      objectReference: {fileID: 1457959224}
+    - target: {fileID: 6428021081155650228, guid: 6775da959e4804ed8913adc9650ea1ee,
+        type: 3}
+      propertyPath: walkingParticles
+      value: 
+      objectReference: {fileID: 7177482580394495241, guid: 2200f2e90f42727498d18c1dca87bbe4,
+        type: 3}
     - target: {fileID: 6428021081155650227, guid: 6775da959e4804ed8913adc9650ea1ee,
         type: 3}
       propertyPath: m_Name
@@ -13335,17 +13346,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6428021081155650228, guid: 6775da959e4804ed8913adc9650ea1ee,
-        type: 3}
-      propertyPath: currentCheckPoint
-      value: 
-      objectReference: {fileID: 1457959224}
-    - target: {fileID: 6428021081155650228, guid: 6775da959e4804ed8913adc9650ea1ee,
-        type: 3}
-      propertyPath: walkingParticles
-      value: 
-      objectReference: {fileID: 7177482580394495241, guid: 2200f2e90f42727498d18c1dca87bbe4,
-        type: 3}
     - target: {fileID: 6428021081155650225, guid: 6775da959e4804ed8913adc9650ea1ee,
         type: 3}
       propertyPath: m_Height
@@ -13917,7 +13917,8 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 162175237}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9098641111791285121, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c55f2d1afb19c84f98248f48ffff585, type: 3}
 --- !u!1001 &1293205176
 PrefabInstance:
