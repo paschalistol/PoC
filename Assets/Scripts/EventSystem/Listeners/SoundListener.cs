@@ -38,7 +38,7 @@ namespace Callback
                 audioSource = go.GetComponent<AudioSource>();
                 audioSource.clip = info.audioClip;
                 audioSource.Play();
-                info.objectPlaying = go;
+                info.objectInstatiated = go;
                 if (!info.looped)
                 {
                     Destroy(go, audioSource.clip.length);

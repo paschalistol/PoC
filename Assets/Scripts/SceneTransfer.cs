@@ -37,7 +37,7 @@ public class SceneTransfer : Interactable
     }
     IEnumerator  WaitForSound()
     {
-        while (soundEvent.objectPlaying != null)
+        while (soundEvent.objectInstatiated != null)
         {
 
         yield return null;

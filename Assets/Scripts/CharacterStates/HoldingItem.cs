@@ -23,7 +23,7 @@ public class HoldingItem : HoldItemBase
             objectCarried.transform.parent = null;
 
             soundEvent = new SoundEvent();
-            soundEvent.gameObject = owner.gameObject;
+
             soundEvent.eventDescription = "PickUp Sound";
             soundEvent.audioClip = objectCarried.GetComponent<Interactable>().GetAudioClip();
             soundEvent.looped = false;
@@ -39,7 +39,7 @@ public class HoldingItem : HoldItemBase
         {
 
             StopSoundEvent stopSoundEvent = new StopSoundEvent();
-            stopSoundEvent.AudioPlayer = soundEvent.objectPlaying;
+            stopSoundEvent.AudioPlayer = soundEvent.objectInstatiated;
             stopSoundEvent.eventDescription = "Stop Sound";
             if (stopSoundEvent.AudioPlayer != null)
             {

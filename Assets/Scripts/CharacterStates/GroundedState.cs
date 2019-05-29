@@ -30,7 +30,6 @@ public class GroundedState : CharacterBaseState
         MaxSpeed = maxSpeedCoeff;
         walkingSound = new SoundEvent();
         SoundEvent soundEvent = new SoundEvent();
-        soundEvent.gameObject = owner.gameObject;
         soundEvent.eventDescription = "Grounded Sound";
         soundEvent.audioClip = groundedSound;
         soundEvent.looped = false;
@@ -54,10 +53,10 @@ public class GroundedState : CharacterBaseState
             CheckInput(input);
             #endregion
             ChangeCharRotation();
-            if (input.magnitude > 0 && walkingSound.objectPlaying == null)
+            if (input.magnitude > 0 && walkingSound.objectInstatiated == null)
             {
 
-                walkingSound.gameObject = owner.gameObject;
+                walkingSound.objectInstatiated = owner.gameObject;
                 walkingSound.eventDescription = "Grounded Sound";
                 walkingSound.audioClip = footsteps;
                 walkingSound.looped = true;
@@ -66,10 +65,10 @@ public class GroundedState : CharacterBaseState
                     EventSystem.Current.FireEvent(walkingSound);
                 }
             }
-            if (input.magnitude == 0 && walkingSound.objectPlaying != null)
+            if (input.magnitude == 0 && walkingSound.objectInstatiated != null)
             {
                 stopSoundEvent = new StopSoundEvent();
-                stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
+                stopSoundEvent.AudioPlayer = walkingSound.objectInstatiated;
                 stopSoundEvent.eventDescription = "Stop Sound";
                 if (stopSoundEvent.AudioPlayer != null)
                 {
@@ -124,10 +123,10 @@ public class GroundedState : CharacterBaseState
     }
     public override void ExitState()
     {
-        if (walkingSound.objectPlaying != null)
+        if (walkingSound.objectInstatiated != null)
         {
             stopSoundEvent = new StopSoundEvent();
-            stopSoundEvent.AudioPlayer = walkingSound.objectPlaying;
+            stopSoundEvent.AudioPlayer = walkingSound.objectInstatiated;
             stopSoundEvent.eventDescription = "Stop Sound";
             if (stopSoundEvent.AudioPlayer != null)
             {

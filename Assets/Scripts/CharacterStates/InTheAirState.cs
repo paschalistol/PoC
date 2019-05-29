@@ -14,7 +14,7 @@ public class InTheAirState : CharacterBaseState
     {
         base.EnterState();
         SoundEvent soundEvent = new SoundEvent();
-        soundEvent.gameObject = owner.gameObject;
+        
         soundEvent.eventDescription = "Jump Sound";
         soundEvent.audioClip = jumpSound;
         soundEvent.looped = false;
