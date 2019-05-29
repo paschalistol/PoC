@@ -56,7 +56,7 @@ public class GroundedState : CharacterBaseState
             if (input.magnitude > 0 && walkingSound.objectInstatiated == null)
             {
 
-                walkingSound.objectInstatiated = owner.gameObject;
+                
                 walkingSound.eventDescription = "Grounded Sound";
                 walkingSound.audioClip = footsteps;
                 walkingSound.looped = true;
