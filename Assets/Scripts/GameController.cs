@@ -13,9 +13,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject[] lightHolders;
     [SerializeField] private AudioClip clip;
     [SerializeField] private GameObject tint;
-    private const float tintTime = 2f;
+    private const float tintTime = 0.5f;
     private bool tintCondtion = true;
     private float currentTime;
+    private bool usedOnce;
 
 
 
@@ -48,12 +49,15 @@ public class GameController : MonoBehaviour
             BlinkingTint();
             ActivateLights();
 
-            SoundEvent soundEvent = new SoundEvent();
-            soundEvent.audioClip = clip;
-            soundEvent.looped = true;
+            if (!usedOnce)
+            {
+                SoundEvent soundEvent = new SoundEvent();
+                soundEvent.audioClip = clip;
+                soundEvent.looped = true;
 
-            EventSystem.Current.FireEvent(soundEvent);
-
+                EventSystem.Current.FireEvent(soundEvent);
+                usedOnce = true;
+            }
         }
     }
 
@@ -75,24 +79,16 @@ public class GameController : MonoBehaviour
 
     void BlinkingTint()
     {
-        currentTime = tintTime;
-
-        tint.SetActive(tintCondtion);
-
-        while (activatedAlarm)
-        {  
+        if (activatedAlarm)
+        {
             if (currentTime <= 0)
             {
-                tint.SetActive(tintCondtion);
                 tintCondtion = !tintCondtion;
+                tint.SetActive(tintCondtion);
+                currentTime = tintTime;
             }
-            currentTime = tintTime;
-
             currentTime -= Time.deltaTime;
-            currentTime = tintTime;
-
+            Debug.Log(currentTime);
         }
-
-
     }
 }
