@@ -30,7 +30,7 @@ public class ChaseState : EnemyBaseState
     }
     public override void ToDo()
     {
-        Debug.Log(GameController.activatedAlarm);
+
         if (!GameController.isPaused)
         {
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
