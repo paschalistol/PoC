@@ -21,6 +21,7 @@ public class SaveSystem : MonoBehaviour
     public abstract class Data
     {
         public float[] position;
+        
     }
 
     [System.Serializable]
@@ -36,6 +37,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     public class EnemyData : Data
     {
 
@@ -170,11 +172,11 @@ public class SaveSystem : MonoBehaviour
     {
         for (int i = 0; i < saveData.enemiesData.Count; i++)
         {
-            float x = saveData.interactablesData[i].position[0];
-            float y = saveData.interactablesData[i].position[1];
-            float z = saveData.interactablesData[i].position[2];
+            float x = saveData.enemiesData[i].position[0];
+            float y = saveData.enemiesData[i].position[1];
+            float z = saveData.enemiesData[i].position[2];
             Vector3 savedPosition = new Vector3(x, y, z);
-            GameManager.gameManager.interactables[i].transform.position = savedPosition;
+            GameManager.gameManager.enemies[i].transform.position = savedPosition;
         }
     }
     #endregion
