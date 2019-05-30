@@ -31,10 +31,6 @@ public class Battery : Interactable
 
     private void Update()
     {
-
-
-
-
         if (!isHeld)
         {
             velocity = PhysicsScript.Decelerate(velocity);

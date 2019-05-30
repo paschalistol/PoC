@@ -1,5 +1,5 @@
 ﻿//Main Author: Paschalis Tolios
-//Secondary author: Johan Ekman
+//Secondary author: Johan Ekman, Emil Dahl
 
 using System.Collections;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ public class GroundedState : CharacterBaseState
     {
         if (!GameController.isPaused)
         {
-            //Debug.Log(MaxSpeed);
+          
             Gravity();
             #region Input
             Vector3 input = GetDirectionInput();

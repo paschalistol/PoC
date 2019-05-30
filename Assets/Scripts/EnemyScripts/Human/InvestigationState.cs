@@ -1,5 +1,4 @@
 ﻿//Main Author: Emil Dahl
-//Secondary Author: Paschalis Tolios
 
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +31,6 @@ public class InvestigationState : EnemyBaseState
             owner.agent.SetDestination(investigatePosition);
             currentTime -= Time.deltaTime;
             
-
             if ((!owner.agent.hasPath && InRangeCheck(distanceToPlayer)) || LineOfSight() || MakingSoundCheck(distanceToPlayer)  || GameController.activatedAlarm)
                 owner.ChangeState<ChaseState>();
             else

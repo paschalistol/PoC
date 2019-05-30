@@ -111,7 +111,6 @@ public class AddPointEvent : DebugEvent
 public class MusicBasedOnChased : SoundEvent
 {
     public bool enemyChasing;
-
 }
 
 public class RespawnEvent : DebugEvent {
@@ -123,4 +122,5 @@ public class ThrowEvent : DebugEvent
     public GameObject gameObject;
     public Vector3 throwDirection;
 }
+
  
