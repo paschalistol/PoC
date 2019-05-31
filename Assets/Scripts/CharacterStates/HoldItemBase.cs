@@ -38,6 +38,7 @@ public class HoldItemBase : State
             interactedInfo.interactedObject = objectCarried;
 
             EventSystem.Current.FireEvent(interactedInfo);
+            owner.objectHolding = objectCarried;
         }
 
     }

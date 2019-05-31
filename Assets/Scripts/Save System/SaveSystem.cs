@@ -28,6 +28,8 @@ public class SaveSystem : MonoBehaviour
     public class PlayerData : Data
     {
 
+        public int itemHoldIndex;
+
         public PlayerData(GameObject player)
         {
             position = new float[3];
@@ -108,6 +110,17 @@ public class SaveSystem : MonoBehaviour
     {
         GameObject player = GameManager.gameManager.player;
         PlayerData playerData = new PlayerData(player);
+        for(int i = 0; i < GameManager.gameManager.interactables.Count; i++)
+        {
+            GameObject item = GameManager.gameManager.interactables[i];
+            CharacterHoldItemStateMachine holdItemScript = player.GetComponent<CharacterHoldItemStateMachine>();
+            if(item == holdItemScript.objectHolding)
+            {
+                playerData.itemHoldIndex = i;
+                Debug.Log("detected! " + "its " + holdItemScript.objectHolding + " " + i);
+            }
+        }
+
         saveData.playerData = playerData;
     }
 

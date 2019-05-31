@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharacterHoldItemStateMachine : StateMachine
 {
     public LayerMask Interactables;
+    public GameObject objectHolding;
     [HideInInspector] public bool holdingSth;
 
 
