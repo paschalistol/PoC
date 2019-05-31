@@ -11,6 +11,7 @@ public class InvestigationState : EnemyBaseState
     private const float startTime = 10f;
     private const float hearingLevel = 5f;
     private Vector3 investigatePosition;
+    [SerializeField] private float lightIntensity = 15;
 
 
     public override void EnterState()
@@ -21,7 +22,7 @@ public class InvestigationState : EnemyBaseState
         currentTime = startTime;
 
         lightRange = owner.flashLight.GetComponent<Light>().range;
-        owner.flashLight.GetComponent<Light>().intensity = 15;
+        owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
         owner.flashLight.GetComponent<Light>().color = Color.magenta;
     }
     public override void ToDo()

@@ -14,7 +14,7 @@ public class ChaseState : EnemyBaseState
     private GameObject audioSpeaker;
     private float chaseDistance, distanceToPlayer, lightRange, movementSpeed;
     private const float bustedDistance = 2f;
-
+    [SerializeField] private float lightIntensity = 15;
 
     public override void EnterState()
     {
@@ -22,7 +22,7 @@ public class ChaseState : EnemyBaseState
         //hearingRange = owner.GetHearingDistance();
         chaseDistance = owner.GetFieldOfView();
         lightRange = owner.flashLight.GetComponent<Light>().range;
-        owner.flashLight.GetComponent<Light>().intensity = 25;
+        owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
         owner.flashLight.GetComponent<Light>().color = Color.red;
         musicBasedOnChased = new MusicBasedOnChased();
         musicBasedOnChased.enemyChasing = true;

@@ -12,6 +12,7 @@ public class PatrolState : EnemyBaseState
     private GameObject[] points;
     private const float noiceDetection = 5f;
     private float distanceToPlayer, distanceToPoint, lightRange, maxSpeed, chaseDistance;
+    [SerializeField] private float lightIntensity = 15;
     
 
     private int currentPoint = 0;
@@ -24,7 +25,7 @@ public class PatrolState : EnemyBaseState
         points = owner.GetComponent<PatrolPoints>().GetPoints();
         ChooseClosest();
 
-        owner.flashLight.GetComponent<Light>().intensity = 15;
+        owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
         owner.flashLight.GetComponent<Light>().color = Color.white;
         lightRange = owner.flashLight.GetComponent<Light>().range;
     }
