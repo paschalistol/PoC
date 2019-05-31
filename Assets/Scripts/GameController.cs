@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject[] lightHolders;
     [SerializeField] private AudioClip clip;
     [SerializeField] private GameObject tint;
-    private const float tintTime = 0.5f;
+    [SerializeField] private float tintTime = 0.5f;
     private bool tintCondtion = true;
     private float currentTime;
     private bool usedOnce;
