@@ -252,8 +252,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6877130739764742885}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -49.766556, y: -19.19519, z: -8.694145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -49.766556, y: -18.04, z: -8.4711}
+  m_LocalScale: {x: 1.4562494, y: 1.4562494, z: 1.4562494}
   m_Children:
   - {fileID: 4673219962158308541}
   - {fileID: 8650127280681798224}
@@ -391,10 +391,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6877130739764742883}
     m_Modifications:
-    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
-      propertyPath: m_Name
-      value: GuardMesh
-      objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -450,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
+      propertyPath: m_Name
+      value: GuardMesh
       objectReference: {fileID: 0}
     - target: {fileID: 95612694983450844, guid: 36cef4d2dbf897242b8f477309e699fd,
         type: 3}
