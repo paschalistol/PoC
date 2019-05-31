@@ -110,14 +110,15 @@ public class SaveSystem : MonoBehaviour
     {
         GameObject player = GameManager.gameManager.player;
         PlayerData playerData = new PlayerData(player);
-        for(int i = 0; i < GameManager.gameManager.interactables.Count; i++)
+
+        for (int i = 0; i < GameManager.gameManager.interactables.Count; i++)
         {
             GameObject item = GameManager.gameManager.interactables[i];
             CharacterHoldItemStateMachine holdItemScript = player.GetComponent<CharacterHoldItemStateMachine>();
             if(item == holdItemScript.objectHolding)
             {
                 playerData.itemHoldIndex = i;
-                Debug.Log("detected! " + "its " + holdItemScript.objectHolding + " " + i);
+                Debug.Log("detected! " + "its " + holdItemScript.objectHolding + " " + playerData.itemHoldIndex);
             }
         }
 
@@ -177,16 +178,24 @@ public class SaveSystem : MonoBehaviour
     #region Loading Player
     private void LoadPlayer(SaveData saveData)
     {
-        
-        GameManager.gameManager.player.transform.position = LoadPlayerPosition(saveData);     
-        GameManager.gameManager.player.transform.rotation = LoadPlayerRotation(saveData);
+        GameObject player = GameManager.gameManager.player;
+        player.transform.position = LoadPlayerPosition(saveData);     
+        player.transform.rotation = LoadPlayerRotation(saveData);
+        Debug.Log(saveData.playerData.itemHoldIndex);
+
+        GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
+        itemHolding.GetComponent<Interactable>().RotateAround(player.transform);
+        itemHolding.GetComponent<Interactable>().SetVelocity(player.GetComponent<CharacterStateMachine>().velocity);
+        itemHolding.layer = 0;
+        itemHolding.transform.parent = null;
     }
 
     private Vector3 LoadPlayerPosition(SaveData saveData)
     {
-        float x = saveData.playerData.position[0];
-        float y = saveData.playerData.position[1];
-        float z = saveData.playerData.position[2];
+        float[] position = saveData.playerData.position;
+        float x = position[0];
+        float y = position[1];
+        float z = position[2];
         return new Vector3(x, y, z);
     }
 
