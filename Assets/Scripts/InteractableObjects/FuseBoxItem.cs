@@ -16,6 +16,9 @@ public class FuseBoxItem : Interactable
     //private static int count;
     [HideInInspector]public bool isHeld;
     [SerializeField] private LayerMask environment;
+    [SerializeField] private AudioClip clip;
+
+    private SoundEvent sound;
     //[SerializeField] private GameObject particles;
     //[SerializeField] private GameObject endParticles;
 
@@ -46,6 +49,13 @@ public class FuseBoxItem : Interactable
 
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
             {
+
+                sound = new SoundEvent();
+                sound.audioClip = clip;
+                sound.eventDescription = "Water sound";
+                sound.looped = false;
+
+                EventSystem.Current.FireEvent(sound);
                 //fuseBox.GetComponent<FuseBox>().;
                 fuseBox.GetComponent<FuseBox>().RunInteraction();
 
