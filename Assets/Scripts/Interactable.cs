@@ -69,7 +69,7 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (other != gameObject &&  thisWasCarriedBeforeRespawn && (other.CompareTag("Untagged") == true || other.CompareTag("Box") == true || other.CompareTag("Player") == true) && other.gameObject.layer != 0 && !(gameObject.CompareTag("Only Interaction") || gameObject.CompareTag("Valuables")))
+        if (other != gameObject &&  thisWasCarriedBeforeRespawn && (other.CompareTag("Untagged") == true || other.CompareTag("Box") == true || other.CompareTag("Player") == true || other.CompareTag("Door") == true || other.CompareTag("FuseBoxItem") == true || other.CompareTag("Trampoline") == true || other.CompareTag("ElectricalDoor") == true || other.CompareTag("Key") == true || other.CompareTag("Battery") == true) && other.gameObject.layer != 0 && !(gameObject.CompareTag("Only Interaction") || gameObject.CompareTag("Valuables")))
         {
 
 
