@@ -63,6 +63,7 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 512
+  clip: {fileID: 8300000, guid: c5e5fe071e8e3d2489f07fd5b01d6831, type: 3}
 --- !u!1001 &151624470836114657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,14 +71,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 151624471005989021}
     m_Modifications:
-    - target: {fileID: 1378386091579306, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
-      propertyPath: m_Name
-      value: BP_red_wine_color_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378386091579306, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
-      propertyPath: m_Layer
-      value: 21
-      objectReference: {fileID: 0}
     - target: {fileID: 4504085371408030, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -133,6 +126,14 @@ PrefabInstance:
     - target: {fileID: 4504085371408030, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
       propertyPath: m_LocalScale.z
       value: 12.7455
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378386091579306, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
+      propertyPath: m_Name
+      value: BP_red_wine_color_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378386091579306, guid: 88673c0edbd665848b6e83fead8c66c5, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 64986393746452432, guid: 88673c0edbd665848b6e83fead8c66c5,
         type: 3}

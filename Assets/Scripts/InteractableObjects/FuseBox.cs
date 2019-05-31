@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FuseBox : MonoBehaviour
 {
-    [SerializeField] private GameObject interactionObject;
+    [SerializeField] private GameObject[] interactionObject;
     [SerializeField] private int itemQuantity = 2;
     [HideInInspector] public int count = 0;
     [HideInInspector] public bool itemUsed;
@@ -14,7 +14,8 @@ public class FuseBox : MonoBehaviour
         count++;
         Debug.Log("Number of items used: " + count + " and the door has been opened!");
         if (count >= itemQuantity)
-            interactionObject.GetComponent<Interactable>().StartInteraction();
+            foreach(GameObject ob in interactionObject) { ob.GetComponent<Interactable>().StartInteraction(); }
+            
     }
 }
 
