@@ -36,12 +36,10 @@ public class Valuable : Interactable
 
     protected virtual void Update()
     {
-        
             velocity = PhysicsScript.Decelerate(velocity);
             velocity = PhysicsScript.Gravity(velocity);
             velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
             transform.position += velocity * Time.deltaTime;
-        
     }
 
 

@@ -9,11 +9,13 @@ public class GameController : MonoBehaviour
     public static bool isPaused = false;
     public static bool activatedAlarm = false;
     public static bool disabledAlaram = false;
+    public static bool VictortCondition = false;
 
     [SerializeField] private GameObject[] lightHolders;
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioClip alarmClip;
     [SerializeField] private GameObject tint;
     [SerializeField] private float tintTime = 0.5f;
+
     private bool tintCondtion = true;
     private float currentTime;
     private bool usedOnce;
@@ -52,7 +54,7 @@ public class GameController : MonoBehaviour
             if (!usedOnce)
             {
                 SoundEvent soundEvent = new SoundEvent();
-                soundEvent.audioClip = clip;
+                soundEvent.audioClip = alarmClip;
                 soundEvent.looped = true;
 
                 EventSystem.Current.FireEvent(soundEvent);
@@ -60,6 +62,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
 
     void AlarmReset(UnitDeathEventInfo info)
     {
