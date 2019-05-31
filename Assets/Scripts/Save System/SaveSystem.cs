@@ -53,7 +53,10 @@ public class SaveSystem : MonoBehaviour
             position[1] = enemy.transform.position.y;
             position[2] = enemy.transform.position.z;
 
-            //rotation = enemy.transform.rotation;
+            rotation = new float[3];
+            rotation[0] = enemy.transform.rotation.x;
+            rotation[1] = enemy.transform.rotation.y;
+            rotation[2] = enemy.transform.rotation.z;
         }
     }
 
@@ -62,8 +65,6 @@ public class SaveSystem : MonoBehaviour
     public class InteractablesData : Data
     {
 
-
-
         public InteractablesData(GameObject interactables)
         {
             position = new float[3];
@@ -71,7 +72,10 @@ public class SaveSystem : MonoBehaviour
             position[1] = interactables.transform.position.y;
             position[2] = interactables.transform.position.z;
 
-            //rotation = interactables.transform.rotation;
+            rotation = new float[3];
+            rotation[0] = interactables.transform.rotation.x;
+            rotation[1] = interactables.transform.rotation.y;
+            rotation[2] = interactables.transform.rotation.z;
         }
     }
 
@@ -183,29 +187,62 @@ public class SaveSystem : MonoBehaviour
 
     #endregion
 
+    #region Loading Interactables
     private void LoadInteractables(SaveData saveData)
     {
         for (int i = 0; i < saveData.interactablesData.Count; i++)
-        {
-            float x = saveData.interactablesData[i].position[0];
-            float y = saveData.interactablesData[i].position[1];
-            float z = saveData.interactablesData[i].position[2];
-            Vector3 savedPosition = new Vector3(x, y, z);
-            GameManager.gameManager.interactables[i].transform.position = savedPosition;
+        {           
+            GameManager.gameManager.interactables[i].transform.position = LoadInteractablesPosition(saveData, i);
+            GameManager.gameManager.interactables[i].transform.rotation = LoadInteractablesRotation(saveData, i);
         }
     }
+
+    private Vector3 LoadInteractablesPosition(SaveData saveData, int i)
+    {
+        float x = saveData.interactablesData[i].position[0];
+        float y = saveData.interactablesData[i].position[1];
+        float z = saveData.interactablesData[i].position[2];
+        return new Vector3(x, y, z);
+    }
+
+    private Quaternion LoadInteractablesRotation(SaveData saveData, int i)
+    {
+        float x = saveData.interactablesData[i].rotation[0];
+        float y = saveData.interactablesData[i].rotation[1];
+        float z = saveData.interactablesData[i].rotation[2];
+        return new Quaternion(0, x, y, z);
+    }
+
+    #endregion
+
+    #region Load enemies
 
     private void LoadEnemies(SaveData saveData)
     {
         for (int i = 0; i < saveData.enemiesData.Count; i++)
         {
-            float x = saveData.enemiesData[i].position[0];
-            float y = saveData.enemiesData[i].position[1];
-            float z = saveData.enemiesData[i].position[2];
-            Vector3 savedPosition = new Vector3(x, y, z);
-            GameManager.gameManager.enemies[i].transform.position = savedPosition;
+            GameManager.gameManager.enemies[i].transform.rotation = LoadEnemiesRotation(saveData, i);
+            GameManager.gameManager.enemies[i].transform.position = LoadEnemiesPosition(saveData, i);
         }
     }
+
+    private Vector3 LoadEnemiesPosition(SaveData saveData, int i)
+    {
+        float x = saveData.enemiesData[i].position[0];
+        float y = saveData.enemiesData[i].position[1];
+        float z = saveData.enemiesData[i].position[2];
+        return new Vector3(x, y, z);
+    }
+
+    private Quaternion LoadEnemiesRotation(SaveData saveData, int i)
+    {
+        float x = saveData.enemiesData[i].rotation[0];
+        float y = saveData.enemiesData[i].rotation[1];
+        float z = saveData.enemiesData[i].rotation[2];
+        return new Quaternion(0, x, y, z);
+    }
+    #endregion
+
     #endregion
 
 

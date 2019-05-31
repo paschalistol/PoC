@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 6877130739764742884}
   m_Layer: 26
   m_Name: Enemy_Basic
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,6 +391,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6877130739764742883}
     m_Modifications:
+    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
+      propertyPath: m_Name
+      value: GuardMesh
+      objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -446,10 +450,6 @@ PrefabInstance:
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
-      propertyPath: m_Name
-      value: GuardMesh
       objectReference: {fileID: 0}
     - target: {fileID: 95612694983450844, guid: 36cef4d2dbf897242b8f477309e699fd,
         type: 3}
