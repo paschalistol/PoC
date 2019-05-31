@@ -89,6 +89,7 @@ public class HoldingItem : HoldItemBase
         if (Input.GetKeyDown(KeyCode.R))
         {
             Throw();
+            objectCarried = null;
         }
         if (!HoldingSth)
         {
@@ -156,9 +157,9 @@ public class HoldingItem : HoldItemBase
         objectCarried.layer = layerNumber;
         
         SetHolding(false);
+        SetThrowEvent();
         InteractWithObject();
         
-        SetThrowEvent();
     }
 
     private void SetThrowEvent()
