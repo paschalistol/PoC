@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4638430119202039370}
   - component: {fileID: 6930314266012103729}
   - component: {fileID: 6930314266012103731}
+  - component: {fileID: 7543071626501368449}
   m_Layer: 17
   m_Name: Key
   m_TagString: Key
@@ -88,7 +89,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4638430119202039375}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.2665994, y: 1.3521166, z: 11.246077}
@@ -116,6 +117,22 @@ MonoBehaviour:
   door:
     serializedVersion: 2
     m_Bits: 32768
+--- !u!54 &7543071626501368449
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638430119202039375}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6995348423796371026
 GameObject:
   m_ObjectHideFlags: 0

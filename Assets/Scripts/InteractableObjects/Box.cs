@@ -13,12 +13,10 @@ public class Box : Interactable
     private ParticleEvent startParticles;
     private StopParticleEvent stopParticles;
 
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
     [SerializeField] private float bounceHeight = 25;
-    private bool isHeld = false;
+
     private bool usedOnce = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip[] pickupSounds;
@@ -30,45 +28,58 @@ public class Box : Interactable
     protected override void Start() 
     {
         base.Start();
-        boxCollider = GetComponent<BoxCollider>();
+
        
         isHeld = false;
-
     }
-
     void Update()
     {
         if (!GameController.isPaused)
         {
-            if (!isHeld)
-            {
                 AddPhysics();
 
                 if (!usedOnce)
                 {
                     ParticleStarter();
                 }
-            }
+            
             Bouncing();
         }
+
+
+        transform.position += Velocity * Time.deltaTime;
     }
+
+
+
+
 
     public override void StartInteraction()
     {
+        base.StartInteraction();
         isHeld = !isHeld;
-
         if (startParticles.particles != null) {
             usedOnce = false;
             ParticleStopper();
         }
+
     }
+
 
     private void AddPhysics()
     {
-        velocity = PhysicsScript.Decelerate(velocity);
-        velocity = PhysicsScript.Gravity(velocity);
-        velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-        transform.position += velocity * Time.deltaTime;
+        if (!isHeld)
+        {
+
+        Velocity = PhysicsScript.Decelerate(Velocity);
+        Velocity = PhysicsScript.Gravity(Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+
     }
 
     private void ParticleStarter()
@@ -93,9 +104,9 @@ public class Box : Interactable
             stopParticles.particlesToStop = startParticles.particles;
 
             EventSystem.Current.FireEvent(stopParticles);
-            Debug.Log("Stopped particles");
         }
     }
+
 
 
 
@@ -103,14 +114,14 @@ public class Box : Interactable
     {
         if (standOnTrampoline)
         {
-            velocity = new Vector3(velocity.x * 1.2f, bounceHeight, velocity.z * 1.2f);
+            Velocity = new Vector3(Velocity.x * 1.2f, bounceHeight, Velocity.z * 1.2f);
             standOnTrampoline = false;
         }
     }
 
     public override void BeingThrown(Vector3 throwDirection)
     {
-        velocity = throwDirection;
+        Velocity = throwDirection;
     }
 
 

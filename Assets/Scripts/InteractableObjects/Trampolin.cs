@@ -11,8 +11,6 @@ public class Trampolin : Interactable
 
     [HideInInspector] public bool used = false;
 
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     [SerializeField] private LayerMask environment;
     [SerializeField] private LayerMask bounceLayer;
     protected const float skinWidth = 0.2f;
@@ -20,7 +18,6 @@ public class Trampolin : Interactable
     protected float bounceHeight = 25;
 
 
-    private bool isHeld;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -35,17 +32,27 @@ public class Trampolin : Interactable
     {
         if (!GameController.isPaused)
         {
-            if (!isHeld)
-            {
-                velocity = PhysicsScript.Decelerate(velocity);
-                velocity = PhysicsScript.Gravity(velocity);
-                velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-                transform.position += velocity * Time.deltaTime;
-            }
+            
+                transform.position += Velocity * Time.deltaTime;
             Bounce();
             Bouncing();
         }
         
+    }
+    private void AddPhysics()
+    {
+        if (!isHeld)
+        {
+
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+
     }
 
     public override AudioClip GetAudioClip()
@@ -100,14 +107,14 @@ public class Trampolin : Interactable
     {
         if (standOnTrampoline)
         {
-            velocity = new Vector3(velocity.x * 1.18f, bounceHeight, velocity.z * 1.18f);
+            Velocity = new Vector3(Velocity.x * 1.18f, bounceHeight, Velocity.z * 1.18f);
             standOnTrampoline = false;
         }
     }
 
     public override void BeingThrown(Vector3 throwDirection)
     {
-        velocity = throwDirection;
+        Velocity = throwDirection;
     }
 
 

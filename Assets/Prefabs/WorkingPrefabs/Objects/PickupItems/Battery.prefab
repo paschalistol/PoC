@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2162948740616879279}
   - component: {fileID: 2162948740616879276}
   - component: {fileID: 2162948740616879277}
+  - component: {fileID: 1513968766479051809}
   m_Layer: 16
   m_Name: Battery
   m_TagString: Battery
@@ -88,7 +89,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162948740616879265}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -111,7 +112,6 @@ MonoBehaviour:
   fuseBox: {fileID: 0}
   lift: {fileID: 0}
   onfuseboxActivationParticles: {fileID: 0}
-  isHeld: 0
 --- !u!65 &2162948740616879277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125,3 +125,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1513968766479051809
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162948740616879265}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2610810217667632903}
   - component: {fileID: 2610810217667632902}
   - component: {fileID: 2610810217667632897}
+  - component: {fileID: 7279632549936284453}
   m_Layer: 24
   m_Name: Gold
   m_TagString: Gold
@@ -88,7 +89,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2610810217667632896}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -114,6 +115,22 @@ MonoBehaviour:
   pickupSounds:
   - {fileID: 8300000, guid: 5a9387d3ddae6384684fbace69291d7c, type: 3}
   - {fileID: 8300000, guid: b6211062945d1474781d10a2e1e86386, type: 3}
+--- !u!54 &7279632549936284453
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610810217667632896}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5730714789215367972
 PrefabInstance:
   m_ObjectHideFlags: 0

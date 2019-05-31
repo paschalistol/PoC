@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraZone : Interactable
 {
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         GameController.activatedAlarm = true;
     }

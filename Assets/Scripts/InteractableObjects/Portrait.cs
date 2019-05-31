@@ -16,7 +16,7 @@ public class Portrait : Interactable
         throw new System.NotImplementedException();
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             StartInteraction();

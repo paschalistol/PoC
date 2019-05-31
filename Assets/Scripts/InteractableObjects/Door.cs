@@ -15,6 +15,7 @@ public class Door : Interactable
     [SerializeField] private AudioClip doorCloseSound;
     [SerializeField] private AudioClip unlockDoorSound;
     private float rotationGoal;
+    float temp, perFrame;
     protected override void Start()
     {
         base.Start();
@@ -43,12 +44,9 @@ public class Door : Interactable
             gameObject.GetComponent<ActiveGold>().SetGoldActive();
         }
     }
-    float temp, perFrame;
+
     IEnumerator RotateDoor(GameObject parent)
     {
-        rotationGoal = parent.transform.eulerAngles.y + rotation % 360;
-
-
         temp = 0;
         while (temp < rotation)
         {

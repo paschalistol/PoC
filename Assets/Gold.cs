@@ -10,13 +10,9 @@ public class Gold : Interactable
     private ParticleEvent startParticles;
     private StopParticleEvent stopParticles;
 
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     public bool standOnTrampoline = false;
     protected const float skinWidth = 0.2f;
     [SerializeField] private float bounceHeight = 25;
-    
-    private bool isHeld = false;
     private bool usedOnce = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip[] pickupSounds;
@@ -36,12 +32,9 @@ public class Gold : Interactable
 
     void Update()
     {
-        if (!isHeld)
-        {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
+
+            AddPhysics();
+            transform.position += Velocity * Time.deltaTime;
 
             if (!usedOnce)
             {
@@ -52,13 +45,29 @@ public class Gold : Interactable
                 EventSystem.Current.FireEvent(startParticles);
                 usedOnce = true;
             }
-        }
+        
         Bouncing();
+
+    }
+    private void AddPhysics()
+    {
+        if (!isHeld)
+        {
+
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
 
     }
 
     public override void StartInteraction()
     {
+        base.StartInteraction();
         isHeld = !isHeld;
         usedOnce = false;
         GameController.activatedAlarm = true;
@@ -78,14 +87,14 @@ public class Gold : Interactable
     {
         if (standOnTrampoline)
         {
-            velocity = new Vector3(velocity.x * 1.2f, bounceHeight, velocity.z * 1.2f);
+            Velocity = new Vector3(Velocity.x * 1.2f, bounceHeight, Velocity.z * 1.2f);
             standOnTrampoline = false;
         }
     }
 
     public override void BeingThrown(Vector3 throwDirection)
     {
-        velocity = throwDirection;
+        Velocity = throwDirection;
     }
 
    

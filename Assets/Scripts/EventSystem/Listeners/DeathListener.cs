@@ -23,20 +23,10 @@ public class DeathListener : MonoBehaviour
     {
 
         objectToInteract = deathInfo.deadUnit;
-        //spawnPoint = deathInfo.spawnPoint;
         PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
         deathcounterText.text = ""+PlayerPrefs.GetInt("DeathCounter");
         DecreaseHighscore();
         died = true;
-        //player.gameObject.transform.position = spawnPoint.transform.position;
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    void DecreaseHighscore()
-    {
-        AddPointEvent addPointInfo = new AddPointEvent();
-        addPointInfo.eventDescription = "Losing points!";
-        addPointInfo.point = - Mathf.Clamp( Random.Range(minPointsToLose, maxPointsToLose) , 0, PlayerPrefs.GetFloat("Highscore", 0));
-        EventSystem.Current.FireEvent(addPointInfo);
 
     }
     public static bool Death()
@@ -46,5 +36,13 @@ public class DeathListener : MonoBehaviour
     public static void SetDied(bool d)
     {
         died = d;
+    }
+    void DecreaseHighscore()
+    {
+        AddPointEvent addPointInfo = new AddPointEvent();
+        addPointInfo.eventDescription = "Losing points!";
+        addPointInfo.point = - Mathf.Clamp( Random.Range(minPointsToLose, maxPointsToLose) , 0, PlayerPrefs.GetFloat("Highscore", 0));
+        EventSystem.Current.FireEvent(addPointInfo);
+
     }
 }

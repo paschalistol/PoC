@@ -16,8 +16,6 @@ public class Key : Interactable
 
     private ParticleEvent startParticles;
     private StopParticleEvent stopParticles;
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     private const float doorAngle = 90;
     private float doorOffset;
     private GameObject parentEnemy;
@@ -28,7 +26,6 @@ public class Key : Interactable
     private bool usedOnce = false;
     protected const float skinWidth = 0.2f;
     [SerializeField] private LayerMask door;
-    private bool isHeld;
 
     protected override void Start()
     {
@@ -93,10 +90,10 @@ public class Key : Interactable
 
     private void AddPhysics()
     {
-        velocity = PhysicsScript.Decelerate(velocity);
-        velocity = PhysicsScript.Gravity(velocity);
-        velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-        transform.position += velocity * Time.deltaTime;
+        Velocity = PhysicsScript.Decelerate(Velocity);
+        Velocity = PhysicsScript.Gravity(Velocity);
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+        transform.position += Velocity * Time.deltaTime;
     }
 
     private void ParticleStarter()

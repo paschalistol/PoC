@@ -11,6 +11,7 @@ public class HoldingItem : HoldItemBase
     private int layerNumber;
     private SoundEvent soundEvent;
     private static bool died;
+    private GameObject objectInFront;
     public override void EnterState()
     {
 
@@ -31,6 +32,8 @@ public class HoldingItem : HoldItemBase
             {
                 EventSystem.Current.FireEvent(soundEvent);
             }
+            objectCarried.transform.position = new Vector3(objectCarried.transform.position.x, objectCarried.transform.localScale.y / 2 + capsuleCollider.height * 0.25f + owner.transform.position.y, objectCarried.transform.position.z);
+            objectCarried.transform.rotation = owner.transform.rotation;
         }
     }
     public override void ExitState()
@@ -56,19 +59,25 @@ public class HoldingItem : HoldItemBase
         if (died)
         {
             ReleaseAndRespawn();
-
+            died = false;
         }
 
+        //objectInFront = ReturnObjectInFront();
+        //if (objectInFront == null && objectCarried != null)
+        //{
+        //    Debug.Log("test");
+        //    ReleaseItem();
+        //}
 
 
-        if (objectCarried == null) {
+        if (objectCarried == null || !objectCarried.GetComponent<Interactable>().IsHeld()) {
 
             SetHolding(false);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment | (1 << layerNumber);
+
 
             ReleaseItem();
         }
@@ -115,7 +124,6 @@ public class HoldingItem : HoldItemBase
             objectCarried = null;
             RespawnItem(temp);
         }
-        died = false;
     }
 
     private void ReleaseItem()
@@ -126,28 +134,20 @@ public class HoldingItem : HoldItemBase
     }
     private void TransformCarriedObject()
     {
-        Vector3 target;
-        target.x = 0;
-        target.y = Camera.main.transform.eulerAngles.y;
-        target.z = 0;
-        objectCarried.transform.eulerAngles = target;
-        objectCarried.transform.position = Direction();
-        if (objectCarried.GetComponent<Rigidbody>() != null)
-        {
 
-            objectCarried.GetComponent<Rigidbody>().velocity = new Vector3(0, owner.GetComponent<CharacterStateMachine>().velocity.y, 0);
-        }
+        objectCarried.GetComponent<Interactable>().RotateAround(owner.transform);
 
+        objectCarried.GetComponent<Interactable>().SetVelocity(owner.GetComponent<CharacterStateMachine>().velocity);
 
     }
-
+    Vector3 xyz;
     Vector3 ThrowTo()
     {
 
-        float x = LookDirection().x * 1.2f;
-        float y = 20;
-        float z = LookDirection().z * 1.2f;
-        return new Vector3(x, y, z);
+        xyz.x = LookDirection().x * 1.2f;
+        xyz.y = 20;
+        xyz.z = LookDirection().z * 1.2f;
+        return xyz;
 
     }
 
@@ -172,14 +172,36 @@ public class HoldingItem : HoldItemBase
     }
 
 
+}
+
+#region Legacy
+/*
+ * 
+ * 
+ * 
+            //owner.GetComponent<CharacterStateMachine>().environment = owner.GetComponent<CharacterStateMachine>().environment | (1 << layerNumber);
+
+float rotateX, rotateY, rotateZ;
+private void RotateAroundPlayer()
+{
+    project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
+    if (Mathf.Abs(Input.GetAxis("Mouse X")) > 0)
+    {
+        rotateX = owner.transform.position.x + project.x * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2);
+        rotateY = objectCarried.transform.localScale.y / 2 + capsuleCollider.height / 2 + owner.transform.position.y;
+        rotateZ = owner.transform.position.z + project.z * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2);
+        objectCarried.transform.position = new Vector3(rotateX, rotateY, rotateZ);
+    }
+
+}
     private Vector3 Direction()
     {
-        Vector3 project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
+        project = Vector3.ProjectOnPlane(LookDirection(), Vector3.down).normalized;
         float x = owner.transform.position.x + project.x * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.x / 2);
         float y = objectCarried.transform.localScale.y / 2 + capsuleCollider.height / 2 + owner.transform.position.y;
         float z = owner.transform.position.z + project.z * (0.2f + capsuleCollider.radius + objectCarried.GetComponent<BoxCollider>().transform.localScale.z / 2);
         return new Vector3(x, y, z);
     }
-
-
-}
+    Vector3 project;
+*/
+#endregion

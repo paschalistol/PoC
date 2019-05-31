@@ -9,8 +9,6 @@ public class Valuable : Interactable
 {
 
     public float value;
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     protected const float skinWidth = 0.2f;
     [SerializeField] private LayerMask environment;
     [SerializeField] private AudioClip interactionSound = null;
@@ -19,14 +17,11 @@ public class Valuable : Interactable
 
     protected override void Start()
     {
-        base.Start();
-        boxCollider = GetComponent<BoxCollider>();
-        
-        
-
+        base.Start();  
+    
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -36,16 +31,29 @@ public class Valuable : Interactable
 
     protected virtual void Update()
     {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
+        AddPhysics();
+        transform.position += Velocity * Time.deltaTime;
     }
 
+    private void AddPhysics()
+    {
+        if (!isHeld)
+        {
 
+            base.Velocity = PhysicsScript.Decelerate(base.Velocity);
+            base.Velocity = PhysicsScript.Gravity(base.Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        base.Velocity = PhysicsScript.CollisionCheck(base.Velocity, boxCollider, skinWidth, environment);
+
+    }
     public override void StartInteraction()
     {
-         addPointInfo = new AddPointEvent();
+        base.StartInteraction();
+        addPointInfo = new AddPointEvent();
         addPointInfo.eventDescription = "Getting points!";
         addPointInfo.point = value;
         EventSystem.Current.FireEvent(addPointInfo);

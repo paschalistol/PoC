@@ -16,8 +16,7 @@ public class Battery : Interactable
     protected const float skinWidth = 0.1f;
 
     protected Vector3 velocity;
-    protected BoxCollider boxCollider;
-    [HideInInspector] public bool isHeld;
+
 
     protected override void Start()
     {
@@ -29,17 +28,13 @@ public class Battery : Interactable
     }
 
 
+        new RaycastHit raycastHit;
     private void Update()
     {
-        if (!isHeld)
-        {
-            velocity = PhysicsScript.Decelerate(velocity);
-            velocity = PhysicsScript.Gravity(velocity);
-            velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-            transform.position += velocity * Time.deltaTime;
-        }
 
-        RaycastHit raycastHit;
+            AddPhysics();
+            transform.position += velocity * Time.deltaTime;
+
         bool boxCast = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out raycastHit, transform.rotation, transform.localScale.y + 0.003f);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
         {
@@ -62,7 +57,21 @@ public class Battery : Interactable
             // used = true;
         }
     }
+    private void AddPhysics()
+    {
+        if (!isHeld)
+        {
 
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+
+    }
     public override void StartInteraction()
     {
         isHeld = !isHeld;

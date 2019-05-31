@@ -8,13 +8,10 @@ using UnityEngine;
 public class FuseBoxItem : Interactable
 {
     protected const float skinWidth = 0.2f;
-    protected Vector3 velocity;
-    protected BoxCollider boxCollider;
     //[SerializeField] private GameObject lockedDoor;
     [SerializeField] private GameObject fuseBox;
     //[SerializeField]private int itemQuantity = 2;
     //private static int count;
-    [HideInInspector]public bool isHeld;
     [SerializeField] private LayerMask environment;
     [SerializeField] private AudioClip clip;
 
@@ -35,17 +32,12 @@ public class FuseBoxItem : Interactable
 
         if (!GameController.isPaused)
         {
-            if (!isHeld)
-            {
-                velocity = PhysicsScript.Decelerate(velocity);
-                velocity = PhysicsScript.Gravity(velocity);
-                velocity = PhysicsScript.CollisionCheck(velocity, boxCollider, skinWidth, environment);
-                transform.position += velocity * Time.deltaTime;
-            }
+            AddPhysics();      
+                transform.position += Velocity * Time.deltaTime;
 
             RaycastHit raycastHit;
 
-            bool boxCast = Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
+            Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
 
             if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
             {
@@ -71,9 +63,25 @@ public class FuseBoxItem : Interactable
             }
         }
     }
+    private void AddPhysics()
+    {
+        if (!isHeld)
+        {
+
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
+        }
+        else
+        {
+            GetWallNormal();
+        }
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+
+    }
 
     public override void StartInteraction()
     {
+        base.StartInteraction();
         isHeld = !isHeld;
     }
 
