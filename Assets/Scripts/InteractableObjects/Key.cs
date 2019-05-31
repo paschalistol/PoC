@@ -46,16 +46,15 @@ public class Key : Interactable
     {
         if (!GameController.isPaused)
         {
-            if (transform.parent == null && !isHeld)
-            {
+
                 AddPhysics();
 
                 if (!usedOnce)
                 {
                     ParticleStarter();
                 }
-            }
             UsingKeyCheck();
+            transform.position += Velocity * Time.deltaTime;
         }
         //Debug.Log(parentEnemy.transform.position + "  " + keyStartPos);
     }
@@ -90,10 +89,13 @@ public class Key : Interactable
 
     private void AddPhysics()
     {
-        Velocity = PhysicsScript.Decelerate(Velocity);
-        Velocity = PhysicsScript.Gravity(Velocity);
-        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
-        transform.position += Velocity * Time.deltaTime;
+        if (transform.parent == null && !isHeld)
+        {
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
+            Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
+
+        }
     }
 
     private void ParticleStarter()

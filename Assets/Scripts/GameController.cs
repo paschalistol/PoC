@@ -45,7 +45,6 @@ public class GameController : MonoBehaviour
 
     void AlarmController()
     {
-        Debug.Log("ControllerActivation");
         if (activatedAlarm == true)
         {
             BlinkingTint();
