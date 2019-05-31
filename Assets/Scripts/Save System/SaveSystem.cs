@@ -21,7 +21,7 @@ public class SaveSystem : MonoBehaviour
     public abstract class Data
     {
         public float[] position;
-        
+        public float[] rotation;
     }
 
     [System.Serializable]
@@ -34,6 +34,11 @@ public class SaveSystem : MonoBehaviour
             position[0] = player.transform.position.x;
             position[1] = player.transform.position.y;
             position[2] = player.transform.position.z;
+
+            rotation = new float[3];
+            rotation[0] = player.transform.rotation.x;
+            rotation[1] = player.transform.rotation.y;
+            rotation[2] = player.transform.rotation.z;
         }
     }
 
@@ -47,6 +52,8 @@ public class SaveSystem : MonoBehaviour
             position[0] = enemy.transform.position.x;
             position[1] = enemy.transform.position.y;
             position[2] = enemy.transform.position.z;
+
+            //rotation = enemy.transform.rotation;
         }
     }
 
@@ -63,6 +70,8 @@ public class SaveSystem : MonoBehaviour
             position[0] = interactables.transform.position.x;
             position[1] = interactables.transform.position.y;
             position[2] = interactables.transform.position.z;
+
+            //rotation = interactables.transform.rotation;
         }
     }
 
@@ -147,14 +156,32 @@ public class SaveSystem : MonoBehaviour
         }
 
     }
+
+    #region Loading Player
     private void LoadPlayer(SaveData saveData)
+    {
+        
+        GameManager.gameManager.player.transform.position = LoadPlayerPosition(saveData);     
+        GameManager.gameManager.player.transform.rotation = LoadPlayerRotation(saveData);
+    }
+
+    private Vector3 LoadPlayerPosition(SaveData saveData)
     {
         float x = saveData.playerData.position[0];
         float y = saveData.playerData.position[1];
         float z = saveData.playerData.position[2];
-        Vector3 playersavedPosition = new Vector3(x, y, z);
-        GameManager.gameManager.player.transform.position = playersavedPosition;
+        return new Vector3(x, y, z);
     }
+
+    private Quaternion LoadPlayerRotation(SaveData saveData)
+    {
+        float x = saveData.playerData.position[0];
+        float y = saveData.playerData.position[1];
+        float z = saveData.playerData.position[2];
+        return new Quaternion(0, x, y, z);
+    }
+
+    #endregion
 
     private void LoadInteractables(SaveData saveData)
     {
