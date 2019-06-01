@@ -17,6 +17,7 @@ public class DogChaseState : DogBaseState
     {
         base.EnterState();
         smellDistance = owner.GetSmellDistance();
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
     }
     /// <summary>
     /// Decides if the dog will return to patrol or attack while chasing the player.
@@ -40,6 +41,11 @@ public class DogChaseState : DogBaseState
                 }
             }
         }else { owner.agent.SetDestination(owner.agent.transform.position); }
+    }
+
+    void HandleDeath(UnitDeathEventInfo death)
+    {
+        owner.ChangeState<DogPatrolState>();
     }
 }
 #region ChaseLegacy

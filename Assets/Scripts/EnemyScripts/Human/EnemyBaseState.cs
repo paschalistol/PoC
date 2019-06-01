@@ -92,7 +92,7 @@ public class EnemyBaseState : State
 
     protected bool MakingSoundCheck(float distanceToPlayer)
     {
-        if (InRangeCheck(distanceToPlayer) && moveSpeed > soundFromFeet && Input.anyKeyDown)
+        if (owner.player.GetComponent<CharacterStateMachine>().maxSpeed > soundFromFeet && Input.anyKeyDown)
             return true;
         return false;
     }

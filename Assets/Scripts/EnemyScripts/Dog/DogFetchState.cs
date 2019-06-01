@@ -15,7 +15,8 @@ public class DogFetchState : DogBaseState
 
     public override void EnterState()
     {
-        base.EnterState();  
+        base.EnterState();
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
     }
     public override void ToDo()
     {
@@ -27,11 +28,14 @@ public class DogFetchState : DogBaseState
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
             {
                 KillPlayer();
-                owner.ChangeState<DogPatrolState>();
             }
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
+    }
 
+    void HandleDeath(UnitDeathEventInfo death)
+    {
+        owner.ChangeState<DogPatrolState>();
     }
 }
         //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));

@@ -27,6 +27,8 @@ public class ChaseState : EnemyBaseState
         musicBasedOnChased = new MusicBasedOnChased();
         musicBasedOnChased.enemyChasing = true;
         EventSystem.Current.FireEvent(musicBasedOnChased);
+
+        EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
     }
     public override void ToDo()
     {
@@ -54,21 +56,26 @@ public class ChaseState : EnemyBaseState
             if (distanceToPlayer < bustedDistance)
             {
                 KillPlayer();
-                ScornDogs();
-                GameController.activatedAlarm = false;
-                owner.ChangeState<PatrolState>();
             }
-
 
             if (!LineOfSight() && (InRangeCheck(distanceToPlayer) && MakingSoundCheck(distanceToPlayer) && distanceToPlayer > investigationDistance))
             {
+                Debug.Log("Switching To Investigate");
                 owner.ChangeState<InvestigationState>();
                 ScornDogs();
-            }
+            }else if(!InRangeCheck(distanceToPlayer))
+                owner.ChangeState<PatrolState>();
 
 
         }
         else { owner.agent.SetDestination(owner.agent.transform.position); }
+    }
+
+    void HandleDeath(UnitDeathEventInfo death)
+    {
+                ScornDogs();
+                GameController.activatedAlarm = false;
+                owner.ChangeState<PatrolState>();
     }
 
     public override void ExitState()
