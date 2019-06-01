@@ -32,7 +32,7 @@ public class InvestigationState : EnemyBaseState
             owner.agent.SetDestination(investigatePosition);
             currentTime -= Time.deltaTime;
             
-            if ((!owner.agent.hasPath && InRangeCheck(distanceToPlayer)) || LineOfSight() || MakingSoundCheck(distanceToPlayer)  || GameController.activatedAlarm)
+            if ((!owner.agent.hasPath && InRangeCheck(distanceToPlayer)) || LineOfSight() || MakingSoundCheck(distanceToPlayer) || GameController.activatedAlarm)
                 owner.ChangeState<ChaseState>();
             else
                 owner.agent.isStopped = false;

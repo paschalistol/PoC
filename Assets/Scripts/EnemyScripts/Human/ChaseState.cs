@@ -63,7 +63,7 @@ public class ChaseState : EnemyBaseState
                 Debug.Log("Switching To Investigate");
                 owner.ChangeState<InvestigationState>();
                 ScornDogs();
-            }else if(!InRangeCheck(distanceToPlayer))
+            }else if(!InRangeCheck(distanceToPlayer) && !GameController.activatedAlarm)
                 owner.ChangeState<PatrolState>();
 
 
