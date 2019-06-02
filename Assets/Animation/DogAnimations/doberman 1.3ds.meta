@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 5a9d6320441e60b4d8cddbde9db1e2dd
+guid: 3b5ce98e8994dee408ef0a0fda586ce5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: doberman1_doberman
-    400000: //RootNode
-    400002: doberman1_doberman
-    2100000: doberman1_dobermanMat
-    2300000: doberman1_doberman
-    3300000: doberman1_doberman
-    4300000: doberman1_doberman
+    100000: doberman
+    100002: //RootNode
+    400000: doberman
+    400002: //RootNode
+    2100000: doberman
+    2300000: doberman
+    2300002: //RootNode
+    3300000: doberman
+    3300002: //RootNode
+    4300000: dober
+    4300002: doberman
     9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
@@ -82,15 +85,15 @@ ModelImporter:
     serializedVersion: 2
     human: []
     skeleton:
-    - name: doberman(Clone)
+    - name: doberman 1(Clone)
       parentName: 
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: -0, y: -71.71323, z: -71.53824}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: doberman1_doberman
-      parentName: doberman(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+    - name: doberman
+      parentName: doberman 1(Clone)
+      position: {x: -0, y: 0, z: -0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
