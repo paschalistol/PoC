@@ -181,13 +181,20 @@ public class SaveSystem : MonoBehaviour
         GameObject player = GameManager.gameManager.player;
         player.transform.position = LoadPlayerPosition(saveData);     
         player.transform.rotation = LoadPlayerRotation(saveData);
-        Debug.Log(saveData.playerData.itemHoldIndex);
+        
 
         GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
-        itemHolding.GetComponent<Interactable>().RotateAround(player.transform);
-        itemHolding.GetComponent<Interactable>().SetVelocity(player.GetComponent<CharacterStateMachine>().velocity);
+        player.GetComponent<HoldItemBase>().objectCarried = itemHolding;
+        
+        /*Interactable interactable = itemHolding.GetComponent<Interactable>();
+        interactable.StartInteraction();
+        interactable.RotateAround(player.transform);
+        interactable.SetVelocity(player.GetComponent<CharacterStateMachine>().velocity);
         itemHolding.layer = 0;
         itemHolding.transform.parent = null;
+        itemHolding.transform.position = new Vector3(itemHolding.transform.position.x, itemHolding.transform.localScale.y / 2 + player.GetComponent<CapsuleCollider>().height * 0.25f + player.transform.position.y, itemHolding.transform.position.z);
+        itemHolding.transform.rotation = player.transform.rotation;*/
+        
     }
 
     private Vector3 LoadPlayerPosition(SaveData saveData)

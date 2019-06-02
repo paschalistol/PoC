@@ -8,9 +8,9 @@ public class HoldItemBase : State
 {
     protected CharacterHoldItemStateMachine owner;
 
-    protected GameObject objectCarried;
+    public GameObject objectCarried;
     protected CapsuleCollider capsuleCollider;
-    protected bool HoldingSth {get { return owner.holdingSth; }set { owner.holdingSth = value; } }
+    public bool HoldingSth {get { return owner.holdingSth; }set { owner.holdingSth = value; } }
     private Vector3 point2, point1;
     private RaycastHit raycastHit;
     private float pickupCoeff = 2;
