@@ -131,6 +131,7 @@ public class SaveSystem : MonoBehaviour
         {
             GameObject interactable = GameManager.gameManager.interactables[i];
             InteractablesData interactableData = new InteractablesData(interactable);
+            
             saveData.interactablesData.Add(interactableData);
         }
     }
@@ -183,8 +184,8 @@ public class SaveSystem : MonoBehaviour
         player.transform.rotation = LoadPlayerRotation(saveData);
         
 
-        GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
-        player.GetComponent<HoldItemBase>().objectCarried = itemHolding;
+        /*GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
+        player.GetComponent<HoldItemBase>().objectCarried = itemHolding;*/
         
         /*Interactable interactable = itemHolding.GetComponent<Interactable>();
         interactable.StartInteraction();
@@ -223,6 +224,8 @@ public class SaveSystem : MonoBehaviour
         {           
             GameManager.gameManager.interactables[i].transform.position = LoadInteractablesPosition(saveData, i);
             GameManager.gameManager.interactables[i].transform.rotation = LoadInteractablesRotation(saveData, i);
+            //Debug.Log(LoadInteractablesRotation(saveData, i) + " from savedata");
+           // Debug.Log(GameManager.gameManager.interactables[i].transform.rotation + "final");
         }
     }
 
@@ -239,7 +242,9 @@ public class SaveSystem : MonoBehaviour
         float x = saveData.interactablesData[i].rotation[0];
         float y = saveData.interactablesData[i].rotation[1];
         float z = saveData.interactablesData[i].rotation[2];
+        
         return new Quaternion(0, x, y, z);
+
     }
 
     #endregion
@@ -252,6 +257,7 @@ public class SaveSystem : MonoBehaviour
         {
             GameManager.gameManager.enemies[i].transform.rotation = LoadEnemiesRotation(saveData, i);
             GameManager.gameManager.enemies[i].transform.position = LoadEnemiesPosition(saveData, i);
+            
         }
     }
 
