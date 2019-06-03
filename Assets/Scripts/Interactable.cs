@@ -15,6 +15,7 @@ public abstract class Interactable : MonoBehaviour
     protected RaycastHit raycastHit;
     protected RaycastHit wallHit;
     protected BoxCollider boxCollider;
+    [SerializeField]private int activeCollisions;
     protected virtual void Start()
     {
         StartPosition = transform.position;
@@ -42,10 +43,11 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        activeCollisions++;
         if (other.CompareTag("Player") == false && gameObject.CompareTag("Only Interaction") == false && other.gameObject.layer != 0)
         {
            
-            GetMovementDirection(other);
+            GetMovementDirection();
             wallCollisionRotation = transform.eulerAngles;
 
             thisWasCarriedBeforeRespawn = true;
@@ -53,7 +55,7 @@ public abstract class Interactable : MonoBehaviour
             Velocity = Vector3.zero;
         }
     }
-    private void GetMovementDirection(Collider other)
+    private void GetMovementDirection()
     {
 
         if (wallHit.collider != null)
@@ -76,6 +78,10 @@ public abstract class Interactable : MonoBehaviour
             }
             timer += Time.deltaTime;
         }
+        else
+        {
+            thisWasCarriedBeforeRespawn = false;
+        }
 
     }
 
@@ -90,7 +96,12 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        
+        activeCollisions--;
+        if (activeCollisions ==0)
+        {
+
+        thisWasCarriedBeforeRespawn = false;
+        }
         Velocity = Vector3.zero;
         timer = 0;
         
