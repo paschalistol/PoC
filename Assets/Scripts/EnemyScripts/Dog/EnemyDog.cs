@@ -9,6 +9,7 @@ public class EnemyDog : StateMachine
     // Attributes
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public bool isInChase;
     //public LayerMask visionMask;
     public LayerMask safeZoneMask;
     public GameObject player;

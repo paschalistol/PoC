@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/DogChaseState")]
 public class DogChaseState : DogBaseState
 {
-
+    
     private float smellDistance;
     private const float bustedDistance = 2f;
     private UnitDeathEventInfo deathInfo;
@@ -18,6 +18,7 @@ public class DogChaseState : DogBaseState
         base.EnterState();
         smellDistance = owner.GetSmellDistance();
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
+        owner.isInChase = true;
     }
     /// <summary>
     /// Decides if the dog will return to patrol or attack while chasing the player.
