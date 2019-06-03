@@ -24,9 +24,12 @@ public class InvestigationState : EnemyBaseState
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
         owner.flashLight.GetComponent<Light>().color = Color.white;
+        if (owner.agent.hasPath)
+            owner.agent.isStopped = false;
     }
     public override void ToDo()
     {
+
         if (!GameController.isPaused)
         {
             owner.agent.SetDestination(investigatePosition);

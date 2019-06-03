@@ -41,8 +41,9 @@ public class UnlockEvent : DebugEvent
 public class SoundEvent : DebugEvent
 {
     public AudioClip audioClip;
-    public bool looped = false;
+    public bool looped;
     public GameObject objectInstatiated;
+    public GameObject parent;
 }
 public class PressE : DebugEvent
 {

@@ -38,12 +38,18 @@ namespace Callback
                 audioSource = go.GetComponent<AudioSource>();
                 audioSource.clip = info.audioClip;
                 audioSource.Play();
-                info.objectInstatiated = go;
+                if (info.parent != null)
+                {
+                    go.transform.SetParent(info.parent.transform);
+                    go.transform.position = info.parent.transform.position;
+                }
+                Debug.Log(go.name);
+                //info.objectInstatiated = go;
                 if (!info.looped)
                 {
                     Destroy(go, audioSource.clip.length);
                 }
-                StartCoroutine(Cooldown());
+             //   StartCoroutine(Cooldown());
             }
         }
 
