@@ -11,7 +11,7 @@ public abstract class Interactable : MonoBehaviour
     private float timer;
     protected bool isHeld = false;
     protected int layerNumber;
-    private bool thisWasCarriedBeforeRespawn;
+    private bool thisWasCarriedBeforeRespawn = false;
     protected RaycastHit raycastHit;
     protected RaycastHit wallHit;
     protected BoxCollider boxCollider;
@@ -46,7 +46,6 @@ public abstract class Interactable : MonoBehaviour
         {
            
             GetMovementDirection(other);
-            //wallCollisionRespawn = wallNormal;
             wallCollisionRotation = transform.eulerAngles;
 
             thisWasCarriedBeforeRespawn = true;
@@ -69,21 +68,15 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (other != gameObject &&  thisWasCarriedBeforeRespawn && (other.CompareTag("Untagged") == true || other.CompareTag("Box") == true || other.CompareTag("Player") == true || other.CompareTag("Door") == true || other.CompareTag("FuseBoxItem") == true || other.CompareTag("Trampoline") == true || other.CompareTag("ElectricalDoor") == true || other.CompareTag("Key") == true || other.CompareTag("Battery") == true) && other.gameObject.layer != 0 && !(gameObject.CompareTag("Only Interaction") || gameObject.CompareTag("Valuables")))
+        if (other != gameObject &&  thisWasCarriedBeforeRespawn && (other.CompareTag("Untagged") == true || other.CompareTag("Environment") == true || other.CompareTag("Only Interaction") == true || other.CompareTag("Box") == true || other.CompareTag("Player") == true || other.CompareTag("Door") == true || other.CompareTag("FuseBoxItem") == true || other.CompareTag("Trampoline") == true || other.CompareTag("ElectricalDoor") == true || other.CompareTag("Key") == true || other.CompareTag("Battery") == true) && other.gameObject.layer != 0 && !(gameObject.CompareTag("Only Interaction") || gameObject.CompareTag("Valuables")))
         {
-
-
             if (isHeld == false || (timer > 0.5f))
             {
                 WallCollisionRespawn();
             }
-        }
-        else
-        {
-            thisWasCarriedBeforeRespawn = false;
+            timer += Time.deltaTime;
         }
 
-        timer += Time.deltaTime;
     }
 
     protected virtual void WallCollisionRespawn()
@@ -97,8 +90,10 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
+        
         Velocity = Vector3.zero;
         timer = 0;
+        
     }
     public virtual void SetVelocity(Vector3 velocity)
     {

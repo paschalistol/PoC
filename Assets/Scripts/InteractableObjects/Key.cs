@@ -30,7 +30,7 @@ public class Key : Interactable
     protected override void Start()
     {
 
-        boxCollider = GetComponent<BoxCollider>();
+        base.Start();
 
         isHeld = false;
 
@@ -89,12 +89,20 @@ public class Key : Interactable
 
     private void AddPhysics()
     {
-        if (transform.parent == null && !isHeld)
+        if (transform.parent == null)
         {
-            Velocity = PhysicsScript.Decelerate(Velocity);
-            Velocity = PhysicsScript.Gravity(Velocity);
-            Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
 
+            if (!isHeld)
+            {
+                Velocity = PhysicsScript.Decelerate(Velocity);
+                Velocity = PhysicsScript.Gravity(Velocity);
+
+            }
+            else
+            {
+                GetWallNormal();
+            }
+            Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
         }
     }
 
@@ -116,13 +124,12 @@ public class Key : Interactable
         EventSystem.Current.FireEvent(stopParticles);
     }
 
-    RaycastHit raycastHit;
     private void UsingKeyCheck()
     {
-        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, lockedDoor.transform.parent.rotation, skinWidth * 3, door);
+        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, boxCollider.transform.rotation, skinWidth * 3, door);
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
         {
-            lockedDoor.GetComponent<Interactable>().StartInteraction();
+            lockedDoor.GetComponent<Door>().UnlockDoor();
             Destroy(gameObject);
             used = true;
         }

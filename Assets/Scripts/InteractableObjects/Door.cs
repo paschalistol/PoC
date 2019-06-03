@@ -6,16 +6,19 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    [SerializeField]
-    private int rotationSpeed = 40, rotation = 90;
+    [SerializeField, Tooltip("Use negative speed to rotate in opposite direction")]
+    private int rotationSpeed = 40;
+    [SerializeField, Range(0f, 90f)]
+    private int rotationGoal = 90;
+    [SerializeField, Tooltip("Can the player open the door or is a key needed?")] private bool keyNeeded;
     private GameObject parent;
     private bool used = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip doorOpenSound;
     [SerializeField] private AudioClip doorCloseSound;
     [SerializeField] private AudioClip unlockDoorSound;
-    private float rotationGoal;
-    float temp, perFrame;
+    float rotationCounter, perFrame;
+    private SoundEvent soundEvent;
     protected override void Start()
     {
         base.Start();
@@ -32,27 +35,55 @@ public class Door : Interactable
 
     public override void StartInteraction()
     {
-        if (used == false)
+        if (keyNeeded == false)
         {
+            if (used == false)
+            {
+                if (rotationGoal < 0)
+                {
+                    rotationSpeed *= -1;
+                }
+                soundEvent = new SoundEvent();
 
-        Debug.Log("Door interaction!");
-            StartCoroutine(RotateDoor(parent));
-            used = true;
+                soundEvent.eventDescription = "PickUp Sound";
+                soundEvent.audioClip = doorOpenSound;
+                soundEvent.looped = false;
+                if (soundEvent.audioClip != null)
+                {
+                    EventSystem.Current.FireEvent(soundEvent);
+                }
+                StartCoroutine(RotateDoor(parent));
+                used = true;
+            }
+            if (gameObject.GetComponent<ActiveGold>() != null)
+            {
+                gameObject.GetComponent<ActiveGold>().SetGoldActive();
+            }
         }
-        if (gameObject.GetComponent<ActiveGold>() != null)
+    }
+    public void UnlockDoor()
+    {
+        keyNeeded = false;
+        soundEvent = new SoundEvent();
+
+        soundEvent.eventDescription = "PickUp Sound";
+        soundEvent.audioClip = unlockDoorSound;
+        soundEvent.looped = false;
+        if (soundEvent.audioClip != null)
         {
-            gameObject.GetComponent<ActiveGold>().SetGoldActive();
+            EventSystem.Current.FireEvent(soundEvent);
         }
+
     }
 
     IEnumerator RotateDoor(GameObject parent)
     {
-        temp = 0;
-        while (temp < rotation)
+        rotationCounter = 0;
+        while (rotationCounter < rotationGoal)
         {
             perFrame = Time.deltaTime * rotationSpeed;
             parent.transform.eulerAngles += new Vector3(0, 1, 0) * perFrame;
-            temp += perFrame;
+            rotationCounter += Mathf.Abs(perFrame);
             yield return null;
         }
     }
