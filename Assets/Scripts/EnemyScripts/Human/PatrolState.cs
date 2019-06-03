@@ -13,8 +13,8 @@ public class PatrolState : EnemyBaseState
     private const float noiceDetection = 5f;
     private float distanceToPlayer, distanceToPoint, lightRange, maxSpeed, chaseDistance;
     [SerializeField] private float lightIntensity = 15;
-    
-
+    private bool usedOnce = false;
+    [SerializeField] private AudioClip clip;
     private int currentPoint = 0;
 
     // Methods
@@ -28,6 +28,7 @@ public class PatrolState : EnemyBaseState
         owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
         owner.flashLight.GetComponent<Light>().color = Color.white;
         lightRange = owner.flashLight.GetComponent<Light>().range;
+        
     }
 
     public override void ToDo()
@@ -35,6 +36,17 @@ public class PatrolState : EnemyBaseState
         //Debug.Log("isPaused - in Patrol: " + GameController.isPaused);
         if (!GameController.isPaused)
         {
+            if (!owner.agent.hasPath)
+                owner.agent.isStopped = false;
+
+            if (!usedOnce && clip != null)
+            {
+                SoundEvent sound = new SoundEvent();
+                sound.audioClip = clip;
+                sound.looped = true;
+
+                EventSystem.Current.FireEvent(sound);
+            }
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
 
             owner.agent.SetDestination(points[currentPoint].transform.position);
