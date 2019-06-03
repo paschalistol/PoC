@@ -7,29 +7,36 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character/EmptyHands")]
 public class EmptyHands : HoldItemBase
 {
+
+    PressE pressE;
+    GameObject objectInFront;
+
     public override void EnterState()
     {
         base.EnterState();
         pressE = new PressE();
 
     }
-    PressE pressE;
-    GameObject objectInFront;
+
+
+
     public override void ToDo()
     {
+
         objectInFront = ReturnObjectInFront();
+
         if (objectInFront != null && objectInFront.CompareTag("Valuables") == false)
         {
             pressE.open = true;
-        EventSystem.Current.FireEvent(pressE);
+            EventSystem.Current.FireEvent(pressE);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
 
-
-                objectCarried = objectInFront;
+                owner.objectCarried = objectInFront;
                 InteractWithObject();
-                if (!objectCarried.CompareTag("Only Interaction"))
+                
+                if (!owner.objectCarried.CompareTag("Only Interaction"))
                 {
                     SetHolding(true);
                 }
@@ -46,7 +53,10 @@ public class EmptyHands : HoldItemBase
         {
             owner.ChangeState<HoldingItem>();
         }
+        
     }
+
+
     public override void ExitState()
     {
         pressE.open = false;

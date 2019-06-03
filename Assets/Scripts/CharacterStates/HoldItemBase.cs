@@ -8,9 +8,9 @@ public class HoldItemBase : State
 {
     protected CharacterHoldItemStateMachine owner;
 
-    public GameObject objectCarried;
+    //public GameObject owner.objectCarried;
     protected CapsuleCollider capsuleCollider;
-    public bool HoldingSth {get { return owner.holdingSth; }set { owner.holdingSth = value; } }
+    public bool HoldingSth { get { return owner.holdingSth; } set { owner.holdingSth = value; } }
     private Vector3 point2, point1;
     private RaycastHit raycastHit;
     private float pickupCoeff = 2;
@@ -30,30 +30,30 @@ public class HoldItemBase : State
     protected void InteractWithObject()
     {
 
-        if (objectCarried != null)
+        if (owner.objectCarried != null)
         {
 
             InteractionEvent interactedInfo = new InteractionEvent();
             interactedInfo.eventDescription = "Pressed item has been activated: ";
-            interactedInfo.interactedObject = objectCarried;
+            interactedInfo.interactedObject = owner.objectCarried;
 
             EventSystem.Current.FireEvent(interactedInfo);
-            owner.objectHolding = objectCarried;
+           
         }
 
     }
 
     protected GameObject ReturnObjectInFront()
     {
+        GameObject objectInFront;
 
-
-        Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, capsuleCollider.radius, owner.transform.forward, out raycastHit, capsuleCollider.radius*pickupCoeff, owner.Interactables);
+        Physics.CapsuleCast(owner.transform.position + point1, owner.transform.position + point2, capsuleCollider.radius, owner.transform.forward, out raycastHit, capsuleCollider.radius * pickupCoeff, owner.Interactables);
 
         if (raycastHit.collider != null)
         {
-            objectCarried = raycastHit.transform.gameObject;
+            objectInFront = raycastHit.transform.gameObject;
 
-            return objectCarried;
+            return objectInFront;
         }
         return null;
     }
@@ -61,7 +61,7 @@ public class HoldItemBase : State
     {
         HoldingSth = holds;
     }
-    
+
 
     protected Vector3 LookDirection()
     {

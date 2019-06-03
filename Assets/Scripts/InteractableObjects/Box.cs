@@ -46,6 +46,13 @@ public class Box : Interactable
             Bouncing();
         }
 
+        /*if (isHeld == true) {
+            Debug.Log("being held");
+        }
+        else
+        {
+            Debug.Log("not held");
+        }*/
 
         transform.position += Velocity * Time.deltaTime;
     }

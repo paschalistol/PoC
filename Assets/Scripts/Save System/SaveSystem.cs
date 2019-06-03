@@ -38,9 +38,9 @@ public class SaveSystem : MonoBehaviour
             position[2] = player.transform.position.z;
 
             rotation = new float[3];
-            rotation[0] = player.transform.rotation.x;
-            rotation[1] = player.transform.rotation.y;
-            rotation[2] = player.transform.rotation.z;
+            rotation[0] = player.transform.eulerAngles.x;
+            rotation[1] = player.transform.eulerAngles.y;
+            rotation[2] = player.transform.eulerAngles.z;
         }
     }
 
@@ -56,9 +56,9 @@ public class SaveSystem : MonoBehaviour
             position[2] = enemy.transform.position.z;
 
             rotation = new float[3];
-            rotation[0] = enemy.transform.rotation.x;
-            rotation[1] = enemy.transform.rotation.y;
-            rotation[2] = enemy.transform.rotation.z;
+            rotation[0] = enemy.transform.eulerAngles.x;
+            rotation[1] = enemy.transform.eulerAngles.y;
+            rotation[2] = enemy.transform.eulerAngles.z;
         }
     }
 
@@ -75,9 +75,9 @@ public class SaveSystem : MonoBehaviour
             position[2] = interactables.transform.position.z;
 
             rotation = new float[3];
-            rotation[0] = interactables.transform.rotation.x;
-            rotation[1] = interactables.transform.rotation.y;
-            rotation[2] = interactables.transform.rotation.z;
+            rotation[0] = interactables.transform.eulerAngles.x;
+            rotation[1] = interactables.transform.eulerAngles.y;
+            rotation[2] = interactables.transform.eulerAngles.z;
         }
     }
 
@@ -115,13 +115,17 @@ public class SaveSystem : MonoBehaviour
         {
             GameObject item = GameManager.gameManager.interactables[i];
             CharacterHoldItemStateMachine holdItemScript = player.GetComponent<CharacterHoldItemStateMachine>();
-            if(item == holdItemScript.objectHolding)
+            if(holdItemScript.objectCarried != null && item == holdItemScript.objectCarried)
             {
                 playerData.itemHoldIndex = i;
-                Debug.Log("detected! " + "its " + holdItemScript.objectHolding + " " + playerData.itemHoldIndex);
+                break;
+            }
+            else
+            {
+                playerData.itemHoldIndex = -1;
             }
         }
-
+        
         saveData.playerData = playerData;
     }
 
@@ -181,21 +185,25 @@ public class SaveSystem : MonoBehaviour
     {
         GameObject player = GameManager.gameManager.player;
         player.transform.position = LoadPlayerPosition(saveData);     
-        player.transform.rotation = LoadPlayerRotation(saveData);
+        player.transform.eulerAngles = LoadPlayerRotation(saveData);
+
+
+        CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
+        
+        if (saveData.playerData.itemHoldIndex >= 0)
+        {
+        GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
+        Debug.Log(saveData.playerData.itemHoldIndex);
+        holdItemMachine.objectCarried = itemHolding;
+        holdItemMachine.holdingSth = true;
+        holdItemMachine.ChangeState<HoldingItem>();
+        
+        Interactable interactable = itemHolding.GetComponent<Interactable>();
+        interactable.StartInteraction();
+
+        }
         
 
-        /*GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
-        player.GetComponent<HoldItemBase>().objectCarried = itemHolding;*/
-        
-        /*Interactable interactable = itemHolding.GetComponent<Interactable>();
-        interactable.StartInteraction();
-        interactable.RotateAround(player.transform);
-        interactable.SetVelocity(player.GetComponent<CharacterStateMachine>().velocity);
-        itemHolding.layer = 0;
-        itemHolding.transform.parent = null;
-        itemHolding.transform.position = new Vector3(itemHolding.transform.position.x, itemHolding.transform.localScale.y / 2 + player.GetComponent<CapsuleCollider>().height * 0.25f + player.transform.position.y, itemHolding.transform.position.z);
-        itemHolding.transform.rotation = player.transform.rotation;*/
-        
     }
 
     private Vector3 LoadPlayerPosition(SaveData saveData)
@@ -207,12 +215,13 @@ public class SaveSystem : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    private Quaternion LoadPlayerRotation(SaveData saveData)
+    private Vector3 LoadPlayerRotation(SaveData saveData)
     {
-        float x = saveData.playerData.position[0];
-        float y = saveData.playerData.position[1];
-        float z = saveData.playerData.position[2];
-        return new Quaternion(0, x, y, z);
+        float[] rotation = saveData.playerData.rotation;
+        float x = rotation[0];
+        float y = rotation[1];
+        float z = rotation[2];
+        return new Vector3(x, y, z);
     }
 
     #endregion
@@ -223,27 +232,29 @@ public class SaveSystem : MonoBehaviour
         for (int i = 0; i < saveData.interactablesData.Count; i++)
         {           
             GameManager.gameManager.interactables[i].transform.position = LoadInteractablesPosition(saveData, i);
-            GameManager.gameManager.interactables[i].transform.rotation = LoadInteractablesRotation(saveData, i);
-            //Debug.Log(LoadInteractablesRotation(saveData, i) + " from savedata");
-           // Debug.Log(GameManager.gameManager.interactables[i].transform.rotation + "final");
+            GameManager.gameManager.interactables[i].transform.eulerAngles = LoadInteractablesRotation(saveData, i);
+            
+           
         }
     }
 
     private Vector3 LoadInteractablesPosition(SaveData saveData, int i)
     {
-        float x = saveData.interactablesData[i].position[0];
-        float y = saveData.interactablesData[i].position[1];
-        float z = saveData.interactablesData[i].position[2];
+        float[] position = saveData.interactablesData[i].position;
+        float x = position[0];
+        float y = position[1];
+        float z = position[2];
         return new Vector3(x, y, z);
     }
 
-    private Quaternion LoadInteractablesRotation(SaveData saveData, int i)
+    private Vector3 LoadInteractablesRotation(SaveData saveData, int i)
     {
-        float x = saveData.interactablesData[i].rotation[0];
-        float y = saveData.interactablesData[i].rotation[1];
-        float z = saveData.interactablesData[i].rotation[2];
-        
-        return new Quaternion(0, x, y, z);
+        float[] rotation = saveData.interactablesData[i].rotation;
+        float x = rotation[0];
+        float y = rotation[1];
+        float z = rotation[2];
+       
+        return new Vector3( x, y, z);
 
     }
 
@@ -263,17 +274,19 @@ public class SaveSystem : MonoBehaviour
 
     private Vector3 LoadEnemiesPosition(SaveData saveData, int i)
     {
-        float x = saveData.enemiesData[i].position[0];
-        float y = saveData.enemiesData[i].position[1];
-        float z = saveData.enemiesData[i].position[2];
+        float[] position = saveData.enemiesData[i].position;
+        float x = position[0];
+        float y = position[1];
+        float z = position[2];
         return new Vector3(x, y, z);
     }
 
     private Quaternion LoadEnemiesRotation(SaveData saveData, int i)
     {
-        float x = saveData.enemiesData[i].rotation[0];
-        float y = saveData.enemiesData[i].rotation[1];
-        float z = saveData.enemiesData[i].rotation[2];
+        float[] rotation = saveData.enemiesData[i].rotation;
+        float x = rotation[0];
+        float y = rotation[1];
+        float z = rotation[2];
         return new Quaternion(0, x, y, z);
     }
     #endregion
