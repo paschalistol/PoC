@@ -23,7 +23,7 @@ public class InvestigationState : EnemyBaseState
 
         lightRange = owner.flashLight.GetComponent<Light>().range;
         owner.flashLight.GetComponent<Light>().intensity = lightIntensity;
-        owner.flashLight.GetComponent<Light>().color = Color.magenta;
+        owner.flashLight.GetComponent<Light>().color = Color.white;
     }
     public override void ToDo()
     {
@@ -32,7 +32,7 @@ public class InvestigationState : EnemyBaseState
             owner.agent.SetDestination(investigatePosition);
             currentTime -= Time.deltaTime;
             
-            if ((!owner.agent.hasPath && InRangeCheck(distanceToPlayer)) || LineOfSight() || MakingSoundCheck(distanceToPlayer) || GameController.activatedAlarm)
+            if ((!owner.agent.hasPath && InRangeCheck(distanceToPlayer)) || LineOfSight() || GameController.activatedAlarm)
                 owner.ChangeState<ChaseState>();
             else
                 owner.agent.isStopped = false;

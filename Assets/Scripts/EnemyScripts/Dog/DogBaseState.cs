@@ -18,7 +18,10 @@ public class DogBaseState : State
     [SerializeField] protected float moveSpeed;
     private const float skinWidth = 0.2f;
     private float fieldOfView;
-
+    private Vector3 scale;
+    private Vector3 bigScale;
+ 
+    
 
     // Methods
     public override void EnterState()
@@ -26,7 +29,6 @@ public class DogBaseState : State
         base.EnterState();
         //owner.Renderer.material = material;
         owner.agent.speed = moveSpeed;
-        
         boxCollider = owner.GetComponent<BoxCollider>();
     }
 
@@ -65,6 +67,9 @@ public class DogBaseState : State
 
 
 
+    #region legacy
+
+
     //fieldOfView = owner.GetFieldOfView();
     /* protected bool LineOfSight()
      {
@@ -74,4 +79,5 @@ public class DogBaseState : State
             capsuleCollider.radius, owner.agent.velocity, out RaycastHit raycastHit, fieldOfView, owner.visionMask);
 
      }*/
+    #endregion
 }
