@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
             {
                 SoundEvent soundEvent = new SoundEvent();
                 soundEvent.audioClip = alarmClip;
-                soundEvent.looped = true;
+                soundEvent.looped = true;             
 
                 EventSystem.Current.FireEvent(soundEvent);
                 usedOnce = true;
