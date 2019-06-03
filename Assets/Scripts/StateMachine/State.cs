@@ -9,6 +9,7 @@ public abstract class State : ScriptableObject
     public virtual void EnterState() { }
     public virtual void ExitState() { }
     public virtual void ToDo() { }
+    public virtual void LateToDo() { }
     public virtual void InitializeState(StateMachine owner) { }
 
 }

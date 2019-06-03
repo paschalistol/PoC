@@ -35,4 +35,8 @@ public class StateMachine : MonoBehaviour
     {
         currentState.ToDo();
     }
+    private void LateUpdate()
+    {
+        currentState.LateToDo();
+    }
 }

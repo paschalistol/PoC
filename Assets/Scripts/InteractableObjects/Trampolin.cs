@@ -32,7 +32,7 @@ public class Trampolin : Interactable
     {
         if (!GameController.isPaused)
         {
-            
+            AddPhysics();
                 transform.position += Velocity * Time.deltaTime;
             Bounce();
             Bouncing();

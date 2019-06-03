@@ -45,7 +45,7 @@ public class GroundedState : CharacterBaseState
     {
         if (!GameController.isPaused)
         {
-          
+
             Gravity();
             #region Input
             Vector3 input = GetDirectionInput();
@@ -53,9 +53,11 @@ public class GroundedState : CharacterBaseState
             CheckInput(input);
             #endregion
             ChangeCharRotation();
-            if (input.magnitude > 0 && walkingSound.objectInstatiated == null)
+            if (input.magnitude > 0 && walkingSound.objectInstatiated == null && MaxSpeed > maxSpeedCoeff)
             {
-                walkingSound.eventDescription = "Grounded Sound";
+
+
+                walkingSound.eventDescription = "Running Sound";
                 walkingSound.audioClip = footsteps;
                 walkingSound.looped = true;
                 if (walkingSound.audioClip != null)
@@ -63,7 +65,7 @@ public class GroundedState : CharacterBaseState
                     EventSystem.Current.FireEvent(walkingSound);
                 }
             }
-            if (input.magnitude == 0 && walkingSound.objectInstatiated != null)
+            if ((input.magnitude == 0 || MaxSpeed <= maxSpeedCoeff) && walkingSound.objectInstatiated != null)
             {
                 stopSoundEvent = new StopSoundEvent();
                 stopSoundEvent.AudioPlayer = walkingSound.objectInstatiated;
@@ -96,7 +98,7 @@ public class GroundedState : CharacterBaseState
             {
                 MaxSpeed = maxSpeedCoeff;
             }
-            
+
             #endregion
 
             DeathCollisionCheck();
@@ -105,9 +107,9 @@ public class GroundedState : CharacterBaseState
             Bouncing();
             CollisionCheck();
             //ReachingGoal();
+
+
             owner.transform.position += Velocity * Time.deltaTime;
-
-
             if (TakingLift2() != null)
             {
                 owner.ChangeState<OnLiftState>();
@@ -118,6 +120,10 @@ public class GroundedState : CharacterBaseState
 
             }
         }
+    }
+    public override void LateToDo()
+    {
+
     }
     public override void ExitState()
     {

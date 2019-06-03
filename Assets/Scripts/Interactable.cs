@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     protected RaycastHit raycastHit;
     protected RaycastHit wallHit;
     protected BoxCollider boxCollider;
-    [SerializeField]private int activeCollisions;
+    private int activeCollisions;
     protected virtual void Start()
     {
         StartPosition = transform.position;
