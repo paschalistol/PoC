@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip alarmClip;
     [SerializeField] private GameObject tint;
     [SerializeField] private float tintTime = 0.5f;
+    [SerializeField] private GameObject player;
+    private SoundEvent soundEvent;
+    private StopSoundEvent stopSound;
+    
 
     private bool tintCondtion = true;
     private float currentTime;
@@ -52,14 +56,24 @@ public class GameController : MonoBehaviour
 
             if (!usedOnce)
             {
-                SoundEvent soundEvent = new SoundEvent();
+                soundEvent = new SoundEvent();
                 soundEvent.audioClip = alarmClip;
-                soundEvent.looped = true;             
+                soundEvent.looped = true;
+                soundEvent.parent = player;
+               
 
                 EventSystem.Current.FireEvent(soundEvent);
                 usedOnce = true;
             }
+        }else if(soundEvent != null)
+        {
+            stopSound = new StopSoundEvent();
+            stopSound.AudioPlayer = soundEvent.objectInstatiated;
+
+            if(stopSound.AudioPlayer != null)
+            EventSystem.Current.FireEvent(stopSound);
         }
+
     }
 
 

@@ -9132,12 +9132,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323157443}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &323214618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6877130739764742885, guid: 3c55f2d1afb19c84f98248f48ffff585,
-    type: 3}
-  m_PrefabInstance: {fileID: 1012730311}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &331146517
 GameObject:
   m_ObjectHideFlags: 0
@@ -33740,6 +33734,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 6877130739764742885, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6877130739764742883, guid: 3c55f2d1afb19c84f98248f48ffff585,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39670,7 +39669,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 323214618}
+      objectReference: {fileID: 0}
     - target: {fileID: 6584871396636399206, guid: 2b544d3235d7be04ab029acc04ca499c,
         type: 3}
       propertyPath: enemies.Array.data[2]
@@ -44800,6 +44799,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 6877130739764742885, guid: 3c55f2d1afb19c84f98248f48ffff585,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6877130739764742883, guid: 3c55f2d1afb19c84f98248f48ffff585,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49685,6 +49689,11 @@ PrefabInstance:
       propertyPath: alarmClip
       value: 
       objectReference: {fileID: 8300000, guid: a74a7976e2ade1549ad0c7704badcbd3, type: 3}
+    - target: {fileID: 749857789079262704, guid: e424d6efd33e3fc4cab607304b65dd86,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1178717147}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e424d6efd33e3fc4cab607304b65dd86, type: 3}
 --- !u!1 &1806755846

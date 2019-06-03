@@ -44,6 +44,7 @@ public class SoundEvent : DebugEvent
     public bool looped;
     public GameObject objectInstatiated;
     public GameObject parent;
+    public float volume;
 }
 public class PressE : DebugEvent
 {

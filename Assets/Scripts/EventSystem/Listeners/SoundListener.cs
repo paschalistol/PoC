@@ -38,6 +38,13 @@ namespace Callback
                 audioSource = go.GetComponent<AudioSource>();
                 audioSource.clip = info.audioClip;
                 audioSource.Play();
+
+
+                if(info.volume != 0)
+                {
+                    audioSource.volume = info.volume;
+                }
+
                 if (info.parent != null)
                 {
                     go.transform.SetParent(info.parent.transform);

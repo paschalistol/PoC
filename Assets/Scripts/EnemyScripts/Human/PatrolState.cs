@@ -17,6 +17,7 @@ public class PatrolState : EnemyBaseState
     [SerializeField] private AudioClip clip;
     private int currentPoint = 0;
     private SoundEvent sound;
+    [SerializeField] private float volume = 0f;
 
     // Methods
     public override void EnterState()
@@ -60,6 +61,7 @@ public class PatrolState : EnemyBaseState
                 sound.audioClip = clip;
                 sound.looped = true;
                 sound.parent = owner.gameObject;
+                sound.volume = volume;
 
                 EventSystem.Current.FireEvent(sound);
                 usedOnce = true;

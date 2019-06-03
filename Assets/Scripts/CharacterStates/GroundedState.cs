@@ -55,8 +55,6 @@ public class GroundedState : CharacterBaseState
             ChangeCharRotation();
             if (input.magnitude > 0 && walkingSound.objectInstatiated == null)
             {
-
-                
                 walkingSound.eventDescription = "Grounded Sound";
                 walkingSound.audioClip = footsteps;
                 walkingSound.looped = true;
