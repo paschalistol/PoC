@@ -10,10 +10,10 @@ public class GameController : MonoBehaviour
     public static bool activatedAlarm = false;
     public static bool disabledAlaram = false;
     public static bool VictortCondition = false;
+    public GameObject tint;
 
     [SerializeField] private GameObject[] lightHolders;
     [SerializeField] private AudioClip alarmClip;
-    [SerializeField] private GameObject tint;
     [SerializeField] private float tintTime = 0.5f;
     [SerializeField] private GameObject player;
     private SoundEvent soundEvent;
@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(AlarmReset);
+        
 
         foreach (GameObject ob in lightHolders)
             if (ob != null)
@@ -79,7 +80,6 @@ public class GameController : MonoBehaviour
     {
         activatedAlarm = false;
         tint.SetActive(false);
-
     }
 
     void ActivateLights()
