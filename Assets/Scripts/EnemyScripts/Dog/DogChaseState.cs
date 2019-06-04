@@ -17,6 +17,7 @@ public class DogChaseState : DogBaseState
     private StopSoundEvent stopSound;
     private SoundEvent sound;
     private MusicBasedOnChased musicBasedOnChased;
+    [SerializeField] private bool loopedSound = false;
 
     public override void EnterState()
     {
@@ -30,7 +31,7 @@ public class DogChaseState : DogBaseState
         sound = new SoundEvent();
         sound.eventDescription = "The dog barks";
         sound.audioClip = barkSound;
-        sound.looped = false;
+        sound.looped = loopedSound;
         sound.parent = owner.gameObject;
         EventSystem.Current.FireEvent(sound);
 
@@ -51,10 +52,8 @@ public class DogChaseState : DogBaseState
             else
             {
                 owner.agent.SetDestination(owner.player.transform.position);
-                //owner.agent.autoBraking = true;
-                //owner.agent.transform.
-                //owner.agent.transform.LookAt(owner.player.transform);
-                owner.agent.transform.TransformDirection(owner.player.transform.position - owner.transform.position);
+
+                //owner.agent.transform.TransformDirection(owner.player.transform.position - owner.transform.position);
 
                 if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 {
@@ -71,15 +70,11 @@ public class DogChaseState : DogBaseState
         owner.ChangeState<DogPatrolState>();
     }
 
-    protected void StartDogSound()
-    {
-    }
-
     protected void StopDogSound()
     {
-        //stopSound = new StopSoundEvent();
-        //stopSound.AudioPlayer = sound.objectInstatiated;
-        //EventSystem.Current.FireEvent(stopSound);
+        stopSound = new StopSoundEvent();
+        stopSound.AudioPlayer = sound.objectInstatiated;
+        EventSystem.Current.FireEvent(stopSound);
     }
     public override void ExitState()
     {

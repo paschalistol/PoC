@@ -19,6 +19,7 @@ public class DogFetchState : DogBaseState
     private SoundEvent sound;
     private StopSoundEvent stopSound;
     private bool usedOnce;
+    [SerializeField] private bool loopedSound = true;
 
 
     public override void EnterState()
@@ -52,8 +53,7 @@ public class DogFetchState : DogBaseState
 
     void HandleDeath(UnitDeathEventInfo death)
     {
-
-       
+        StopDogSound();
         owner.ChangeState<DogPatrolState>();
     }
 
@@ -72,7 +72,8 @@ public class DogFetchState : DogBaseState
     {
         sound = new SoundEvent();
         sound.audioClip = growlSound;
-        sound.looped = true;
+        sound.looped = loopedSound;
+        sound.parent = owner.gameObject;
         EventSystem.Current.FireEvent(sound);
     }
 
