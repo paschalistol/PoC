@@ -71,7 +71,8 @@ public class Valuable : Interactable
         {
             EventSystem.Current.FireEvent(soundEvent);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public override AudioClip GetAudioClip()

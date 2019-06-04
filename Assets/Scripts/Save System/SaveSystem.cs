@@ -96,6 +96,15 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    public class ValuablesData : InteractablesData
+    {
+        public bool taken;
+        public ValuablesData(GameObject valuable, bool taken) : base(valuable)
+        {
+            this.taken = taken;
+        }
+    }
     #endregion  
 
 
@@ -116,6 +125,7 @@ public class SaveSystem : MonoBehaviour
         SavingEnemies(saveData);
         SavingAlarm(saveData);
         SavingPlayerPrefs(saveData);
+        
 
         formatter.Serialize(stream, saveData);
         stream.Close();
@@ -155,8 +165,14 @@ public class SaveSystem : MonoBehaviour
             if (interactable.layer == 9)
             {
                 bool used = interactable.transform.GetChild(0).GetComponent<Door>().used;
-                DoorsData interactableData = new DoorsData(interactable, used);
-                saveData.interactablesData.Add(interactableData);
+                DoorsData doorsData = new DoorsData(interactable, used);
+                saveData.interactablesData.Add(doorsData);
+            }else if (interactable.layer == 24)
+            {
+                bool taken = interactable.activeInHierarchy;
+                Debug.Log(taken);
+                ValuablesData valuablesData = new ValuablesData(interactable, taken);
+                saveData.interactablesData.Add(valuablesData);
             }
             else
             {
@@ -180,8 +196,6 @@ public class SaveSystem : MonoBehaviour
     private void SavingAlarm(SaveData saveData)
     {
         saveData.alarmOn = GameController.activatedAlarm;
-
-        Debug.Log(saveData.alarmOn);
     }
 
     private void SavingPlayerPrefs(SaveData saveData)
@@ -189,6 +203,7 @@ public class SaveSystem : MonoBehaviour
         saveData.highScore = PlayerPrefs.GetFloat("Highscore");
         saveData.deathCounter = PlayerPrefs.GetInt("deathCounter");
     }
+
 
     #endregion
 
@@ -286,6 +301,13 @@ public class SaveSystem : MonoBehaviour
             {
                 DoorsData doorData = (DoorsData)saveData.interactablesData[i];
                 interactable.transform.GetChild(0).GetComponent<Door>().used = doorData.used;
+            }else if (interactable.layer == 24 && died != true)
+            {
+                ValuablesData valuableData = (ValuablesData)saveData.interactablesData[i];
+                if(valuableData.taken == true)
+                {
+                    interactable.SetActive(true);
+                }
             }
 
         }
