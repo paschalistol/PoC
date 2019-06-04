@@ -28,7 +28,7 @@ public class Score : MonoBehaviour
         }
         else if (scoreShown > PlayerPrefs.GetFloat("Highscore", 0))
         {
-            scoreShown -= (scoreShown -PlayerPrefs.GetFloat("Highscore", 0) >= stepToChangeScore ? stepToChangeScore : PlayerPrefs.GetFloat("Highscore", 0) - scoreShown);
+            scoreShown -= (scoreShown - PlayerPrefs.GetFloat("Highscore", 0) >= stepToChangeScore ? stepToChangeScore : scoreShown - PlayerPrefs.GetFloat("Highscore", 0));
         }
 
         scoreText.text = "Score: " + scoreShown.ToString("000000");
