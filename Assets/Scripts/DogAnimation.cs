@@ -10,7 +10,7 @@ public class DogAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = dog.GetComponent<Animator>();
         anim.Play("C4D Animation Take", 0);
     }
 

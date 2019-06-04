@@ -46,6 +46,15 @@ public class BobController : MonoBehaviour
             anim.SetBool("Grounded", true);
         }
 
+        if (player.GetComponent<CharacterStateMachine>().inAir == true)
+        {
+            anim.SetBool("InAir", true);
+        }
+        else
+        {
+            anim.SetBool("InAir", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             anim.SetTrigger("Pickup");

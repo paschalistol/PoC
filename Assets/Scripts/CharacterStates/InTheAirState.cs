@@ -13,6 +13,7 @@ public class InTheAirState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
+        owner.inAir = true;
         SoundEvent soundEvent = new SoundEvent();
         
         soundEvent.eventDescription = "Jump Sound";
