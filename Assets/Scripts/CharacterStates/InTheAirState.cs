@@ -14,6 +14,7 @@ public class InTheAirState : CharacterBaseState
     {
         base.EnterState();
         owner.inAir = true;
+        owner.grounded = false;
         SoundEvent soundEvent = new SoundEvent();
         
         soundEvent.eventDescription = "Jump Sound";
@@ -55,9 +56,10 @@ public class InTheAirState : CharacterBaseState
             {
 
                 owner.ChangeState<GroundedState>();
+                owner.inAir = false;
             }
 
-            owner.grounded = false;
+            
         }
 
     }

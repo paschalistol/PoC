@@ -45,6 +45,10 @@ public class BobController : MonoBehaviour
         {
             anim.SetBool("Grounded", true);
         }
+        else
+        {
+            anim.SetBool("Grounded", false);
+        }
 
         if (player.GetComponent<CharacterStateMachine>().inAir == true)
         {

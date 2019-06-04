@@ -25,6 +25,8 @@ public class GroundedState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
+        owner.grounded = true;
+        owner.inAir = false;
         walkingParticles = owner.walkingParticles;
         dynamicFriction = dynamicFrictionCoeff;
         MaxSpeed = maxSpeedCoeff;
@@ -38,7 +40,7 @@ public class GroundedState : CharacterBaseState
         {
             EventSystem.Current.FireEvent(soundEvent);
         }
-        owner.grounded = true;
+       
         //anim = owner.GetComponent<Animator>();
     }
 
@@ -117,7 +119,7 @@ public class GroundedState : CharacterBaseState
                 owner.ChangeState<OnLiftState>();
             }
             if (!IsGrounded())
-            {
+            {                
                 owner.ChangeState<InTheAirState>();
 
             }
