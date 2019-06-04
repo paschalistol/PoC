@@ -5,6 +5,7 @@ using UnityEngine;
 public class DogAnimation : MonoBehaviour
 {
     private Animator anim;
+    public GameObject scriptHolder;
     public GameObject dog;
 
     // Start is called before the first frame update
@@ -17,7 +18,7 @@ public class DogAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dog.GetComponent<EnemyDog>().isInChase)
+        if (scriptHolder.GetComponent<EnemyDog>().isInChase)
         {            
             anim.SetBool("chase", true);
         }
