@@ -208,7 +208,7 @@ public class SaveSystem : MonoBehaviour
         player.transform.eulerAngles = LoadPlayerRotation(saveData);
 
 
-        CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
+       /* CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
 
         if (saveData.playerData.itemHoldIndex >= 0)
         {
@@ -221,7 +221,7 @@ public class SaveSystem : MonoBehaviour
             Interactable interactable = itemHolding.GetComponent<Interactable>();
             interactable.StartInteraction();
 
-        }
+        }*/
 
 
     }
