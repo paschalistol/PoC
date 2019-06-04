@@ -485,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1560112273820499609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1553,13 +1553,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4276865628330607630}
+  - component: {fileID: 8951378816498532999}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4276865628330607630
 Transform:
   m_ObjectHideFlags: 0
@@ -1568,11 +1569,23 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8829694942715628721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -254.99164, y: -18.240513, z: 92.44883}
-  m_LocalScale: {x: 1.983471, y: 1.983471, z: 1.983471}
+  m_LocalPosition: {x: 76.75, y: 107.49, z: 133.51}
+  m_LocalScale: {x: 2.8643305, y: 2.8643305, z: 2.8643305}
   m_Children:
   - {fileID: 7163183487350044132}
   - {fileID: 5671813072162011341}
   m_Father: {fileID: 154423207991030783}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8951378816498532999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829694942715628721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4c0338ed2b6d43a1da72fa9830282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
