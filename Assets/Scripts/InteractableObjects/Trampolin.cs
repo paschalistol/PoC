@@ -13,6 +13,8 @@ public class Trampolin : Interactable
 
     [SerializeField] private LayerMask environment;
     [SerializeField] private LayerMask bounceLayer;
+    [SerializeField] private AudioClip clip;
+    private SoundEvent sound;
     protected const float skinWidth = 0.2f;
     public bool standOnTrampoline = false;
     protected float bounceHeight = 25;
@@ -85,6 +87,17 @@ public class Trampolin : Interactable
                 System.String playerName = obj.name;
                 CharacterStateMachine player = GameObject.Find(playerName).GetComponent<CharacterStateMachine>();
                 player.standOnTrampoline = true;
+
+                sound = new SoundEvent();
+                sound.audioClip = clip;
+                sound.parent = gameObject;
+                sound.looped = false;
+                sound.volume = 100f;
+                sound.eventDescription = "Jumping Sound";
+
+                if (sound != null)
+                    EventSystem.Current.FireEvent(sound);
+
             }
 
             if (obj.tag == ("Box"))
@@ -107,6 +120,8 @@ public class Trampolin : Interactable
     {
         if (standOnTrampoline)
         {
+           
+
             Velocity = new Vector3(Velocity.x * 1.18f, bounceHeight, Velocity.z * 1.18f);
             standOnTrampoline = false;
         }

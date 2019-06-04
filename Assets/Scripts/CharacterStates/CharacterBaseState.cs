@@ -30,6 +30,7 @@ public class CharacterBaseState : State
     private float normalOffset = 0.03f;
     private Vector3 point1, point2;
     private RaycastHit raycastHit;
+  
     
 
     public override void InitializeState(StateMachine owner)
@@ -54,6 +55,7 @@ public class CharacterBaseState : State
     {
         if (owner.standOnTrampoline == true)
         {
+
             ApplyForce(new Vector3(Velocity.x * 1.18f, owner.bounceHeight, Velocity.z * 1.18f));
         }
         owner.standOnTrampoline = false;

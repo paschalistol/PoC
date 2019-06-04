@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25652cfedd06fe041aa20ed0054eb98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeld: 0
+  activeCollisions: 0
   used: 0
   environment:
     serializedVersion: 2
@@ -111,4 +113,5 @@ MonoBehaviour:
   bounceLayer:
     serializedVersion: 2
     m_Bits: 10624000
+  clip: {fileID: 8300000, guid: c74c0aefd8879ca47b3c0ac44f9298b2, type: 3}
   standOnTrampoline: 0
