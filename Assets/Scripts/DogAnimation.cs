@@ -20,5 +20,9 @@ public class DogAnimation : MonoBehaviour
         {            
             anim.SetBool("chase", true);
         }
+        else
+        {
+            anim.SetBool("chase", false);
+        }
     }
 }
