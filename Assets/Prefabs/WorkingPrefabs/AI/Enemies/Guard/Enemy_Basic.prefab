@@ -196,7 +196,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 0.7254902, a: 1}
   m_Intensity: 1.5
-  m_Range: 20
+  m_Range: 25
   m_SpotAngle: 62
   m_CookieSize: 10
   m_Shadows:
@@ -391,10 +391,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6877130739764742883}
     m_Modifications:
-    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
-      propertyPath: m_Name
-      value: GuardMesh
-      objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -450,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 4889916270699016, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968476592218994, guid: 36cef4d2dbf897242b8f477309e699fd, type: 3}
+      propertyPath: m_Name
+      value: GuardMesh
       objectReference: {fileID: 0}
     - target: {fileID: 95612694983450844, guid: 36cef4d2dbf897242b8f477309e699fd,
         type: 3}
