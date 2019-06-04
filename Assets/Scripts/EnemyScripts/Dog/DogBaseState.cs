@@ -20,6 +20,9 @@ public class DogBaseState : State
     private float fieldOfView;
     private Vector3 scale;
     private Vector3 bigScale;
+    private SoundEvent sound;
+    private StopSoundEvent stopSound;
+    
  
     
 
@@ -30,6 +33,13 @@ public class DogBaseState : State
         //owner.Renderer.material = material;
         owner.agent.speed = moveSpeed;
         boxCollider = owner.GetComponent<BoxCollider>();
+
+        sound = new SoundEvent();
+        sound.parent = owner.gameObject;
+
+        stopSound = new StopSoundEvent();
+     
+        
     }
 
     public override void InitializeState(StateMachine owner)
@@ -63,6 +73,19 @@ public class DogBaseState : State
         deathInfo.spawnPoint = owner.player.GetComponent<CharacterStateMachine>().currentCheckPoint;
         deathInfo.deadUnit = owner.player.transform.gameObject;
         EventSystem.Current.FireEvent(deathInfo);
+    }
+
+    protected void StartDogSound(AudioClip barkSound, bool loopedOrNot)
+    {
+        sound.audioClip = barkSound;
+        sound.looped = loopedOrNot;
+        EventSystem.Current.FireEvent(sound);
+    }
+
+    protected void StopDogSound()
+    {
+        stopSound.AudioPlayer = sound.objectInstatiated;
+        EventSystem.Current.FireEvent(stopSound);
     }
 
 
