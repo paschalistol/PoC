@@ -11,7 +11,6 @@ public class HoldingItem : HoldItemBase
     private int layerNumber;
     private SoundEvent soundEvent;
     private static bool died;
-    private GameObject objectInFront;
     public override void EnterState()
     {
 
@@ -32,7 +31,7 @@ public class HoldingItem : HoldItemBase
             {
                 EventSystem.Current.FireEvent(soundEvent);
             }
-            objectCarried.transform.position = new Vector3(objectCarried.transform.position.x, objectCarried.transform.localScale.y / 2 + capsuleCollider.height * 0.25f + owner.transform.position.y, objectCarried.transform.position.z);
+            objectCarried.transform.position = new Vector3(objectCarried.transform.position.x, objectCarried.transform.localScale.y/2 + capsuleCollider.height/2 + owner.transform.position.y, objectCarried.transform.position.z);
             objectCarried.transform.rotation = owner.transform.rotation;
         }
     }
@@ -62,13 +61,15 @@ public class HoldingItem : HoldItemBase
             died = false;
         }
 
-        //objectInFront = ReturnObjectInFront();
-        //if (objectInFront == null && objectCarried != null)
-        //{
-        //    Debug.Log("test");
-        //    ReleaseItem();
-        //}
-
+        if (objectCarried != null)
+        {
+            lhs = new Vector2(owner.transform.position.x, owner.transform.position.z);
+            rhs = new Vector2(objectCarried.transform.position.x, objectCarried.transform.position.z);
+            if ((Vector2.Distance(lhs, rhs) > Mathf.Max(objectCarried.transform.localScale.x, objectCarried.transform.localScale.z) || ObjectStillInFront() == false))
+            {
+                ReleaseItem();
+            }
+        }
 
         if (objectCarried == null || !objectCarried.GetComponent<Interactable>().IsHeld())
         {
@@ -100,6 +101,13 @@ public class HoldingItem : HoldItemBase
         {
             TransformCarriedObject();
         }
+    }
+    Vector2 lhs, rhs;
+    private bool ObjectStillInFront()
+    {
+        lhs = new Vector2(LookDirection().x, LookDirection().z);
+        rhs = new Vector2(objectCarried.transform.position.x- owner.transform.position.x, objectCarried.transform.position.z- owner.transform.position.z);
+       return  Vector2.Dot(lhs.normalized, rhs.normalized) > 0;
     }
     private void RespawnItem(GameObject temp)
     {
