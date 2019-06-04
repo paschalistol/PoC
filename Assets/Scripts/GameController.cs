@@ -19,13 +19,9 @@ public class GameController : MonoBehaviour
     private SoundEvent soundEvent;
     private StopSoundEvent stopSound;
     
-
     private bool tintCondtion = true;
     private float currentTime;
     private bool usedOnce;
-
-
-
 
     private void Start()
     {
@@ -81,6 +77,8 @@ public class GameController : MonoBehaviour
     void AlarmReset(UnitDeathEventInfo info)
     {
         activatedAlarm = false;
+        tint.SetActive(false);
+
     }
 
     void ActivateLights()
@@ -91,7 +89,7 @@ public class GameController : MonoBehaviour
                 ob.GetComponent<Light>().intensity = 100;
                 ob.GetComponent<Light>().color = Color.red;
             }
-        Debug.Log("LightActivation");
+       
     }
 
     void BlinkingTint()
