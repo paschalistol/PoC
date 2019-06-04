@@ -12,7 +12,7 @@ public class Door : Interactable
     private int rotationGoal = 90;
     [SerializeField, Tooltip("Can the player open the door or is a key needed?")] private bool keyNeeded;
     private GameObject parent;
-    private bool used = false;
+    public bool used = false;
     [Header("Sounds")]
     [SerializeField] private AudioClip doorOpenSound;
     [SerializeField] private AudioClip doorCloseSound;
@@ -39,6 +39,7 @@ public class Door : Interactable
         {
             if (used == false)
             {
+
                 if (rotationGoal < 0)
                 {
                     rotationSpeed *= -1;
@@ -74,6 +75,11 @@ public class Door : Interactable
             EventSystem.Current.FireEvent(soundEvent);
         }
 
+    }
+
+    public void Update()
+    {
+        Debug.Log(used);
     }
 
     IEnumerator RotateDoor(GameObject parent)

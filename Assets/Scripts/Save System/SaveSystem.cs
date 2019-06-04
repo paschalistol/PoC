@@ -81,6 +81,16 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    public class DoorsData : InteractablesData
+    {
+        public bool used;
+        public DoorsData(GameObject door, bool used) : base(door)
+        {
+            this.used = used;
+        }
+    }
+
     #endregion  
 
 
@@ -115,7 +125,7 @@ public class SaveSystem : MonoBehaviour
         {
             GameObject item = GameManager.gameManager.interactables[i];
             CharacterHoldItemStateMachine holdItemScript = player.GetComponent<CharacterHoldItemStateMachine>();
-            if(holdItemScript.ObjectCarried != null && item == holdItemScript.ObjectCarried)
+            if (holdItemScript.ObjectCarried != null && item == holdItemScript.ObjectCarried)
             {
                 playerData.itemHoldIndex = i;
                 break;
@@ -125,7 +135,7 @@ public class SaveSystem : MonoBehaviour
                 playerData.itemHoldIndex = -1;
             }
         }
-        
+
         saveData.playerData = playerData;
     }
 
@@ -134,9 +144,19 @@ public class SaveSystem : MonoBehaviour
         for (int i = 0; i < GameManager.gameManager.interactables.Count; i++)
         {
             GameObject interactable = GameManager.gameManager.interactables[i];
-            InteractablesData interactableData = new InteractablesData(interactable);
-            
-            saveData.interactablesData.Add(interactableData);
+
+            if (interactable.layer == 9)
+            {
+                bool used = interactable.transform.GetChild(0).GetComponent<Door>().used;                
+                DoorsData interactableData = new DoorsData(interactable, used);
+                saveData.interactablesData.Add(interactableData);
+            }
+            else
+            {
+                InteractablesData interactableData = new InteractablesData(interactable);
+                saveData.interactablesData.Add(interactableData);
+            }
+
         }
     }
 
@@ -184,25 +204,25 @@ public class SaveSystem : MonoBehaviour
     private void LoadPlayer(SaveData saveData)
     {
         GameObject player = GameManager.gameManager.player;
-        player.transform.position = LoadPlayerPosition(saveData);     
+        player.transform.position = LoadPlayerPosition(saveData);
         player.transform.eulerAngles = LoadPlayerRotation(saveData);
 
 
         CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
-        
+
         if (saveData.playerData.itemHoldIndex >= 0)
         {
-        GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
-        Debug.Log(saveData.playerData.itemHoldIndex);
-        holdItemMachine.ObjectCarried = itemHolding;
-        holdItemMachine.holdingSth = true;
-        holdItemMachine.ChangeState<HoldingItem>();
-        
-        Interactable interactable = itemHolding.GetComponent<Interactable>();
-        interactable.StartInteraction();
+            GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
+            Debug.Log(saveData.playerData.itemHoldIndex);
+            holdItemMachine.ObjectCarried = itemHolding;
+            holdItemMachine.holdingSth = true;
+            holdItemMachine.ChangeState<HoldingItem>();
+
+            Interactable interactable = itemHolding.GetComponent<Interactable>();
+            interactable.StartInteraction();
 
         }
-        
+
 
     }
 
@@ -230,11 +250,17 @@ public class SaveSystem : MonoBehaviour
     private void LoadInteractables(SaveData saveData)
     {
         for (int i = 0; i < saveData.interactablesData.Count; i++)
-        {           
-            GameManager.gameManager.interactables[i].transform.position = LoadInteractablesPosition(saveData, i);
-            GameManager.gameManager.interactables[i].transform.eulerAngles = LoadInteractablesRotation(saveData, i);
-            
-           
+        {
+            GameObject interactable = GameManager.gameManager.interactables[i];
+            interactable.transform.position = LoadInteractablesPosition(saveData, i);
+            interactable.transform.eulerAngles = LoadInteractablesRotation(saveData, i);
+
+            if(interactable.layer == 9)
+            {
+                DoorsData doorData = (DoorsData)saveData.interactablesData[i];
+                interactable.transform.GetChild(0).GetComponent<Door>().used = doorData.used;
+            }
+
         }
     }
 
@@ -253,8 +279,8 @@ public class SaveSystem : MonoBehaviour
         float x = rotation[0];
         float y = rotation[1];
         float z = rotation[2];
-       
-        return new Vector3( x, y, z);
+
+        return new Vector3(x, y, z);
 
     }
 
@@ -268,7 +294,7 @@ public class SaveSystem : MonoBehaviour
         {
             GameManager.gameManager.enemies[i].transform.rotation = LoadEnemiesRotation(saveData, i);
             GameManager.gameManager.enemies[i].transform.position = LoadEnemiesPosition(saveData, i);
-            
+
         }
     }
 
