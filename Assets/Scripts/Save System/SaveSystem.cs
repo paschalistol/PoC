@@ -115,7 +115,7 @@ public class SaveSystem : MonoBehaviour
         {
             GameObject item = GameManager.gameManager.interactables[i];
             CharacterHoldItemStateMachine holdItemScript = player.GetComponent<CharacterHoldItemStateMachine>();
-            if(holdItemScript.objectCarried != null && item == holdItemScript.objectCarried)
+            if(holdItemScript.ObjectCarried != null && item == holdItemScript.ObjectCarried)
             {
                 playerData.itemHoldIndex = i;
                 break;
@@ -194,7 +194,7 @@ public class SaveSystem : MonoBehaviour
         {
         GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
         Debug.Log(saveData.playerData.itemHoldIndex);
-        holdItemMachine.objectCarried = itemHolding;
+        holdItemMachine.ObjectCarried = itemHolding;
         holdItemMachine.holdingSth = true;
         holdItemMachine.ChangeState<HoldingItem>();
         

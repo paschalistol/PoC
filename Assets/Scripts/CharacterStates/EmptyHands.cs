@@ -33,10 +33,10 @@ public class EmptyHands : HoldItemBase
             if (Input.GetKeyDown(KeyCode.E))
             {
 
-                owner.objectCarried = objectInFront;
+                objectCarried = objectInFront;
                 InteractWithObject();
                 
-                if (!owner.objectCarried.CompareTag("Only Interaction"))
+                if (!objectCarried.CompareTag("Only Interaction"))
                 {
                     SetHolding(true);
                 }

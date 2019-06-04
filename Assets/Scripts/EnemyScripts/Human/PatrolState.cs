@@ -68,7 +68,7 @@ public class PatrolState : EnemyBaseState
 
             }
 
-            Debug.Log(owner.name + " f ");
+
 
             if (LineOfSight() || GameController.activatedAlarm)
                 owner.ChangeState<ChaseState>();

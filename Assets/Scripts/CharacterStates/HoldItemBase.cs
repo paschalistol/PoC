@@ -8,7 +8,8 @@ public class HoldItemBase : State
 {
     protected CharacterHoldItemStateMachine owner;
 
-    //public GameObject owner.objectCarried;
+    protected GameObject objectCarried { get { return owner.ObjectCarried; } set { owner.ObjectCarried = value; } }
+
     protected CapsuleCollider capsuleCollider;
     public bool HoldingSth { get { return owner.holdingSth; } set { owner.holdingSth = value; } }
     private Vector3 point2, point1;
@@ -30,12 +31,12 @@ public class HoldItemBase : State
     protected void InteractWithObject()
     {
 
-        if (owner.objectCarried != null)
+        if (objectCarried != null)
         {
 
             InteractionEvent interactedInfo = new InteractionEvent();
             interactedInfo.eventDescription = "Pressed item has been activated: ";
-            interactedInfo.interactedObject = owner.objectCarried;
+            interactedInfo.interactedObject = objectCarried;
 
             EventSystem.Current.FireEvent(interactedInfo);
            

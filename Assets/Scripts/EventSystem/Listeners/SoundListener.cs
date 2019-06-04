@@ -50,8 +50,7 @@ namespace Callback
                     go.transform.SetParent(info.parent.transform);
                     go.transform.position = info.parent.transform.position;
                 }
-                Debug.Log(go.name);
-                //info.objectInstatiated = go;
+                info.objectInstatiated = go;
                 if (!info.looped)
                 {
                     Destroy(go, audioSource.clip.length);
