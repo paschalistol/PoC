@@ -14,6 +14,7 @@ public class FuseBoxItem : Interactable
     //private static int count;
     [SerializeField] private LayerMask environment;
     [SerializeField] private AudioClip clip;
+    [SerializeField] private float volume; 
 
     private SoundEvent sound;
     //[SerializeField] private GameObject particles;
@@ -46,6 +47,8 @@ public class FuseBoxItem : Interactable
                 sound.audioClip = clip;
                 sound.eventDescription = "Water sound";
                 sound.looped = false;
+                sound.parent = gameObject;
+                sound.volume = volume;
 
                 EventSystem.Current.FireEvent(sound);
                 //fuseBox.GetComponent<FuseBox>().;

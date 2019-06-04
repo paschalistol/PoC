@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     private SoundEvent soundEvent;
     private StopSoundEvent stopSound;
+    [SerializeField] private float volume; 
     
     private bool tintCondtion = true;
     private float currentTime;
@@ -57,7 +58,7 @@ public class GameController : MonoBehaviour
                 soundEvent.audioClip = alarmClip;
                 soundEvent.looped = true;
                 soundEvent.parent = player;
-               
+                soundEvent.volume = volume;
 
                 EventSystem.Current.FireEvent(soundEvent);
                 usedOnce = true;
