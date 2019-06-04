@@ -22,6 +22,7 @@ public class DogBaseState : State
     private Vector3 bigScale;
     private SoundEvent sound;
     private StopSoundEvent stopSound;
+    protected bool chasing;
     
  
     
@@ -37,7 +38,6 @@ public class DogBaseState : State
         sound = new SoundEvent();
         sound.parent = owner.gameObject;
 
-        stopSound = new StopSoundEvent();
      
         
     }
@@ -75,18 +75,7 @@ public class DogBaseState : State
         EventSystem.Current.FireEvent(deathInfo);
     }
 
-    protected void StartDogSound(AudioClip barkSound, bool loopedOrNot)
-    {
-        sound.audioClip = barkSound;
-        sound.looped = loopedOrNot;
-        EventSystem.Current.FireEvent(sound);
-    }
-
-    protected void StopDogSound()
-    {
-        stopSound.AudioPlayer = sound.objectInstatiated;
-        EventSystem.Current.FireEvent(stopSound);
-    }
+   
 
 
 

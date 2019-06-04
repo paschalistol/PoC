@@ -15,7 +15,9 @@ public class DogFetchState : DogBaseState
     [SerializeField] private float animationTime = 0.05f;
     private bool activatedAnimation = true;
     private Canvas canvas;
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioClip growlSound;
+    private SoundEvent sound;
+    private StopSoundEvent stopSound;
     private bool usedOnce;
 
 
@@ -32,7 +34,7 @@ public class DogFetchState : DogBaseState
 
             if (!usedOnce)
             {
-                StartDogSound(clip, true);
+                StartDogSound();
                 usedOnce = true;
             }
 
@@ -50,6 +52,8 @@ public class DogFetchState : DogBaseState
 
     void HandleDeath(UnitDeathEventInfo death)
     {
+
+       
         owner.ChangeState<DogPatrolState>();
     }
 
@@ -64,10 +68,25 @@ public class DogFetchState : DogBaseState
         }
     }
 
-    public override void ExitState()
+    protected void StartDogSound()
     {
-        base.ExitState();
-        StopDogSound();
+        sound = new SoundEvent();
+        sound.audioClip = growlSound;
+        sound.looped = true;
+        EventSystem.Current.FireEvent(sound);
     }
+
+    protected void StopDogSound()
+    {
+        stopSound = new StopSoundEvent();
+        stopSound.AudioPlayer = sound.objectInstatiated;
+        EventSystem.Current.FireEvent(stopSound);
+    }
+
+    //public override void ExitState()
+    //{
+    //    base.ExitState();
+    //    //StopDogSound();
+    //}
 }
         //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));

@@ -8,13 +8,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/DogChaseState")]
 public class DogChaseState : DogBaseState
 {
-    
+
     private float smellDistance;
     private const float bustedDistance = 2f;
     private UnitDeathEventInfo deathInfo;
-    private SoundEvent sound;
     private bool usedOnce;
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioClip barkSound;
+    private StopSoundEvent stopSound;
+    private SoundEvent sound;
+
 
     public override void EnterState()
     {
@@ -22,7 +24,7 @@ public class DogChaseState : DogBaseState
         smellDistance = owner.GetSmellDistance();
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
         owner.isInChase = true;
-        
+
     }
     /// <summary>
     /// Decides if the dog will return to patrol or attack while chasing the player.
@@ -33,7 +35,9 @@ public class DogChaseState : DogBaseState
         {
             if (!usedOnce)
             {
-                StartDogSound(clip, false);
+                sound.audioClip = barkSound;
+                sound.looped = false;
+                EventSystem.Current.FireEvent(sound);
                 usedOnce = true;
             }
 
@@ -51,13 +55,26 @@ public class DogChaseState : DogBaseState
                     owner.ChangeState<DogPatrolState>();
                 }
             }
-        }else { owner.agent.SetDestination(owner.agent.transform.position); }
+        }
+        else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
     void HandleDeath(UnitDeathEventInfo death)
     {
         owner.ChangeState<DogPatrolState>();
     }
+
+    protected void StartDogSound()
+    {
+    }
+
+    protected void StopDogSound()
+    {
+        //stopSound = new StopSoundEvent();
+        //stopSound.AudioPlayer = sound.objectInstatiated;
+        //EventSystem.Current.FireEvent(stopSound);
+    }
+
 }
 #region ChaseLegacy
 //public override void ExitState()
