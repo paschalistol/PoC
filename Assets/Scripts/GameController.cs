@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
                 soundEvent = new SoundEvent();
                 soundEvent.audioClip = alarmClip;
                 soundEvent.looped = true;
-                soundEvent.parent = player;
+                soundEvent.parent = Camera.main.gameObject;
                 soundEvent.volume = volume;
 
                 EventSystem.Current.FireEvent(soundEvent);

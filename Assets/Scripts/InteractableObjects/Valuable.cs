@@ -14,6 +14,7 @@ public class Valuable : Interactable
     [SerializeField] private AudioClip interactionSound = null;
     private AddPointEvent addPointInfo;
     private SoundEvent soundEvent;
+    [SerializeField] private bool usePhysics = true;
 
     protected override void Start()
     {
@@ -31,8 +32,12 @@ public class Valuable : Interactable
 
     protected virtual void Update()
     {
-        AddPhysics();
-        transform.position += Velocity * Time.deltaTime;
+        if (usePhysics)
+        {
+            AddPhysics();
+            transform.position += Velocity * Time.deltaTime;
+
+        }
     }
 
     private void AddPhysics()
@@ -40,14 +45,14 @@ public class Valuable : Interactable
         if (!isHeld)
         {
 
-            base.Velocity = PhysicsScript.Decelerate(base.Velocity);
-            base.Velocity = PhysicsScript.Gravity(base.Velocity);
+            Velocity = PhysicsScript.Decelerate(Velocity);
+            Velocity = PhysicsScript.Gravity(Velocity);
         }
         else
         {
             GetWallNormal();
         }
-        base.Velocity = PhysicsScript.CollisionCheck(base.Velocity, boxCollider, skinWidth, environment);
+        Velocity = PhysicsScript.CollisionCheck(Velocity, boxCollider, skinWidth, environment);
 
     }
     public override void StartInteraction()
