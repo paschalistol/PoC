@@ -6995,6 +6995,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key
       objectReference: {fileID: 0}
+    - target: {fileID: 6930314266012103731, guid: 89fc6c2339ca5c24690ee0b40d3faadb,
+        type: 3}
+      propertyPath: lockedDoor
+      value: 
+      objectReference: {fileID: 2009695880}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89fc6c2339ca5c24690ee0b40d3faadb, type: 3}
 --- !u!1001 &224711022
@@ -58940,6 +58945,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5147475758931476255, guid: b88758a5e08b5af43885264beffd0f82,
     type: 3}
   m_PrefabInstance: {fileID: 2008351473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2009695880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4306231924803450105, guid: 0e6d37dc13fb4fb40bfcfa58cf8a978d,
+    type: 3}
+  m_PrefabInstance: {fileID: 334974139}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2011256948
 PrefabInstance:
