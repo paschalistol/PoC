@@ -16,7 +16,7 @@ public class DogChaseState : DogBaseState
     [SerializeField] private AudioClip barkSound;
     private StopSoundEvent stopSound;
     private SoundEvent sound;
-
+    private MusicBasedOnChased musicBasedOnChased;
 
     public override void EnterState()
     {
@@ -24,6 +24,15 @@ public class DogChaseState : DogBaseState
         smellDistance = owner.GetSmellDistance();
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
         owner.isInChase = true;
+        musicBasedOnChased = new MusicBasedOnChased();
+        musicBasedOnChased.enemyChasing = true;
+        EventSystem.Current.FireEvent(musicBasedOnChased);
+        sound = new SoundEvent();
+        sound.eventDescription = "The dog barks";
+        sound.audioClip = barkSound;
+        sound.looped = false;
+        sound.parent = owner.gameObject;
+        EventSystem.Current.FireEvent(sound);
 
     }
     /// <summary>
@@ -33,13 +42,6 @@ public class DogChaseState : DogBaseState
     {
         if (!GameController.isPaused)
         {
-            if (!usedOnce)
-            {
-                sound.audioClip = barkSound;
-                sound.looped = false;
-                EventSystem.Current.FireEvent(sound);
-                usedOnce = true;
-            }
 
             if (Vector3.Distance(owner.transform.position, owner.player.transform.position) >= smellDistance
                 || owner.inSafeZone)
@@ -73,6 +75,12 @@ public class DogChaseState : DogBaseState
         //stopSound = new StopSoundEvent();
         //stopSound.AudioPlayer = sound.objectInstatiated;
         //EventSystem.Current.FireEvent(stopSound);
+    }
+    public override void ExitState()
+    {
+        musicBasedOnChased = new MusicBasedOnChased();
+        musicBasedOnChased.enemyChasing = false;
+        EventSystem.Current.FireEvent(musicBasedOnChased);
     }
 
 }

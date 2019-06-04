@@ -33,6 +33,7 @@ public class GroundedState : CharacterBaseState
         soundEvent.eventDescription = "Grounded Sound";
         soundEvent.audioClip = groundedSound;
         soundEvent.looped = false;
+        soundEvent.parent = owner.gameObject;
         if (soundEvent.audioClip != null)
         {
             EventSystem.Current.FireEvent(soundEvent);
@@ -60,6 +61,7 @@ public class GroundedState : CharacterBaseState
                 walkingSound.eventDescription = "Running Sound";
                 walkingSound.audioClip = footsteps;
                 walkingSound.looped = true;
+                walkingSound.parent = owner.gameObject;
                 if (walkingSound.audioClip != null)
                 {
                     EventSystem.Current.FireEvent(walkingSound);
