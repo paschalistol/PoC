@@ -16,7 +16,7 @@ public class GroundedState : CharacterBaseState
     [SerializeField] private AudioClip groundedSound, footsteps;
     [SerializeField] private float dynamicFrictionCoeff = 0.35f;
     private float maxSpeedCoeff = 5;
-    private const float movementMultiplier = 2f;
+    [SerializeField] private float movementMultiplier = 2f;
     private GameObject walkingParticles;
     private bool playingParticles;
     private SoundEvent walkingSound;
