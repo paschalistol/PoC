@@ -47,7 +47,7 @@ public class FuseBoxItem : Interactable
                 sound.audioClip = clip;
                 sound.eventDescription = "Water sound";
                 sound.looped = false;
-                sound.parent = gameObject;
+                sound.parent = Camera.main.gameObject;
                 sound.volume = volume;
 
                 EventSystem.Current.FireEvent(sound);
@@ -60,6 +60,7 @@ public class FuseBoxItem : Interactable
                 ////fuseBoxEvent.particles = particles;
 
                 //EventSystem.Current.FireEvent(fuseBoxEvent);
+
                 Destroy(gameObject);
               
               

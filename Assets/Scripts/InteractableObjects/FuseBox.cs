@@ -9,11 +9,21 @@ public class FuseBox : MonoBehaviour
     [SerializeField] private int itemQuantity = 2;
     [HideInInspector] public int count = 0;
     [HideInInspector] public bool itemUsed;
-
+    [SerializeField] private string activationText = "";
+    private WarningEvent activationEvent;
+    private void Start()
+    {
+        activationEvent = new WarningEvent();
+    }
     public void RunInteraction()
     {
         count++;
-        Debug.Log("Number of items used: " + count + " and the door has been opened!");
+        if (activationText != "")
+        {
+
+            activationEvent.warning = activationText;
+            EventSystem.Current.FireEvent(activationEvent);
+        }
         if (count >= itemQuantity)
             foreach(GameObject ob in interactionObject) { ob.GetComponent<Interactable>().StartInteraction(); }
             

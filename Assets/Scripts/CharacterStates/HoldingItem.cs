@@ -11,6 +11,7 @@ public class HoldingItem : HoldItemBase
     private int layerNumber;
     private SoundEvent soundEvent;
     private static bool died;
+    private float holdItemOffset = 1f;
     public override void EnterState()
     {
 
@@ -65,7 +66,7 @@ public class HoldingItem : HoldItemBase
         {
             lhs = new Vector2(owner.transform.position.x, owner.transform.position.z);
             rhs = new Vector2(objectCarried.transform.position.x, objectCarried.transform.position.z);
-            if ((Vector2.Distance(lhs, rhs) > Mathf.Max(objectCarried.transform.localScale.x, objectCarried.transform.localScale.z) || ObjectStillInFront() == false))
+            if ((Vector2.Distance(lhs, rhs) > Mathf.Max(objectCarried.transform.localScale.x + capsuleCollider.radius + holdItemOffset, objectCarried.transform.localScale.z + capsuleCollider.radius + holdItemOffset) || ObjectStillInFront() == false))
             {
                 ReleaseItem();
             }

@@ -50,6 +50,12 @@ namespace Callback
                     go.transform.SetParent(info.parent.transform);
                     go.transform.position = info.parent.transform.position;
                 }
+                else
+                {
+                    info.parent = Camera.main.gameObject;
+                    go.transform.SetParent(info.parent.transform);
+                    go.transform.position = info.parent.transform.position;
+                }
                 info.objectInstatiated = go;
                 if (!info.looped)
                 {
