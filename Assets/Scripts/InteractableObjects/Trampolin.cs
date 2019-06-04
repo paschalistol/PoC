@@ -120,8 +120,6 @@ public class Trampolin : Interactable
     {
         if (standOnTrampoline)
         {
-           
-
             Velocity = new Vector3(Velocity.x * 1.18f, bounceHeight, Velocity.z * 1.18f);
             standOnTrampoline = false;
         }
