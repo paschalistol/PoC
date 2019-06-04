@@ -13,7 +13,6 @@ public class InTheAirState : CharacterBaseState
     public override void EnterState()
     {
         base.EnterState();
-        owner.inAir = true;
         owner.grounded = false;
         SoundEvent soundEvent = new SoundEvent();
         
