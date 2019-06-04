@@ -60,7 +60,7 @@ public class ChaseState : EnemyBaseState
 
             if (!LineOfSight() && (InRangeCheck(distanceToPlayer) && MakingSoundCheck(distanceToPlayer) && distanceToPlayer > investigationDistance))
             {
-                Debug.Log("Switching To Investigate");
+               
                 owner.ChangeState<InvestigationState>();
                 ScornDogs();
             }else if(!InRangeCheck(distanceToPlayer) && !GameController.activatedAlarm)
