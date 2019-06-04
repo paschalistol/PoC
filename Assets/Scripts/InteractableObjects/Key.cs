@@ -39,7 +39,7 @@ public class Key : Interactable
             parentEnemy = transform.parent.gameObject;
             keyRelativePosition = transform.localPosition;
             keyRelativeRotation = transform.localRotation;
-            
+
         }
     }
     void Update()
@@ -47,12 +47,12 @@ public class Key : Interactable
         if (!GameController.isPaused)
         {
 
-                AddPhysics();
+            AddPhysics();
 
-                if (!usedOnce)
-                {
-                    ParticleStarter();
-                }
+            if (!usedOnce)
+            {
+                ParticleStarter();
+            }
             UsingKeyCheck();
             transform.position += Velocity * Time.deltaTime;
         }
@@ -126,7 +126,27 @@ public class Key : Interactable
 
     private void UsingKeyCheck()
     {
-        Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, boxCollider.transform.rotation, skinWidth * 3, door);
+        if (isHeld)
+        {
+            Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, boxCollider.transform.rotation, skinWidth * 3, door);
+            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
+            {
+                UnlockDoor();
+            }
+            Physics.BoxCast(transform.position, transform.localScale, transform.right, out raycastHit, boxCollider.transform.rotation, skinWidth * 3, door);
+            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
+            {
+                UnlockDoor();
+            }
+            Physics.BoxCast(transform.position, transform.localScale, transform.right *-1, out raycastHit, boxCollider.transform.rotation, skinWidth * 3, door);
+            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
+            {
+                UnlockDoor();
+            }
+        }
+    }
+    private void UnlockDoor()
+    {
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)
         {
             lockedDoor.GetComponent<Door>().UnlockDoor();

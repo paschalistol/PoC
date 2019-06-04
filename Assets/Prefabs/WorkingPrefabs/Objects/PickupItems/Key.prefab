@@ -137,13 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd09be9a2e623a4c8b9b7a319c54beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeld: 0
+  activeCollisions: 0
   lockedDoor: {fileID: 0}
   unlockableDoors: []
   particles: {fileID: 4352664264546048975, guid: d07dbc90abaebe142becdfbd1c08bfc4,
     type: 3}
   environment:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 6326784
   used: 0
   door:
     serializedVersion: 2
