@@ -51,6 +51,11 @@ public class PressE : DebugEvent
     public bool open;
 }
 
+
+public class WarningEvent : DebugEvent
+{
+    public string warning;
+}
 public class StopSoundEvent : DebugEvent
 {
     public GameObject AudioPlayer;

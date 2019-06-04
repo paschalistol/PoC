@@ -103,7 +103,6 @@ public class GameController : MonoBehaviour
                 currentTime = tintTime;
             }
             currentTime -= Time.deltaTime;
-            Debug.Log(currentTime);
         }
     }
 }

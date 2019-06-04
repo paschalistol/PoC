@@ -11,6 +11,7 @@ public class Door : Interactable
     [SerializeField, Range(0f, 90f)]
     private int rotationGoal = 90;
     [SerializeField, Tooltip("Can the player open the door or is a key needed?")] private bool keyNeeded;
+    [SerializeField, Tooltip("The text of the warning when trying to open a locked door")] private string warningText = "A key is needed to unlock the door";
     private GameObject parent;
     public bool used = false;
     [Header("Sounds")]
@@ -19,9 +20,11 @@ public class Door : Interactable
     [SerializeField] private AudioClip unlockDoorSound;
     float rotationCounter, perFrame;
     private SoundEvent soundEvent;
+    private WarningEvent warningEvent;
     protected override void Start()
     {
         base.Start();
+        warningEvent = new WarningEvent();
     }
     public override AudioClip GetAudioClip()
     {
@@ -61,6 +64,11 @@ public class Door : Interactable
                 gameObject.GetComponent<ActiveGold>().SetGoldActive();
             }
         }
+        else if (keyNeeded)
+        {
+            warningEvent.warning = warningText;
+            EventSystem.Current.FireEvent(warningEvent);
+        }
     }
     public void UnlockDoor()
     {
@@ -75,11 +83,6 @@ public class Door : Interactable
             EventSystem.Current.FireEvent(soundEvent);
         }
 
-    }
-
-    public void Update()
-    {
-        Debug.Log(used);
     }
 
     IEnumerator RotateDoor(GameObject parent)
