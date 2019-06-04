@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class SaveSystem : MonoBehaviour
 {
+    public bool died;
+
     [System.Serializable]
     public class SaveData
     {
@@ -13,6 +15,8 @@ public class SaveSystem : MonoBehaviour
         public List<EnemyData> enemiesData = new List<EnemyData>();
         public PlayerData playerData;
         public bool alarmOn;
+        public float highScore;
+        public int deathCounter;
 
     }
 
@@ -110,7 +114,8 @@ public class SaveSystem : MonoBehaviour
         SavingPlayer(saveData);
         SavingInteractables(saveData);
         SavingEnemies(saveData);
-        CheckAlarm(saveData);
+        SavingAlarm(saveData);
+        SavingPlayerPrefs(saveData);
 
         formatter.Serialize(stream, saveData);
         stream.Close();
@@ -149,7 +154,7 @@ public class SaveSystem : MonoBehaviour
 
             if (interactable.layer == 9)
             {
-                bool used = interactable.transform.GetChild(0).GetComponent<Door>().used;                
+                bool used = interactable.transform.GetChild(0).GetComponent<Door>().used;
                 DoorsData interactableData = new DoorsData(interactable, used);
                 saveData.interactablesData.Add(interactableData);
             }
@@ -172,11 +177,17 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void CheckAlarm(SaveData saveData)
+    private void SavingAlarm(SaveData saveData)
     {
-        saveData.alarmOn = GameController.activatedAlarm; 
-     
+        saveData.alarmOn = GameController.activatedAlarm;
+
         Debug.Log(saveData.alarmOn);
+    }
+
+    private void SavingPlayerPrefs(SaveData saveData)
+    {
+        saveData.highScore = PlayerPrefs.GetFloat("Highscore");
+        saveData.deathCounter = PlayerPrefs.GetInt("deathCounter");
     }
 
     #endregion
@@ -198,6 +209,11 @@ public class SaveSystem : MonoBehaviour
             LoadInteractables(saveData);
             LoadEnemies(saveData);
             LoadAlarm(saveData);
+            if (died != true)
+            {
+                LoadPlayerPrefs(saveData);
+
+            }
 
             stream.Close();
             Debug.Log("loaded");
@@ -207,6 +223,7 @@ public class SaveSystem : MonoBehaviour
         {
             Debug.Log("no path lol");
         }
+        died = false;
 
     }
 
@@ -218,20 +235,20 @@ public class SaveSystem : MonoBehaviour
         player.transform.eulerAngles = LoadPlayerRotation(saveData);
 
 
-       /* CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
+        /* CharacterHoldItemStateMachine holdItemMachine = player.GetComponent<CharacterHoldItemStateMachine>();
 
-        if (saveData.playerData.itemHoldIndex >= 0)
-        {
-            GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
-            Debug.Log(saveData.playerData.itemHoldIndex);
-            holdItemMachine.ObjectCarried = itemHolding;
-            holdItemMachine.holdingSth = true;
-            holdItemMachine.ChangeState<HoldingItem>();
+         if (saveData.playerData.itemHoldIndex >= 0)
+         {
+             GameObject itemHolding = GameManager.gameManager.interactables[saveData.playerData.itemHoldIndex];
+             Debug.Log(saveData.playerData.itemHoldIndex);
+             holdItemMachine.ObjectCarried = itemHolding;
+             holdItemMachine.holdingSth = true;
+             holdItemMachine.ChangeState<HoldingItem>();
 
-            Interactable interactable = itemHolding.GetComponent<Interactable>();
-            interactable.StartInteraction();
+             Interactable interactable = itemHolding.GetComponent<Interactable>();
+             interactable.StartInteraction();
 
-        }*/
+         }*/
 
 
     }
@@ -265,7 +282,7 @@ public class SaveSystem : MonoBehaviour
             interactable.transform.position = LoadInteractablesPosition(saveData, i);
             interactable.transform.eulerAngles = LoadInteractablesRotation(saveData, i);
 
-            if(interactable.layer == 9)
+            if (interactable.layer == 9)
             {
                 DoorsData doorData = (DoorsData)saveData.interactablesData[i];
                 interactable.transform.GetChild(0).GetComponent<Door>().used = doorData.used;
@@ -327,18 +344,25 @@ public class SaveSystem : MonoBehaviour
     }
     #endregion
 
-    #region
+
     private void LoadAlarm(SaveData saveData)
     {
         GameController.activatedAlarm = saveData.alarmOn;
-       
+
         GameObject.Find("GameController (1)").GetComponent<GameController>().BlinkingTint();
-        
-        
+
+
     }
-    #endregion
+
+    private void LoadPlayerPrefs(SaveData saveData)
+    {
+        PlayerPrefs.SetFloat("Highscore", saveData.highScore);
+        PlayerPrefs.SetInt("deathCounter", saveData.deathCounter);
+    }
 
     #endregion
+
+
 
 
 }

@@ -11,12 +11,14 @@ public class DeathListener : MonoBehaviour
     private GameObject objectToInteract;
     private GameObject spawnPoint;
     public TMPro.TMP_Text deathcounterText;
+    public SaveSystem saveSystem;
     private static bool died = false;
     [SerializeField] private float minPointsToLose = 1, maxPointsToLose = 10;
     void Start()
     {
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(DeathInteraction);
         deathcounterText.text = "" + PlayerPrefs.GetInt("DeathCounter");
+        saveSystem = GameObject.Find("SaveManager").GetComponent<SaveSystem>();
     }
 
     void DeathInteraction(UnitDeathEventInfo deathInfo)
@@ -27,7 +29,9 @@ public class DeathListener : MonoBehaviour
         deathcounterText.text = ""+PlayerPrefs.GetInt("DeathCounter");
         DecreaseHighscore();
         died = true;
-
+        saveSystem.died = true;
+        saveSystem.Load();
+        
     }
     public static bool Death()
     {

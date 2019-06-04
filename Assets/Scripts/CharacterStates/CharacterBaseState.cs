@@ -304,7 +304,7 @@ public class CharacterBaseState : State
         }
         if (DeathListener.Death())
         {
-            owner.transform.position = owner.currentCheckPoint.transform.position;
+            //owner.transform.position = owner.currentCheckPoint.transform.position;
             HoldingItem.SetDied();
             DeathListener.SetDied(false);
         }
