@@ -6,6 +6,7 @@ public class CameraZone : Interactable
 {
     protected override void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Player"))
         GameController.activatedAlarm = true;
     }
 
