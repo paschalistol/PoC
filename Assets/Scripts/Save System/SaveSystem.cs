@@ -12,6 +12,7 @@ public class SaveSystem : MonoBehaviour
         public List<InteractablesData> interactablesData = new List<InteractablesData>();
         public List<EnemyData> enemiesData = new List<EnemyData>();
         public PlayerData playerData;
+        public bool alarmOn;
 
     }
 
@@ -109,6 +110,7 @@ public class SaveSystem : MonoBehaviour
         SavingPlayer(saveData);
         SavingInteractables(saveData);
         SavingEnemies(saveData);
+        CheckAlarm(saveData);
 
         formatter.Serialize(stream, saveData);
         stream.Close();
@@ -170,6 +172,13 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    private void CheckAlarm(SaveData saveData)
+    {
+        saveData.alarmOn = GameController.activatedAlarm; 
+     
+        Debug.Log(saveData.alarmOn);
+    }
+
     #endregion
 
 
@@ -188,6 +197,7 @@ public class SaveSystem : MonoBehaviour
             LoadPlayer(saveData);
             LoadInteractables(saveData);
             LoadEnemies(saveData);
+            LoadAlarm(saveData);
 
             stream.Close();
             Debug.Log("loaded");
@@ -314,6 +324,17 @@ public class SaveSystem : MonoBehaviour
         float y = rotation[1];
         float z = rotation[2];
         return new Quaternion(0, x, y, z);
+    }
+    #endregion
+
+    #region
+    private void LoadAlarm(SaveData saveData)
+    {
+        GameController.activatedAlarm = saveData.alarmOn;
+       
+        GameObject.Find("GameController (1)").GetComponent<GameController>().BlinkingTint();
+        
+        
     }
     #endregion
 

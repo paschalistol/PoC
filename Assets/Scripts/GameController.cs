@@ -93,7 +93,7 @@ public class GameController : MonoBehaviour
        
     }
 
-    void BlinkingTint()
+    public void BlinkingTint()
     {
         if (activatedAlarm)
         {
@@ -104,6 +104,10 @@ public class GameController : MonoBehaviour
                 currentTime = tintTime;
             }
             currentTime -= Time.deltaTime;
+        }
+        else
+        {
+            tint.SetActive(false);
         }
     }
 }
