@@ -51,6 +51,11 @@ public class DogChaseState : DogBaseState
             else
             {
                 owner.agent.SetDestination(owner.player.transform.position);
+                //owner.agent.autoBraking = true;
+                //owner.agent.transform.
+                //owner.agent.transform.LookAt(owner.player.transform);
+                owner.agent.transform.TransformDirection(owner.player.transform.position - owner.transform.position);
+
                 if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 {
                     KillPlayer();
