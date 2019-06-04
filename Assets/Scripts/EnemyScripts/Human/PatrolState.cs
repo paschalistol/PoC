@@ -41,7 +41,6 @@ public class PatrolState : EnemyBaseState
         if (!GameController.isPaused)
         {
 
-            Debug.Log("Line of sight = " + LineOfSight());
             fieldOfView = Vector3.Angle(owner.transform.position, owner.player.transform.position);
 
             owner.agent.SetDestination(points[currentPoint].transform.position);

@@ -9,13 +9,13 @@ public abstract class Interactable : MonoBehaviour
 
     protected Vector3 StartPosition, Velocity, StartRotation, wallCollisionRespawn, wallCollisionRotation;
     private float timer;
-    [SerializeField]protected bool isHeld = false;
+    protected bool isHeld = false;
     protected int layerNumber;
     private bool thisWasCarriedBeforeRespawn = false;
     protected RaycastHit raycastHit;
     protected RaycastHit wallHit;
     protected BoxCollider boxCollider;
-    [SerializeField]private int activeCollisions;
+    private int activeCollisions;
     protected virtual void Start()
     {
         StartPosition = transform.position;

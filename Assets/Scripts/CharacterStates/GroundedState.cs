@@ -41,7 +41,6 @@ public class GroundedState : CharacterBaseState
             EventSystem.Current.FireEvent(soundEvent);
         }
        
-        //anim = owner.GetComponent<Animator>();
     }
 
     public override void ToDo()
@@ -49,69 +48,8 @@ public class GroundedState : CharacterBaseState
         if (!GameController.isPaused)
         {
 
-            Gravity();
-            #region Input
-            Vector3 input = GetDirectionInput();
 
-            CheckInput(input);
-            #endregion
-            ChangeCharRotation();
-            if (input.magnitude > 0 && walkingSound.objectInstatiated == null && MaxSpeed > maxSpeedCoeff)
-            {
-
-
-                walkingSound.eventDescription = "Running Sound";
-                walkingSound.audioClip = footsteps;
-                walkingSound.looped = true;
-                walkingSound.parent = owner.gameObject;
-                if (walkingSound.audioClip != null)
-                {
-                    EventSystem.Current.FireEvent(walkingSound);
-                }
-            }
-            if ((input.magnitude == 0 || MaxSpeed <= maxSpeedCoeff) && walkingSound.objectInstatiated != null)
-            {
-                stopSoundEvent = new StopSoundEvent();
-                stopSoundEvent.AudioPlayer = walkingSound.objectInstatiated;
-                stopSoundEvent.eventDescription = "Stop Sound";
-                if (stopSoundEvent.AudioPlayer != null)
-                {
-                    EventSystem.Current.FireEvent(stopSoundEvent);
-                }
-            }
-            //Speed();
-
-
-            #region Buttons
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ApplyForce(new Vector3(0, jumpHeight, 0));
-                //anim.SetTrigger("jump");
-
-                //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-                //if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
-                //{
-                //    anim.SetTrigger(jumpHash);
-                //}
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                MaxSpeed = maxSpeedCoeff * movementMultiplier;
-            }
-            else
-            {
-                MaxSpeed = maxSpeedCoeff;
-            }
-
-            #endregion
-
-            DeathCollisionCheck();
-            ReachingCheckPoint();
-            //Trampoline();
-            Bouncing();
-            CollisionCheck();
-            //ReachingGoal();
-
+            Basic();
 
             owner.transform.position += Velocity * Time.deltaTime;
             if (TakingLift2() != null)
@@ -142,6 +80,71 @@ public class GroundedState : CharacterBaseState
             }
         }
         base.ExitState();
+    }
+    protected void Basic()
+    {
+        Gravity();
+        #region Input
+        Vector3 input = GetDirectionInput();
+
+        CheckInput(input);
+        #endregion
+        ChangeCharRotation();
+        if (input.magnitude > 0 && walkingSound.objectInstatiated == null && MaxSpeed > maxSpeedCoeff)
+        {
+
+
+            walkingSound.eventDescription = "Running Sound";
+            walkingSound.audioClip = footsteps;
+            walkingSound.looped = true;
+            walkingSound.parent = owner.gameObject;
+            if (walkingSound.audioClip != null)
+            {
+                EventSystem.Current.FireEvent(walkingSound);
+            }
+        }
+        if ((input.magnitude == 0 || MaxSpeed <= maxSpeedCoeff) && walkingSound.objectInstatiated != null)
+        {
+            stopSoundEvent = new StopSoundEvent();
+            stopSoundEvent.AudioPlayer = walkingSound.objectInstatiated;
+            stopSoundEvent.eventDescription = "Stop Sound";
+            if (stopSoundEvent.AudioPlayer != null)
+            {
+                EventSystem.Current.FireEvent(stopSoundEvent);
+            }
+        }
+        //Speed();
+
+
+        #region Buttons
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ApplyForce(new Vector3(0, jumpHeight, 0));
+            //anim.SetTrigger("jump");
+
+            //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            //if (Input.GetKeyDown(KeyCode.Space) && stateInfo.nameHash == runStateHash)
+            //{
+            //    anim.SetTrigger(jumpHash);
+            //}
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            MaxSpeed = maxSpeedCoeff * movementMultiplier;
+        }
+        else
+        {
+            MaxSpeed = maxSpeedCoeff;
+        }
+
+        #endregion
+
+        DeathCollisionCheck();
+        ReachingCheckPoint();
+        //Trampoline();
+        Bouncing();
+        CollisionCheck();
+        //ReachingGoal();
     }
     private ParticleEvent particleEvent;
     //checks for the current input. Creates walking particles. 

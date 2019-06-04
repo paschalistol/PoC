@@ -18,39 +18,7 @@ public class OnLiftState : GroundedState
     {
         if (!GameController.isPaused)
         {
-            ChangeCharRotation();
-            #region Input
-            Vector3 input = GetDirectionInput();
-
-
-            if (input.magnitude <= 0)
-            {
-                Decelerate();
-            }
-            else
-            {
-                Accelerate(input);
-            }
-            #endregion
-
-
-            Gravity();
-            #region Buttons
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ApplyForce(new Vector3(0, jumpHeight, 0));
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                MaxSpeed /= 2;
-            }
-            else if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                MaxSpeed *= 2;
-            }
-            #endregion
-
-            CollisionCheck();
+            Basic();
 
             owner.transform.position += (owner.lift2.GetComponent<Lift2>().GetVelocity() + Velocity) * Time.deltaTime;
 
@@ -65,7 +33,6 @@ public class OnLiftState : GroundedState
 
                 owner.ChangeState<GroundedState>();
             }
-            // owner.transform.parent = owner.lift2.transform;
         }
     }
 }

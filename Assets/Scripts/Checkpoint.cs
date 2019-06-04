@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour
         {
                 currentCheckpoint = checkpointNo;
             other.GetComponent<CharacterStateMachine>().currentCheckPoint = restartPosition;
-            saveSystem.Save();
+           // saveSystem.Save();
         }
     }
 }

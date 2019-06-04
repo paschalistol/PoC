@@ -231,12 +231,12 @@ public class SaveSystem : MonoBehaviour
             }
 
             stream.Close();
-            Debug.Log("loaded");
+
 
         }
         else
         {
-            Debug.Log("no path lol");
+
         }
         died = false;
 

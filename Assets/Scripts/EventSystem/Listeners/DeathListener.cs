@@ -29,8 +29,8 @@ public class DeathListener : MonoBehaviour
         deathcounterText.text = ""+PlayerPrefs.GetInt("DeathCounter");
         DecreaseHighscore();
         died = true;
-        saveSystem.died = true;
-        saveSystem.Load();
+        //saveSystem.died = true;
+        //saveSystem.Load();
         
     }
     public static bool Death()

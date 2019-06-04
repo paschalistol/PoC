@@ -28,45 +28,53 @@ public class FuseBoxItem : Interactable
         
         isHeld = false;
     }
+
     void Update()
     {
 
         if (!GameController.isPaused)
         {
             AddPhysics();      
+
                 transform.position += Velocity * Time.deltaTime;
-
-            RaycastHit raycastHit;
-
-            Physics.BoxCast(transform.position, transform.localScale, transform.forward, out raycastHit, transform.rotation, transform.localScale.z);
-
-            if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
-            {
-
-                sound = new SoundEvent();
-                sound.audioClip = clip;
-                sound.eventDescription = "Water sound";
-                sound.looped = false;
-                sound.parent = Camera.main.gameObject;
-                sound.volume = volume;
-
-                EventSystem.Current.FireEvent(sound);
-                //fuseBox.GetComponent<FuseBox>().;
-                fuseBox.GetComponent<FuseBox>().RunInteraction();
-
-                //FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
-                //fuseBoxEvent.gameObject = gameObject;
-                //fuseBoxEvent.eventDescription = "Fusebox item: " + count;
-                ////fuseBoxEvent.particles = particles;
-
-                //EventSystem.Current.FireEvent(fuseBoxEvent);
-
-                Destroy(gameObject);
-              
-              
-            }
+            DoBoxCast(transform.forward);
+            DoBoxCast(transform.right);
+            DoBoxCast(transform.right * -1);
+   
         }
     }
+
+    private void DoBoxCast(Vector3 direction)
+    {
+        Physics.BoxCast(transform.position, transform.localScale, direction, out raycastHit, transform.rotation, transform.localScale.z);
+
+        if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == fuseBox)
+        {
+
+            sound = new SoundEvent();
+            sound.audioClip = clip;
+            sound.eventDescription = "Water sound";
+            sound.looped = false;
+            sound.parent = Camera.main.gameObject;
+            sound.volume = volume;
+
+            EventSystem.Current.FireEvent(sound);
+            //fuseBox.GetComponent<FuseBox>().;
+            fuseBox.GetComponent<FuseBox>().RunInteraction();
+
+            //FuseBoxEvent fuseBoxEvent = new FuseBoxEvent();
+            //fuseBoxEvent.gameObject = gameObject;
+            //fuseBoxEvent.eventDescription = "Fusebox item: " + count;
+            ////fuseBoxEvent.particles = particles;
+
+            //EventSystem.Current.FireEvent(fuseBoxEvent);
+
+            Destroy(gameObject);
+
+
+        }
+    }
+
     private void AddPhysics()
     {
         if (!isHeld)
