@@ -18,6 +18,8 @@ public class Enemy : StateMachine
     public GameObject flashLight;
     public CapsuleCollider capsuleCollider;
     public GameObject[] dogs;
+
+    private Vector3 startPosition, startRotation;
     //public readonly float LightThreshold = 0.2f;
 
     // Methods
@@ -25,6 +27,8 @@ public class Enemy : StateMachine
     {
         Renderer = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
+        startPosition = transform.position;
+        startRotation = transform.eulerAngles;
         base.Awake();
     }
 
@@ -36,5 +40,11 @@ public class Enemy : StateMachine
     public float GetHearingDistance()
     {
         return hearingDistance;
+    }
+
+    public void ResetTransform()
+    {
+        transform.position = startPosition;
+        transform.eulerAngles = startRotation;
     }
 }

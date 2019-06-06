@@ -69,7 +69,7 @@ public class FuseBoxItem : Interactable
 
             //EventSystem.Current.FireEvent(fuseBoxEvent);
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
 
 
         }

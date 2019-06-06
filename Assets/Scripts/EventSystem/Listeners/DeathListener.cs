@@ -25,13 +25,14 @@ public class DeathListener : MonoBehaviour
     {
 
         objectToInteract = deathInfo.deadUnit;
-        PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") +1);
-        deathcounterText.text = ""+PlayerPrefs.GetInt("DeathCounter");
+        PlayerPrefs.SetInt("DeathCounter", PlayerPrefs.GetInt("DeathCounter") + 1);
+        deathcounterText.text = "" + PlayerPrefs.GetInt("DeathCounter");
         DecreaseHighscore();
         died = true;
         //saveSystem.died = true;
         //saveSystem.Load();
-        
+        ResetEnemies();
+
     }
     public static bool Death()
     {
@@ -45,8 +46,24 @@ public class DeathListener : MonoBehaviour
     {
         AddPointEvent addPointInfo = new AddPointEvent();
         addPointInfo.eventDescription = "Losing points!";
-        addPointInfo.point = - Mathf.Clamp( Random.Range(minPointsToLose, maxPointsToLose) , 0, PlayerPrefs.GetFloat("Highscore", 0));
+        addPointInfo.point = -Mathf.Clamp(Random.Range(minPointsToLose, maxPointsToLose), 0, PlayerPrefs.GetFloat("Highscore", 0));
         EventSystem.Current.FireEvent(addPointInfo);
 
+    }
+
+    private void ResetEnemies()
+    {
+        for (int i = 0; i < GameManager.gameManager.enemies.Count; i++)
+        {
+            GameObject enemy = GameManager.gameManager.enemies[i];
+            if(enemy.tag == "Enemy")
+            {
+                enemy.GetComponent<Enemy>().ResetTransform();
+            }else if (enemy.tag == "Dog")
+            {
+                enemy.GetComponent<EnemyDog>().ResetTransform();
+            }
+            
+        }
     }
 }

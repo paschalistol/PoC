@@ -13,10 +13,9 @@ public class EnemyDog : StateMachine
     //public LayerMask visionMask;
     public LayerMask safeZoneMask;
     public GameObject player;
-    
-
     public bool inSafeZone;
-   // public GameObject audioSpeaker;
+    private Vector3 startPosition, startRotation;
+    // public GameObject audioSpeaker;
 
     [SerializeField] private float smellDistance;
 
@@ -25,7 +24,8 @@ public class EnemyDog : StateMachine
     {
         Renderer = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
-
+        startPosition = transform.position;
+        startRotation = transform.eulerAngles;
         base.Awake();
     }
 
@@ -33,7 +33,14 @@ public class EnemyDog : StateMachine
     {
         return smellDistance;
     }
-   
+
+    public void ResetTransform()
+    {
+        transform.position = startPosition;
+        transform.eulerAngles = startRotation;
+        Debug.Log(startPosition);
+    }
+
 }
 
 

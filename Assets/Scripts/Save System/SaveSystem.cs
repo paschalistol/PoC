@@ -219,7 +219,7 @@ public class SaveSystem : MonoBehaviour
             FileStream stream = new FileStream(path, FileMode.Open);
 
             SaveData saveData = formatter.Deserialize(stream) as SaveData;
-
+            Debug.Log(path);
             LoadPlayer(saveData);
             LoadInteractables(saveData);
             LoadEnemies(saveData);
