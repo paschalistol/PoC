@@ -6,20 +6,19 @@ using UnityEngine.AI;
 
 public class EnemyDog : StateMachine
 {
-    // Attributes
+    [SerializeField] private float smellDistance;
+
     [HideInInspector] public MeshRenderer Renderer;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public bool isInChase;
-    //public LayerMask visionMask;
+    [HideInInspector] public bool inSafeZone;
+
     public LayerMask safeZoneMask;
     public GameObject player;
-    public bool inSafeZone;
     private Vector3 startPosition, startRotation;
-    // public GameObject audioSpeaker;
 
-    [SerializeField] private float smellDistance;
 
-    // Methods
+
     protected override void Awake()
     {
         Renderer = GetComponent<MeshRenderer>();
@@ -38,7 +37,6 @@ public class EnemyDog : StateMachine
     {
         transform.position = startPosition;
         transform.eulerAngles = startRotation;
-        Debug.Log(startPosition);
     }
 
 }

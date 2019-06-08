@@ -10,36 +10,22 @@ public class DogBaseState : State
 {
     // Attributes
     [SerializeField] protected Material material;
-    private RaycastHit raycastHit;
+    [SerializeField] protected float moveSpeed;
     private BoxCollider boxCollider;
     protected EnemyDog owner;
     private UnitDeathEventInfo deathInfo;
-
-    [SerializeField] protected float moveSpeed;
-    private const float skinWidth = 0.2f;
-    private float fieldOfView;
-    private Vector3 scale;
-    private Vector3 bigScale;
     private SoundEvent sound;
     private StopSoundEvent stopSound;
-    protected bool chasing;
-    
- 
-    
 
-    // Methods
+
     public override void EnterState()
     {
         base.EnterState();
-        //owner.Renderer.material = material;
         owner.agent.speed = moveSpeed;
         boxCollider = owner.GetComponent<BoxCollider>();
 
         sound = new SoundEvent();
         sound.parent = owner.gameObject;
-
-     
-        
     }
 
     public override void InitializeState(StateMachine owner)
@@ -47,24 +33,6 @@ public class DogBaseState : State
         this.owner = (EnemyDog)owner;
     }
 
-    protected bool InSafeZoneCheck()
-    {
-        RaycastHit raycastHit;
-        #region Raycast
-
-        Physics.BoxCast(boxCollider.transform.position, boxCollider.transform.localScale / 2,
-            owner.agent.velocity, out raycastHit, boxCollider.transform.rotation, owner.agent.velocity.magnitude * Time.deltaTime + skinWidth, owner.safeZoneMask);
-        #endregion
-        if(raycastHit.collider != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        
-    }
 
     protected void KillPlayer()
     {
@@ -75,12 +43,27 @@ public class DogBaseState : State
         EventSystem.Current.FireEvent(deathInfo);
     }
 
-   
+  
+    #region DogBaseLegacy
 
+    //protected bool InSafeZoneCheck()
+    //{
+    //    RaycastHit raycastHit;
+    //    #region Raycast
 
-
-    #region legacy
-
+    //    Physics.BoxCast(boxCollider.transform.position, boxCollider.transform.localScale / 2,
+    //        owner.agent.velocity, out raycastHit, boxCollider.transform.rotation, owner.agent.velocity.magnitude * Time.deltaTime + skinWidth, owner.safeZoneMask);
+    //    #endregion
+    //    if(raycastHit.collider != null)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+        
+    //}
 
     //fieldOfView = owner.GetFieldOfView();
     /* protected bool LineOfSight()

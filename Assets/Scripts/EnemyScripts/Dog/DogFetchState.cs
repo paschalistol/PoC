@@ -5,41 +5,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the fetch dog behavior
+/// </summary>
 [CreateAssetMenu(menuName = "Enemy/DogFetchState")]
 public class DogFetchState : DogBaseState
 {
-    private float chaseDistance, hearingRange;
-    private const float bustedDistance = 2f;
-    private UnitDeathEventInfo deathInfo;
-    private float currentTime;
-    [SerializeField] private float animationTime = 0.05f;
-    private bool activatedAnimation = true;
-    private Canvas canvas;
     [SerializeField] private AudioClip growlSound;
+    [SerializeField] private bool loopedSound = true;
+    #region Events
     private SoundEvent sound;
     private StopSoundEvent stopSound;
+    private UnitDeathEventInfo deathInfo;
+    #endregion
+    private const float bustedDistance = 2f;
+    private bool activatedAnimation = true;
     private bool usedOnce;
-    [SerializeField] private bool loopedSound = true;
+    private float chaseDistance, hearingRange, currentTime;
 
 
     public override void EnterState()
     {
         base.EnterState();
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(HandleDeath);
-        //canvas.GetComponentInChildren<Canvas>();
     }
     public override void ToDo()
     {
         if (!GameController.isPaused)
         {
-
             if (!usedOnce)
             {
                 StartDogSound();
                 usedOnce = true;
             }
 
-            //ChangeUI();
             owner.agent.SetDestination(owner.player.transform.position);
             if (owner.inSafeZone)
                 owner.ChangeState<DogPatrolState>();
@@ -57,17 +56,10 @@ public class DogFetchState : DogBaseState
         owner.ChangeState<DogPatrolState>();
     }
 
-    protected void ChangeUI()
-    {
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0)
-        {
-            activatedAnimation = !activatedAnimation;
-            currentTime = animationTime;
-            canvas.gameObject.SetActive(activatedAnimation);
-        }
-    }
 
+    /// <summary>
+    /// Plays selected sound from the dogs position
+    /// </summary>
     protected void StartDogSound()
     {
         sound = new SoundEvent();
@@ -77,6 +69,9 @@ public class DogFetchState : DogBaseState
         EventSystem.Current.FireEvent(sound);
     }
 
+    /// <summary>
+    /// Stops the sound that has been created
+    /// </summary>
     protected void StopDogSound()
     {
         stopSound = new StopSoundEvent();
@@ -84,10 +79,22 @@ public class DogFetchState : DogBaseState
         EventSystem.Current.FireEvent(stopSound);
     }
 
+    #region legacy
     //public override void ExitState()
     //{
     //    base.ExitState();
     //    //StopDogSound();
     //}
+//Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));
+    //protected void ChangeUI()
+    //{
+    //    currentTime -= Time.deltaTime;
+    //    if (currentTime <= 0)
+    //    {
+    //        activatedAnimation = !activatedAnimation;
+    //        currentTime = animationTime;
+    //        canvas.gameObject.SetActive(activatedAnimation);
+    //    }
+    //}
+    #endregion
 }
-        //Debug.Log(Vector3.Distance(owner.transform.position, owner.player.transform.position));

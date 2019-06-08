@@ -11,6 +11,7 @@ public class FuseBox : MonoBehaviour
     [HideInInspector] public bool itemUsed;
     [SerializeField] private string activationText = "";
     private WarningEvent activationEvent;
+
     private void Start()
     {
         activationEvent = new WarningEvent();

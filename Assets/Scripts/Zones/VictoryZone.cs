@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class allows for the player to end the game
+/// </summary>
 public class VictoryZone : MonoBehaviour
 {
     [SerializeField] private AudioClip victorySound;
@@ -14,7 +17,6 @@ public class VictoryZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0);
             if (sound != null)
             {
                 sound.audioClip = victorySound;
@@ -23,6 +25,7 @@ public class VictoryZone : MonoBehaviour
 
                 EventSystem.Current.FireEvent(sound);
             }
+            SceneManager.LoadScene(0);
         }
 
 

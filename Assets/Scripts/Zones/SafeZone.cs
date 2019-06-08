@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class makes the dog run away if it enters the SafeZone
+/// </summary>
 public class SafeZone : MonoBehaviour
 {
     void OnTriggerEnter(Collider collision)

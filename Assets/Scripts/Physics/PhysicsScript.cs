@@ -1,17 +1,20 @@
 ﻿//Main Author: Emil Dahl
+//Secondary Author: Paschalis Tolios, Johan Ekman
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the physics for most objects in the game
+/// </summary>
 public static class PhysicsScript
 {
-
-    private static float deceleration = 3;
     private static Vector3 normal;
+    private static float deceleration = 3;
     private static  float staticFriction = 0.55f;
-    private static float dynamicFriction;
     private static  float gravityConstant = 20f;
+    private static float dynamicFriction;
 
 
 

@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the key behavior
+/// </summary>
 [RequireComponent(typeof(BoxCollider))]
 public class Key : Interactable
 {
@@ -12,28 +15,24 @@ public class Key : Interactable
     [SerializeField] private GameObject[] unlockableDoors;
     [SerializeField] private GameObject particles;
     [SerializeField] private LayerMask environment;
+    [SerializeField] private LayerMask door;
     [HideInInspector] public bool used = false;
 
     private ParticleEvent startParticles;
     private StopParticleEvent stopParticles;
-    private const float doorAngle = 90;
-    private float doorOffset;
     private GameObject parentEnemy;
     private Vector3 keyRelativePosition;
     private Quaternion keyRelativeRotation;
-
-
-    private bool usedOnce = false;
+    private const float doorAngle = 90;
     protected const float skinWidth = 0.2f;
-    [SerializeField] private LayerMask door;
+    private float doorOffset;
+    private bool usedOnce = false;
 
     protected override void Start()
     {
 
         base.Start();
-
         isHeld = false;
-
         if (gameObject.transform.parent != null && gameObject.tag == "Key")
         {
             parentEnemy = transform.parent.gameObject;
@@ -56,7 +55,6 @@ public class Key : Interactable
             UsingKeyCheck();
             transform.position += Velocity * Time.deltaTime;
         }
-        //Debug.Log(parentEnemy.transform.position + "  " + keyStartPos);
     }
     public override void StartInteraction()
     {
@@ -87,6 +85,9 @@ public class Key : Interactable
         return null;
     }
 
+    /// <summary>
+    /// Activates gravity and deceleration on set object if not held, and checks for collision all the time
+    /// </summary>
     private void AddPhysics()
     {
         if (transform.parent == null)
@@ -106,6 +107,9 @@ public class Key : Interactable
         }
     }
 
+    /// <summary>
+    /// Fires particle event on the key
+    /// </summary>
     private void ParticleStarter()
     {
         startParticles = new ParticleEvent();
@@ -116,6 +120,9 @@ public class Key : Interactable
         usedOnce = true;
     }
 
+    /// <summary>
+    /// Fires event to stop particles on the key
+    /// </summary>
     private void ParticleStopper()
     {
         stopParticles = new StopParticleEvent();
@@ -124,6 +131,9 @@ public class Key : Interactable
         EventSystem.Current.FireEvent(stopParticles);
     }
 
+    /// <summary>
+    /// If there is something in front of the door, open it
+    /// </summary>
     private void UsingKeyCheck()
     {
         if (isHeld)
@@ -145,6 +155,10 @@ public class Key : Interactable
             }
         }
     }
+
+    /// <summary>
+    /// Unlocks the door and deletes the key
+    /// </summary>
     private void UnlockDoor()
     {
         if (raycastHit.collider != null && raycastHit.collider.transform.gameObject == lockedDoor)

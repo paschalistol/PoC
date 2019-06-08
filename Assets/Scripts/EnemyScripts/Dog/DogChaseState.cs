@@ -5,19 +5,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the basic "Chase enemy" behavior for the dog
+/// </summary>
 [CreateAssetMenu(menuName = "Enemy/DogChaseState")]
 public class DogChaseState : DogBaseState
 {
 
-    private float smellDistance;
-    private const float bustedDistance = 2f;
-    private UnitDeathEventInfo deathInfo;
-    private bool usedOnce;
     [SerializeField] private AudioClip barkSound;
+    [SerializeField] private bool loopedSound = false;
+    private UnitDeathEventInfo deathInfo;
     private StopSoundEvent stopSound;
     private SoundEvent sound;
     private MusicBasedOnChased musicBasedOnChased;
-    [SerializeField] private bool loopedSound = false;
+    private float smellDistance;
+    private const float bustedDistance = 2f;
+    private bool usedOnce;
 
     public override void EnterState()
     {
@@ -53,8 +56,6 @@ public class DogChaseState : DogBaseState
             {
                 owner.agent.SetDestination(owner.player.transform.position);
 
-                //owner.agent.transform.TransformDirection(owner.player.transform.position - owner.transform.position);
-
                 if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < bustedDistance)
                 {
                     KillPlayer();
@@ -65,11 +66,18 @@ public class DogChaseState : DogBaseState
         else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
+    /// <summary>
+    /// If the player dies the dog returns to patrolling
+    /// </summary>
+    /// <param name="death"></param>
     void HandleDeath(UnitDeathEventInfo death)
     {
         owner.ChangeState<DogPatrolState>();
     }
 
+    /// <summary>
+    /// Stops the sound that has been created for the dog
+    /// </summary>
     protected void StopDogSound()
     {
         stopSound = new StopSoundEvent();
@@ -84,7 +92,7 @@ public class DogChaseState : DogBaseState
     }
 
 }
-#region ChaseLegacy
+#region DogChaseLegacy
 //public override void ExitState()
 //{
 //    Debug.Log("Walla");

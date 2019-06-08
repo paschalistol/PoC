@@ -9,8 +9,6 @@ public class ParticleListener : MonoBehaviour
     private GameObject ParticlesPrefab;
     private ParticleSystem system;
     private GameObject go;
-    private float startTime = 30f;
-    private float currentTime;
 
     void Start()
     {

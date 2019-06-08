@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the behavior for dog patrolling
+/// </summary>
 [CreateAssetMenu(menuName = "Enemy/DogPatrolState")]
 public class DogPatrolState : DogBaseState
 {
@@ -12,8 +15,8 @@ public class DogPatrolState : DogBaseState
     
     private GameObject[] DogPoints;
     private GameObject currentPoint;
-    private int Point;
     private const float noiceDetection = 5f;
+    private int Point;
     private float smellDistance, distanceToPoint, distanceToEnemy;
 
     public override void EnterState()
@@ -44,6 +47,9 @@ public class DogPatrolState : DogBaseState
         }else { owner.agent.SetDestination(owner.agent.transform.position); }
     }
 
+    /// <summary>
+    /// Picks random position based on assigned patrol positions
+    /// </summary>
     protected void ChooseRandom()
     {
         Point = Random.Range(0, DogPoints.Length);

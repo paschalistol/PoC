@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This zone checks if the player is inside it and starts the alarm if true
+/// </summary>
 public class CameraZone : Interactable
 {
     protected override void OnTriggerEnter(Collider other)
@@ -23,9 +26,8 @@ public class CameraZone : Interactable
 
     private void SwitchAlarm()
     {
-        //if (!GameController.disabledAlaram)
-        //    GameController.activatedAlarm = true;
+        if (!GameController.disabledAlaram)
+            GameController.activatedAlarm = true;
     }
 
-   
 }

@@ -4,34 +4,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// General GameController to take care of functionality that impacts many different targets
+/// </summary>
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private AudioClip alarmClip;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float tintTime = 0.5f;
+    [SerializeField] private float volume; 
+
+    public GameObject tint;
+    private SoundEvent soundEvent;
+    private StopSoundEvent stopSound;
+
+    #region StaticBools
     public static bool isPaused = false;
     public static bool activatedAlarm = false;
     public static bool disabledAlaram = false;
     public static bool VictortCondition = false;
-    public GameObject tint;
+    #endregion
 
-    [SerializeField] private GameObject[] lightHolders;
-    [SerializeField] private AudioClip alarmClip;
-    [SerializeField] private float tintTime = 0.5f;
-    [SerializeField] private GameObject player;
-    private SoundEvent soundEvent;
-    private StopSoundEvent stopSound;
-    [SerializeField] private float volume; 
-    
     private bool tintCondtion = true;
+    private bool usedOnce = false;
     private float currentTime;
-    private bool usedOnce;
 
     private void Start()
     {
         EventSystem.Current.RegisterListener<UnitDeathEventInfo>(AlarmReset);
-        
-
-        foreach (GameObject ob in lightHolders)
-            if (ob != null)
-                ob.GetComponent<Light>().intensity = 0;
     }
 
     void Update()
@@ -51,7 +51,6 @@ public class GameController : MonoBehaviour
         if (activatedAlarm == true)
         {
             BlinkingTint();
-            ActivateLights();
 
             if (!usedOnce)
             {
@@ -75,24 +74,19 @@ public class GameController : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// If the player dies the alarm is reset
+    /// </summary>
+    /// <param name="info"></param>
     void AlarmReset(UnitDeathEventInfo info)
     {
         activatedAlarm = false;
         tint.SetActive(false);
     }
 
-    void ActivateLights()
-    {
-        foreach (GameObject ob in lightHolders)
-            if (ob != null)
-            {
-                ob.GetComponent<Light>().intensity = 100;
-                ob.GetComponent<Light>().color = Color.red;
-            }
-       
-    }
-
+    /// <summary>
+    /// Function for making the screen blink through the duration of the alarm
+    /// </summary>
     public void BlinkingTint()
     {
         if (activatedAlarm)
@@ -111,3 +105,17 @@ public class GameController : MonoBehaviour
         }
     }
 }
+#region ControllerLegacy
+
+    //void ActivateLights()
+    //{
+    //    foreach (GameObject ob in lightHolders)
+    //        if (ob != null)
+    //        {
+    //            ob.GetComponent<Light>().intensity = 100;
+    //            ob.GetComponent<Light>().color = Color.red;
+    //        }
+       
+    //}
+
+#endregion
