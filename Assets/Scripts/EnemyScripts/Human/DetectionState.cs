@@ -20,7 +20,7 @@ public class DetectionState : EnemyBaseState
         owner.flashLight.GetComponent<Light>().intensity = 50;
         //chaseDistance = owner.GetFieldOfView();
         lightRange = owner.flashLight.GetComponent<Light>().range;
-        hearingDistance = owner.GetHearingDistance();
+        //hearingDistance = owner.GetHearingDistance();
         
     }
 
